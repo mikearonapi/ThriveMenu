@@ -96,7 +96,7 @@ export async function POST(request: NextRequest) {
     // Create shopping list
     const shoppingList = await prisma.shoppingList.create({
       data: {
-        userId: session.user.id,
+        userId: userId,
         name: name || `Shopping List - ${mealPlan.name || "Week Plan"}`,
         mealPlanId: mealPlan.id,
         items: {
