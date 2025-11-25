@@ -4,7 +4,6 @@
 
 /* ThriveMenu Design System
    Inspired by Mediterranean warmth, healing foods, and family togetherness
-   Color palette: Sage greens, warm creams, terracotta accents, soft rose
 */
 
 :root {
@@ -20,436 +19,155 @@
   --sage-800: #486240;
   --sage-900: #3c5236;
   
-  /* Secondary - Deep Green (Trust, Depth) */
-  --forest-50: #f2f6f5;
-  --forest-100: #dce8e4;
-  --forest-200: #bbd2cb;
-  --forest-300: #91b5ab;
-  --forest-400: #689489;
-  --forest-500: #4e796f;
-  --forest-600: #3d6159;
-  --forest-700: #344f4a;
-  --forest-800: #2d4a3e;
-  --forest-900: #273b34;
+  /* Secondary - Warm Cream (Nourishment, Comfort) */
+  --cream-50: #fdfcf9;
+  --cream-100: #faf8f5;
+  --cream-200: #f5f0e8;
+  --cream-300: #ebe5dc;
   
-  /* Accent - Terracotta (Warmth, Energy) */
-  --terracotta-50: #fdf6f4;
-  --terracotta-100: #fae9e4;
-  --terracotta-200: #f5d5cc;
-  --terracotta-300: #edb9a8;
-  --terracotta-400: #e19578;
+  /* Accent - Terracotta (Earth, Warmth) */
+  --terracotta-50: #fdf6f3;
+  --terracotta-100: #faebe6;
+  --terracotta-200: #f3d6cc;
+  --terracotta-300: #e8bda7;
+  --terracotta-400: #d99a82;
   --terracotta-500: #c4846c;
-  --terracotta-600: #b06a52;
-  --terracotta-700: #925544;
-  --terracotta-800: #78483b;
-  --terracotta-900: #643f35;
+  --terracotta-600: #aa6651;
+  --terracotta-700: #8d5240;
   
-  /* Neutral - Cream (Comfort, Softness) */
-  --cream-50: #fefdfb;
-  --cream-100: #fdfbf7;
-  --cream-200: #faf8f5;
-  --cream-300: #f5f0e8;
-  --cream-400: #e8dfd2;
-  --cream-500: #d4c8b8;
-  --cream-600: #b5a591;
-  --cream-700: #8f8070;
-  --cream-800: #746758;
-  --cream-900: #5f554a;
+  /* Accent - Soft Rose (Care, Love) */
+  --rose-50: #fdf2f2;
+  --rose-100: #fce7e7;
+  --rose-200: #f8d0d0;
+  --rose-300: #f2a8a8;
+  --rose-400: #e87676;
+  --rose-500: #d64545;
   
-  /* Accent - Rose (Love, Care) */
-  --rose-50: #fdf7f7;
-  --rose-100: #fcefef;
-  --rose-200: #f7dede;
-  --rose-300: #f0c5c5;
-  --rose-400: #e5a3a3;
-  --rose-500: #d67f7f;
-  --rose-600: #c25d5d;
-  --rose-700: #a24848;
-  --rose-800: #863d3d;
-  --rose-900: #6f3636;
-  
-  /* Brown (Earthy, Grounded) */
-  --brown-50: #faf8f6;
-  --brown-100: #f2ede8;
-  --brown-200: #e4dad0;
-  --brown-300: #d2c1b0;
-  --brown-400: #bda38d;
-  --brown-500: #8b7355;
-  --brown-600: #7a6448;
-  --brown-700: #65533d;
-  --brown-800: #544635;
-  --brown-900: #473c2f;
+  /* Neutral - Forest (Depth, Stability) */
+  --forest-50: #f2f7f4;
+  --forest-100: #e1ebe5;
+  --forest-200: #c3d8cc;
+  --forest-300: #9ebfae;
+  --forest-400: #78a38f;
+  --forest-500: #588873;
+  --forest-600: #436e5a;
+  --forest-700: #37584a;
+  --forest-800: #2d4a3e; /* Primary text color */
+  --forest-900: #263d34;
   
   /* Text Colors */
-  --text-primary: #2c2c2c;
-  --text-secondary: #5a5a5a;
-  --text-muted: #8a8a8a;
-  
-  /* Semantic Colors */
-  --success: #4ade80;
-  --warning: #fbbf24;
-  --error: #f87171;
-  --info: #60a5fa;
+  --text-primary: var(--forest-900);
+  --text-secondary: var(--forest-700);
+  --text-muted: #889993;
   
   /* Gradients */
-  --gradient-hero: linear-gradient(135deg, var(--sage-100) 0%, var(--cream-200) 50%, var(--rose-100) 100%);
-  --gradient-card: linear-gradient(180deg, var(--cream-100) 0%, var(--cream-200) 100%);
-  --gradient-sage: linear-gradient(135deg, var(--sage-400) 0%, var(--sage-600) 100%);
+  --gradient-hero: linear-gradient(180deg, var(--sage-50) 0%, rgba(255,255,255,0) 100%);
+  --gradient-card: linear-gradient(135deg, #ffffff 0%, var(--cream-50) 100%);
+}
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
   
-  /* Shadows */
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.07), 0 2px 4px -2px rgb(0 0 0 / 0.07);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.08), 0 4px 6px -4px rgb(0 0 0 / 0.08);
-  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.08), 0 8px 10px -6px rgb(0 0 0 / 0.08);
+  body {
+    @apply font-sans text-[var(--text-primary)] bg-[var(--cream-100)] antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif font-medium tracking-tight;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-[var(--sage-500)] text-white font-medium py-3 px-6 rounded-xl 
+           shadow-md shadow-[var(--sage-200)] active:scale-95 transition-all duration-200
+           hover:bg-[var(--sage-600)] disabled:opacity-50 disabled:cursor-not-allowed;
+  }
   
-  /* Border Radius */
-  --radius-sm: 0.375rem;
-  --radius-md: 0.5rem;
-  --radius-lg: 0.75rem;
-  --radius-xl: 1rem;
-  --radius-2xl: 1.5rem;
-  --radius-full: 9999px;
+  .btn-secondary {
+    @apply bg-white text-[var(--forest-800)] font-medium py-3 px-6 rounded-xl 
+           border border-[var(--cream-300)] shadow-sm active:bg-[var(--cream-100)] 
+           transition-all duration-200 hover:border-[var(--sage-300)];
+  }
+  
+  .card {
+    @apply bg-white rounded-2xl p-5 shadow-sm border border-[var(--cream-200)];
+  }
+  
+  .mobile-nav {
+    @apply fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-lg border-t border-[var(--cream-200)] 
+           pt-2 pb-[max(1rem,env(safe-area-inset-bottom))] px-4 z-50;
+  }
+  
+  .safe-bottom {
+    @apply pb-[calc(4rem+env(safe-area-inset-bottom))];
+  }
+  
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .input-field {
+    @apply w-full bg-white border border-[var(--cream-300)] rounded-xl px-4 py-3
+           text-[var(--forest-800)] placeholder-[var(--text-muted)]
+           focus:outline-none focus:ring-2 focus:ring-[var(--sage-400)] focus:border-transparent
+           transition-all duration-200;
+  }
+
+  .nutrient-tag {
+    @apply inline-flex items-center gap-1 px-2 py-1 rounded-full text-[10px] font-medium uppercase tracking-wider;
+  }
+  
+  .nutrient-tag.omega3 {
+    @apply bg-[var(--sage-100)] text-[var(--sage-800)];
+  }
+  
+  .nutrient-tag.fiber {
+    @apply bg-[var(--forest-100)] text-[var(--forest-800)];
+  }
+  
+  .nutrient-tag.heart {
+    @apply bg-[var(--rose-100)] text-[var(--rose-800)];
+  }
+  
+  .nutrient-tag.thyroid {
+    @apply bg-[var(--terracotta-100)] text-[var(--terracotta-800)];
+  }
 }
 
-/* Dark mode overrides (optional - keeping app light and warm) */
-.dark {
-  --text-primary: #f5f5f5;
-  --text-secondary: #a0a0a0;
-  --text-muted: #707070;
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.5s ease-out forwards;
+  }
+  
+  .stagger-children > * {
+    opacity: 0;
+    animation: slideUp 0.5s ease-out forwards;
+  }
+  
+  .stagger-children > *:nth-child(1) { animation-delay: 0.1s; }
+  .stagger-children > *:nth-child(2) { animation-delay: 0.2s; }
+  .stagger-children > *:nth-child(3) { animation-delay: 0.3s; }
+  .stagger-children > *:nth-child(4) { animation-delay: 0.4s; }
 }
 
-/* Base Styles */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  scroll-behavior: smooth;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-body {
-  font-family: var(--font-sans);
-  background-color: var(--cream-100);
-  color: var(--text-primary);
-  line-height: 1.6;
-  min-height: 100vh;
-}
-
-/* Typography */
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-serif);
-  font-weight: 500;
-  line-height: 1.3;
-  color: var(--forest-800);
-}
-
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--cream-200);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--sage-300);
-  border-radius: var(--radius-full);
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--sage-400);
-}
-
-/* Focus styles */
-:focus-visible {
-  outline: 2px solid var(--sage-500);
-  outline-offset: 2px;
-}
-
-/* Selection */
-::selection {
-  background-color: var(--sage-200);
-  color: var(--forest-800);
-}
-
-/* Animations */
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
 }
 
 @keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateX(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes pulse-soft {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.7;
-  }
-}
-
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
-.animate-fade-in {
-  animation: fadeIn 0.5s ease-out forwards;
-}
-
-.animate-slide-up {
-  animation: slideUp 0.5s ease-out forwards;
-}
-
-.animate-slide-in {
-  animation: slideIn 0.3s ease-out forwards;
-}
-
-/* Stagger children animations */
-.stagger-children > * {
-  opacity: 0;
-  animation: slideUp 0.4s ease-out forwards;
-}
-
-.stagger-children > *:nth-child(1) { animation-delay: 0.05s; }
-.stagger-children > *:nth-child(2) { animation-delay: 0.1s; }
-.stagger-children > *:nth-child(3) { animation-delay: 0.15s; }
-.stagger-children > *:nth-child(4) { animation-delay: 0.2s; }
-.stagger-children > *:nth-child(5) { animation-delay: 0.25s; }
-.stagger-children > *:nth-child(6) { animation-delay: 0.3s; }
-.stagger-children > *:nth-child(7) { animation-delay: 0.35s; }
-.stagger-children > *:nth-child(8) { animation-delay: 0.4s; }
-
-/* Utility Classes */
-.glass {
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-}
-
-.glass-sage {
-  background: rgba(135, 168, 120, 0.1);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-}
-
-/* Recipe Card Hover Effects */
-.recipe-card {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.recipe-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-xl);
-}
-
-.recipe-card:hover .recipe-image {
-  transform: scale(1.05);
-}
-
-.recipe-image {
-  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Nutrient Tag Styles */
-.nutrient-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
-  padding: 0.25rem 0.5rem;
-  border-radius: var(--radius-full);
-  font-size: 0.75rem;
-  font-weight: 500;
-  transition: all 0.2s ease;
-}
-
-.nutrient-tag.omega3 {
-  background-color: var(--sage-100);
-  color: var(--sage-700);
-}
-
-.nutrient-tag.protein {
-  background-color: var(--terracotta-100);
-  color: var(--terracotta-700);
-}
-
-.nutrient-tag.fiber {
-  background-color: var(--forest-100);
-  color: var(--forest-700);
-}
-
-.nutrient-tag.selenium {
-  background-color: var(--rose-100);
-  color: var(--rose-700);
-}
-
-/* Health Condition Badges */
-.health-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.375rem;
-  padding: 0.375rem 0.75rem;
-  border-radius: var(--radius-lg);
-  font-size: 0.8125rem;
-  font-weight: 500;
-}
-
-.health-badge.heart-healthy {
-  background: linear-gradient(135deg, var(--rose-100), var(--terracotta-100));
-  color: var(--terracotta-700);
-}
-
-.health-badge.thyroid-friendly {
-  background: linear-gradient(135deg, var(--sage-100), var(--forest-100));
-  color: var(--forest-700);
-}
-
-.health-badge.blood-sugar {
-  background: linear-gradient(135deg, var(--cream-200), var(--brown-100));
-  color: var(--brown-700);
-}
-
-/* Button Styles */
-.btn-primary {
-  background: var(--gradient-sage);
-  color: white;
-  padding: 0.75rem 1.5rem;
-  border-radius: var(--radius-lg);
-  font-weight: 500;
-  transition: all 0.2s ease;
-  border: none;
-  cursor: pointer;
-}
-
-.btn-primary:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(135, 168, 120, 0.4);
-}
-
-.btn-secondary {
-  background: white;
-  color: var(--sage-700);
-  padding: 0.75rem 1.5rem;
-  border-radius: var(--radius-lg);
-  font-weight: 500;
-  transition: all 0.2s ease;
-  border: 1px solid var(--sage-200);
-  cursor: pointer;
-}
-
-.btn-secondary:hover {
-  background: var(--sage-50);
-  border-color: var(--sage-300);
-}
-
-/* Mobile Navigation */
-.mobile-nav {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: white;
-  border-top: 1px solid var(--cream-300);
-  padding: 0.5rem 0 calc(0.5rem + env(safe-area-inset-bottom));
-  z-index: 50;
-}
-
-/* Safe area padding for iOS */
-.safe-bottom {
-  padding-bottom: calc(5rem + env(safe-area-inset-bottom));
-}
-
-/* Meal Type Colors */
-.meal-breakfast { --meal-color: var(--terracotta-400); }
-.meal-lunch { --meal-color: var(--sage-500); }
-.meal-dinner { --meal-color: var(--forest-600); }
-.meal-snack { --meal-color: var(--rose-400); }
-
-/* Rating Stars */
-.star-filled {
-  color: var(--terracotta-400);
-}
-
-.star-empty {
-  color: var(--cream-400);
-}
-
-/* Print Styles */
-@media print {
-  body {
-    background: white;
-  }
-  
-  .no-print {
-    display: none !important;
-  }
-}
-
-/* Responsive Typography */
-@media (max-width: 640px) {
-  html {
-    font-size: 15px;
-  }
-}
-
-/* Hide scrollbar but keep functionality */
-.hide-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-.hide-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-
-/* Shimmer loading effect */
-.shimmer {
-  background: linear-gradient(
-    90deg,
-    var(--cream-200) 0%,
-    var(--cream-100) 50%,
-    var(--cream-200) 100%
-  );
-  background-size: 200% 100%;
-  animation: shimmer 1.5s infinite;
-}
-
-@keyframes shimmer {
-  0% {
-    background-position: -200% 0;
-  }
-  100% {
-    background-position: 200% 0;
-  }
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }

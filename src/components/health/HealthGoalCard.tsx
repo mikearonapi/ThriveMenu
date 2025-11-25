@@ -37,7 +37,7 @@ const colorStyles = {
   },
 };
 
-export function HealthGoalCard({
+export default function HealthGoalCard({
   title,
   subtitle,
   progress,
@@ -82,4 +82,3 @@ export function HealthGoalCard({
     </div>
   );
 }
-

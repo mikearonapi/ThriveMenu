@@ -10,22 +10,21 @@ import {
   Sparkles,
   ArrowRight,
   Sun,
-  Salad,
   Moon,
-  Cookie,
+  Coffee,
 } from "lucide-react";
-import { RecipeCard } from "@/components/recipe/RecipeCard";
-import { HealthGoalCard } from "@/components/health/HealthGoalCard";
-import { QuickFilterChip } from "@/components/ui/QuickFilterChip";
+import RecipeCard from "@/components/recipe/RecipeCard";
+import HealthGoalCard from "@/components/health/HealthGoalCard";
+import QuickFilterChip from "@/components/ui/QuickFilterChip";
 import { breakfastRecipes, lunchRecipes, dinnerRecipes, snackRecipes } from "@/data/recipes";
 
 // Get current meal suggestion based on time of day
 function getCurrentMealSuggestion() {
   const hour = new Date().getHours();
   if (hour < 11) return { type: "BREAKFAST", label: "breakfast", icon: Sun, recipes: breakfastRecipes };
-  if (hour < 15) return { type: "LUNCH", label: "lunch", icon: Salad, recipes: lunchRecipes };
+  if (hour < 15) return { type: "LUNCH", label: "lunch", icon: Sun, recipes: lunchRecipes };
   if (hour < 19) return { type: "DINNER", label: "dinner", icon: Moon, recipes: dinnerRecipes };
-  return { type: "SNACK", label: "evening snack", icon: Cookie, recipes: snackRecipes };
+  return { type: "SNACK", label: "evening snack", icon: Coffee, recipes: snackRecipes };
 }
 
 export default function HomePage() {
@@ -43,126 +42,130 @@ export default function HomePage() {
   const featuredRecipes = currentMeal.recipes.slice(0, 6);
 
   return (
-    <div className="min-h-screen pb-24">
+    <div className="min-h-screen pb-24 bg-[var(--cream-100)]">
       {/* Hero Section */}
-      <header className="relative overflow-hidden">
-        {/* Decorative Background */}
-        <div
-          className="absolute inset-0 opacity-60"
-          style={{
-            background: "var(--gradient-hero)",
-          }}
-        />
-        <div
-          className="absolute inset-0 opacity-10"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 30c0-5.5 4.5-10 10-10s10 4.5 10 10-4.5 10-10 10c0 5.5-4.5 10-10 10s-10-4.5-10-10 4.5-10 10-10c-5.5 0-10-4.5-10-10s4.5-10 10-10 10 4.5 10 10c5.5 0 10 4.5 10 10s-4.5 10-10 10' fill='%2387a878' fill-opacity='0.4' fill-rule='evenodd'/%3E%3C/svg%3E")`,
-          }}
-        />
-
-        <div className="relative px-5 pt-12 pb-8">
+      <header className="relative overflow-hidden bg-white pb-6 rounded-b-[2rem] shadow-sm border-b border-[var(--cream-200)]">
+        <div className="px-5 pt-12 pb-4">
           {/* Greeting */}
           <div className="mb-6 animate-fade-in">
-            <p className="text-[var(--sage-600)] text-sm font-medium mb-1">
-              Good {getTimeOfDay()}, Christine ✨
+            <p className="text-[var(--sage-600)] text-sm font-medium mb-1 tracking-wide uppercase">
+              {getTimeOfDay()}, Christine
             </p>
             <h1
-              className="text-3xl font-medium text-[var(--forest-800)]"
+              className="text-4xl font-medium text-[var(--forest-900)] leading-tight"
               style={{ fontFamily: "var(--font-serif)" }}
             >
               What shall we
               <br />
-              cook today?
+              <span className="text-[var(--sage-600)] italic">cook today?</span>
             </h1>
           </div>
 
           {/* Current Meal Suggestion Card */}
           <div
-            className="bg-white/80 backdrop-blur-sm rounded-2xl p-5 shadow-lg border border-white/50 animate-slide-up"
+            className="bg-[var(--forest-900)] rounded-2xl p-6 shadow-xl text-white animate-slide-up relative overflow-hidden group cursor-pointer"
             style={{ animationDelay: "0.1s" }}
           >
-            <div className="flex items-center gap-3 mb-3">
-              <div className="w-10 h-10 rounded-xl bg-[var(--sage-100)] flex items-center justify-center">
-                <currentMeal.icon className="w-5 h-5 text-[var(--sage-600)]" />
-              </div>
-              <div>
-                <p className="text-sm text-[var(--text-secondary)]">
-                  Perfect for {currentMeal.label}
-                </p>
-                <p
-                  className="text-lg font-medium text-[var(--forest-800)]"
-                  style={{ fontFamily: "var(--font-serif)" }}
-                >
-                  {featuredRecipes[0]?.name || "Golden Turmeric Oatmeal"}
-                </p>
-              </div>
+            {/* Background Image Effect */}
+            <div className="absolute inset-0 opacity-20 group-hover:opacity-30 transition-opacity duration-500">
+               {/* We can put a dynamic image here if we want, for now a gradient is fine */}
+               <div className="absolute inset-0 bg-gradient-to-br from-[var(--sage-800)] to-black" />
             </div>
-            <div className="flex items-center gap-4 text-sm text-[var(--text-secondary)]">
-              <span className="flex items-center gap-1">
-                <Clock className="w-4 h-4" />
-                25 min
-              </span>
-              <span className="flex items-center gap-1">
-                <Heart className="w-4 h-4 text-[var(--rose-400)]" />
-                Anti-inflammatory
-              </span>
+
+            <div className="relative z-10">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center border border-white/20">
+                  <currentMeal.icon className="w-5 h-5 text-[var(--sage-200)]" />
+                </div>
+                <div>
+                  <p className="text-xs text-[var(--sage-200)] font-medium uppercase tracking-wider">
+                    Featured for {currentMeal.label}
+                  </p>
+                </div>
+              </div>
+              
+              <h2
+                className="text-2xl font-medium mb-2"
+                style={{ fontFamily: "var(--font-serif)" }}
+              >
+                {featuredRecipes[0]?.name || "Golden Turmeric Oatmeal"}
+              </h2>
+              
+              <div className="flex items-center gap-4 text-sm text-[var(--sage-100)] mb-6">
+                <span className="flex items-center gap-1.5">
+                  <Clock className="w-4 h-4" />
+                  25 min
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <Heart className="w-4 h-4 text-[var(--rose-300)]" />
+                  Heart Healthy
+                </span>
+              </div>
+
+              <Link
+                href={`/recipe/${featuredRecipes[0]?.id || "golden-turmeric-oatmeal"}`}
+                className="w-full bg-white text-[var(--forest-900)] py-3.5 rounded-xl font-medium flex items-center justify-center gap-2 hover:bg-[var(--cream-100)] transition-colors"
+              >
+                <ChefHat className="w-4 h-4" />
+                Start Cooking
+              </Link>
             </div>
-            <Link
-              href={`/recipe/${featuredRecipes[0]?.id || "golden-turmeric-oatmeal"}`}
-              className="mt-4 w-full btn-primary flex items-center justify-center gap-2"
-            >
-              <ChefHat className="w-4 h-4" />
-              Let&apos;s Cook This
-            </Link>
           </div>
         </div>
       </header>
 
       {/* Health Goals Section */}
-      <section className="px-5 py-6">
-        <div className="flex items-center justify-between mb-4">
+      <section className="px-5 py-8">
+        <div className="flex items-center justify-between mb-5">
           <h2
-            className="text-xl font-medium text-[var(--forest-800)]"
+            className="text-xl font-medium text-[var(--forest-900)]"
             style={{ fontFamily: "var(--font-serif)" }}
           >
             Your Health Goals
           </h2>
           <Link
-            href="/health"
-            className="text-sm text-[var(--sage-600)] font-medium flex items-center gap-1"
+            href="/profile"
+            className="text-xs font-medium text-[var(--sage-600)] flex items-center gap-1 hover:text-[var(--sage-800)] transition-colors"
           >
-            View All <ArrowRight className="w-4 h-4" />
+            View All <ArrowRight className="w-3 h-3" />
           </Link>
         </div>
 
-        <div className="flex gap-3 overflow-x-auto hide-scrollbar pb-2 -mx-5 px-5 stagger-children">
-          <HealthGoalCard
-            title="Omega-3s"
-            subtitle="2x this week"
-            progress={66}
-            icon="🐟"
-            color="sage"
-          />
-          <HealthGoalCard
-            title="Fiber"
-            subtitle="25g daily"
-            progress={80}
-            icon="🥬"
-            color="forest"
-          />
-          <HealthGoalCard
-            title="Heart Health"
-            subtitle="On track"
-            progress={90}
-            icon="❤️"
-            color="rose"
-          />
+        <div className="flex gap-4 overflow-x-auto hide-scrollbar pb-4 -mx-5 px-5 stagger-children snap-x">
+          <div className="snap-start min-w-[240px]">
+            <HealthGoalCard
+              title="Omega-3s"
+              subtitle="2x this week"
+              progress={66}
+              icon="🌊"
+              color="sage"
+            />
+          </div>
+          <div className="snap-start min-w-[240px]">
+            <HealthGoalCard
+              title="Daily Fiber"
+              subtitle="25g target"
+              progress={80}
+              icon="🥬"
+              color="forest"
+            />
+          </div>
+          <div className="snap-start min-w-[240px]">
+            <HealthGoalCard
+              title="Heart Health"
+              subtitle="On track"
+              progress={90}
+              icon="❤️"
+              color="rose"
+            />
+          </div>
         </div>
       </section>
 
       {/* Quick Filters */}
-      <section className="px-5 pb-4">
-        <div className="flex gap-2 overflow-x-auto hide-scrollbar pb-2 -mx-5 px-5">
+      <section className="px-5 pb-6">
+        <h2 className="text-sm font-medium text-[var(--text-muted)] mb-3 uppercase tracking-wider">Browse by Need</h2>
+        <div className="flex flex-wrap gap-2">
           {quickFilters.map((filter) => (
             <QuickFilterChip
               key={filter.id}
@@ -179,140 +182,31 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Breakfast Recipes */}
-      <section className="px-5 py-4">
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center gap-2">
-            <span className="text-2xl">🌅</span>
-            <h2
-              className="text-xl font-medium text-[var(--forest-800)]"
-              style={{ fontFamily: "var(--font-serif)" }}
-            >
-              Breakfast
-            </h2>
-          </div>
-          <Link
-            href="/explore?meal=breakfast"
-            className="text-sm text-[var(--sage-600)] font-medium"
-          >
-            See All {breakfastRecipes.length}
-          </Link>
-        </div>
-
-        <div className="grid grid-cols-2 gap-4 stagger-children">
-          {breakfastRecipes.slice(0, 4).map((recipe) => (
-            <RecipeCard key={recipe.id} recipe={recipe} compact />
-          ))}
-        </div>
-      </section>
-
-      {/* Lunch Recipes */}
-      <section className="px-5 py-4">
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center gap-2">
-            <span className="text-2xl">☀️</span>
-            <h2
-              className="text-xl font-medium text-[var(--forest-800)]"
-              style={{ fontFamily: "var(--font-serif)" }}
-            >
-              Lunch
-            </h2>
-          </div>
-          <Link
-            href="/explore?meal=lunch"
-            className="text-sm text-[var(--sage-600)] font-medium"
-          >
-            See All {lunchRecipes.length}
-          </Link>
-        </div>
-
-        <div className="grid grid-cols-2 gap-4 stagger-children">
-          {lunchRecipes.slice(0, 4).map((recipe) => (
-            <RecipeCard key={recipe.id} recipe={recipe} compact />
-          ))}
-        </div>
-      </section>
-
-      {/* Dinner Recipes */}
-      <section className="px-5 py-4">
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center gap-2">
-            <span className="text-2xl">🌙</span>
-            <h2
-              className="text-xl font-medium text-[var(--forest-800)]"
-              style={{ fontFamily: "var(--font-serif)" }}
-            >
-              Dinner
-            </h2>
-          </div>
-          <Link
-            href="/explore?meal=dinner"
-            className="text-sm text-[var(--sage-600)] font-medium"
-          >
-            See All {dinnerRecipes.length}
-          </Link>
-        </div>
-
-        <div className="grid grid-cols-2 gap-4 stagger-children">
-          {dinnerRecipes.slice(0, 4).map((recipe) => (
-            <RecipeCard key={recipe.id} recipe={recipe} compact />
-          ))}
-        </div>
-      </section>
-
-      {/* Snacks Section */}
-      <section className="px-5 py-4 mb-4">
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center gap-2">
-            <span className="text-2xl">🍎</span>
-            <h2
-              className="text-xl font-medium text-[var(--forest-800)]"
-              style={{ fontFamily: "var(--font-serif)" }}
-            >
-              Snacks & Beverages
-            </h2>
-          </div>
-          <Link
-            href="/explore?meal=snack"
-            className="text-sm text-[var(--sage-600)] font-medium"
-          >
-            See All {snackRecipes.length}
-          </Link>
-        </div>
-
-        <div className="grid grid-cols-2 gap-4 stagger-children">
-          {snackRecipes.slice(0, 4).map((recipe) => (
-            <RecipeCard key={recipe.id} recipe={recipe} compact />
-          ))}
-        </div>
-      </section>
+      {/* Recipe Sections */}
+      <RecipeSection title="Breakfast" recipes={breakfastRecipes} link="/explore?meal=breakfast" />
+      <RecipeSection title="Lunch" recipes={lunchRecipes} link="/explore?meal=lunch" />
+      <RecipeSection title="Dinner" recipes={dinnerRecipes} link="/explore?meal=dinner" />
+      <RecipeSection title="Snacks" recipes={snackRecipes} link="/explore?meal=snack" />
 
       {/* Wellness Tip Card */}
-      <section className="px-5 pb-8">
+      <section className="px-5 pb-8 pt-4">
         <div
-          className="rounded-2xl p-5 relative overflow-hidden"
+          className="rounded-2xl p-6 relative overflow-hidden shadow-sm"
           style={{
-            background:
-              "linear-gradient(135deg, var(--sage-100) 0%, var(--forest-100) 100%)",
+            background: "linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%)",
           }}
         >
           <div className="relative z-10">
-            <p className="text-sm font-medium text-[var(--sage-700)] mb-1">
-              💚 Daily Tip for Graves&apos; Disease
+            <p className="text-xs font-bold text-[var(--sage-700)] mb-2 uppercase tracking-wider flex items-center gap-2">
+              <Sparkles className="w-3 h-3" /> Daily Tip
             </p>
             <p
-              className="text-[var(--forest-800)] text-lg"
+              className="text-[var(--forest-900)] text-lg leading-relaxed"
               style={{ fontFamily: "var(--font-serif)" }}
             >
               Take thyroid medication 30-60 min before eating. Avoid calcium-rich
               foods and soy near medication time.
             </p>
-          </div>
-          <div
-            className="absolute -right-4 -bottom-4 text-8xl opacity-10"
-            aria-hidden
-          >
-            🌿
           </div>
         </div>
       </section>
@@ -320,9 +214,36 @@ export default function HomePage() {
   );
 }
 
+function RecipeSection({ title, recipes, link }: { title: string; recipes: any[]; link: string }) {
+  return (
+    <section className="px-5 py-6 border-t border-[var(--cream-200)]">
+      <div className="flex items-center justify-between mb-5">
+        <h2
+          className="text-2xl font-medium text-[var(--forest-900)]"
+          style={{ fontFamily: "var(--font-serif)" }}
+        >
+          {title}
+        </h2>
+        <Link
+          href={link}
+          className="text-xs font-medium text-[var(--sage-600)] flex items-center gap-1 hover:text-[var(--sage-800)]"
+        >
+          See All ({recipes.length}) <ArrowRight className="w-3 h-3" />
+        </Link>
+      </div>
+
+      <div className="grid grid-cols-2 gap-4">
+        {recipes.slice(0, 4).map((recipe) => (
+          <RecipeCard key={recipe.id} recipe={recipe} compact />
+        ))}
+      </div>
+    </section>
+  );
+}
+
 function getTimeOfDay(): string {
   const hour = new Date().getHours();
-  if (hour < 12) return "morning";
-  if (hour < 17) return "afternoon";
-  return "evening";
+  if (hour < 12) return "Good morning";
+  if (hour < 17) return "Good afternoon";
+  return "Good evening";
 }

@@ -10,7 +10,7 @@ interface QuickFilterChipProps {
   onClick: () => void;
 }
 
-export function QuickFilterChip({
+export default function QuickFilterChip({
   label,
   icon: Icon,
   isActive,
@@ -31,4 +31,3 @@ export function QuickFilterChip({
     </button>
   );
 }
-
