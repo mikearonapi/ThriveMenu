@@ -79,7 +79,7 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   session: {
-    strategy: "database", // Use database sessions with Prisma adapter
+    strategy: "jwt", // Keep JWT for now - can switch to database later
     maxAge: 30 * 24 * 60 * 60, // 30 days
   },
   callbacks: {
