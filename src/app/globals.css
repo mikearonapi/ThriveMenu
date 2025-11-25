@@ -1,4 +1,6 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 /* ThriveMenu Design System
    Inspired by Mediterranean warmth, healing foods, and family togetherness

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import {
   User,
   Heart,
@@ -14,9 +15,74 @@ import {
   Check,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useAuth } from "@/hooks/useAuth";
 
 export default function ProfilePage() {
+  const router = useRouter();
+  const { user, isAuthenticated, isLoading, signOut } = useAuth();
   const [isEditing, setIsEditing] = useState(false);
+
+  const handleSignOut = async () => {
+    await signOut({ redirect: false });
+    router.push("/login");
+  };
+
+  // Show loading state
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-[var(--cream-100)]">
+        <div className="w-8 h-8 border-2 border-[var(--sage-300)] border-t-[var(--sage-600)] rounded-full animate-spin" />
+      </div>
+    );
+  }
+
+  // Show login prompt if not authenticated
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center p-6 bg-[var(--cream-100)]">
+        <div className="text-center max-w-sm">
+          <div className="w-20 h-20 rounded-full bg-[var(--sage-100)] flex items-center justify-center mx-auto mb-4">
+            <User className="w-10 h-10 text-[var(--sage-500)]" />
+          </div>
+          <h1
+            className="text-2xl font-medium text-[var(--forest-800)] mb-2"
+            style={{ fontFamily: "var(--font-serif)" }}
+          >
+            Sign in to your account
+          </h1>
+          <p className="text-[var(--text-secondary)] mb-6">
+            Sign in to save favorites, plan meals, and track your health journey.
+          </p>
+          <button
+            onClick={() => router.push("/login")}
+            className="w-full py-3 rounded-xl bg-[var(--sage-500)] text-white font-medium hover:bg-[var(--sage-600)] transition-colors"
+          >
+            Sign In
+          </button>
+          <p className="mt-4 text-sm text-[var(--text-muted)]">
+            Don't have an account?{" "}
+            <button
+              onClick={() => router.push("/register")}
+              className="text-[var(--sage-600)] font-medium"
+            >
+              Create one
+            </button>
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  // Get initials from user name
+  const getInitials = (name: string | null | undefined) => {
+    if (!name) return "U";
+    return name
+      .split(" ")
+      .map((n) => n[0])
+      .join("")
+      .toUpperCase()
+      .slice(0, 2);
+  };
 
   return (
     <div className="min-h-screen pb-24 bg-[var(--cream-100)]">
@@ -51,17 +117,17 @@ export default function ProfilePage() {
         <div className="bg-white rounded-2xl p-5 shadow-lg">
           <div className="flex items-center gap-4">
             <div className="w-20 h-20 rounded-full bg-gradient-to-br from-[var(--sage-300)] to-[var(--forest-400)] flex items-center justify-center text-white text-2xl font-medium">
-              CA
+              {getInitials(user?.name)}
             </div>
             <div className="flex-1">
               <h2
                 className="text-xl font-medium text-[var(--forest-800)]"
                 style={{ fontFamily: "var(--font-serif)" }}
               >
-                Christine Aron
+                {user?.name || "ThriveMenu User"}
               </h2>
               <p className="text-[var(--text-secondary)] text-sm">
-                christine@example.com
+                {user?.email || ""}
               </p>
               <div className="flex items-center gap-2 mt-2">
                 <span className="px-2 py-0.5 bg-[var(--sage-100)] text-[var(--sage-700)] text-xs font-medium rounded-full">
@@ -183,6 +249,7 @@ export default function ProfilePage() {
             label="Sign Out"
             isDestructive
             isLast
+            onClick={handleSignOut}
           />
         </div>
       </section>
@@ -311,14 +378,17 @@ function SettingsRow({
   label,
   isDestructive = false,
   isLast = false,
+  onClick,
 }: {
   icon: typeof User;
   label: string;
   isDestructive?: boolean;
   isLast?: boolean;
+  onClick?: () => void;
 }) {
   return (
     <button
+      onClick={onClick}
       className={cn(
         "w-full flex items-center justify-between p-4",
         !isLast && "border-b border-[var(--cream-200)]"

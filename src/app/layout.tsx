@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Playfair_Display, Cormorant_Garamond, DM_Sans } from "next/font/google";
 import "./globals.css";
 import { BottomNav } from "@/components/navigation/BottomNav";
+import AuthProvider from "@/components/providers/AuthProvider";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -67,8 +68,10 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
       </head>
       <body className="antialiased bg-[var(--cream-100)] min-h-screen">
-        <main className="safe-bottom">{children}</main>
-        <BottomNav />
+        <AuthProvider>
+          <main className="safe-bottom">{children}</main>
+          <BottomNav />
+        </AuthProvider>
       </body>
     </html>
   );
