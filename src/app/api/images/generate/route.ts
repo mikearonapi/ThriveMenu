@@ -3,7 +3,7 @@
  * 
  * POST /api/images/generate
  * 
- * Generates recipe images using Gemini API and stores them in Vercel Blob
+ * Generates recipe images and stores them in Vercel Blob
  * 
  * Request body:
  * {
@@ -44,9 +44,11 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error("Error in image generation API:", error);
     return NextResponse.json(
-      { error: "Failed to generate image" },
+      { 
+        error: "Failed to generate image",
+        details: error instanceof Error ? error.message : "Unknown error"
+      },
       { status: 500 }
     );
   }
 }
-
