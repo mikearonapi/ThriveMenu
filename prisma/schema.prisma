@@ -1,0 +1,547 @@
+// ThriveMenu - Comprehensive Database Schema
+// Best-in-class schema for a healthy meal planning app
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// =============================================
+// USER & AUTHENTICATION
+// =============================================
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  emailVerified DateTime?
+  name          String?
+  image         String?
+  passwordHash  String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  // Relations
+  accounts       Account[]
+  sessions       Session[]
+  familyMembers  FamilyMember[]
+  favorites      Favorite[]
+  ratings        Rating[]
+  reviews        Review[]
+  mealPlans      MealPlan[]
+  shoppingLists  ShoppingList[]
+  cookingHistory CookingHistory[]
+  preferences    UserPreferences?
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+// User preferences for dietary needs and health conditions
+model UserPreferences {
+  id                    String   @id @default(cuid())
+  userId                String   @unique
+  user                  User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  // Health conditions
+  hasGravesDisease      Boolean  @default(false)
+  hasHighCholesterol    Boolean  @default(false)
+  hasDiabetesRisk       Boolean  @default(false)
+  hasGlutenSensitivity  Boolean  @default(false)
+  hasDairyIntolerance   Boolean  @default(false)
+  
+  // Dietary preferences
+  isVegetarian          Boolean  @default(false)
+  isVegan               Boolean  @default(false)
+  isPescatarian         Boolean  @default(false)
+  
+  // Other preferences
+  servingsDefault       Int      @default(4)
+  measurementSystem     MeasurementSystem @default(US)
+  
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+}
+
+enum MeasurementSystem {
+  US
+  METRIC
+}
+
+// Family members for meal planning
+model FamilyMember {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  name        String
+  birthDate   DateTime?
+  ageGroup    AgeGroup
+  
+  // Dietary restrictions/preferences per family member
+  isVegetarian Boolean @default(false)
+  allergies    String[] // Array of allergy tags
+  dislikes     String[] // Foods they don't like
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+enum AgeGroup {
+  INFANT      // 0-1 years (6 month old)
+  TODDLER     // 1-3 years
+  PRESCHOOL   // 3-5 years (4 year old)
+  CHILD       // 6-12 years (6 year old)
+  TEEN        // 13-17 years
+  ADULT       // 18+ years
+}
+
+// =============================================
+// RECIPES & INGREDIENTS
+// =============================================
+
+model Recipe {
+  id              String   @id @default(cuid())
+  slug            String   @unique
+  name            String
+  description     String   @db.Text
+  
+  // Categorization
+  mealType        MealType
+  cuisine         String?
+  category        String   // e.g., "Oats & Grains", "Seafood", "Vegetarian"
+  
+  // Timing
+  prepTimeMinutes Int
+  cookTimeMinutes Int
+  totalTimeMinutes Int
+  
+  // Servings
+  servings        Int
+  servingSize     String?  // e.g., "1 cup", "2 tacos"
+  
+  // Difficulty
+  difficulty      Difficulty @default(MEDIUM)
+  
+  // Media
+  imageUrl        String?
+  videoUrl        String?
+  
+  // Health & Benefits
+  healthBenefits  String   @db.Text // "Why It's Great" section
+  
+  // Flags
+  isKidFriendly   Boolean  @default(false)
+  isMakeAhead     Boolean  @default(false)
+  isOnePot        Boolean  @default(false)
+  isQuick         Boolean  @default(false) // Under 30 minutes
+  isBudgetFriendly Boolean @default(false)
+  
+  // Source
+  sourceUrl       String?
+  sourceAttribution String?
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  
+  // Relations
+  ingredients     RecipeIngredient[]
+  instructions    RecipeInstruction[]
+  nutritionInfo   NutritionInfo?
+  healthTags      RecipeHealthTag[]
+  dietaryTags     RecipeDietaryTag[]
+  favorites       Favorite[]
+  ratings         Rating[]
+  reviews         Review[]
+  mealPlanItems   MealPlanItem[]
+  cookingHistory  CookingHistory[]
+  tips            RecipeTip[]
+  variations      RecipeVariation[]
+}
+
+enum MealType {
+  BREAKFAST
+  LUNCH
+  DINNER
+  SNACK
+  BEVERAGE
+  DESSERT
+}
+
+enum Difficulty {
+  EASY
+  MEDIUM
+  HARD
+}
+
+// Ingredients with amounts and preparation
+model RecipeIngredient {
+  id              String   @id @default(cuid())
+  recipeId        String
+  recipe          Recipe   @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+  
+  ingredientId    String
+  ingredient      Ingredient @relation(fields: [ingredientId], references: [id])
+  
+  amount          Float
+  unit            String    // e.g., "cup", "tbsp", "whole"
+  preparation     String?   // e.g., "diced", "minced", "sliced"
+  notes           String?   // e.g., "or to taste", "optional"
+  isOptional      Boolean   @default(false)
+  groupName       String?   // For grouping ingredients (e.g., "For the sauce")
+  orderIndex      Int
+  
+  @@unique([recipeId, orderIndex])
+}
+
+// Master ingredient list
+model Ingredient {
+  id              String   @id @default(cuid())
+  name            String   @unique
+  category        IngredientCategory
+  
+  // Nutritional info per 100g
+  caloriesPer100g Float?
+  proteinPer100g  Float?
+  carbsPer100g    Float?
+  fatPer100g      Float?
+  fiberPer100g    Float?
+  
+  // Health flags
+  isHighOmega3    Boolean  @default(false)
+  isHighFiber     Boolean  @default(false)
+  isAntiInflammatory Boolean @default(false)
+  isHighSelenium  Boolean  @default(false)
+  isHeartHealthy  Boolean  @default(false)
+  
+  // Thyroid-related flags
+  isGoitrogenic   Boolean  @default(false) // Cruciferous vegetables
+  isHighIodine    Boolean  @default(false) // To limit for Graves
+  
+  // Common allergens
+  containsGluten  Boolean  @default(false)
+  containsDairy   Boolean  @default(false)
+  containsNuts    Boolean  @default(false)
+  containsSoy     Boolean  @default(false)
+  containsEggs    Boolean  @default(false)
+  containsShellfish Boolean @default(false)
+  
+  recipeIngredients RecipeIngredient[]
+  shoppingListItems ShoppingListItem[]
+}
+
+enum IngredientCategory {
+  PROTEIN_SEAFOOD
+  PROTEIN_POULTRY
+  PROTEIN_MEAT
+  PROTEIN_PLANT
+  VEGETABLE
+  FRUIT
+  GRAIN
+  DAIRY
+  DAIRY_ALTERNATIVE
+  OIL_FAT
+  NUT_SEED
+  SPICE_HERB
+  CONDIMENT
+  SWEETENER
+  BEVERAGE
+  OTHER
+}
+
+// Step-by-step instructions
+model RecipeInstruction {
+  id              String   @id @default(cuid())
+  recipeId        String
+  recipe          Recipe   @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+  
+  stepNumber      Int
+  instruction     String   @db.Text
+  imageUrl        String?
+  tipText         String?  // Optional tip for this step
+  durationMinutes Int?     // Optional timing for this step
+  
+  @@unique([recipeId, stepNumber])
+}
+
+// Detailed nutrition information
+model NutritionInfo {
+  id              String   @id @default(cuid())
+  recipeId        String   @unique
+  recipe          Recipe   @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+  
+  // Per serving
+  calories        Int
+  protein         Float    // grams
+  carbohydrates   Float    // grams
+  fiber           Float    // grams
+  sugar           Float    // grams
+  fat             Float    // grams
+  saturatedFat    Float    // grams
+  unsaturatedFat  Float?   // grams
+  cholesterol     Float    // mg
+  sodium          Float    // mg
+  potassium       Float?   // mg
+  
+  // Key nutrients for Christine's conditions
+  omega3          Float?   // grams
+  selenium        Float?   // mcg
+  vitaminD        Float?   // IU
+  iron            Float?   // mg
+  calcium         Float?   // mg
+  vitaminC        Float?   // mg
+  vitaminA        Float?   // IU
+  
+  // Calculated scores (1-10)
+  heartHealthScore Int?
+  antiInflammatoryScore Int?
+  bloodSugarScore Int?
+}
+
+// Health condition tags
+model HealthTag {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  slug        String   @unique
+  description String?
+  color       String?  // For UI display
+  
+  recipes     RecipeHealthTag[]
+}
+
+model RecipeHealthTag {
+  recipeId    String
+  recipe      Recipe   @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+  healthTagId String
+  healthTag   HealthTag @relation(fields: [healthTagId], references: [id], onDelete: Cascade)
+  
+  @@id([recipeId, healthTagId])
+}
+
+// Dietary tags (gluten-free, dairy-free, etc.)
+model DietaryTag {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  slug        String   @unique
+  description String?
+  icon        String?
+  
+  recipes     RecipeDietaryTag[]
+}
+
+model RecipeDietaryTag {
+  recipeId     String
+  recipe       Recipe   @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+  dietaryTagId String
+  dietaryTag   DietaryTag @relation(fields: [dietaryTagId], references: [id], onDelete: Cascade)
+  
+  @@id([recipeId, dietaryTagId])
+}
+
+// Recipe tips and variations
+model RecipeTip {
+  id          String   @id @default(cuid())
+  recipeId    String
+  recipe      Recipe   @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+  
+  tipType     TipType
+  content     String   @db.Text
+  orderIndex  Int
+}
+
+enum TipType {
+  PREP_TIP
+  STORAGE_TIP
+  SERVING_SUGGESTION
+  INGREDIENT_SWAP
+  MAKE_AHEAD
+  NUTRITION_TIP
+  THYROID_TIP  // Specific to Christine's condition
+}
+
+model RecipeVariation {
+  id          String   @id @default(cuid())
+  recipeId    String
+  recipe      Recipe   @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+  
+  name        String
+  description String   @db.Text
+  changes     String[] // List of modifications
+}
+
+// =============================================
+// USER INTERACTIONS
+// =============================================
+
+model Favorite {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  recipeId    String
+  recipe      Recipe   @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+  
+  createdAt   DateTime @default(now())
+  
+  @@unique([userId, recipeId])
+}
+
+model Rating {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  recipeId    String
+  recipe      Recipe   @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+  
+  rating      Int      // 1-5 stars
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  @@unique([userId, recipeId])
+}
+
+model Review {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  recipeId    String
+  recipe      Recipe   @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+  
+  title       String?
+  content     String   @db.Text
+  wouldMakeAgain Boolean?
+  
+  // Review-specific ratings
+  tasteRating     Int?  // 1-5
+  difficultyRating Int? // 1-5 (1=easier than expected, 5=harder)
+  
+  // Helpful votes
+  helpfulCount Int     @default(0)
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model CookingHistory {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  recipeId    String
+  recipe      Recipe   @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+  
+  cookedAt    DateTime @default(now())
+  servingsMade Int?
+  notes       String?
+}
+
+// =============================================
+// MEAL PLANNING
+// =============================================
+
+model MealPlan {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  name        String?  // e.g., "Week of Nov 25"
+  startDate   DateTime
+  endDate     DateTime
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  items       MealPlanItem[]
+}
+
+model MealPlanItem {
+  id          String   @id @default(cuid())
+  mealPlanId  String
+  mealPlan    MealPlan @relation(fields: [mealPlanId], references: [id], onDelete: Cascade)
+  recipeId    String
+  recipe      Recipe   @relation(fields: [recipeId], references: [id])
+  
+  date        DateTime
+  mealType    MealType
+  servings    Int      @default(4)
+  notes       String?
+  
+  // For the family
+  forFamilyMembers String[] // Array of family member IDs
+  
+  // Status
+  isCompleted Boolean  @default(false)
+  
+  @@unique([mealPlanId, date, mealType])
+}
+
+// =============================================
+// SHOPPING LISTS
+// =============================================
+
+model ShoppingList {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  name        String
+  mealPlanId  String?  // Optional link to meal plan
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  items       ShoppingListItem[]
+}
+
+model ShoppingListItem {
+  id              String   @id @default(cuid())
+  shoppingListId  String
+  shoppingList    ShoppingList @relation(fields: [shoppingListId], references: [id], onDelete: Cascade)
+  
+  ingredientId    String?
+  ingredient      Ingredient? @relation(fields: [ingredientId], references: [id])
+  
+  customName      String?  // For items not in ingredient database
+  amount          Float?
+  unit            String?
+  category        IngredientCategory?
+  
+  isChecked       Boolean  @default(false)
+  notes           String?
+  
+  // Track which recipes this came from
+  sourceRecipeIds String[]
+}
