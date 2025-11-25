@@ -83,17 +83,15 @@ export default function HomePage() {
             >
               <div className="relative rounded-3xl overflow-hidden shadow-xl border border-white/50 bg-white">
                 {/* Recipe Image */}
-                <div className="relative h-[280px] overflow-hidden bg-[var(--cream-200)]">
-                  <div className="absolute inset-0">
-                    <Image
-                      src={getRecipeImage(featuredRecipe.name, featuredRecipe.category)}
-                      alt={featuredRecipe.name}
-                      fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-110"
-                      priority
-                      sizes="(max-width: 768px) 100vw, 600px"
-                    />
-                  </div>
+                <div className="relative h-[280px] overflow-hidden bg-[var(--cream-200)]" style={{ position: 'relative' }}>
+                  <Image
+                    src={getRecipeImage(featuredRecipe.name, featuredRecipe.category)}
+                    alt={featuredRecipe.name}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                    priority
+                    sizes="(max-width: 768px) 100vw, 600px"
+                  />
                   {/* Gradient Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-[var(--forest-900)]/80 via-[var(--forest-900)]/20 to-transparent" />
                   

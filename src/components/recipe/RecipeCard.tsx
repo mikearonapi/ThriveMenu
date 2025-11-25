@@ -45,17 +45,15 @@ export default function RecipeCard({ recipe, compact = false }: RecipeCardProps)
         )}
       >
         {/* Image Section */}
-        <div className={cn("relative overflow-hidden bg-[var(--cream-100)]", compact ? "h-36" : "h-48")}>
-          <div className="relative w-full h-full">
-            <Image
-              src={displayImage}
-              alt={recipe.name}
-              fill
-              sizes="(max-width: 768px) 50vw, 33vw"
-              className="object-cover transition-transform duration-700 group-hover:scale-110"
-              loading="lazy"
-            />
-          </div>
+        <div className={cn("relative overflow-hidden bg-[var(--cream-100)]", compact ? "h-36" : "h-48")} style={{ position: 'relative' }}>
+          <Image
+            src={displayImage}
+            alt={recipe.name}
+            fill
+            sizes="(max-width: 768px) 50vw, 33vw"
+            className="object-cover transition-transform duration-700 group-hover:scale-110"
+            loading="lazy"
+          />
           
           {/* Overlay Gradient for Text Readability if we had text over image */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
