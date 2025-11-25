@@ -32,7 +32,7 @@ export async function POST(request: NextRequest) {
     const mealPlan = await prisma.mealPlan.findFirst({
       where: {
         id: mealPlanId,
-        userId: session.user.id,
+        userId: userId,
       },
     });
 
@@ -127,7 +127,7 @@ export async function DELETE(request: NextRequest) {
         },
       });
 
-      if (!item || item.mealPlan.userId !== session.user.id) {
+      if (!item || item.mealPlan.userId !== userId) {
         return NextResponse.json(
           { error: "Meal plan item not found" },
           { status: 404 }
@@ -152,7 +152,7 @@ export async function DELETE(request: NextRequest) {
         },
       });
 
-      if (!item || item.mealPlan.userId !== session.user.id) {
+      if (!item || item.mealPlan.userId !== userId) {
         return NextResponse.json(
           { error: "Meal plan item not found" },
           { status: 404 }

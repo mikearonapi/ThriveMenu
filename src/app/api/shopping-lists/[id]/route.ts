@@ -23,7 +23,7 @@ export async function GET(
     const shoppingList = await prisma.shoppingList.findFirst({
       where: {
         id: params.id,
-        userId: session.user.id,
+        userId: userId,
       },
       include: {
         items: {

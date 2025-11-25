@@ -33,7 +33,7 @@ export async function POST(request: NextRequest) {
     const mealPlan = await prisma.mealPlan.findFirst({
       where: {
         id: mealPlanId,
-        userId: session.user.id,
+        userId: userId,
       },
       include: {
         items: {

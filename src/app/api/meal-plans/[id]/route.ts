@@ -25,7 +25,7 @@ export async function GET(
     const mealPlan = await prisma.mealPlan.findFirst({
       where: {
         id: params.id,
-        userId: session.user.id,
+        userId: userId,
       },
       include: {
         items: {
@@ -81,7 +81,7 @@ export async function DELETE(
     await prisma.mealPlan.delete({
       where: {
         id: params.id,
-        userId: session.user.id,
+        userId: userId,
       },
     });
 

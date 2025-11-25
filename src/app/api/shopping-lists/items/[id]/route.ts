@@ -31,7 +31,7 @@ export async function PATCH(
       },
     });
 
-    if (!item || item.shoppingList.userId !== session.user.id) {
+    if (!item || item.shoppingList.userId !== userId) {
       return NextResponse.json(
         { error: "Shopping list item not found" },
         { status: 404 }
