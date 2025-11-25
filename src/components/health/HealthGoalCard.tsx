@@ -13,28 +13,28 @@ interface HealthGoalCardProps {
 
 const colorStyles = {
   sage: {
-    bg: "bg-[var(--sage-50)]",
-    progress: "bg-[var(--sage-500)]",
-    progressBg: "bg-[var(--sage-200)]",
-    text: "text-[var(--sage-700)]",
+    bg: "bg-sage-50",
+    progress: "bg-sage-500",
+    progressBg: "bg-sage-200",
+    text: "text-sage-700",
   },
   forest: {
-    bg: "bg-[var(--forest-50)]",
-    progress: "bg-[var(--forest-500)]",
-    progressBg: "bg-[var(--forest-200)]",
-    text: "text-[var(--forest-700)]",
+    bg: "bg-forest-50",
+    progress: "bg-forest-500",
+    progressBg: "bg-forest-200",
+    text: "text-forest-700",
   },
   rose: {
-    bg: "bg-[var(--rose-50)]",
-    progress: "bg-[var(--rose-500)]",
-    progressBg: "bg-[var(--rose-200)]",
-    text: "text-[var(--rose-700)]",
+    bg: "bg-rose-50",
+    progress: "bg-rose-500",
+    progressBg: "bg-rose-200",
+    text: "text-rose-700",
   },
   terracotta: {
-    bg: "bg-[var(--terracotta-50)]",
-    progress: "bg-[var(--terracotta-500)]",
-    progressBg: "bg-[var(--terracotta-200)]",
-    text: "text-[var(--terracotta-700)]",
+    bg: "bg-terracotta-50",
+    progress: "bg-terracotta-500",
+    progressBg: "bg-terracotta-200",
+    text: "text-terracotta-700",
   },
 };
 
@@ -60,7 +60,7 @@ export default function HealthGoalCard({
           "w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0",
           styles.progressBg
         )}>
-          <div className={cn("text-[var(--sage-600)]", styles.text)}>
+          <div className={cn("text-sage-600", styles.text)}>
             {icon}
           </div>
         </div>
@@ -74,7 +74,7 @@ export default function HealthGoalCard({
           >
             {title}
           </p>
-          <p className="text-xs text-[var(--text-muted)]">{subtitle}</p>
+          <p className="text-xs text-gray-500">{subtitle}</p>
         </div>
       </div>
 

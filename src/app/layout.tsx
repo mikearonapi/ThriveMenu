@@ -67,7 +67,7 @@ export default function RootLayout({
       <head>
         <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
       </head>
-      <body className="antialiased bg-[var(--cream-100)] min-h-screen">
+      <body className="antialiased min-h-screen" style={{ backgroundColor: 'var(--cream-100)' }}>
         <AuthProvider>
           <main className="safe-bottom">{children}</main>
           <BottomNav />

@@ -40,12 +40,12 @@ export default function RecipeCard({ recipe, compact = false }: RecipeCardProps)
     <Link href={`/recipe/${recipe.id}`} className="block h-full group">
       <article
         className={cn(
-          "bg-white rounded-2xl overflow-hidden shadow-sm border border-[var(--cream-200)] hover:shadow-xl hover:-translate-y-1 transition-all duration-300 h-full flex flex-col",
+          "bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-200 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 h-full flex flex-col",
           compact ? "max-w-none" : "w-full"
         )}
       >
         {/* Image Section */}
-        <div className={cn("relative overflow-hidden bg-[var(--cream-100)]", compact ? "h-36" : "h-48")} style={{ position: 'relative' }}>
+        <div className={cn("relative overflow-hidden bg-gray-50", compact ? "h-36" : "h-48")} style={{ position: 'relative' }}>
           <Image
             src={displayImage}
             alt={recipe.name}
@@ -68,8 +68,8 @@ export default function RecipeCard({ recipe, compact = false }: RecipeCardProps)
             className={cn(
               "absolute top-2 right-2 w-8 h-8 rounded-full flex items-center justify-center transition-all backdrop-blur-md shadow-sm",
               isFavorited
-                ? "bg-[var(--rose-500)] text-white"
-                : "bg-white/80 text-[var(--text-muted)] hover:bg-white hover:text-[var(--rose-500)]"
+                ? "bg-rose-500 text-white"
+                : "bg-white/80 text-gray-500 hover:bg-white hover:text-rose-500"
             )}
           >
             <Heart
@@ -83,12 +83,12 @@ export default function RecipeCard({ recipe, compact = false }: RecipeCardProps)
           {/* Health Badges - Quick Glance */}
           <div className="absolute bottom-2 left-2 flex gap-1.5">
             {recipe.isAntiInflammatory && (
-              <div className="w-6 h-6 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-sm text-[var(--terracotta-600)]" title="Anti-inflammatory">
+                <div className="w-6 h-6 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-sm text-terracotta-600" title="Anti-inflammatory">
                 <Flame className="w-3.5 h-3.5" />
               </div>
             )}
             {recipe.hasOmega3 && (
-              <div className="w-6 h-6 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-sm text-[var(--sage-600)]" title="Omega-3 Rich">
+                <div className="w-6 h-6 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-sm text-sage-600" title="Omega-3 Rich">
                 <Fish className="w-3.5 h-3.5" />
               </div>
             )}
@@ -99,11 +99,11 @@ export default function RecipeCard({ recipe, compact = false }: RecipeCardProps)
         <div className="p-4 flex flex-col flex-grow">
           {/* Category & Time */}
           <div className="flex items-center justify-between mb-2">
-            <p className="text-[10px] uppercase tracking-wider text-[var(--sage-600)] font-bold truncate max-w-[60%]">
+            <p className="text-[10px] uppercase tracking-wider text-sage-600 font-bold truncate max-w-[60%]">
               {recipe.category}
             </p>
             {recipe.totalTime && (
-              <span className="flex items-center gap-1 text-[10px] text-[var(--text-muted)] font-semibold">
+              <span className="flex items-center gap-1 text-[10px] text-gray-500 font-semibold">
                 <Clock className="w-3 h-3" />
                 {recipe.totalTime}m
               </span>
@@ -112,7 +112,7 @@ export default function RecipeCard({ recipe, compact = false }: RecipeCardProps)
 
           {/* Title */}
           <h3
-            className="text-[15px] font-semibold text-[var(--forest-900)] leading-snug mb-3 line-clamp-2"
+            className="text-[15px] font-semibold text-forest-900 leading-snug mb-3 line-clamp-2"
             style={{ fontFamily: "var(--font-serif)" }}
           >
             {recipe.name}
@@ -122,15 +122,15 @@ export default function RecipeCard({ recipe, compact = false }: RecipeCardProps)
           <div className="flex-grow" />
 
           {/* Footer Info */}
-          <div className="flex items-center gap-2 pt-3 border-t border-[var(--cream-100)] mt-1">
+          <div className="flex items-center gap-2 pt-3 border-t border-gray-100 mt-1">
             {recipe.isKidFriendly && (
-              <span className="inline-flex items-center gap-1 text-[10px] font-medium text-[var(--terracotta-600)] bg-[var(--terracotta-50)] px-2 py-0.5 rounded-full">
+              <span className="inline-flex items-center gap-1 text-[10px] font-medium text-terracotta-600 bg-terracotta-50 px-2 py-0.5 rounded-full">
                 <ChefHat className="w-3 h-3" />
                 Kid-friendly
               </span>
             )}
             {recipe.hasHighFiber && !recipe.isKidFriendly && (
-              <span className="inline-flex items-center gap-1 text-[10px] font-medium text-[var(--sage-700)] bg-[var(--sage-50)] px-2 py-0.5 rounded-full">
+              <span className="inline-flex items-center gap-1 text-[10px] font-medium text-sage-700 bg-sage-50 px-2 py-0.5 rounded-full">
                 <Leaf className="w-3 h-3" />
                 High Fiber
               </span>

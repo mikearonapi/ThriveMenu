@@ -47,11 +47,11 @@ export default function HomePage() {
   const featuredRecipe = currentMeal.recipes[0];
 
   return (
-    <div className="min-h-screen pb-24 bg-[var(--cream-100)]">
+    <div className="min-h-screen pb-24" style={{ backgroundColor: 'var(--cream-100)' }}>
       {/* Hero Section with Featured Recipe */}
       <header className="relative overflow-hidden">
         {/* Background with subtle pattern */}
-        <div className="absolute inset-0 bg-gradient-to-b from-white via-[var(--cream-50)] to-[var(--cream-100)]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-white to-gray-50" style={{ background: 'linear-gradient(to bottom, white, var(--cream-50), var(--cream-100))' }} />
         <div 
           className="absolute inset-0 opacity-[0.02]"
           style={{
@@ -62,7 +62,7 @@ export default function HomePage() {
         <div className="relative px-5 pt-14 pb-8">
           {/* Greeting */}
           <div className="mb-8 animate-fade-in">
-            <p className="text-[var(--sage-600)] text-xs font-semibold mb-2 tracking-wider uppercase">
+            <p className="text-sage-600 text-xs font-semibold mb-2 tracking-wider uppercase">
               {getTimeOfDay()}, Christine
             </p>
             <h1
@@ -71,7 +71,7 @@ export default function HomePage() {
             >
               What shall we
               <br />
-              <span className="text-[var(--sage-600)] italic font-normal">cook today?</span>
+              <span className="text-sage-600 italic font-normal">cook today?</span>
             </h1>
           </div>
 
@@ -83,7 +83,7 @@ export default function HomePage() {
             >
               <div className="relative rounded-3xl overflow-hidden shadow-xl border border-white/50 bg-white">
                 {/* Recipe Image */}
-                <div className="relative h-[280px] overflow-hidden bg-[var(--cream-200)]" style={{ position: 'relative' }}>
+                <div className="relative h-[280px] overflow-hidden" style={{ position: 'relative', backgroundColor: 'var(--cream-200)' }}>
                   <Image
                     src={getRecipeImage(featuredRecipe.name, featuredRecipe.category)}
                     alt={featuredRecipe.name}
@@ -93,20 +93,20 @@ export default function HomePage() {
                     sizes="(max-width: 768px) 100vw, 600px"
                   />
                   {/* Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[var(--forest-900)]/80 via-[var(--forest-900)]/20 to-transparent" />
+                  <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(38, 61, 52, 0.8), rgba(38, 61, 52, 0.2), transparent)' }} />
                   
                   {/* Badges */}
                   <div className="absolute top-4 left-4 flex gap-2">
                     {featuredRecipe.hasOmega3 && (
                       <div className="px-3 py-1.5 bg-white/95 backdrop-blur-sm rounded-full flex items-center gap-1.5 shadow-lg">
-                        <Fish className="w-4 h-4 text-[var(--sage-600)]" />
-                        <span className="text-xs font-semibold text-[var(--forest-800)]">Omega-3</span>
+                        <Fish className="w-4 h-4 text-sage-600" />
+                        <span className="text-xs font-semibold text-forest-800">Omega-3</span>
                       </div>
                     )}
                     {featuredRecipe.isHeartHealthy && (
                       <div className="px-3 py-1.5 bg-white/95 backdrop-blur-sm rounded-full flex items-center gap-1.5 shadow-lg">
-                        <Heart className="w-4 h-4 text-[var(--rose-500)]" />
-                        <span className="text-xs font-semibold text-[var(--forest-800)]">Heart Healthy</span>
+                        <Heart className="w-4 h-4 text-rose-500" />
+                        <span className="text-xs font-semibold text-forest-800">Heart Healthy</span>
                       </div>
                     )}
                   </div>
@@ -115,20 +115,20 @@ export default function HomePage() {
                 {/* Content */}
                 <div className="p-6 bg-white">
                   <div className="flex items-center gap-2 mb-2">
-                    <currentMeal.icon className="w-4 h-4 text-[var(--sage-600)]" />
-                    <span className="text-xs font-semibold text-[var(--sage-600)] uppercase tracking-wider">
+                    <currentMeal.icon className="w-4 h-4 text-sage-600" />
+                    <span className="text-xs font-semibold text-sage-600 uppercase tracking-wider">
                       Featured for {currentMeal.label}
                     </span>
                   </div>
                   
                   <h2
-                    className="text-2xl font-semibold text-[var(--forest-900)] mb-3 leading-tight"
+                    className="text-2xl font-semibold text-forest-900 mb-3 leading-tight"
                     style={{ fontFamily: "var(--font-serif)" }}
                   >
                     {featuredRecipe.name}
                   </h2>
                   
-                  <div className="flex items-center gap-4 text-sm text-[var(--text-muted)] mb-5">
+                  <div className="flex items-center gap-4 text-sm text-gray-500 mb-5">
                     {featuredRecipe.totalTime && (
                       <span className="flex items-center gap-1.5">
                         <Clock className="w-4 h-4" />
@@ -136,14 +136,14 @@ export default function HomePage() {
                       </span>
                     )}
                     {featuredRecipe.isKidFriendly && (
-                      <span className="flex items-center gap-1.5 text-[var(--terracotta-600)]">
+                      <span className="flex items-center gap-1.5 text-terracotta-600">
                         <ChefHat className="w-4 h-4" />
                         Kid-friendly
                       </span>
                     )}
                   </div>
 
-                  <div className="flex items-center gap-2 text-[var(--sage-600)] font-semibold group-hover:gap-3 transition-all">
+                  <div className="flex items-center gap-2 text-sage-600 font-semibold group-hover:gap-3 transition-all">
                     <span>Start Cooking</span>
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </div>
@@ -159,16 +159,16 @@ export default function HomePage() {
         <div className="flex items-center justify-between mb-6">
           <div>
             <h2
-              className="text-2xl font-semibold text-[var(--forest-900)] mb-1"
+              className="text-2xl font-semibold text-forest-900 mb-1"
               style={{ fontFamily: "var(--font-serif)" }}
             >
               Your Health Goals
             </h2>
-            <p className="text-sm text-[var(--text-muted)]">Track your progress</p>
+            <p className="text-sm text-gray-500">Track your progress</p>
           </div>
           <Link
             href="/profile"
-            className="text-xs font-semibold text-[var(--sage-600)] flex items-center gap-1 hover:text-[var(--sage-800)] transition-colors"
+            className="text-xs font-semibold text-sage-600 flex items-center gap-1 hover:text-sage-800 transition-colors"
           >
             View All <ArrowRight className="w-3 h-3" />
           </Link>
@@ -208,7 +208,7 @@ export default function HomePage() {
       {/* Quick Filters */}
       <section className="px-5 pb-6">
         <h2 
-          className="text-xs font-semibold text-[var(--text-muted)] mb-4 uppercase tracking-wider"
+          className="text-xs font-semibold text-gray-500 mb-4 uppercase tracking-wider"
         >
           Browse by Need
         </h2>
@@ -258,22 +258,22 @@ export default function HomePage() {
       {/* Wellness Tip Card */}
       <section className="px-5 pb-8 pt-6">
         <div
-          className="rounded-3xl p-6 relative overflow-hidden shadow-lg border border-[var(--sage-200)]"
+          className="rounded-3xl p-6 relative overflow-hidden shadow-lg border border-sage-200"
           style={{
             background: "linear-gradient(135deg, var(--sage-50) 0%, var(--forest-50) 100%)",
           }}
         >
           <div className="relative z-10">
             <div className="flex items-center gap-2 mb-3">
-              <div className="w-8 h-8 rounded-lg bg-[var(--sage-200)] flex items-center justify-center">
-                <TrendingUp className="w-4 h-4 text-[var(--sage-700)]" />
+              <div className="w-8 h-8 rounded-lg bg-sage-200 flex items-center justify-center">
+                <TrendingUp className="w-4 h-4 text-sage-700" />
               </div>
-              <p className="text-xs font-bold text-[var(--sage-700)] uppercase tracking-wider">
+              <p className="text-xs font-bold text-sage-700 uppercase tracking-wider">
                 Daily Tip for Graves&apos; Disease
               </p>
             </div>
             <p
-              className="text-[var(--forest-900)] text-lg leading-relaxed"
+              className="text-forest-900 text-lg leading-relaxed"
               style={{ fontFamily: "var(--font-serif)" }}
             >
               Take thyroid medication 30-60 min before eating. Avoid calcium-rich
@@ -281,7 +281,7 @@ export default function HomePage() {
             </p>
           </div>
           {/* Decorative element */}
-          <div className="absolute -right-8 -bottom-8 w-32 h-32 rounded-full bg-[var(--sage-200)] opacity-20 blur-2xl" />
+          <div className="absolute -right-8 -bottom-8 w-32 h-32 rounded-full bg-sage-200 opacity-20 blur-2xl" />
         </div>
       </section>
     </div>
@@ -300,25 +300,25 @@ function RecipeSection({
   link: string;
 }) {
   return (
-    <section className="px-5 py-6 border-t border-[var(--cream-200)]">
+    <section className="px-5 py-6 border-t" style={{ borderColor: 'var(--cream-200)' }}>
       <div className="flex items-center justify-between mb-5">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-[var(--sage-100)] flex items-center justify-center">
-            <Icon className="w-5 h-5 text-[var(--sage-600)]" />
+          <div className="w-10 h-10 rounded-xl bg-sage-100 flex items-center justify-center">
+            <Icon className="w-5 h-5 text-sage-600" />
           </div>
           <div>
             <h2
-              className="text-2xl font-semibold text-[var(--forest-900)]"
+              className="text-2xl font-semibold text-forest-900"
               style={{ fontFamily: "var(--font-serif)" }}
             >
               {title}
             </h2>
-            <p className="text-xs text-[var(--text-muted)] mt-0.5">{recipes.length} recipes</p>
+            <p className="text-xs text-gray-500 mt-0.5">{recipes.length} recipes</p>
           </div>
         </div>
         <Link
           href={link}
-          className="text-xs font-semibold text-[var(--sage-600)] flex items-center gap-1 hover:text-[var(--sage-800)] transition-colors"
+          className="text-xs font-semibold text-sage-600 flex items-center gap-1 hover:text-sage-800 transition-colors"
         >
           See All <ArrowRight className="w-3 h-3" />
         </Link>

@@ -22,8 +22,8 @@ export default function QuickFilterChip({
       className={cn(
         "flex-shrink-0 flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-200",
         isActive
-          ? "bg-[var(--sage-500)] text-white shadow-md"
-          : "bg-white text-[var(--text-secondary)] border border-[var(--cream-300)] hover:border-[var(--sage-300)] hover:text-[var(--sage-600)]"
+          ? "bg-sage-500 text-white shadow-md"
+          : "bg-white text-gray-600 border border-gray-300 hover:border-sage-300 hover:text-sage-600"
       )}
     >
       <Icon className="w-4 h-4" />
