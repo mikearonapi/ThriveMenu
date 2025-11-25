@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nourishing Christine - A Healing Menu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --sage: #87a878;
+      --sage-light: #b5c9a8;
+      --sage-dark: #5a7a4a;
+      --cream: #faf8f5;
+      --cream-dark: #f5f0e8;
+      --brown: #8b7355;
+      --terracotta: #c4846c;
+      --deep-green: #2d4a3e;
+      --text-dark: #2c2c2c;
+      --text-med: #5a5a5a;
+      --rose: #f0dede;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { font-size: 10px; }
+    body { font-family: 'Montserrat', sans-serif; background: var(--cream); color: var(--text-dark); line-height: 1.5; }
+    @page { size: letter; margin: 0.4in; }
+    @media print {
+      body { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+      .page-break { page-break-after: always; }
+      .no-break { page-break-inside: avoid; }
+    }
+    .container { max-width: 8in; margin: 0 auto; }
+    
+    /* Cover */
+    .cover { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: linear-gradient(135deg, var(--sage-light) 0%, var(--cream) 50%, var(--rose) 100%); padding: 2rem; position: relative; }
+    .cover::before { content: ''; position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%2387a878' fill-opacity='0.1'%3E%3Cpath d='M20 20.5V18H0v-2h20v-2.5l5 3.5-5 3.5z'/%3E%3C/g%3E%3C/svg%3E"); opacity: 0.3; }
+    .cover-content { position: relative; z-index: 1; }
+    .cover-ornament { font-size: 2.5rem; color: var(--sage); margin-bottom: 1rem; letter-spacing: 0.5rem; }
+    .cover-title { font-family: 'Playfair Display', serif; font-size: 5rem; font-weight: 400; color: var(--deep-green); margin-bottom: 0.5rem; letter-spacing: 0.08em; }
+    .cover-subtitle { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-style: italic; color: var(--brown); margin-bottom: 2rem; }
+    .cover-tagline { font-size: 1rem; font-weight: 300; color: var(--text-med); letter-spacing: 0.25em; text-transform: uppercase; max-width: 400px; line-height: 2; margin: 0 auto 2rem; }
+    .cover-heart { font-size: 2.5rem; color: var(--terracotta); margin: 1rem 0; }
+    .cover-dedication { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-style: italic; color: var(--text-med); margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--sage-light); line-height: 1.8; }
+
+    /* Section Headers */
+    .section-header { text-align: center; padding: 2.5rem 1rem 1.5rem; background: linear-gradient(180deg, var(--cream-dark) 0%, var(--cream) 100%); border-bottom: 2px solid var(--sage-light); margin-bottom: 1.5rem; }
+    .section-icon { font-size: 2.5rem; margin-bottom: 0.3rem; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 500; color: var(--deep-green); letter-spacing: 0.03em; }
+    .section-subtitle { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-style: italic; color: var(--brown); }
+
+    /* Category */
+    .category { display: flex; align-items: center; margin: 1.5rem 0 1rem; padding: 0 0.5rem; }
+    .category-line { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--sage), transparent); }
+    .category-title { font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3em; color: var(--sage-dark); padding: 0 1rem; }
+
+    /* Menu Grid */
+    .menu-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; padding: 0 0.5rem; }
+    .menu-item { background: white; border-radius: 6px; padding: 1rem; box-shadow: 0 1px 4px rgba(0,0,0,0.04); border: 1px solid var(--cream-dark); }
+    .item-num { display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; background: var(--sage-light); color: var(--deep-green); border-radius: 50%; font-size: 0.7rem; font-weight: 600; margin-right: 0.4rem; }
+    .item-name { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 600; color: var(--text-dark); }
+    .item-desc { font-family: 'Cormorant Garamond', serif; font-size: 0.95rem; font-style: italic; color: var(--text-med); margin: 0.3rem 0; line-height: 1.4; }
+    .item-benefits { font-size: 0.75rem; color: var(--sage-dark); margin-bottom: 0.3rem; }
+    .tags { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+    .tag { background: var(--cream-dark); color: var(--text-med); padding: 0.15rem 0.5rem; border-radius: 10px; font-size: 0.65rem; font-weight: 500; }
+    .tag.hl { background: var(--sage-light); color: var(--deep-green); }
+
+    /* Guidelines */
+    .guidelines { padding: 1.5rem; }
+    .guide-box { background: white; border-radius: 10px; padding: 1.2rem; margin-bottom: 1rem; border-left: 4px solid var(--sage); }
+    .guide-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--deep-green); margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.5rem; }
+    .guide-icon { font-size: 1.3rem; }
+    .food-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; margin-top: 0.8rem; }
+    .food-item { display: flex; align-items: center; gap: 0.4rem; font-size: 0.85rem; }
+    .food-item.good::before { content: '✓'; color: var(--sage-dark); font-weight: bold; }
+    .food-item.bad::before { content: '✗'; color: var(--terracotta); font-weight: bold; }
+
+    /* Priority Box */
+    .priority { background: linear-gradient(135deg, var(--sage-light) 0%, var(--cream) 100%); border-radius: 10px; padding: 1.5rem; margin: 1rem 0.5rem; text-align: center; }
+    .priority-title { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--deep-green); margin-bottom: 1rem; }
+    .priority-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.8rem; }
+    .priority-item { background: white; border-radius: 8px; padding: 0.8rem; text-align: center; }
+    .priority-icon { font-size: 1.8rem; margin-bottom: 0.3rem; }
+    .priority-label { font-size: 0.8rem; font-weight: 600; color: var(--text-dark); }
+    .priority-desc { font-size: 0.7rem; color: var(--text-med); }
+
+    /* Tips */
+    .tips { background: var(--rose); border-radius: 10px; padding: 1.2rem; margin: 1rem 0.5rem; }
+    .tips-title { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--text-dark); margin-bottom: 0.8rem; }
+    .tips-list { list-style: none; }
+    .tips-list li { padding: 0.4rem 0 0.4rem 1.5rem; position: relative; font-size: 0.85rem; color: var(--text-med); }
+    .tips-list li::before { content: '♥'; position: absolute; left: 0; color: var(--terracotta); }
+
+    /* Snack Grid */
+    .snack-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem; padding: 0 0.5rem; }
+    .snack-item { background: white; border-radius: 6px; padding: 0.8rem; border: 1px solid var(--cream-dark); }
+    .snack-name { font-family: 'Playfair Display', serif; font-size: 0.95rem; font-weight: 600; color: var(--text-dark); }
+    .snack-desc { font-size: 0.75rem; color: var(--text-med); font-style: italic; }
+
+    /* Back Cover */
+    .back { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: linear-gradient(135deg, var(--rose) 0%, var(--cream) 50%, var(--sage-light) 100%); padding: 3rem; }
+    .back-msg { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-style: italic; color: var(--text-dark); max-width: 450px; line-height: 1.8; margin-bottom: 2rem; }
+    .back-heart { font-size: 3rem; color: var(--terracotta); margin: 1rem 0; }
+    .back-sig { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--deep-green); }
+
+    /* Compact dinner grid for more items */
+    .dinner-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.8rem; padding: 0 0.5rem; }
+    .dinner-item { background: white; border-radius: 5px; padding: 0.8rem; border: 1px solid var(--cream-dark); }
+    .dinner-item .item-name { font-size: 1rem; }
+    .dinner-item .item-desc { font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    
+    <!-- COVER PAGE -->
+    <div class="cover">
+      <div class="cover-content">
+        <div class="cover-ornament">✿ ❀ ✿</div>
+        <h1 class="cover-title">Nourishing<br>Christine</h1>
+        <p class="cover-subtitle">A Healing Menu</p>
+        <p class="cover-tagline">
+          Delicious meals crafted with love for<br>
+          heart health • thyroid support • blood sugar balance
+        </p>
+        <div class="cover-heart">♥</div>
+        <p class="cover-dedication">
+          "You take such beautiful care of our family.<br>
+          Let this help you take care of you."
+        </p>
+      </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- WELLNESS GUIDELINES -->
+    <div class="section-header">
+      <div class="section-icon">🌿</div>
+      <h2 class="section-title">Your Wellness Journey</h2>
+      <p class="section-subtitle">Understanding Your Unique Nutritional Needs</p>
+    </div>
+
+    <div class="guidelines">
+      <div class="guide-box">
+        <h3 class="guide-title"><span class="guide-icon">💜</span> Your Health Profile</h3>
+        <p style="color: var(--text-med); margin-bottom: 0.8rem;">This menu supports:</p>
+        <ul style="list-style: none; font-size: 0.9rem; color: var(--text-med);">
+          <li style="padding: 0.3rem 0;"><strong>Graves' Disease</strong> — Anti-inflammatory foods, selenium, gut health</li>
+          <li style="padding: 0.3rem 0;"><strong>High Cholesterol</strong> — Heart-healthy fats, soluble fiber, plant sterols</li>
+          <li style="padding: 0.3rem 0;"><strong>Diabetes Prevention</strong> — Low glycemic foods, blood sugar balance</li>
+        </ul>
+      </div>
+
+      <div class="priority">
+        <h3 class="priority-title">Your Nutritional Priorities</h3>
+        <div class="priority-grid">
+          <div class="priority-item">
+            <div class="priority-icon">🐟</div>
+            <div class="priority-label">Omega-3s</div>
+            <div class="priority-desc">2-3x weekly</div>
+          </div>
+          <div class="priority-item">
+            <div class="priority-icon">🫘</div>
+            <div class="priority-label">Fiber</div>
+            <div class="priority-desc">25-30g daily</div>
+          </div>
+          <div class="priority-item">
+            <div class="priority-icon">🥬</div>
+            <div class="priority-label">Vegetables</div>
+            <div class="priority-desc">5+ servings</div>
+          </div>
+          <div class="priority-item">
+            <div class="priority-icon">🫒</div>
+            <div class="priority-label">Olive Oil</div>
+            <div class="priority-desc">Daily use</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="guide-box" style="border-left-color: var(--sage-dark);">
+        <h3 class="guide-title"><span class="guide-icon">✓</span> Foods to Embrace</h3>
+        <div class="food-grid">
+          <div class="food-item good">Wild salmon</div>
+          <div class="food-item good">Leafy greens</div>
+          <div class="food-item good">Berries</div>
+          <div class="food-item good">Oats & barley</div>
+          <div class="food-item good">Lentils & beans</div>
+          <div class="food-item good">Olive oil</div>
+          <div class="food-item good">Brazil nuts</div>
+          <div class="food-item good">Quinoa</div>
+          <div class="food-item good">Greek yogurt</div>
+          <div class="food-item good">Eggs</div>
+          <div class="food-item good">Sweet potatoes</div>
+          <div class="food-item good">Avocados</div>
+        </div>
+      </div>
+
+      <div class="guide-box" style="border-left-color: var(--terracotta);">
+        <h3 class="guide-title"><span class="guide-icon">✗</span> Foods to Limit</h3>
+        <div class="food-grid">
+          <div class="food-item bad">Excess iodine</div>
+          <div class="food-item bad">Processed foods</div>
+          <div class="food-item bad">Refined sugar</div>
+          <div class="food-item bad">Saturated fats</div>
+          <div class="food-item bad">Trans fats</div>
+          <div class="food-item bad">Excess caffeine</div>
+          <div class="food-item bad">Processed meats</div>
+          <div class="food-item bad">White bread</div>
+          <div class="food-item bad">Sugary drinks</div>
+        </div>
+      </div>
+
+      <div class="tips">
+        <h3 class="tips-title">💕 Tips for Busy Mom Life</h3>
+        <ul class="tips-list">
+          <li>Batch cook proteins and grains on weekends</li>
+          <li>Keep cut vegetables ready in the fridge</li>
+          <li>Double recipes and freeze half for later</li>
+          <li>Take thyroid medication 30-60 min before eating</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- BREAKFAST -->
+    <div class="section-header">
+      <div class="section-icon">🌅</div>
+      <h2 class="section-title">Breakfast</h2>
+      <p class="section-subtitle">Start Your Day with Nourishment</p>
+    </div>
+
+    <div class="category">
+      <div class="category-line"></div>
+      <h3 class="category-title">Oats & Grains</h3>
+      <div class="category-line"></div>
+    </div>
+
+    <div class="menu-grid">
+      <div class="menu-item no-break"><span class="item-num">1</span><span class="item-name">Golden Turmeric Oatmeal</span><p class="item-desc">Steel-cut oats with turmeric, cinnamon, walnuts, and berries</p><p class="item-benefits">Anti-inflammatory • Cholesterol-lowering</p><div class="tags"><span class="tag hl">Fiber 8g</span><span class="tag">Omega-3s</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">2</span><span class="item-name">Overnight Berry Oats</span><p class="item-desc">Oats soaked in almond milk with chia seeds and mixed berries</p><p class="item-benefits">No-cook prep • Blood sugar stable</p><div class="tags"><span class="tag hl">Fiber 10g</span><span class="tag">Antioxidants</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">3</span><span class="item-name">Savory Oat Bowl</span><p class="item-desc">Steel-cut oats with sautéed spinach and poached egg</p><p class="item-benefits">Protein-rich • Sustained energy</p><div class="tags"><span class="tag hl">Protein 15g</span><span class="tag">Iron</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">4</span><span class="item-name">Apple Cinnamon Baked Oatmeal</span><p class="item-desc">Baked oatmeal cups with diced apples and pecans</p><p class="item-benefits">Make-ahead • Portion controlled</p><div class="tags"><span class="tag">Fiber 6g</span><span class="tag">Heart-healthy</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">5</span><span class="item-name">Maple Walnut Quinoa Porridge</span><p class="item-desc">Fluffy quinoa with almond milk and walnuts</p><p class="item-benefits">Complete protein • Gluten-free</p><div class="tags"><span class="tag hl">Protein 12g</span><span class="tag">Omega-3s</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">6</span><span class="item-name">Banana Nut Oat Bran</span><p class="item-desc">Hot oat bran with banana, almond butter, and hemp hearts</p><p class="item-benefits">Maximum beta-glucan</p><div class="tags"><span class="tag hl">Fiber 12g</span><span class="tag">Potassium</span></div></div>
+    </div>
+
+    <div class="category">
+      <div class="category-line"></div>
+      <h3 class="category-title">Eggs & Savory</h3>
+      <div class="category-line"></div>
+    </div>
+
+    <div class="menu-grid">
+      <div class="menu-item no-break"><span class="item-num">7</span><span class="item-name">Mediterranean Veggie Scramble</span><p class="item-desc">Eggs with sun-dried tomatoes, spinach, olives, and feta</p><p class="item-benefits">Selenium-rich • Anti-inflammatory</p><div class="tags"><span class="tag hl">Protein 18g</span><span class="tag hl">Selenium</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">8</span><span class="item-name">Shakshuka</span><p class="item-desc">Poached eggs in spiced tomato and bell pepper sauce</p><p class="item-benefits">Lycopene-rich • Family-friendly</p><div class="tags"><span class="tag">Protein 14g</span><span class="tag">Lycopene</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">9</span><span class="item-name">Spinach & Mushroom Frittata</span><p class="item-desc">Baked egg dish with sautéed spinach and mushrooms</p><p class="item-benefits">Make-ahead • Slice and reheat</p><div class="tags"><span class="tag hl">Protein 16g</span><span class="tag">Iron</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">10</span><span class="item-name">Avocado Toast with Poached Egg</span><p class="item-desc">Whole grain toast with avocado and poached egg</p><p class="item-benefits">Heart-healthy fats</p><div class="tags"><span class="tag">Fiber 8g</span><span class="tag hl">Healthy fats</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">11</span><span class="item-name">Greek Omelet</span><p class="item-desc">Fluffy omelet with tomatoes, cucumber, and goat cheese</p><p class="item-benefits">Mediterranean flavors</p><div class="tags"><span class="tag hl">Protein 20g</span><span class="tag">Calcium</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">12</span><span class="item-name">Huevos Rancheros</span><p class="item-desc">Eggs over black beans on corn tortillas with salsa</p><p class="item-benefits">Fiber-rich beans</p><div class="tags"><span class="tag hl">Fiber 12g</span><span class="tag">Protein 18g</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">13</span><span class="item-name">Zucchini Egg Muffins</span><p class="item-desc">Baked egg cups with zucchini and bell peppers</p><p class="item-benefits">Grab-and-go</p><div class="tags"><span class="tag">Protein 12g</span><span class="tag">Low carb</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">14</span><span class="item-name">Sweet Potato & Kale Hash</span><p class="item-desc">Roasted hash with kale topped with sunny eggs</p><p class="item-benefits">Complex carbs • Iron-rich</p><div class="tags"><span class="tag hl">Vitamin A</span><span class="tag">Iron</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">15</span><span class="item-name">Smoked Salmon Eggs Benedict</span><p class="item-desc">Poached eggs with salmon and yogurt hollandaise</p><p class="item-benefits">Omega-3 boost</p><div class="tags"><span class="tag hl">Omega-3s</span><span class="tag hl">Protein 22g</span></div></div>
+    </div>
+
+    <div class="category">
+      <div class="category-line"></div>
+      <h3 class="category-title">Smoothies & Bowls</h3>
+      <div class="category-line"></div>
+    </div>
+
+    <div class="menu-grid">
+      <div class="menu-item no-break"><span class="item-num">16</span><span class="item-name">Green Goddess Smoothie</span><p class="item-desc">Spinach, banana, almond butter, and cinnamon</p><p class="item-benefits">Iron boost • Sustained energy</p><div class="tags"><span class="tag">Fiber 6g</span><span class="tag">Iron</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">17</span><span class="item-name">Berry Antioxidant Blast</span><p class="item-desc">Mixed berries, Greek yogurt, and flaxseed</p><p class="item-benefits">Maximum antioxidants</p><div class="tags"><span class="tag hl">Antioxidants</span><span class="tag">Probiotics</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">18</span><span class="item-name">Tropical Anti-Inflammatory</span><p class="item-desc">Mango, pineapple, turmeric, and ginger</p><p class="item-benefits">Bromelain + Curcumin</p><div class="tags"><span class="tag hl">Anti-inflammatory</span><span class="tag">Vitamin C</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">19</span><span class="item-name">Chocolate Cherry Recovery</span><p class="item-desc">Cherries, cocoa powder, banana, and almond milk</p><p class="item-benefits">Heart-supportive</p><div class="tags"><span class="tag">Antioxidants</span><span class="tag">Magnesium</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">20</span><span class="item-name">Açaí Power Bowl</span><p class="item-desc">Blended açaí with granola, berries, and coconut</p><p class="item-benefits">Superfood antioxidants</p><div class="tags"><span class="tag hl">Antioxidants</span><span class="tag">Fiber 8g</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">21</span><span class="item-name">Peanut Butter Banana Smoothie</span><p class="item-desc">Banana, peanut butter, oats, and almond milk</p><p class="item-benefits">Kid-approved • Filling</p><div class="tags"><span class="tag">Protein 12g</span><span class="tag">Fiber</span></div></div>
+    </div>
+
+    <div class="category">
+      <div class="category-line"></div>
+      <h3 class="category-title">Yogurt, Toast & Quick Options</h3>
+      <div class="category-line"></div>
+    </div>
+
+    <div class="menu-grid">
+      <div class="menu-item no-break"><span class="item-num">22</span><span class="item-name">Greek Yogurt Parfait</span><p class="item-desc">Layered yogurt with granola and berries</p><p class="item-benefits">Protein-packed • Gut-healthy</p><div class="tags"><span class="tag hl">Protein 18g</span><span class="tag hl">Probiotics</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">23</span><span class="item-name">Chia Pudding with Mango</span><p class="item-desc">Chia seeds in coconut milk with fresh mango</p><p class="item-benefits">Make ahead • Omega-3 rich</p><div class="tags"><span class="tag hl">Omega-3s</span><span class="tag hl">Fiber 10g</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">24</span><span class="item-name">Oat Flour Banana Pancakes</span><p class="item-desc">Fluffy pancakes with oat flour and banana</p><p class="item-benefits">Gluten-free • Naturally sweet</p><div class="tags"><span class="tag">Fiber 5g</span><span class="tag">Protein 10g</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">25</span><span class="item-name">Almond Butter & Berry Toast</span><p class="item-desc">Whole grain toast with almond butter and berries</p><p class="item-benefits">Quick • Balanced</p><div class="tags"><span class="tag">Protein 10g</span><span class="tag">Fiber 6g</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">26</span><span class="item-name">Sweet Potato Toast</span><p class="item-desc">Roasted sweet potato slices with almond butter</p><p class="item-benefits">Grain-free • Nutrient-dense</p><div class="tags"><span class="tag hl">Vitamin A</span><span class="tag">Complex carbs</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">27</span><span class="item-name">Hard-Boiled Eggs with Fruit</span><p class="item-desc">Two eggs with an apple or berries</p><p class="item-benefits">Zero prep • Portable</p><div class="tags"><span class="tag">Protein 12g</span><span class="tag hl">Selenium</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">28</span><span class="item-name">Cottage Cheese with Peaches</span><p class="item-desc">Low-fat cottage cheese with peaches and almonds</p><p class="item-benefits">High protein</p><div class="tags"><span class="tag hl">Protein 20g</span><span class="tag">Calcium</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">29</span><span class="item-name">Apple Pie Yogurt Bowl</span><p class="item-desc">Greek yogurt with apples, cinnamon, and pecans</p><p class="item-benefits">Tastes indulgent</p><div class="tags"><span class="tag">Protein 16g</span><span class="tag">Fiber</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">30</span><span class="item-name">Ricotta Toast with Figs</span><p class="item-desc">Whole grain toast with ricotta, figs, and honey</p><p class="item-benefits">Elegant • Natural</p><div class="tags"><span class="tag">Protein 12g</span><span class="tag">Calcium</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">31</span><span class="item-name">High-Fiber Cereal & Berries</span><p class="item-desc">High-fiber cereal with almond milk and blueberries</p><p class="item-benefits">Fast • Familiar</p><div class="tags"><span class="tag hl">Fiber 8g</span><span class="tag">Antioxidants</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">32</span><span class="item-name">Mediterranean Breakfast Bowl</span><p class="item-desc">Greek yogurt with cucumber, tomatoes, and za'atar</p><p class="item-benefits">Savory • Probiotic-rich</p><div class="tags"><span class="tag">Protein 15g</span><span class="tag">Probiotics</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">33</span><span class="item-name">Whole Grain Waffles</span><p class="item-desc">Whole wheat waffles with berry compote</p><p class="item-benefits">Antioxidant topping</p><div class="tags"><span class="tag">Fiber 6g</span><span class="tag">Complex carbs</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">34</span><span class="item-name">Banana with Almond Butter</span><p class="item-desc">Sliced banana with almond butter for dipping</p><p class="item-benefits">Perfect for rushed mornings</p><div class="tags"><span class="tag">Potassium</span><span class="tag">Healthy fats</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">35</span><span class="item-name">Trail Mix Breakfast Jar</span><p class="item-desc">Nuts, seeds, dried fruit, and dark chocolate</p><p class="item-benefits">Grab and go</p><div class="tags"><span class="tag">Healthy fats</span><span class="tag">Antioxidants</span></div></div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- LUNCH -->
+    <div class="section-header">
+      <div class="section-icon">☀️</div>
+      <h2 class="section-title">Lunch</h2>
+      <p class="section-subtitle">Midday Fuel to Power Through</p>
+    </div>
+
+    <div class="category"><div class="category-line"></div><h3 class="category-title">Salads</h3><div class="category-line"></div></div>
+    <div class="menu-grid">
+      <div class="menu-item no-break"><span class="item-num">1</span><span class="item-name">Classic Greek Salad</span><p class="item-desc">Romaine, cucumber, tomatoes, olives, feta</p><div class="tags"><span class="tag">Fiber 6g</span><span class="tag hl">Healthy fats</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">2</span><span class="item-name">Salmon Niçoise</span><p class="item-desc">Seared salmon, green beans, egg, olives</p><div class="tags"><span class="tag hl">Omega-3s</span><span class="tag hl">Protein 28g</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">3</span><span class="item-name">Kale Caesar with Chickpeas</span><p class="item-desc">Massaged kale with crispy chickpeas</p><div class="tags"><span class="tag hl">Fiber 12g</span><span class="tag">Iron</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">4</span><span class="item-name">Mediterranean Quinoa</span><p class="item-desc">Quinoa with cucumber, tomatoes, chickpeas, feta</p><div class="tags"><span class="tag">Protein 14g</span><span class="tag">Fiber 8g</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">5</span><span class="item-name">Asian Sesame Chicken</span><p class="item-desc">Chicken, cabbage, edamame, sesame dressing</p><div class="tags"><span class="tag hl">Protein 25g</span><span class="tag">Fiber 8g</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">6</span><span class="item-name">Beet & Goat Cheese</span><p class="item-desc">Arugula, roasted beets, walnuts, balsamic</p><div class="tags"><span class="tag">Fiber 6g</span><span class="tag">Folate</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">7</span><span class="item-name">Tuna & White Bean</span><p class="item-desc">Tuna with cannellini beans, lemon-dill</p><div class="tags"><span class="tag hl">Protein 30g</span><span class="tag hl">Fiber 10g</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">8</span><span class="item-name">Southwest Black Bean</span><p class="item-desc">Black beans, corn, avocado, lime dressing</p><div class="tags"><span class="tag hl">Fiber 15g</span><span class="tag">Healthy fats</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">9</span><span class="item-name">Strawberry Spinach</span><p class="item-desc">Spinach, strawberries, pecans, poppy seed</p><div class="tags"><span class="tag">Iron</span><span class="tag">Vitamin C</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">10</span><span class="item-name">Lemony Lentil</span><p class="item-desc">French lentils with tomatoes, feta, lemon</p><div class="tags"><span class="tag hl">Fiber 16g</span><span class="tag hl">Protein 18g</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">11</span><span class="item-name">Thai Peanut Crunch</span><p class="item-desc">Cabbage, carrots, edamame, peanut dressing</p><div class="tags"><span class="tag">Fiber 10g</span><span class="tag">Protein 12g</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">12</span><span class="item-name">Farro & Roasted Veggie</span><p class="item-desc">Chewy farro with roasted zucchini, peppers</p><div class="tags"><span class="tag">Fiber 8g</span><span class="tag">B vitamins</span></div></div>
+    </div>
+
+    <div class="category"><div class="category-line"></div><h3 class="category-title">Soups</h3><div class="category-line"></div></div>
+    <div class="menu-grid">
+      <div class="menu-item no-break"><span class="item-num">13</span><span class="item-name">Tuscan White Bean & Kale</span><p class="item-desc">Cannellini beans with kale, Italian herbs</p><div class="tags"><span class="tag hl">Fiber 12g</span><span class="tag">Protein 14g</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">14</span><span class="item-name">Lemon Chicken Orzo</span><p class="item-desc">Light broth with chicken, spinach, lemon</p><div class="tags"><span class="tag">Protein 20g</span><span class="tag">Vitamin C</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">15</span><span class="item-name">Moroccan Chickpea Stew</span><p class="item-desc">Spiced chickpeas, tomatoes, sweet potato</p><div class="tags"><span class="tag hl">Fiber 14g</span><span class="tag hl">Anti-inflammatory</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">16</span><span class="item-name">Minestrone</span><p class="item-desc">Italian vegetable soup with beans, pasta</p><div class="tags"><span class="tag">Fiber 10g</span><span class="tag">Vitamins A, C</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">17</span><span class="item-name">Butternut Squash</span><p class="item-desc">Velvety roasted squash with warming spices</p><div class="tags"><span class="tag hl">Vitamin A</span><span class="tag">Fiber 6g</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">18</span><span class="item-name">Avgolemono</span><p class="item-desc">Greek lemon-egg broth with chicken</p><div class="tags"><span class="tag hl">Protein 22g</span><span class="tag hl">Selenium</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">19</span><span class="item-name">Black Bean with Lime</span><p class="item-desc">Thick black bean soup with cumin, yogurt</p><div class="tags"><span class="tag hl">Fiber 15g</span><span class="tag">Plant sterols</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">20</span><span class="item-name">Tomato Basil</span><p class="item-desc">Fire-roasted tomatoes with fresh basil</p><div class="tags"><span class="tag hl">Lycopene</span><span class="tag">Antioxidants</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">21</span><span class="item-name">Seafood Chowder</span><p class="item-desc">Salmon and shrimp in light broth</p><div class="tags"><span class="tag hl">Omega-3s</span><span class="tag hl">Selenium</span></div></div>
+    </div>
+
+    <div class="category"><div class="category-line"></div><h3 class="category-title">Sandwiches & Wraps</h3><div class="category-line"></div></div>
+    <div class="menu-grid">
+      <div class="menu-item no-break"><span class="item-num">22</span><span class="item-name">Mediterranean Turkey Wrap</span><p class="item-desc">Turkey, hummus, cucumber, feta</p><div class="tags"><span class="tag hl">Protein 28g</span><span class="tag">Fiber 6g</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">23</span><span class="item-name">Salmon Salad Sandwich</span><p class="item-desc">Wild salmon with Greek yogurt, dill</p><div class="tags"><span class="tag hl">Omega-3s</span><span class="tag">Protein 25g</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">24</span><span class="item-name">Caprese Panini</span><p class="item-desc">Mozzarella, tomatoes, basil, balsamic</p><div class="tags"><span class="tag">Protein 18g</span><span class="tag">Lycopene</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">25</span><span class="item-name">Hummus Veggie Wrap</span><p class="item-desc">Hummus with roasted veggies, greens</p><div class="tags"><span class="tag hl">Fiber 12g</span><span class="tag">Protein 12g</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">26</span><span class="item-name">Grilled Chicken Pesto</span><p class="item-desc">Chicken with pesto, roasted peppers</p><div class="tags"><span class="tag hl">Protein 32g</span><span class="tag">Healthy fats</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">27</span><span class="item-name">Avocado BLT</span><p class="item-desc">Avocado, turkey bacon, lettuce, tomato</p><div class="tags"><span class="tag hl">Healthy fats</span><span class="tag">Protein 20g</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">28</span><span class="item-name">Falafel Pita</span><p class="item-desc">Baked falafel with tahini, pickled veggies</p><div class="tags"><span class="tag hl">Fiber 14g</span><span class="tag">Iron</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">29</span><span class="item-name">Tuna Melt</span><p class="item-desc">Tuna salad with melted Swiss</p><div class="tags"><span class="tag">Omega-3s</span><span class="tag hl">Protein 28g</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">30</span><span class="item-name">Chicken Shawarma Wrap</span><p class="item-desc">Spiced chicken, pickled turnips, tahini</p><div class="tags"><span class="tag hl">Protein 30g</span><span class="tag hl">Anti-inflammatory</span></div></div>
+    </div>
+
+    <div class="category"><div class="category-line"></div><h3 class="category-title">Bowls</h3><div class="category-line"></div></div>
+    <div class="menu-grid">
+      <div class="menu-item no-break"><span class="item-num">31</span><span class="item-name">Buddha Bowl</span><p class="item-desc">Quinoa, chickpeas, sweet potato, tahini</p><div class="tags"><span class="tag hl">Fiber 16g</span><span class="tag">Protein 18g</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">32</span><span class="item-name">Salmon Poke Bowl</span><p class="item-desc">Fresh salmon over brown rice, edamame</p><div class="tags"><span class="tag hl">Omega-3s</span><span class="tag hl">Protein 28g</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">33</span><span class="item-name">Mediterranean Grain Bowl</span><p class="item-desc">Farro, chicken, roasted veggies, tzatziki</p><div class="tags"><span class="tag hl">Protein 30g</span><span class="tag">Probiotics</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">34</span><span class="item-name">Burrito Bowl</span><p class="item-desc">Cauliflower rice, black beans, guacamole</p><div class="tags"><span class="tag">Fiber 14g</span><span class="tag hl">Protein 32g</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">35</span><span class="item-name">Teriyaki Salmon Bowl</span><p class="item-desc">Glazed salmon over brown rice, broccoli</p><div class="tags"><span class="tag hl">Omega-3s</span><span class="tag">Protein 30g</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">36</span><span class="item-name">Falafel Bowl</span><p class="item-desc">Crispy falafel, hummus, tabbouleh</p><div class="tags"><span class="tag hl">Fiber 16g</span><span class="tag">Iron</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">37</span><span class="item-name">Korean Bibimbap</span><p class="item-desc">Brown rice, sautéed vegetables, egg</p><div class="tags"><span class="tag">Fiber 10g</span><span class="tag">Protein 16g</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">38</span><span class="item-name">Harvest Bowl</span><p class="item-desc">Quinoa, Brussels sprouts, apple, pecans</p><div class="tags"><span class="tag">Fiber 12g</span><span class="tag">Omega-3s</span></div></div>
+    </div>
+
+    <div class="category"><div class="category-line"></div><h3 class="category-title">Light & Family Favorites</h3><div class="category-line"></div></div>
+    <div class="menu-grid">
+      <div class="menu-item no-break"><span class="item-num">39</span><span class="item-name">Stuffed Bell Peppers</span><p class="item-desc">Quinoa, black beans, corn, cheese</p><div class="tags"><span class="tag">Vitamin C</span><span class="tag hl">Fiber 12g</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">40</span><span class="item-name">Spring Rolls</span><p class="item-desc">Fresh vegetables with peanut sauce</p><div class="tags"><span class="tag">Fiber 6g</span><span class="tag">Healthy fats</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">41</span><span class="item-name">Caprese Stuffed Avocado</span><p class="item-desc">Avocado with tomatoes, mozzarella</p><div class="tags"><span class="tag hl">Healthy fats</span><span class="tag">Lycopene</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">42</span><span class="item-name">Egg Salad Lettuce Cups</span><p class="item-desc">Creamy egg salad in butter lettuce</p><div class="tags"><span class="tag hl">Protein 18g</span><span class="tag hl">Selenium</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">43</span><span class="item-name">Chickpea "Tuna"</span><p class="item-desc">Mashed chickpeas with dill, lemon</p><div class="tags"><span class="tag hl">Fiber 12g</span><span class="tag">Protein 14g</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">44</span><span class="item-name">Antipasto Plate</span><p class="item-desc">Marinated veggies, olives, nuts, cheese</p><div class="tags"><span class="tag">Healthy fats</span><span class="tag">Calcium</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">45</span><span class="item-name">Grilled Cheese & Tomato Soup</span><p class="item-desc">Whole grain grilled cheese with soup</p><div class="tags"><span class="tag">Calcium</span><span class="tag">Lycopene</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">46</span><span class="item-name">Chicken Quesadilla</span><p class="item-desc">Whole wheat with chicken, guacamole</p><div class="tags"><span class="tag hl">Protein 30g</span><span class="tag">Healthy fats</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">47</span><span class="item-name">Turkey Meatball Subs</span><p class="item-desc">Turkey meatballs in marinara</p><div class="tags"><span class="tag hl">Protein 28g</span><span class="tag">Lycopene</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">48</span><span class="item-name">Chicken Noodle Soup</span><p class="item-desc">Classic soup with whole grain noodles</p><div class="tags"><span class="tag">Protein 20g</span><span class="tag">Zinc</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">49</span><span class="item-name">Veggie Fried Rice</span><p class="item-desc">Brown rice with vegetables and egg</p><div class="tags"><span class="tag">Fiber 8g</span><span class="tag">Protein 14g</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">50</span><span class="item-name">Loaded Sweet Potato</span><p class="item-desc">Baked sweet potato with black beans</p><div class="tags"><span class="tag hl">Fiber 12g</span><span class="tag hl">Vitamin A</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">51</span><span class="item-name">Pizza Bagels</span><p class="item-desc">Whole wheat bagels with marinara</p><div class="tags"><span class="tag">Calcium</span><span class="tag">Lycopene</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">52</span><span class="item-name">Smoked Salmon Bites</span><p class="item-desc">Cucumber with cream cheese, salmon</p><div class="tags"><span class="tag hl">Omega-3s</span><span class="tag">Low carb</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">53</span><span class="item-name">Chicken Lettuce Wraps</span><p class="item-desc">Asian-style chicken in lettuce cups</p><div class="tags"><span class="tag">Protein 25g</span><span class="tag">Low carb</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">54</span><span class="item-name">Shrimp Cocktail</span><p class="item-desc">Chilled shrimp with avocado</p><div class="tags"><span class="tag">Protein 24g</span><span class="tag hl">Selenium</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">55</span><span class="item-name">Caprese Skewers</span><p class="item-desc">Tomatoes, mozzarella, basil on skewers</p><div class="tags"><span class="tag">Calcium</span><span class="tag">Lycopene</span></div></div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- DINNER -->
+    <div class="section-header">
+      <div class="section-icon">🌙</div>
+      <h2 class="section-title">Dinner</h2>
+      <p class="section-subtitle">Nourishing Evening Meals</p>
+    </div>
+
+    <div class="category"><div class="category-line"></div><h3 class="category-title">Seafood — Omega-3 Powerhouses</h3><div class="category-line"></div></div>
+    <div class="menu-grid">
+      <div class="menu-item no-break"><span class="item-num">1</span><span class="item-name">Lemon Herb Baked Salmon</span><p class="item-desc">Wild salmon with lemon, garlic, dill</p><div class="tags"><span class="tag hl">Omega-3s</span><span class="tag hl">Protein 35g</span><span class="tag hl">Selenium</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">2</span><span class="item-name">Mediterranean Salmon</span><p class="item-desc">Salmon with tomatoes, olives, capers</p><div class="tags"><span class="tag hl">Omega-3s</span><span class="tag">Lycopene</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">3</span><span class="item-name">Garlic Shrimp Zoodles</span><p class="item-desc">Shrimp in garlic butter over zucchini noodles</p><div class="tags"><span class="tag">Protein 30g</span><span class="tag hl">Selenium</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">4</span><span class="item-name">Baked Cod with Herb Crust</span><p class="item-desc">Flaky cod with fresh herbs and lemon</p><div class="tags"><span class="tag">Protein 32g</span><span class="tag hl">Selenium</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">5</span><span class="item-name">Mahi-Mahi with Mango Salsa</span><p class="item-desc">Grilled mahi with fresh mango salsa</p><div class="tags"><span class="tag">Protein 30g</span><span class="tag">Vitamin C</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">6</span><span class="item-name">Sheet Pan Salmon & Asparagus</span><p class="item-desc">One-pan salmon with asparagus</p><div class="tags"><span class="tag hl">Omega-3s</span><span class="tag">Folate</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">7</span><span class="item-name">Shrimp Scampi</span><p class="item-desc">Garlicky shrimp over whole wheat pasta</p><div class="tags"><span class="tag">Protein 28g</span><span class="tag hl">Selenium</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">8</span><span class="item-name">Blackened Tilapia Tacos</span><p class="item-desc">Spiced tilapia in corn tortillas with slaw</p><div class="tags"><span class="tag">Protein 26g</span><span class="tag">Vitamin C</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">9</span><span class="item-name">Sardine Pasta Puttanesca</span><p class="item-desc">Sardines with tomatoes, olives, capers</p><div class="tags"><span class="tag hl">Omega-3s</span><span class="tag hl">Selenium</span><span class="tag">Calcium</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">10</span><span class="item-name">Coconut Curry Shrimp</span><p class="item-desc">Shrimp in fragrant coconut curry</p><div class="tags"><span class="tag">Protein 28g</span><span class="tag hl">Anti-inflammatory</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">11</span><span class="item-name">Grilled Salmon Burgers</span><p class="item-desc">Salmon patties on whole wheat buns</p><div class="tags"><span class="tag hl">Omega-3s</span><span class="tag">Protein 30g</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">12</span><span class="item-name">Mediterranean Fish Stew</span><p class="item-desc">White fish in tomato broth with fennel</p><div class="tags"><span class="tag hl">Omega-3s</span><span class="tag">Lycopene</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">13</span><span class="item-name">Thai Basil Salmon</span><p class="item-desc">Salmon with Thai basil, ginger glaze</p><div class="tags"><span class="tag hl">Omega-3s</span><span class="tag hl">Anti-inflammatory</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">14</span><span class="item-name">Seared Scallops</span><p class="item-desc">Scallops over cauliflower puree</p><div class="tags"><span class="tag">Protein 25g</span><span class="tag hl">Selenium</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">15</span><span class="item-name">Baked Trout with Almonds</span><p class="item-desc">Rainbow trout with toasted almonds</p><div class="tags"><span class="tag hl">Omega-3s</span><span class="tag">Vitamin E</span></div></div>
+    </div>
+
+    <div class="category"><div class="category-line"></div><h3 class="category-title">Poultry — Lean & Satisfying</h3><div class="category-line"></div></div>
+    <div class="menu-grid">
+      <div class="menu-item no-break"><span class="item-num">16</span><span class="item-name">Lemon Rosemary Roast Chicken</span><p class="item-desc">Whole roasted chicken with herbs</p><div class="tags"><span class="tag hl">Protein 35g</span><span class="tag hl">Selenium</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">17</span><span class="item-name">Greek Chicken & Vegetables</span><p class="item-desc">Oregano chicken with Mediterranean veggies</p><div class="tags"><span class="tag">Protein 32g</span><span class="tag">Vitamin C</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">18</span><span class="item-name">Chicken Marsala</span><p class="item-desc">Sautéed chicken in mushroom wine sauce</p><div class="tags"><span class="tag hl">Protein 35g</span><span class="tag>B vitamins</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">19</span><span class="item-name">Tandoori Chicken</span><p class="item-desc">Yogurt-marinated chicken with raita</p><div class="tags"><span class="tag">Protein 35g</span><span class="tag hl">Anti-inflammatory</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">20</span><span class="item-name">Turkey Stuffed Peppers</span><p class="item-desc">Peppers filled with turkey and rice</p><div class="tags"><span class="tag">Protein 28g</span><span class="tag">Vitamin C</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">21</span><span class="item-name">Chicken Piccata</span><p class="item-desc">Pan-seared chicken with lemon-caper sauce</p><div class="tags"><span class="tag hl">Protein 35g</span><span class="tag">Vitamin C</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">22</span><span class="item-name">Herb-Crusted Chicken</span><p class="item-desc">Chicken breast with Dijon-herb crust</p><div class="tags"><span class="tag">Protein 35g</span><span class="tag">Low fat</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">23</span><span class="item-name">Chicken Souvlaki</span><p class="item-desc">Grilled chicken skewers with tzatziki</p><div class="tags"><span class="tag">Protein 32g</span><span class="tag">Probiotics</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">24</span><span class="item-name">Turkey Taco Lettuce Wraps</span><p class="item-desc">Seasoned turkey in crisp lettuce</p><div class="tags"><span class="tag">Protein 28g</span><span class="tag">Low carb</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">25</span><span class="item-name">Chicken Stir-Fry</span><p class="item-desc">Chicken with colorful vegetables</p><div class="tags"><span class="tag">Protein 30g</span><span class="tag">Vitamin C</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">26</span><span class="item-name">Balsamic Glazed Chicken</span><p class="item-desc">Juicy thighs with balsamic reduction</p><div class="tags"><span class="tag">Protein 32g</span><span class="tag">Iron</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">27</span><span class="item-name">Chicken Cacciatore</span><p class="item-desc">Braised chicken with tomatoes, peppers</p><div class="tags"><span class="tag hl">Protein 35g</span><span class="tag">Lycopene</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">28</span><span class="item-name">Chicken Shawarma Bowl</span><p class="item-desc">Spiced chicken with hummus, tabbouleh</p><div class="tags"><span class="tag hl">Protein 35g</span><span class="tag hl">Fiber 10g</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">29</span><span class="item-name">Turkey Meatballs</span><p class="item-desc">Lean turkey meatballs in marinara</p><div class="tags"><span class="tag">Protein 30g</span><span class="tag">Lycopene</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">30</span><span class="item-name">Grilled Chicken Caesar</span><p class="item-desc">Romaine with grilled chicken, light Caesar</p><div class="tags"><span class="tag hl">Protein 35g</span><span class="tag">Fiber 6g</span></div></div>
+    </div>
+
+    <div class="category"><div class="category-line"></div><h3 class="category-title">Vegetarian & Plant-Based</h3><div class="category-line"></div></div>
+    <div class="menu-grid">
+      <div class="menu-item no-break"><span class="item-num">31</span><span class="item-name">Eggplant Parmesan (Baked)</span><p class="item-desc">Breaded eggplant with marinara, cheese</p><div class="tags"><span class="tag">Fiber 10g</span><span class="tag">Lycopene</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">32</span><span class="item-name">Stuffed Portobello</span><p class="item-desc">Mushrooms filled with quinoa, spinach, feta</p><div class="tags"><span class="tag">Fiber 8g</span><span class="tag">Protein 18g</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">33</span><span class="item-name">Chickpea Curry</span><p class="item-desc">Chickpeas in aromatic coconut curry</p><div class="tags"><span class="tag hl">Fiber 16g</span><span class="tag hl">Anti-inflammatory</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">34</span><span class="item-name">Vegetable Lasagna</span><p class="item-desc">Layers of noodles, ricotta, vegetables</p><div class="tags"><span class="tag">Fiber 8g</span><span class="tag">Calcium</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">35</span><span class="item-name">Black Bean Tacos</span><p class="item-desc">Seasoned black beans with fixings</p><div class="tags"><span class="tag hl">Fiber 18g</span><span class="tag">Protein 15g</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">36</span><span class="item-name">Lentil Bolognese</span><p class="item-desc">Red lentils in tomato sauce over pasta</p><div class="tags"><span class="tag hl">Fiber 16g</span><span class="tag hl">Protein 18g</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">37</span><span class="item-name">Cauliflower Steaks</span><p class="item-desc">Thick-cut cauliflower with chimichurri</p><div class="tags"><span class="tag">Fiber 6g</span><span class="tag">Vitamin C</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">38</span><span class="item-name">Baked Feta Pasta</span><p class="item-desc">Baked feta with cherry tomatoes, basil</p><div class="tags"><span class="tag">Calcium</span><span class="tag">Lycopene</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">39</span><span class="item-name">Thai Green Curry</span><p class="item-desc">Mixed vegetables in coconut green curry</p><div class="tags"><span class="tag">Fiber 10g</span><span class="tag hl">Anti-inflammatory</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">40</span><span class="item-name">Shakshuka Dinner</span><p class="item-desc">Poached eggs in spiced tomato sauce</p><div class="tags"><span class="tag">Protein 16g</span><span class="tag">Lycopene</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">41</span><span class="item-name">Mushroom Stroganoff</span><p class="item-desc">Cremini mushrooms in creamy sauce</p><div class="tags"><span class="tag">Protein 12g</span><span class="tag">B vitamins</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">42</span><span class="item-name">Quinoa Stuffed Squash</span><p class="item-desc">Acorn squash with quinoa, cranberries</p><div class="tags"><span class="tag hl">Fiber 12g</span><span class="tag hl">Vitamin A</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">43</span><span class="item-name">Ratatouille</span><p class="item-desc">Provençal vegetable stew</p><div class="tags"><span class="tag">Fiber 10g</span><span class="tag">Vitamins A, C</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">44</span><span class="item-name">Spinach Ricotta Shells</span><p class="item-desc">Stuffed shells in marinara</p><div class="tags"><span class="tag">Calcium</span><span class="tag">Iron</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">45</span><span class="item-name">Falafel Dinner Plate</span><p class="item-desc">Crispy falafel with hummus, pita, salad</p><div class="tags"><span class="tag hl">Fiber 18g</span><span class="tag">Protein 20g</span></div></div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <div class="category"><div class="category-line"></div><h3 class="category-title">One-Pot & Sheet Pan</h3><div class="category-line"></div></div>
+    <div class="menu-grid">
+      <div class="menu-item no-break"><span class="item-num">46</span><span class="item-name">One-Pan Chicken & Vegetables</span><p class="item-desc">Chicken thighs with seasonal vegetables</p><div class="tags"><span class="tag">Protein 32g</span><span class="tag">Fiber 6g</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">47</span><span class="item-name">Sheet Pan Fajitas</span><p class="item-desc">Chicken and peppers with tortillas</p><div class="tags"><span class="tag">Protein 30g</span><span class="tag">Vitamin C</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">48</span><span class="item-name">One-Pot Lemon Chicken Rice</span><p class="item-desc">Chicken, rice, vegetables in one pot</p><div class="tags"><span class="tag">Protein 30g</span><span class="tag">Balanced</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">49</span><span class="item-name">Sheet Pan Honey Garlic Salmon</span><p class="item-desc">Salmon with green beans and potatoes</p><div class="tags"><span class="tag hl">Omega-3s</span><span class="tag">Protein 30g</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">50</span><span class="item-name">One-Pot Pasta Primavera</span><p class="item-desc">Pasta and vegetables cooked together</p><div class="tags"><span class="tag">Fiber 8g</span><span class="tag">Vitamin C</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">51</span><span class="item-name">Sheet Pan Turkey Sausage</span><p class="item-desc">Turkey sausage with roasted vegetables</p><div class="tags"><span class="tag">Protein 28g</span><span class="tag">Low fat</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">52</span><span class="item-name">One-Pot Jambalaya</span><p class="item-desc">Chicken, shrimp in spiced tomato rice</p><div class="tags"><span class="tag hl">Protein 35g</span><span class="tag hl">Selenium</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">53</span><span class="item-name">Sheet Pan Mediterranean Chicken</span><p class="item-desc">Chicken with artichokes, olives, sun-dried tomatoes</p><div class="tags"><span class="tag hl">Protein 35g</span><span class="tag">Healthy fats</span></div></div>
+    </div>
+
+    <div class="category"><div class="category-line"></div><h3 class="category-title">Soups & Stews</h3><div class="category-line"></div></div>
+    <div class="menu-grid">
+      <div class="menu-item no-break"><span class="item-num">54</span><span class="item-name">Chicken Tortilla Soup</span><p class="item-desc">Shredded chicken in spiced tomato broth</p><div class="tags"><span class="tag">Protein 28g</span><span class="tag">Vitamin C</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">55</span><span class="item-name">Italian Wedding Soup</span><p class="item-desc">Turkey meatballs with escarole</p><div class="tags"><span class="tag">Protein 25g</span><span class="tag">Iron</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">56</span><span class="item-name">Beef Barley Soup</span><p class="item-desc">Lean beef with vegetables and barley</p><div class="tags"><span class="tag hl">Fiber 12g</span><span class="tag">Protein 25g</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">57</span><span class="item-name">Cioppino</span><p class="item-desc">Mixed seafood in tomato-wine broth</p><div class="tags"><span class="tag hl">Omega-3s</span><span class="tag hl">Protein 35g</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">58</span><span class="item-name">White Chicken Chili</span><p class="item-desc">Chicken with white beans in verde sauce</p><div class="tags"><span class="tag hl">Fiber 14g</span><span class="tag hl">Protein 35g</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">59</span><span class="item-name">Split Pea Soup</span><p class="item-desc">Classic pea soup with lean ham</p><div class="tags"><span class="tag hl">Fiber 16g</span><span class="tag">Protein 25g</span></div></div>
+    </div>
+
+    <div class="category"><div class="category-line"></div><h3 class="category-title">Pasta & Grains</h3><div class="category-line"></div></div>
+    <div class="menu-grid">
+      <div class="menu-item no-break"><span class="item-num">60</span><span class="item-name">Whole Wheat Pasta Primavera</span><p class="item-desc">Penne with roasted zucchini, peppers</p><div class="tags"><span class="tag">Fiber 10g</span><span class="tag">Vitamin C</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">61</span><span class="item-name">Lemon Shrimp Pasta</span><p class="item-desc">Shrimp with linguine in lemon-garlic</p><div class="tags"><span class="tag">Protein 28g</span><span class="tag hl">Selenium</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">62</span><span class="item-name">Chicken Pesto Pasta</span><p class="item-desc">Grilled chicken with basil pesto pasta</p><div class="tags"><span class="tag hl">Protein 35g</span><span class="tag">Healthy fats</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">63</span><span class="item-name">Brown Rice Mushroom Risotto</span><p class="item-desc">Creamy risotto with mushrooms</p><div class="tags"><span class="tag">Fiber 6g</span><span class="tag">B vitamins</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">64</span><span class="item-name">Pasta e Fagioli</span><p class="item-desc">Italian pasta and bean stew</p><div class="tags"><span class="tag hl">Fiber 14g</span><span class="tag">Protein 18g</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">65</span><span class="item-name">Quinoa Pilaf</span><p class="item-desc">Fluffy quinoa with roasted vegetables</p><div class="tags"><span class="tag">Protein 12g</span><span class="tag">Fiber 8g</span></div></div>
+    </div>
+
+    <div class="category"><div class="category-line"></div><h3 class="category-title">Global Flavors</h3><div class="category-line"></div></div>
+    <div class="menu-grid">
+      <div class="menu-item no-break"><span class="item-num">66</span><span class="item-name">Thai Basil Chicken</span><p class="item-desc">Ground chicken with Thai basil over rice</p><div class="tags"><span class="tag">Protein 28g</span><span class="tag hl">Anti-inflammatory</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">67</span><span class="item-name">Chicken Tikka Masala</span><p class="item-desc">Chicken in creamy tomato-spice sauce</p><div class="tags"><span class="tag hl">Protein 35g</span><span class="tag hl">Anti-inflammatory</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">68</span><span class="item-name">Bibimbap</span><p class="item-desc">Korean rice bowl with vegetables, egg</p><div class="tags"><span class="tag">Fiber 10g</span><span class="tag">Protein 20g</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">69</span><span class="item-name">Vietnamese Pho</span><p class="item-desc">Rice noodle soup with lean beef, herbs</p><div class="tags"><span class="tag">Protein 25g</span><span class="tag hl">Anti-inflammatory</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">70</span><span class="item-name">Teriyaki Salmon</span><p class="item-desc">Glazed salmon with rice and vegetables</p><div class="tags"><span class="tag hl">Omega-3s</span><span class="tag">Protein 32g</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">71</span><span class="item-name">Spanish Seafood Paella</span><p class="item-desc">Saffron rice with shrimp, mussels</p><div class="tags"><span class="tag">Protein 30g</span><span class="tag hl">Selenium</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">72</span><span class="item-name">Moroccan Vegetable Couscous</span><p class="item-desc">Whole wheat couscous with spiced veggies</p><div class="tags"><span class="tag hl">Fiber 14g</span><span class="tag">Protein 15g</span></div></div>
+    </div>
+
+    <div class="category"><div class="category-line"></div><h3 class="category-title">Family Favorites</h3><div class="category-line"></div></div>
+    <div class="menu-grid">
+      <div class="menu-item no-break"><span class="item-num">73</span><span class="item-name">Baked Chicken Fingers</span><p class="item-desc">Oven-baked strips with honey mustard</p><div class="tags"><span class="tag">Protein 30g</span><span class="tag">Low fat</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">74</span><span class="item-name">Turkey Burger Sliders</span><p class="item-desc">Mini turkey burgers on whole wheat</p><div class="tags"><span class="tag">Protein 25g</span><span class="tag">Fiber 4g</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">75</span><span class="item-name">Spaghetti & Turkey Meatballs</span><p class="item-desc">Classic with lean turkey meatballs</p><div class="tags"><span class="tag">Protein 30g</span><span class="tag">Fiber 8g</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">76</span><span class="item-name">Homemade Pizza</span><p class="item-desc">Whole wheat crust with veggie toppings</p><div class="tags"><span class="tag">Fiber 6g</span><span class="tag">Calcium</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">77</span><span class="item-name">Chicken Fried Rice</span><p class="item-desc">Brown rice with chicken, vegetables, egg</p><div class="tags"><span class="tag">Protein 25g</span><span class="tag">Fiber 6g</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">78</span><span class="item-name">Fish Tacos with Slaw</span><p class="item-desc">Grilled fish in corn tortillas</p><div class="tags"><span class="tag">Protein 28g</span><span class="tag hl">Omega-3s</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">79</span><span class="item-name">BBQ Chicken Pizza</span><p class="item-desc">Grilled chicken, BBQ sauce, red onion</p><div class="tags"><span class="tag">Protein 28g</span><span class="tag">Fiber 6g</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">80</span><span class="item-name">Taco Bowls</span><p class="item-desc">Build-your-own over cauliflower rice</p><div class="tags"><span class="tag">Fiber 12g</span><span class="tag">Protein 28g</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">81</span><span class="item-name">Baked Chicken Parmesan</span><p class="item-desc">Breaded chicken with marinara, cheese</p><div class="tags"><span class="tag hl">Protein 35g</span><span class="tag">Calcium</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">82</span><span class="item-name">Mini Meatloaf Cups</span><p class="item-desc">Individual turkey meatloaves</p><div class="tags"><span class="tag">Protein 25g</span><span class="tag">Iron</span></div></div>
+    </div>
+
+    <div class="category"><div class="category-line"></div><h3 class="category-title">Lean Beef & Pork (Occasional)</h3><div class="category-line"></div></div>
+    <div class="menu-grid">
+      <div class="menu-item no-break"><span class="item-num">83</span><span class="item-name">Herb-Crusted Pork Tenderloin</span><p class="item-desc">Lean pork with Dijon-herb crust</p><div class="tags"><span class="tag hl">Protein 35g</span><span class="tag">B vitamins</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">84</span><span class="item-name">Beef & Broccoli Stir-Fry</span><p class="item-desc">Lean beef strips with broccoli</p><div class="tags"><span class="tag">Protein 32g</span><span class="tag">Iron</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">85</span><span class="item-name">Grilled Flank Steak</span><p class="item-desc">Marinated flank with chimichurri</p><div class="tags"><span class="tag hl">Protein 35g</span><span class="tag>Iron</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">86</span><span class="item-name">Pork Chops with Apple</span><p class="item-desc">Bone-in chops with cinnamon-apple</p><div class="tags"><span class="tag">Protein 32g</span><span class="tag">B vitamins</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">87</span><span class="item-name">Asian Lettuce Wraps</span><p class="item-desc">Seasoned ground meat in lettuce cups</p><div class="tags"><span class="tag">Protein 28g</span><span class="tag">Low carb</span></div></div>
+      <div class="menu-item no-break"><span class="item-num">88</span><span class="item-name">Beef Kebabs</span><p class="item-desc">Marinated beef with peppers, onions</p><div class="tags"><span class="tag">Protein 32g</span><span class="tag">Iron</span></div></div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- SNACKS -->
+    <div class="section-header">
+      <div class="section-icon">🍎</div>
+      <h2 class="section-title">Snacks & Beverages</h2>
+      <p class="section-subtitle">Nourishing Bites Between Meals</p>
+    </div>
+
+    <div class="category"><div class="category-line"></div><h3 class="category-title">Quick Grab Snacks</h3><div class="category-line"></div></div>
+    <div class="snack-grid">
+      <div class="snack-item"><div class="snack-name">🍎 Apple & Almond Butter</div><div class="snack-desc">Blood sugar balance</div></div>
+      <div class="snack-item"><div class="snack-name">🫐 Greek Yogurt & Berries</div><div class="snack-desc">Protein + Probiotics</div></div>
+      <div class="snack-item"><div class="snack-name">🥜 Mixed Nuts (Brazil!)</div><div class="snack-desc">Selenium + Omega-3s</div></div>
+      <div class="snack-item"><div class="snack-name">🥕 Hummus & Veggies</div><div class="snack-desc">Fiber + Plant protein</div></div>
+      <div class="snack-item"><div class="snack-name">🧀 Cheese & Crackers</div><div class="snack-desc">Calcium + Fiber</div></div>
+      <div class="snack-item"><div class="snack-name">🥚 Hard-Boiled Eggs</div><div class="snack-desc">Protein + Selenium</div></div>
+      <div class="snack-item"><div class="snack-name">🫛 Edamame</div><div class="snack-desc">Plant protein + Fiber</div></div>
+      <div class="snack-item"><div class="snack-name">🫒 Olives & Feta</div><div class="snack-desc">Mediterranean fats</div></div>
+      <div class="snack-item"><div class="snack-name">🥛 Cottage Cheese & Fruit</div><div class="snack-desc">Protein + Calcium</div></div>
+      <div class="snack-item"><div class="snack-name">🍅 Tomatoes & Mozzarella</div><div class="snack-desc">Lycopene + Calcium</div></div>
+      <div class="snack-item"><div class="snack-name">🥑 Avocado Toast Bites</div><div class="snack-desc">Heart-healthy fats</div></div>
+      <div class="snack-item"><div class="snack-name">🥒 Cucumber Salmon Bites</div><div class="snack-desc">Omega-3s + Low carb</div></div>
+    </div>
+
+    <div class="category"><div class="category-line"></div><h3 class="category-title">Sweet Treats (Healthier)</h3><div class="category-line"></div></div>
+    <div class="snack-grid">
+      <div class="snack-item"><div class="snack-name">🍫 Dark Chocolate & Almonds</div><div class="snack-desc">Antioxidants + Magnesium</div></div>
+      <div class="snack-item"><div class="snack-name">🍌 Frozen Banana Bites</div><div class="snack-desc">Potassium + Natural sweet</div></div>
+      <div class="snack-item"><div class="snack-name">🥥 Chia Pudding</div><div class="snack-desc">Omega-3s + Fiber</div></div>
+      <div class="snack-item"><div class="snack-name">🍓 Fresh Fruit Salad</div><div class="snack-desc">Vitamin C + Antioxidants</div></div>
+      <div class="snack-item"><div class="snack-name">🍏 Baked Apple & Cinnamon</div><div class="snack-desc">Comforting + Fiber</div></div>
+      <div class="snack-item"><div class="snack-name">🍇 Frozen Grapes</div><div class="snack-desc">Natural sweet + Refreshing</div></div>
+      <div class="snack-item"><div class="snack-name">🍦 Yogurt Bark</div><div class="snack-desc">Calcium + Probiotics</div></div>
+      <div class="snack-item"><div class="snack-name">🌰 Date & Walnut Bites</div><div class="snack-desc">Natural energy + Omega-3s</div></div>
+      <div class="snack-item"><div class="snack-name">🥣 Protein Balls</div><div class="snack-desc">Energy + Kid-friendly</div></div>
+    </div>
+
+    <div class="category"><div class="category-line"></div><h3 class="category-title">Beverages</h3><div class="category-line"></div></div>
+    <div class="snack-grid">
+      <div class="snack-item"><div class="snack-name">🍵 Green Tea</div><div class="snack-desc">Antioxidants + Gentle energy</div></div>
+      <div class="snack-item"><div class="snack-name">🥛 Golden Milk</div><div class="snack-desc">Anti-inflammatory turmeric</div></div>
+      <div class="snack-item"><div class="snack-name">🌿 Herbal Tea</div><div class="snack-desc">Calming + Zero caffeine</div></div>
+      <div class="snack-item"><div class="snack-name">💧 Sparkling Water + Citrus</div><div class="snack-desc">Soda replacement</div></div>
+      <div class="snack-item"><div class="snack-name">🥒 Cucumber Mint Water</div><div class="snack-desc">Refreshing + Hydrating</div></div>
+      <div class="snack-item"><div class="snack-name">🍋 Ginger Lemon Tea</div><div class="snack-desc">Digestive + Immune support</div></div>
+    </div>
+
+    <div class="tips" style="margin: 2rem 0.5rem;">
+      <h3 class="tips-title">🍎 Smart Snacking Tips</h3>
+      <ul class="tips-list">
+        <li>Always pair carbs with protein or fat for blood sugar balance</li>
+        <li>Brazil nuts: 1-2 per day max for selenium (you're supplementing too!)</li>
+        <li>Keep cut veggies and hummus ready for grab-and-go</li>
+        <li>Prep snacks on Sunday for the whole week</li>
+        <li>Share snack time with the kids - they love what mama eats!</li>
+      </ul>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- BACK COVER -->
+    <div class="back">
+      <div class="back-heart">♥</div>
+      <p class="back-msg">
+        "Every meal is an opportunity to nourish your body and show yourself love. You deserve this care."
+      </p>
+      <p class="back-msg" style="font-size: 1.4rem; margin-top: 1rem;">
+        You take such beautiful care of our family —<br>
+        our three little ones, our home, us.<br>
+        Now it's time to take care of you.
+      </p>
+      <div class="back-heart" style="font-size: 2rem;">💚</div>
+      <p class="back-sig">With all my love,<br>Your Husband</p>
+      <p style="margin-top: 3rem; font-size: 0.8rem; color: var(--text-med);">
+        35+ Breakfasts • 55+ Lunches • 88+ Dinners • 30+ Snacks<br>
+        Designed for: Heart Health • Thyroid Support • Blood Sugar Balance
+      </p>
+    </div>
+
+  </div>
+</body>
+</html>

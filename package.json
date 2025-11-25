@@ -1,0 +1,12 @@
+{
+  "name": "nourishing-christine-menu",
+  "version": "1.0.0",
+  "description": "A healing menu PDF generator for Christine",
+  "scripts": {
+    "generate": "node generate-pdf.js"
+  },
+  "dependencies": {
+    "puppeteer": "^21.0.0"
+  }
+}
+
