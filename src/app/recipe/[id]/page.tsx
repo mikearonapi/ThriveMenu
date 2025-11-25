@@ -23,9 +23,63 @@ import {
   Lightbulb,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { getRecipeById } from "@/data/recipes";
-import { getRecipeDetails, RecipeDetails, Ingredient } from "@/data/recipe-details";
 import RatingStars from "@/components/recipe/RatingStars";
+
+interface RecipeData {
+  id: string;
+  name: string;
+  description: string;
+  category: string;
+  mealType: string;
+  prepTime?: number;
+  cookTime?: number;
+  totalTime?: number;
+  servings: number;
+  difficulty?: string;
+  imageUrl?: string;
+  healthBenefits: string;
+  isKidFriendly?: boolean;
+  isQuick?: boolean;
+  hasOmega3?: boolean;
+  hasHighFiber?: boolean;
+  isAntiInflammatory?: boolean;
+  isHeartHealthy?: boolean;
+  healthTags?: Array<{
+    id: string;
+    name: string;
+    slug: string;
+  }>;
+  ingredients?: Array<{
+    amount: number;
+    unit: string;
+    name: string;
+    preparation?: string;
+    notes?: string;
+    isOptional?: boolean;
+  }>;
+  instructions?: Array<{
+    stepNumber: number;
+    instruction: string;
+    tipText?: string;
+    durationMinutes?: number;
+  }>;
+  nutrition?: {
+    calories: number;
+    protein: number;
+    carbs: number;
+    fiber: number;
+    sugar: number;
+    fat: number;
+    saturatedFat: number;
+    cholesterol: number;
+    sodium: number;
+    omega3?: number;
+  };
+  tips?: Array<{
+    tipType: string;
+    content: string;
+  }>;
+}
 
 export default function RecipePage() {
   const params = useParams();
@@ -41,9 +95,31 @@ export default function RecipePage() {
     totalRatings: number;
     userRating: number | null;
   } | null>(null);
+  const [recipe, setRecipe] = useState<RecipeData | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const recipe = getRecipeById(params.id as string);
-  const details = getRecipeDetails(params.id as string);
+  // Fetch recipe from database
+  useEffect(() => {
+    async function fetchRecipe() {
+      setIsLoading(true);
+      try {
+        const response = await fetch(`/api/recipes/${params.id}`);
+        if (response.ok) {
+          const data = await response.json();
+          setRecipe(data);
+          setServings(data.servings || 4);
+        } else {
+          setRecipe(null);
+        }
+      } catch (error) {
+        console.error("Error fetching recipe:", error);
+        setRecipe(null);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    fetchRecipe();
+  }, [params.id]);
 
   // Check if recipe is favorited on mount
   useEffect(() => {
@@ -103,23 +179,12 @@ export default function RecipePage() {
     );
   }
 
-  // Get ingredients and instructions from recipe details or use defaults
-  const ingredients: Ingredient[] = details?.ingredients || [
-    { amount: "See", unit: "", name: "recipe ingredients", preparation: "below" },
-  ];
+  // Get ingredients and instructions from recipe data
+  const ingredients = recipe.ingredients || [];
+  const instructions = recipe.instructions?.map((inst) => inst.instruction) || [];
+  const tips = recipe.tips?.map((tip) => tip.content) || [];
 
-  const instructions: string[] = details?.instructions || [
-    "Full cooking instructions coming soon!",
-    `In the meantime, this recipe features: ${recipe.description}`,
-  ];
-
-  const tips: string[] = details?.tips || [
-    `For Graves' Disease: ${recipe.isAntiInflammatory ? "The anti-inflammatory ingredients in this recipe support thyroid health." : "Remember to take your thyroid medication 30-60 minutes before eating."}`,
-    recipe.isHeartHealthy ? "This heart-healthy recipe supports cardiovascular wellness." : "",
-    recipe.hasHighFiber ? "The high fiber content helps maintain stable blood sugar." : "",
-  ].filter(Boolean);
-
-  const baseServings = details?.servings || recipe.servings || 4;
+  const baseServings = recipe.servings || 4;
 
   // Fetch rating data on mount
   useEffect(() => {
@@ -271,12 +336,12 @@ export default function RecipePage() {
             {recipe.healthBenefits}
           </p>
           <div className="flex flex-wrap gap-2">
-            {recipe.keyNutrients.map((nutrient, idx) => (
+            {recipe.healthTags?.map((tag: any) => (
               <span
-                key={idx}
+                key={tag.id}
                 className="px-3 py-1 rounded-full text-xs font-medium bg-white text-forest-700"
               >
-                {nutrient}
+                {tag.name}
               </span>
             ))}
           </div>
@@ -366,23 +431,25 @@ export default function RecipePage() {
         {activeTab === "ingredients" && (
           <div className="bg-white rounded-2xl p-4 shadow-sm border border-gray-300">
             <ul className="space-y-3">
-              {ingredients.map((ing, idx) => {
+              {ingredients.map((ing: any, idx: number) => {
                 // Calculate scaled amounts based on servings
                 const scale = servings / baseServings;
-                const scaledAmount = ing.amount ? 
-                  (parseFloat(ing.amount.replace('½', '0.5').replace('¼', '0.25').replace('⅛', '0.125')) * scale).toFixed(1).replace('.0', '').replace('.5', '½').replace('.25', '¼') 
-                  : '';
+                const amountValue = typeof ing.amount === 'number' ? ing.amount : parseFloat(String(ing.amount)) || 0;
+                const scaledAmount = amountValue > 0 ? (amountValue * scale).toFixed(1) : '';
                 
                 return (
                   <li key={idx} className="flex items-start gap-3">
                     <div className="w-5 h-5 rounded-full border-2 border-sage-300 flex-shrink-0 mt-0.5" />
                     <div className="flex-1">
                       <span className="font-medium text-forest-900">
-                        {ing.amount} {ing.unit}
+                        {scaledAmount || ing.amount} {ing.unit}
                       </span>{" "}
                       <span className="text-gray-600">{ing.name}</span>
                       {ing.preparation && (
                         <span className="text-gray-500">, {ing.preparation}</span>
+                      )}
+                      {ing.notes && (
+                        <span className="text-gray-400 text-sm"> ({ing.notes})</span>
                       )}
                     </div>
                   </li>
@@ -395,21 +462,27 @@ export default function RecipePage() {
         {/* Instructions */}
         {activeTab === "instructions" && (
           <div className="space-y-4">
-            {instructions.map((instruction, idx) => (
-              <div
-                key={idx}
-                className="bg-white rounded-2xl p-4 shadow-sm border border-gray-300"
-              >
-                <div className="flex gap-4">
-                  <div className="w-8 h-8 rounded-full bg-sage-500 text-white flex items-center justify-center flex-shrink-0 font-medium">
-                    {idx + 1}
+            {instructions.length > 0 ? (
+              instructions.map((instruction: string, idx: number) => (
+                <div
+                  key={idx}
+                  className="bg-white rounded-2xl p-4 shadow-sm border border-gray-300"
+                >
+                  <div className="flex gap-4">
+                    <div className="w-8 h-8 rounded-full bg-sage-500 text-white flex items-center justify-center flex-shrink-0 font-medium">
+                      {idx + 1}
+                    </div>
+                    <p className="text-gray-600 leading-relaxed pt-1">
+                      {instruction}
+                    </p>
                   </div>
-                  <p className="text-gray-600 leading-relaxed pt-1">
-                    {instruction}
-                  </p>
                 </div>
+              ))
+            ) : (
+              <div className="bg-white rounded-2xl p-4 shadow-sm border border-gray-300 text-center text-gray-500">
+                <p>Instructions coming soon!</p>
               </div>
-            ))}
+            )}
           </div>
         )}
 
@@ -432,32 +505,32 @@ export default function RecipePage() {
         )}
 
         {/* Nutrition Card */}
-        {details?.nutrition && (
+        {recipe.nutrition && (
           <div className="mt-4 bg-white rounded-2xl p-4 shadow-sm border border-gray-300">
             <h3 className="font-medium text-forest-900 mb-3">Nutrition Per Serving</h3>
             <div className="grid grid-cols-3 gap-3 text-center">
               <div className="style={{ backgroundColor: 'var(--cream-100)' }} rounded-xl p-2">
-                <p className="text-lg font-semibold text-forest-900">{details.nutrition.calories}</p>
+                <p className="text-lg font-semibold text-forest-900">{recipe.nutrition?.calories || 0}</p>
                 <p className="text-xs text-gray-500">Calories</p>
               </div>
-              <div className="style={{ backgroundColor: 'var(--cream-100)' }} rounded-xl p-2">
-                <p className="text-lg font-semibold text-forest-900">{details.nutrition.protein}g</p>
+              <div className="bg-cream-100 rounded-xl p-2">
+                <p className="text-lg font-semibold text-forest-900">{recipe.nutrition?.protein || 0}g</p>
                 <p className="text-xs text-gray-500">Protein</p>
               </div>
-              <div className="style={{ backgroundColor: 'var(--cream-100)' }} rounded-xl p-2">
-                <p className="text-lg font-semibold text-forest-900">{details.nutrition.carbs}g</p>
+              <div className="bg-cream-100 rounded-xl p-2">
+                <p className="text-lg font-semibold text-forest-900">{recipe.nutrition?.carbs || 0}g</p>
                 <p className="text-xs text-gray-500">Carbs</p>
               </div>
-              <div className="style={{ backgroundColor: 'var(--cream-100)' }} rounded-xl p-2">
-                <p className="text-lg font-semibold text-forest-900">{details.nutrition.fat}g</p>
+              <div className="bg-cream-100 rounded-xl p-2">
+                <p className="text-lg font-semibold text-forest-900">{recipe.nutrition?.fat || 0}g</p>
                 <p className="text-xs text-gray-500">Fat</p>
               </div>
-              <div className="style={{ backgroundColor: 'var(--cream-100)' }} rounded-xl p-2">
-                <p className="text-lg font-semibold text-forest-900">{details.nutrition.fiber}g</p>
+              <div className="bg-cream-100 rounded-xl p-2">
+                <p className="text-lg font-semibold text-forest-900">{recipe.nutrition?.fiber || 0}g</p>
                 <p className="text-xs text-gray-500">Fiber</p>
               </div>
-              <div className="style={{ backgroundColor: 'var(--cream-100)' }} rounded-xl p-2">
-                <p className="text-lg font-semibold text-forest-900">{details.nutrition.sodium}mg</p>
+              <div className="bg-cream-100 rounded-xl p-2">
+                <p className="text-lg font-semibold text-forest-900">{recipe.nutrition?.sodium || 0}mg</p>
                 <p className="text-xs text-gray-500">Sodium</p>
               </div>
             </div>

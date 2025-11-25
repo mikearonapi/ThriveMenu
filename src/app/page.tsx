@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -20,21 +20,26 @@ import {
 import RecipeCard from "@/components/recipe/RecipeCard";
 import HealthGoalCard from "@/components/health/HealthGoalCard";
 import QuickFilterChip from "@/components/ui/QuickFilterChip";
-import { breakfastRecipes, lunchRecipes, dinnerRecipes, snackRecipes } from "@/data/recipes";
 import { getRecipeImage } from "@/lib/images";
 
 // Get current meal suggestion based on time of day
 function getCurrentMealSuggestion() {
   const hour = new Date().getHours();
-  if (hour < 11) return { type: "BREAKFAST", label: "breakfast", icon: Sun, recipes: breakfastRecipes };
-  if (hour < 15) return { type: "LUNCH", label: "lunch", icon: Salad, recipes: lunchRecipes };
-  if (hour < 19) return { type: "DINNER", label: "dinner", icon: Moon, recipes: dinnerRecipes };
-  return { type: "SNACK", label: "evening snack", icon: Cookie, recipes: snackRecipes };
+  if (hour < 11) return { type: "BREAKFAST", label: "breakfast", icon: Sun };
+  if (hour < 15) return { type: "LUNCH", label: "lunch", icon: Salad };
+  if (hour < 19) return { type: "DINNER", label: "dinner", icon: Moon };
+  return { type: "SNACK", label: "evening snack", icon: Cookie };
 }
 
 export default function HomePage() {
   const currentMeal = getCurrentMealSuggestion();
   const [selectedFilter, setSelectedFilter] = useState<string | null>(null);
+  const [breakfastRecipes, setBreakfastRecipes] = useState<any[]>([]);
+  const [lunchRecipes, setLunchRecipes] = useState<any[]>([]);
+  const [dinnerRecipes, setDinnerRecipes] = useState<any[]>([]);
+  const [snackRecipes, setSnackRecipes] = useState<any[]>([]);
+  const [currentMealRecipes, setCurrentMealRecipes] = useState<any[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const quickFilters = [
     { id: "quick", label: "Under 30 min", icon: Clock },
@@ -43,8 +48,42 @@ export default function HomePage() {
     { id: "omega3", label: "Omega-3 Rich", icon: Leaf },
   ];
 
+  // Fetch recipes from database
+  useEffect(() => {
+    async function fetchRecipes() {
+      setIsLoading(true);
+      try {
+        const [breakfast, lunch, dinner, snack] = await Promise.all([
+          fetch("/api/recipes?mealType=BREAKFAST&limit=6").then((r) => r.json()),
+          fetch("/api/recipes?mealType=LUNCH&limit=6").then((r) => r.json()),
+          fetch("/api/recipes?mealType=DINNER&limit=6").then((r) => r.json()),
+          fetch("/api/recipes?mealType=SNACK&limit=6").then((r) => r.json()),
+        ]);
+
+        setBreakfastRecipes(breakfast.recipes || []);
+        setLunchRecipes(lunch.recipes || []);
+        setDinnerRecipes(dinner.recipes || []);
+        setSnackRecipes(snack.recipes || []);
+
+        // Set current meal recipes
+        const mealTypeMap: Record<string, any[]> = {
+          BREAKFAST: breakfast.recipes || [],
+          LUNCH: lunch.recipes || [],
+          DINNER: dinner.recipes || [],
+          SNACK: snack.recipes || [],
+        };
+        setCurrentMealRecipes(mealTypeMap[currentMeal.type] || []);
+      } catch (error) {
+        console.error("Error fetching recipes:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    fetchRecipes();
+  }, []);
+
   // Get featured recipe
-  const featuredRecipe = currentMeal.recipes[0];
+  const featuredRecipe = currentMealRecipes[0];
 
   return (
     <div className="min-h-screen pb-24" style={{ backgroundColor: 'var(--cream-100)' }}>
@@ -230,30 +269,34 @@ export default function HomePage() {
       </section>
 
       {/* Recipe Sections */}
-      <RecipeSection 
-        title="Breakfast" 
-        icon={Sun}
-        recipes={breakfastRecipes} 
-        link="/explore?meal=breakfast" 
-      />
-      <RecipeSection 
-        title="Lunch" 
-        icon={Salad}
-        recipes={lunchRecipes} 
-        link="/explore?meal=lunch" 
-      />
-      <RecipeSection 
-        title="Dinner" 
-        icon={Moon}
-        recipes={dinnerRecipes} 
-        link="/explore?meal=dinner" 
-      />
-      <RecipeSection 
-        title="Snacks & Beverages" 
-        icon={Cookie}
-        recipes={snackRecipes} 
-        link="/explore?meal=snack" 
-      />
+      {!isLoading && (
+        <>
+          <RecipeSection 
+            title="Breakfast" 
+            icon={Sun}
+            recipes={breakfastRecipes} 
+            link="/explore?meal=breakfast" 
+          />
+          <RecipeSection 
+            title="Lunch" 
+            icon={Salad}
+            recipes={lunchRecipes} 
+            link="/explore?meal=lunch" 
+          />
+          <RecipeSection 
+            title="Dinner" 
+            icon={Moon}
+            recipes={dinnerRecipes} 
+            link="/explore?meal=dinner" 
+          />
+          <RecipeSection 
+            title="Snacks & Beverages" 
+            icon={Cookie}
+            recipes={snackRecipes} 
+            link="/explore?meal=snack" 
+          />
+        </>
+      )}
 
       {/* Wellness Tip Card */}
       <section className="px-5 pb-8 pt-6">

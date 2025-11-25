@@ -1,25 +1,17 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { Search, Filter, X, Clock, Heart, Leaf, Fish, ChefHat, Sun, Moon, Cookie } from "lucide-react";
 import { cn } from "@/lib/utils";
 import RecipeCard from "@/components/recipe/RecipeCard";
-import {
-  allRecipes,
-  breakfastRecipes,
-  lunchRecipes,
-  dinnerRecipes,
-  snackRecipes,
-  searchRecipes,
-} from "@/data/recipes";
 
 const mealTabs = [
-  { id: "all", label: "All", count: allRecipes.length, icon: null },
-  { id: "breakfast", label: "Breakfast", count: breakfastRecipes.length, icon: Sun },
-  { id: "lunch", label: "Lunch", count: lunchRecipes.length, icon: Sun },
-  { id: "dinner", label: "Dinner", count: dinnerRecipes.length, icon: Moon },
-  { id: "snack", label: "Snacks", count: snackRecipes.length, icon: Cookie },
+  { id: "all", label: "All", icon: null },
+  { id: "breakfast", label: "Breakfast", icon: Sun },
+  { id: "lunch", label: "Lunch", icon: Sun },
+  { id: "dinner", label: "Dinner", icon: Moon },
+  { id: "snack", label: "Snacks", icon: Cookie },
 ];
 
 const healthFilters = [
@@ -39,6 +31,15 @@ export default function ExplorePage() {
   const [activeFilters, setActiveFilters] = useState<string[]>([]);
   const [showFilters, setShowFilters] = useState(false);
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const [recipes, setRecipes] = useState<any[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [mealCounts, setMealCounts] = useState<Record<string, number>>({
+    all: 0,
+    breakfast: 0,
+    lunch: 0,
+    dinner: 0,
+    snack: 0,
+  });
 
   const toggleFilter = (filterId: string) => {
     setActiveFilters((prev) =>
@@ -48,56 +49,91 @@ export default function ExplorePage() {
     );
   };
 
-  const filteredRecipes = useMemo(() => {
-    let recipes = allRecipes;
+  // Fetch recipes from database
+  useEffect(() => {
+    async function fetchRecipes() {
+      setIsLoading(true);
+      try {
+        const mealTypeMap: Record<string, string> = {
+          breakfast: "BREAKFAST",
+          lunch: "LUNCH",
+          dinner: "DINNER",
+          snack: "SNACK",
+        };
 
-    // Filter by meal type
-    if (selectedMeal !== "all") {
-      const mealTypeMap: Record<string, string> = {
-        breakfast: "BREAKFAST",
-        lunch: "LUNCH",
-        dinner: "DINNER",
-        snack: "SNACK",
-      };
-      recipes = recipes.filter((r) => r.mealType === mealTypeMap[selectedMeal]);
+        const mealType = selectedMeal !== "all" ? mealTypeMap[selectedMeal] : undefined;
+        const searchParam = searchQuery.trim() || undefined;
+
+        const url = new URL("/api/recipes", window.location.origin);
+        if (mealType) url.searchParams.set("mealType", mealType);
+        if (searchParam) url.searchParams.set("search", searchParam);
+        url.searchParams.set("limit", "100");
+
+        const response = await fetch(url.toString());
+        const data = await response.json();
+        
+        let filtered = data.recipes || [];
+
+        // Client-side filtering for health filters
+        if (activeFilters.length > 0) {
+          filtered = filtered.filter((recipe: any) => {
+            return activeFilters.every((filter) => {
+              switch (filter) {
+                case "omega3":
+                  return recipe.hasOmega3;
+                case "fiber":
+                  return recipe.hasHighFiber;
+                case "quick":
+                  return recipe.isQuick || (recipe.totalTime && recipe.totalTime <= 30);
+                case "kidFriendly":
+                  return recipe.isKidFriendly;
+                case "heartHealthy":
+                  return recipe.isHeartHealthy || recipe.hasHighFiber;
+                default:
+                  return true;
+              }
+            });
+          });
+        }
+
+        setRecipes(filtered);
+      } catch (error) {
+        console.error("Error fetching recipes:", error);
+      } finally {
+        setIsLoading(false);
+      }
     }
 
-    // Filter by search query
-    if (searchQuery.trim()) {
-      recipes = searchRecipes(searchQuery).filter((r) =>
-        selectedMeal === "all"
-          ? true
-          : r.mealType ===
-            { breakfast: "BREAKFAST", lunch: "LUNCH", dinner: "DINNER", snack: "SNACK" }[
-              selectedMeal
-            ]
-      );
-    }
-
-    // Filter by health filters
-    if (activeFilters.length > 0) {
-      recipes = recipes.filter((recipe) => {
-        return activeFilters.every((filter) => {
-          switch (filter) {
-            case "omega3":
-              return recipe.hasOmega3;
-            case "fiber":
-              return recipe.hasHighFiber;
-            case "quick":
-              return recipe.isQuick || (recipe.totalTime && recipe.totalTime <= 30);
-            case "kidFriendly":
-              return recipe.isKidFriendly;
-            case "heartHealthy":
-              return recipe.isHeartHealthy || recipe.hasHighFiber;
-            default:
-              return true;
-          }
-        });
-      });
-    }
-
-    return recipes;
+    fetchRecipes();
   }, [selectedMeal, searchQuery, activeFilters]);
+
+  // Fetch meal counts
+  useEffect(() => {
+    async function fetchCounts() {
+      try {
+        const [all, breakfast, lunch, dinner, snack] = await Promise.all([
+          fetch("/api/recipes?limit=1").then((r) => r.json()),
+          fetch("/api/recipes?mealType=BREAKFAST&limit=1").then((r) => r.json()),
+          fetch("/api/recipes?mealType=LUNCH&limit=1").then((r) => r.json()),
+          fetch("/api/recipes?mealType=DINNER&limit=1").then((r) => r.json()),
+          fetch("/api/recipes?mealType=SNACK&limit=1").then((r) => r.json()),
+        ]);
+
+        setMealCounts({
+          all: all.total || 0,
+          breakfast: breakfast.total || 0,
+          lunch: lunch.total || 0,
+          dinner: dinner.total || 0,
+          snack: snack.total || 0,
+        });
+      } catch (error) {
+        console.error("Error fetching counts:", error);
+      }
+    }
+    fetchCounts();
+  }, []);
+
+  const filteredRecipes = recipes;
 
   return (
     <div className="min-h-screen pb-24" style={{ backgroundColor: 'var(--cream-100)' }}>
@@ -134,6 +170,7 @@ export default function ExplorePage() {
         <div className="flex gap-2 overflow-x-auto hide-scrollbar -mx-5 px-5 pb-2">
           {mealTabs.map((tab) => {
             const Icon = tab.icon;
+            const count = mealCounts[tab.id as keyof typeof mealCounts] || 0;
             return (
               <button
                 key={tab.id}
@@ -147,7 +184,7 @@ export default function ExplorePage() {
               >
                 {Icon && <Icon className="w-4 h-4" />}
                 {tab.label}
-                <span className="opacity-70">({tab.count})</span>
+                <span className="opacity-70">({count})</span>
               </button>
             );
           })}

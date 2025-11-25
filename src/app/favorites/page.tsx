@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import { Heart, Clock, Star, Filter, Sun, Moon, Cookie, Zap, Calendar, Users, Sparkles, User } from "lucide-react";
 import { cn } from "@/lib/utils";
 import RecipeCard from "@/components/recipe/RecipeCard";
-import { allRecipes, getRecipeById } from "@/data/recipes";
 import { useAuth } from "@/hooks/useAuth";
 
 const filterTabs = [
@@ -82,11 +81,13 @@ export default function FavoritesPage() {
       setIsLoadingFavorites(true);
       fetch("/api/favorites")
         .then((res) => res.json())
-        .then((data) => {
+        .then(async (data) => {
           const favoriteIds = data.favorites?.map((f: any) => f.recipeId) || [];
-          const recipes = favoriteIds
-            .map((id: string) => getRecipeById(id))
-            .filter((r: any) => r !== null);
+          // Fetch full recipe data for each favorite
+          const recipePromises = favoriteIds.map((id: string) =>
+            fetch(`/api/recipes/${id}`).then((r) => r.json()).catch(() => null)
+          );
+          const recipes = (await Promise.all(recipePromises)).filter((r: any) => r !== null);
           setFavoriteRecipes(recipes);
         })
         .catch((error) => {
