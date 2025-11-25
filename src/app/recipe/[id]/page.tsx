@@ -16,6 +16,10 @@ import {
   Plus,
   Minus,
   Calendar,
+  Sun,
+  Moon,
+  Cookie,
+  Lightbulb,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { getRecipeById } from "@/data/recipes";
@@ -35,11 +39,11 @@ export default function RecipePage() {
     return (
       <div className="min-h-screen flex items-center justify-center px-5">
         <div className="text-center">
-          <p className="text-6xl mb-4">🍽️</p>
-          <h1 className="text-2xl font-medium text-[var(--forest-800)] mb-2" style={{ fontFamily: "var(--font-serif)" }}>
+          <ChefHat className="w-16 h-16 text-sage-600 mx-auto mb-4" />
+          <h1 className="text-2xl font-medium text-forest-900 mb-2" style={{ fontFamily: "var(--font-serif)" }}>
             Recipe Not Found
           </h1>
-          <p className="text-[var(--text-secondary)] mb-6">
+          <p className="text-gray-600 mb-6">
             We couldn&apos;t find this recipe. Try browsing our collection.
           </p>
           <button onClick={() => router.push("/explore")} className="btn-primary">
@@ -69,12 +73,12 @@ export default function RecipePage() {
   const baseServings = details?.servings || recipe.servings || 4;
 
   return (
-    <div className="min-h-screen pb-24 bg-[var(--cream-100)]">
+    <div className="min-h-screen pb-24 style={{ backgroundColor: 'var(--cream-100)' }}">
       {/* Hero Image / Placeholder */}
       <div
         className="h-72 relative"
         style={{
-          background: `linear-gradient(135deg, var(--sage-200) 0%, var(--cream-200) 50%, var(--rose-100) 100%)`,
+          background: 'linear-gradient(135deg, var(--sage-200) 0%, var(--cream-200) 50%, var(--rose-100) 100%)',
         }}
       >
         {/* Navigation */}
@@ -83,7 +87,7 @@ export default function RecipePage() {
             onClick={() => router.back()}
             className="w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-md"
           >
-            <ArrowLeft className="w-5 h-5 text-[var(--forest-800)]" />
+            <ArrowLeft className="w-5 h-5 text-forest-900" />
           </button>
           <div className="flex gap-2">
             <button
@@ -91,77 +95,83 @@ export default function RecipePage() {
               className={cn(
                 "w-10 h-10 rounded-full flex items-center justify-center shadow-md transition-all",
                 isFavorited
-                  ? "bg-[var(--rose-500)] text-white"
-                  : "bg-white/90 backdrop-blur-sm text-[var(--text-secondary)]"
+                  ? "bg-rose-500 text-white"
+                  : "bg-white/90 backdrop-blur-sm text-gray-600"
               )}
             >
               <Heart className={cn("w-5 h-5", isFavorited && "fill-current")} />
             </button>
             <button className="w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-md">
-              <Share2 className="w-5 h-5 text-[var(--text-secondary)]" />
+              <Share2 className="w-5 h-5 text-gray-600" />
             </button>
           </div>
         </div>
 
-        {/* Category Emoji */}
+        {/* Category Icon */}
         <div className="absolute inset-0 flex items-center justify-center">
-          <span className="text-8xl opacity-50">
-            {recipe.mealType === "BREAKFAST" ? "🌅" : recipe.mealType === "LUNCH" ? "☀️" : recipe.mealType === "DINNER" ? "🌙" : "🍎"}
-          </span>
+          {recipe.mealType === "BREAKFAST" ? (
+            <Sun className="w-24 h-24 text-sage-200 opacity-50" />
+          ) : recipe.mealType === "LUNCH" ? (
+            <Sun className="w-24 h-24 text-sage-200 opacity-50" />
+          ) : recipe.mealType === "DINNER" ? (
+            <Moon className="w-24 h-24 text-sage-200 opacity-50" />
+          ) : (
+            <Cookie className="w-24 h-24 text-sage-200 opacity-50" />
+          )}
         </div>
       </div>
 
       {/* Content */}
-      <div className="relative -mt-8 bg-[var(--cream-100)] rounded-t-[2rem] px-5 pt-6">
+      <div className="relative -mt-8 style={{ backgroundColor: 'var(--cream-100)' }} rounded-t-[2rem] px-5 pt-6">
         {/* Title Section */}
         <div className="mb-6">
-          <p className="text-sm text-[var(--sage-600)] font-medium mb-1">
+          <p className="text-sm text-sage-600 font-medium mb-1">
             {recipe.category}
           </p>
           <h1
-            className="text-2xl font-medium text-[var(--forest-800)] mb-3"
+            className="text-2xl font-medium text-forest-900 mb-3"
             style={{ fontFamily: "var(--font-serif)" }}
           >
             {recipe.name}
           </h1>
-          <p className="text-[var(--text-secondary)] leading-relaxed">
+          <p className="text-gray-600 leading-relaxed">
             {recipe.description}
           </p>
         </div>
 
         {/* Meta Cards */}
         <div className="flex gap-3 mb-6 overflow-x-auto hide-scrollbar -mx-5 px-5">
-          <div className="flex-shrink-0 bg-white rounded-xl px-4 py-3 shadow-sm border border-[var(--cream-300)]">
+          <div className="flex-shrink-0 bg-white rounded-xl px-4 py-3 shadow-sm border border-gray-300">
             <Clock className="w-5 h-5 text-[var(--sage-500)] mb-1" />
-            <p className="text-sm font-medium text-[var(--forest-800)]">{recipe.totalTime || 25} min</p>
-            <p className="text-xs text-[var(--text-muted)]">Total Time</p>
+            <p className="text-sm font-medium text-forest-900">{recipe.totalTime || 25} min</p>
+            <p className="text-xs text-gray-500">Total Time</p>
           </div>
-          <div className="flex-shrink-0 bg-white rounded-xl px-4 py-3 shadow-sm border border-[var(--cream-300)]">
+          <div className="flex-shrink-0 bg-white rounded-xl px-4 py-3 shadow-sm border border-gray-300">
             <Users className="w-5 h-5 text-[var(--sage-500)] mb-1" />
-            <p className="text-sm font-medium text-[var(--forest-800)]">{recipe.servings || 4}</p>
-            <p className="text-xs text-[var(--text-muted)]">Servings</p>
+            <p className="text-sm font-medium text-forest-900">{recipe.servings || 4}</p>
+            <p className="text-xs text-gray-500">Servings</p>
           </div>
-          <div className="flex-shrink-0 bg-white rounded-xl px-4 py-3 shadow-sm border border-[var(--cream-300)]">
+          <div className="flex-shrink-0 bg-white rounded-xl px-4 py-3 shadow-sm border border-gray-300">
             <ChefHat className="w-5 h-5 text-[var(--sage-500)] mb-1" />
-            <p className="text-sm font-medium text-[var(--forest-800)]">Easy</p>
-            <p className="text-xs text-[var(--text-muted)]">Difficulty</p>
+            <p className="text-sm font-medium text-forest-900">Easy</p>
+            <p className="text-xs text-gray-500">Difficulty</p>
           </div>
         </div>
 
         {/* Health Benefits Card */}
-        <div className="bg-gradient-to-br from-[var(--sage-50)] to-[var(--forest-50)] rounded-2xl p-4 mb-6">
-          <h3 className="font-medium text-[var(--forest-700)] mb-2 flex items-center gap-2">
+        <div className="bg-gradient-to-br from-sage-50 rounded-2xl p-4 mb-6" style={{ background: 'linear-gradient(to bottom right, var(--sage-50), var(--forest-50))' }}>
+          <h3 className="font-medium text-forest-700 mb-2 flex items-center gap-2">
             <Leaf className="w-4 h-4" />
             Why It&apos;s Great for You
           </h3>
-          <p className="text-sm text-[var(--text-secondary)] mb-3">
+          <p className="text-sm text-gray-600 mb-3">
             {recipe.healthBenefits}
           </p>
           <div className="flex flex-wrap gap-2">
             {recipe.keyNutrients.map((nutrient, idx) => (
               <span
                 key={idx}
-                className="px-3 py-1 rounded-full text-xs font-medium bg-white text-[var(--forest-700)]"
+                className="px-3 py-1 rounded-full text-xs font-medium bg-white text-forest-700"
               >
                 {nutrient}
               </span>
@@ -190,7 +200,7 @@ export default function RecipePage() {
             </span>
           )}
           {recipe.isKidFriendly && (
-            <span className="px-3 py-1.5 rounded-lg text-sm font-medium bg-[var(--terracotta-100)] text-[var(--terracotta-700)] flex items-center gap-1.5">
+            <span className="px-3 py-1.5 rounded-lg text-sm font-medium bg-terracotta-100 text-terracotta-700 flex items-center gap-1.5">
               <Star className="w-4 h-4" />
               Kid-Friendly
             </span>
@@ -204,8 +214,8 @@ export default function RecipePage() {
             className={cn(
               "flex-1 py-3 rounded-xl font-medium text-sm transition-all",
               activeTab === "ingredients"
-                ? "bg-[var(--sage-500)] text-white"
-                : "bg-white text-[var(--text-secondary)] border border-[var(--cream-300)]"
+                ? "bg-sage-500 text-white"
+                : "bg-white text-gray-600 border border-gray-300"
             )}
           >
             Ingredients
@@ -215,8 +225,8 @@ export default function RecipePage() {
             className={cn(
               "flex-1 py-3 rounded-xl font-medium text-sm transition-all",
               activeTab === "instructions"
-                ? "bg-[var(--sage-500)] text-white"
-                : "bg-white text-[var(--text-secondary)] border border-[var(--cream-300)]"
+                ? "bg-sage-500 text-white"
+                : "bg-white text-gray-600 border border-gray-300"
             )}
           >
             Instructions
@@ -225,23 +235,23 @@ export default function RecipePage() {
 
         {/* Servings Adjuster */}
         {activeTab === "ingredients" && (
-          <div className="flex items-center justify-between bg-white rounded-xl p-4 mb-4 shadow-sm border border-[var(--cream-300)]">
-            <span className="text-sm font-medium text-[var(--forest-800)]">
+          <div className="flex items-center justify-between bg-white rounded-xl p-4 mb-4 shadow-sm border border-gray-300">
+            <span className="text-sm font-medium text-forest-900">
               Adjust Servings
             </span>
             <div className="flex items-center gap-3">
               <button
                 onClick={() => setServings(Math.max(1, servings - 1))}
-                className="w-8 h-8 rounded-full bg-[var(--cream-200)] flex items-center justify-center"
+                className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center"
               >
-                <Minus className="w-4 h-4 text-[var(--text-secondary)]" />
+                <Minus className="w-4 h-4 text-gray-600" />
               </button>
-              <span className="w-8 text-center font-medium text-[var(--forest-800)]">
+              <span className="w-8 text-center font-medium text-forest-900">
                 {servings}
               </span>
               <button
                 onClick={() => setServings(servings + 1)}
-                className="w-8 h-8 rounded-full bg-[var(--sage-500)] flex items-center justify-center"
+                className="w-8 h-8 rounded-full bg-sage-500 flex items-center justify-center"
               >
                 <Plus className="w-4 h-4 text-white" />
               </button>
@@ -251,7 +261,7 @@ export default function RecipePage() {
 
         {/* Ingredients List */}
         {activeTab === "ingredients" && (
-          <div className="bg-white rounded-2xl p-4 shadow-sm border border-[var(--cream-300)]">
+          <div className="bg-white rounded-2xl p-4 shadow-sm border border-gray-300">
             <ul className="space-y-3">
               {ingredients.map((ing, idx) => {
                 // Calculate scaled amounts based on servings
@@ -262,14 +272,14 @@ export default function RecipePage() {
                 
                 return (
                   <li key={idx} className="flex items-start gap-3">
-                    <div className="w-5 h-5 rounded-full border-2 border-[var(--sage-300)] flex-shrink-0 mt-0.5" />
+                    <div className="w-5 h-5 rounded-full border-2 border-sage-300 flex-shrink-0 mt-0.5" />
                     <div className="flex-1">
-                      <span className="font-medium text-[var(--forest-800)]">
+                      <span className="font-medium text-forest-900">
                         {ing.amount} {ing.unit}
                       </span>{" "}
-                      <span className="text-[var(--text-secondary)]">{ing.name}</span>
+                      <span className="text-gray-600">{ing.name}</span>
                       {ing.preparation && (
-                        <span className="text-[var(--text-muted)]">, {ing.preparation}</span>
+                        <span className="text-gray-500">, {ing.preparation}</span>
                       )}
                     </div>
                   </li>
@@ -285,13 +295,13 @@ export default function RecipePage() {
             {instructions.map((instruction, idx) => (
               <div
                 key={idx}
-                className="bg-white rounded-2xl p-4 shadow-sm border border-[var(--cream-300)]"
+                className="bg-white rounded-2xl p-4 shadow-sm border border-gray-300"
               >
                 <div className="flex gap-4">
-                  <div className="w-8 h-8 rounded-full bg-[var(--sage-500)] text-white flex items-center justify-center flex-shrink-0 font-medium">
+                  <div className="w-8 h-8 rounded-full bg-sage-500 text-white flex items-center justify-center flex-shrink-0 font-medium">
                     {idx + 1}
                   </div>
-                  <p className="text-[var(--text-secondary)] leading-relaxed pt-1">
+                  <p className="text-gray-600 leading-relaxed pt-1">
                     {instruction}
                   </p>
                 </div>
@@ -302,14 +312,15 @@ export default function RecipePage() {
 
         {/* Tips Card */}
         {tips.length > 0 && (
-          <div className="mt-6 bg-gradient-to-br from-[var(--rose-50)] to-[var(--terracotta-50)] rounded-2xl p-4">
-            <h3 className="font-medium text-[var(--terracotta-700)] mb-2 flex items-center gap-2">
-              💡 Christine&apos;s Tips
+          <div className="mt-6 bg-gradient-to-br from-rose-50 rounded-2xl p-4" style={{ background: 'linear-gradient(to bottom right, var(--rose-50), var(--terracotta-50))' }}>
+            <h3 className="font-medium text-terracotta-700 mb-2 flex items-center gap-2">
+              <Lightbulb className="w-4 h-4" />
+              Christine&apos;s Tips
             </h3>
             <ul className="space-y-2">
               {tips.map((tip, idx) => (
-                <li key={idx} className="text-sm text-[var(--text-secondary)] flex items-start gap-2">
-                  <span className="text-[var(--terracotta-500)]">•</span>
+                <li key={idx} className="text-sm text-gray-600 flex items-start gap-2">
+                  <span className="text-terracotta-500">•</span>
                   {tip}
                 </li>
               ))}
@@ -319,32 +330,32 @@ export default function RecipePage() {
 
         {/* Nutrition Card */}
         {details?.nutrition && (
-          <div className="mt-4 bg-white rounded-2xl p-4 shadow-sm border border-[var(--cream-300)]">
-            <h3 className="font-medium text-[var(--forest-800)] mb-3">Nutrition Per Serving</h3>
+          <div className="mt-4 bg-white rounded-2xl p-4 shadow-sm border border-gray-300">
+            <h3 className="font-medium text-forest-900 mb-3">Nutrition Per Serving</h3>
             <div className="grid grid-cols-3 gap-3 text-center">
-              <div className="bg-[var(--cream-100)] rounded-xl p-2">
-                <p className="text-lg font-semibold text-[var(--forest-800)]">{details.nutrition.calories}</p>
-                <p className="text-xs text-[var(--text-muted)]">Calories</p>
+              <div className="style={{ backgroundColor: 'var(--cream-100)' }} rounded-xl p-2">
+                <p className="text-lg font-semibold text-forest-900">{details.nutrition.calories}</p>
+                <p className="text-xs text-gray-500">Calories</p>
               </div>
-              <div className="bg-[var(--cream-100)] rounded-xl p-2">
-                <p className="text-lg font-semibold text-[var(--forest-800)]">{details.nutrition.protein}g</p>
-                <p className="text-xs text-[var(--text-muted)]">Protein</p>
+              <div className="style={{ backgroundColor: 'var(--cream-100)' }} rounded-xl p-2">
+                <p className="text-lg font-semibold text-forest-900">{details.nutrition.protein}g</p>
+                <p className="text-xs text-gray-500">Protein</p>
               </div>
-              <div className="bg-[var(--cream-100)] rounded-xl p-2">
-                <p className="text-lg font-semibold text-[var(--forest-800)]">{details.nutrition.carbs}g</p>
-                <p className="text-xs text-[var(--text-muted)]">Carbs</p>
+              <div className="style={{ backgroundColor: 'var(--cream-100)' }} rounded-xl p-2">
+                <p className="text-lg font-semibold text-forest-900">{details.nutrition.carbs}g</p>
+                <p className="text-xs text-gray-500">Carbs</p>
               </div>
-              <div className="bg-[var(--cream-100)] rounded-xl p-2">
-                <p className="text-lg font-semibold text-[var(--forest-800)]">{details.nutrition.fat}g</p>
-                <p className="text-xs text-[var(--text-muted)]">Fat</p>
+              <div className="style={{ backgroundColor: 'var(--cream-100)' }} rounded-xl p-2">
+                <p className="text-lg font-semibold text-forest-900">{details.nutrition.fat}g</p>
+                <p className="text-xs text-gray-500">Fat</p>
               </div>
-              <div className="bg-[var(--cream-100)] rounded-xl p-2">
-                <p className="text-lg font-semibold text-[var(--forest-800)]">{details.nutrition.fiber}g</p>
-                <p className="text-xs text-[var(--text-muted)]">Fiber</p>
+              <div className="style={{ backgroundColor: 'var(--cream-100)' }} rounded-xl p-2">
+                <p className="text-lg font-semibold text-forest-900">{details.nutrition.fiber}g</p>
+                <p className="text-xs text-gray-500">Fiber</p>
               </div>
-              <div className="bg-[var(--cream-100)] rounded-xl p-2">
-                <p className="text-lg font-semibold text-[var(--forest-800)]">{details.nutrition.sodium}mg</p>
-                <p className="text-xs text-[var(--text-muted)]">Sodium</p>
+              <div className="style={{ backgroundColor: 'var(--cream-100)' }} rounded-xl p-2">
+                <p className="text-lg font-semibold text-forest-900">{details.nutrition.sodium}mg</p>
+                <p className="text-xs text-gray-500">Sodium</p>
               </div>
             </div>
           </div>
@@ -356,15 +367,15 @@ export default function RecipePage() {
             <ChefHat className="w-5 h-5" />
             Start Cooking
           </button>
-          <button className="w-14 h-14 rounded-xl bg-white border border-[var(--sage-200)] flex items-center justify-center">
-            <Calendar className="w-5 h-5 text-[var(--sage-600)]" />
+          <button className="w-14 h-14 rounded-xl bg-white border border-sage-200 flex items-center justify-center">
+            <Calendar className="w-5 h-5 text-sage-600" />
           </button>
         </div>
 
         {/* Rating Section */}
         <div className="mt-8 mb-4">
           <h3
-            className="text-lg font-medium text-[var(--forest-800)] mb-4"
+            className="text-lg font-medium text-forest-900 mb-4"
             style={{ fontFamily: "var(--font-serif)" }}
           >
             Rate This Recipe
@@ -378,7 +389,7 @@ export default function RecipePage() {
                 <Star
                   className={cn(
                     "w-7 h-7",
-                    star <= 3 ? "text-[var(--terracotta-400)] fill-current" : "text-[var(--cream-400)]"
+                    star <= 3 ? "text-terracotta-400 fill-current" : "text-gray-300"
                   )}
                 />
               </button>
