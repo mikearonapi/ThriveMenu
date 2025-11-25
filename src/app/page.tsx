@@ -124,7 +124,7 @@ export default function HomePage() {
                 {/* Recipe Image */}
                 <div className="relative h-[280px] overflow-hidden" style={{ position: 'relative', backgroundColor: 'var(--cream-200)' }}>
                   <Image
-                    src={getRecipeImage(featuredRecipe.name, featuredRecipe.category)}
+                    src={featuredRecipe.imageUrl || getRecipeImage(featuredRecipe.name, featuredRecipe.category)}
                     alt={featuredRecipe.name}
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-110"

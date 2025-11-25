@@ -147,6 +147,7 @@ async function main() {
         prepTimeMinutes: recipeData.prepTime || details?.prepTime || 15,
         cookTimeMinutes: recipeData.cookTime || details?.cookTime || 15,
         totalTimeMinutes: recipeData.totalTime || (recipeData.prepTime || 15) + (recipeData.cookTime || 15),
+        imageUrl: null, // Will be populated when images are generated and stored in Vercel Blob
         servings: recipeData.servings || details?.servings || 4,
         difficulty: details?.difficulty === "Hard" ? "HARD" : details?.difficulty === "Medium" ? "MEDIUM" : "EASY",
         imageUrl: recipeData.imageUrl,

@@ -7,6 +7,16 @@ import { Heart, Clock, Flame, Leaf, Fish, ChefHat } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useState, useEffect } from "react";
 import { getRecipeImage } from "@/lib/images";
+
+// Helper to get recipe image URL - prioritizes database imageUrl, falls back to placeholder
+function getRecipeImageUrl(recipe: any): string {
+  // If recipe has a Vercel Blob URL or any imageUrl from database, use it
+  if (recipe.imageUrl) {
+    return recipe.imageUrl;
+  }
+  // Fallback to placeholder
+  return getRecipeImage(recipe.name, recipe.category);
+}
 import { useAuth } from "@/hooks/useAuth";
 
 interface Recipe {

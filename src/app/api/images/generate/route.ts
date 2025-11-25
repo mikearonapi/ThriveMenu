@@ -21,6 +21,7 @@
 
 import { NextRequest, NextResponse } from "next/server";
 import { generateAndStoreRecipeImage } from "@/lib/images";
+import prisma from "@/lib/db";
 
 export async function POST(request: NextRequest) {
   try {
@@ -34,8 +35,20 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Generate and store image
+    // Generate and store image in Vercel Blob
     const imageUrl = await generateAndStoreRecipeImage(recipeId, recipeName, category);
+
+    // Update the recipe in the database with the Vercel Blob URL
+    try {
+      await prisma.recipe.update({
+        where: { id: recipeId },
+        data: { imageUrl },
+      });
+      console.log(`✅ Updated recipe ${recipeId} with image URL: ${imageUrl}`);
+    } catch (dbError) {
+      console.error(`⚠️ Failed to update database for recipe ${recipeId}:`, dbError);
+      // Continue even if DB update fails - image is still stored in Blob
+    }
 
     return NextResponse.json({
       success: true,
