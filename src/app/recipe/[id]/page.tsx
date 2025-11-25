@@ -87,26 +87,6 @@ export default function RecipePage() {
   const recipe = getRecipeById(params.id as string);
   const details = getRecipeDetails(params.id as string);
 
-  // Fetch rating data on mount
-  useEffect(() => {
-    async function fetchRatings() {
-      try {
-        const response = await fetch(`/api/recipes/${params.id}/ratings`);
-        if (response.ok) {
-          const data = await response.json();
-          setRatingData({
-            averageRating: data.averageRating || 0,
-            totalRatings: data.totalRatings || 0,
-            userRating: data.userRating || null,
-          });
-        }
-      } catch (error) {
-        console.error("Error fetching ratings:", error);
-      }
-    }
-    fetchRatings();
-  }, [params.id, isAuthenticated]);
-
   if (!recipe) {
     return (
       <div className="min-h-screen flex items-center justify-center px-5">
