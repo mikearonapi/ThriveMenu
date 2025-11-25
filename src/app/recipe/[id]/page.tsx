@@ -84,9 +84,6 @@ export default function RecipePage() {
     fetchRatings();
   }, [params.id, isAuthenticated]);
 
-  const recipe = getRecipeById(params.id as string);
-  const details = getRecipeDetails(params.id as string);
-
   if (!recipe) {
     return (
       <div className="min-h-screen flex items-center justify-center px-5">
