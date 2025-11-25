@@ -1,7 +1,8 @@
 "use client";
 
 import { useParams, useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useAuth } from "@/hooks/useAuth";
 import {
   ArrowLeft,
   Heart,
@@ -28,9 +29,12 @@ import { getRecipeDetails, RecipeDetails, Ingredient } from "@/data/recipe-detai
 export default function RecipePage() {
   const params = useParams();
   const router = useRouter();
+  const { isAuthenticated } = useAuth();
   const [isFavorited, setIsFavorited] = useState(false);
+  const [userRating, setUserRating] = useState<number | null>(null);
   const [servings, setServings] = useState(4);
   const [activeTab, setActiveTab] = useState<"ingredients" | "instructions">("ingredients");
+  const [showLoginPrompt, setShowLoginPrompt] = useState(false);
 
   const recipe = getRecipeById(params.id as string);
   const details = getRecipeDetails(params.id as string);
@@ -91,7 +95,14 @@ export default function RecipePage() {
           </button>
           <div className="flex gap-2">
             <button
-              onClick={() => setIsFavorited(!isFavorited)}
+              onClick={() => {
+                if (!isAuthenticated) {
+                  setShowLoginPrompt(true);
+                  return;
+                }
+                setIsFavorited(!isFavorited);
+                // TODO: Call API to save/unsave favorite
+              }}
               className={cn(
                 "w-10 h-10 rounded-full flex items-center justify-center shadow-md transition-all",
                 isFavorited
@@ -380,22 +391,85 @@ export default function RecipePage() {
           >
             Rate This Recipe
           </h3>
-          <div className="flex items-center gap-1">
-            {[1, 2, 3, 4, 5].map((star) => (
+          {!isAuthenticated ? (
+            <div className="bg-sage-50 rounded-xl p-4 border border-sage-200">
+              <p className="text-sm text-gray-600 mb-3">
+                Sign in to rate this recipe and help others discover great meals.
+              </p>
               <button
-                key={star}
-                className="w-10 h-10 flex items-center justify-center"
+                onClick={() => router.push("/login")}
+                className="text-sm text-sage-600 font-medium hover:text-sage-700 underline"
               >
-                <Star
-                  className={cn(
-                    "w-7 h-7",
-                    star <= 3 ? "text-terracotta-400 fill-current" : "text-gray-300"
-                  )}
-                />
+                Sign in to rate
               </button>
-            ))}
-          </div>
+            </div>
+          ) : (
+            <div className="flex items-center gap-1">
+              {[1, 2, 3, 4, 5].map((star) => (
+                <button
+                  key={star}
+                  onClick={async () => {
+                    setUserRating(star);
+                    // TODO: Call API to submit rating
+                    try {
+                      const response = await fetch(`/api/recipes/${params.id}/ratings`, {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ rating: star }),
+                      });
+                      if (response.ok) {
+                        // Rating saved successfully
+                      }
+                    } catch (error) {
+                      console.error("Error submitting rating:", error);
+                    }
+                  }}
+                  className="w-10 h-10 flex items-center justify-center hover:scale-110 transition-transform"
+                >
+                  <Star
+                    className={cn(
+                      "w-7 h-7 transition-colors",
+                      userRating && star <= userRating
+                        ? "text-terracotta-400 fill-current"
+                        : "text-gray-300 hover:text-terracotta-300"
+                    )}
+                  />
+                </button>
+              ))}
+            </div>
+          )}
         </div>
+
+        {/* Login Prompt Modal */}
+        {showLoginPrompt && (
+          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+            <div className="bg-white rounded-2xl p-6 max-w-sm w-full">
+              <h3 className="text-xl font-medium text-forest-900 mb-2" style={{ fontFamily: "var(--font-serif)" }}>
+                Sign in to save recipes
+              </h3>
+              <p className="text-gray-600 mb-6">
+                Create an account to save your favorite recipes and access them anytime.
+              </p>
+              <div className="flex gap-3">
+                <button
+                  onClick={() => {
+                    setShowLoginPrompt(false);
+                    router.push("/login");
+                  }}
+                  className="flex-1 py-2.5 rounded-xl bg-sage-500 text-white font-medium hover:bg-sage-600 transition-colors"
+                >
+                  Sign In
+                </button>
+                <button
+                  onClick={() => setShowLoginPrompt(false)}
+                  className="px-4 py-2.5 rounded-xl bg-gray-100 text-gray-700 font-medium hover:bg-gray-200 transition-colors"
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

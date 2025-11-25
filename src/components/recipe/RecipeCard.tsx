@@ -2,10 +2,12 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { Heart, Clock, Flame, Leaf, Fish, ChefHat } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 import { getRecipeImage } from "@/lib/images";
+import { useAuth } from "@/hooks/useAuth";
 
 interface Recipe {
   id: string;
@@ -31,6 +33,8 @@ interface RecipeCardProps {
 }
 
 export default function RecipeCard({ recipe, compact = false }: RecipeCardProps) {
+  const router = useRouter();
+  const { isAuthenticated } = useAuth();
   const [isFavorited, setIsFavorited] = useState(false);
   
   // Use provided image or generate one from the recipe title
@@ -63,7 +67,12 @@ export default function RecipeCard({ recipe, compact = false }: RecipeCardProps)
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
+              if (!isAuthenticated) {
+                router.push("/login?redirect=/recipe/" + recipe.id);
+                return;
+              }
               setIsFavorited(!isFavorited);
+              // TODO: Call API to save/unsave favorite
             }}
             className={cn(
               "absolute top-2 right-2 w-8 h-8 rounded-full flex items-center justify-center transition-all backdrop-blur-md shadow-sm",
@@ -71,6 +80,7 @@ export default function RecipeCard({ recipe, compact = false }: RecipeCardProps)
                 ? "bg-rose-500 text-white"
                 : "bg-white/80 text-gray-500 hover:bg-white hover:text-rose-500"
             )}
+            title={isAuthenticated ? (isFavorited ? "Remove from favorites" : "Save to favorites") : "Sign in to save"}
           >
             <Heart
               className={cn(

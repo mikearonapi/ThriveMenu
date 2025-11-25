@@ -1,10 +1,12 @@
 "use client";
 
-import { useState } from "react";
-import { Heart, Clock, Star, Filter, Sun, Moon, Cookie, Zap, Calendar, Users, Sparkles } from "lucide-react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { Heart, Clock, Star, Filter, Sun, Moon, Cookie, Zap, Calendar, Users, Sparkles, User } from "lucide-react";
 import { cn } from "@/lib/utils";
 import RecipeCard from "@/components/recipe/RecipeCard";
 import { breakfastRecipes, lunchRecipes, dinnerRecipes, snackRecipes } from "@/data/recipes";
+import { useAuth } from "@/hooks/useAuth";
 
 // Sample favorites (would come from database/state)
 const sampleFavorites = [
@@ -26,8 +28,62 @@ const filterTabs = [
 ];
 
 export default function FavoritesPage() {
+  const router = useRouter();
+  const { isAuthenticated, isLoading } = useAuth();
   const [activeTab, setActiveTab] = useState("all");
   const [sortBy, setSortBy] = useState<"recent" | "name" | "rating">("recent");
+
+  // Show loading state
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: 'var(--cream-100)' }}>
+        <div className="w-8 h-8 border-2 border-sage-300 border-t-sage-600 rounded-full animate-spin" />
+      </div>
+    );
+  }
+
+  // Show login prompt if not authenticated
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center p-6" style={{ backgroundColor: 'var(--cream-100)' }}>
+        <div className="text-center max-w-sm">
+          <div className="w-20 h-20 rounded-full bg-sage-100 flex items-center justify-center mx-auto mb-4">
+            <Heart className="w-10 h-10 text-rose-500" />
+          </div>
+          <h1
+            className="text-2xl font-medium text-forest-900 mb-2"
+            style={{ fontFamily: "var(--font-serif)" }}
+          >
+            Sign in to save recipes
+          </h1>
+          <p className="text-gray-600 mb-6">
+            Create an account to save your favorite recipes, rate dishes, and plan meals for your family.
+          </p>
+          <button
+            onClick={() => router.push("/login")}
+            className="w-full py-3 rounded-xl bg-sage-500 text-white font-medium hover:bg-sage-600 transition-colors mb-3"
+          >
+            Sign In
+          </button>
+          <button
+            onClick={() => router.push("/register")}
+            className="w-full py-3 rounded-xl bg-white border-2 border-sage-500 text-sage-600 font-medium hover:bg-sage-50 transition-colors"
+          >
+            Create Account
+          </button>
+          <p className="mt-6 text-sm text-gray-500">
+            Or{" "}
+            <button
+              onClick={() => router.push("/explore")}
+              className="text-sage-600 font-medium underline"
+            >
+              continue browsing recipes
+            </button>
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   const filteredFavorites =
     activeTab === "all"
@@ -166,7 +222,7 @@ export default function FavoritesPage() {
       {/* Collection Suggestions */}
       <section className="px-5 py-4 mb-4">
         <h2
-          className="text-lg font-medium text-[var(--forest-800)] mb-4"
+          className="text-lg font-medium text-forest-900 mb-4"
           style={{ fontFamily: "var(--font-serif)" }}
         >
           Create a Collection

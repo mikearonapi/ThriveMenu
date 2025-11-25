@@ -8,9 +8,21 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/lib/auth";
-import { PrismaClient } from "@prisma/client";
 
-const prisma = new PrismaClient();
+// Mock reviews storage (will be replaced with Prisma when database is connected)
+const mockReviews: Array<{
+  id: string;
+  userId: string;
+  recipeId: string;
+  title: string | null;
+  content: string;
+  wouldMakeAgain: boolean | null;
+  tasteRating: number | null;
+  difficultyRating: number | null;
+  helpfulCount: number;
+  createdAt: Date;
+  user?: { id: string; name: string; image: string | null };
+}> = [];
 
 // GET - Get reviews for a recipe
 export async function GET(
@@ -20,19 +32,15 @@ export async function GET(
   try {
     const recipeId = params.id;
 
-    const reviews = await prisma.review.findMany({
-      where: { recipeId },
-      include: {
-        user: {
-          select: {
-            id: true,
-            name: true,
-            image: true,
-          },
-        },
-      },
-      orderBy: { createdAt: "desc" },
-    });
+    // Mock: Get reviews for recipe
+    const reviews = mockReviews
+      .filter((r) => r.recipeId === recipeId)
+      .map((r) => ({
+        ...r,
+        createdAt: r.createdAt.toISOString(),
+        updatedAt: r.createdAt.toISOString(),
+      }))
+      .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
 
     return NextResponse.json({ reviews });
   } catch (error) {
@@ -70,38 +78,29 @@ export async function POST(
       );
     }
 
-    // Get user ID
-    const user = await prisma.user.findUnique({
-      where: { email: session.user.email },
-    });
+    // Mock: Get user ID from session
+    const userId = (session.user as any).id || "1";
+    const userName = session.user.name || "User";
 
-    if (!user) {
-      return NextResponse.json(
-        { error: "User not found" },
-        { status: 404 }
-      );
-    }
+    const review = {
+      id: `review_${Date.now()}`,
+      userId,
+      recipeId,
+      title: title || null,
+      content,
+      wouldMakeAgain: wouldMakeAgain ?? null,
+      tasteRating: tasteRating || null,
+      difficultyRating: difficultyRating || null,
+      helpfulCount: 0,
+      createdAt: new Date(),
+      user: {
+        id: userId,
+        name: userName,
+        image: session.user.image || null,
+      },
+    };
 
-    const review = await prisma.review.create({
-      data: {
-        userId: user.id,
-        recipeId,
-        title: title || null,
-        content,
-        wouldMakeAgain: wouldMakeAgain ?? null,
-        tasteRating: tasteRating || null,
-        difficultyRating: difficultyRating || null,
-      },
-      include: {
-        user: {
-          select: {
-            id: true,
-            name: true,
-            image: true,
-          },
-        },
-      },
-    });
+    mockReviews.push(review);
 
     return NextResponse.json({
       success: true,

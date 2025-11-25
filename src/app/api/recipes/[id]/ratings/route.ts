@@ -8,9 +8,16 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/lib/auth";
-import { PrismaClient } from "@prisma/client";
 
-const prisma = new PrismaClient();
+// Mock ratings storage (will be replaced with Prisma when database is connected)
+const mockRatings: Array<{
+  id: string;
+  userId: string;
+  recipeId: string;
+  rating: number;
+  createdAt: Date;
+  user?: { id: string; name: string; image: string | null };
+}> = [];
 
 // GET - Get ratings for a recipe
 export async function GET(
@@ -20,19 +27,14 @@ export async function GET(
   try {
     const recipeId = params.id;
 
-    const ratings = await prisma.rating.findMany({
-      where: { recipeId },
-      include: {
-        user: {
-          select: {
-            id: true,
-            name: true,
-            image: true,
-          },
-        },
-      },
-      orderBy: { createdAt: "desc" },
-    });
+    // Mock: Get ratings for recipe
+    const ratings = mockRatings
+      .filter((r) => r.recipeId === recipeId)
+      .map((r) => ({
+        ...r,
+        createdAt: r.createdAt.toISOString(),
+      }))
+      .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
 
     // Calculate average rating
     const averageRating =
@@ -86,35 +88,27 @@ export async function POST(
       );
     }
 
-    // Get user ID
-    const user = await prisma.user.findUnique({
-      where: { email: session.user.email },
-    });
+    // Mock: Get or create user ID from session
+    const userId = (session.user as any).id || "1"; // Use session user ID
 
-    if (!user) {
-      return NextResponse.json(
-        { error: "User not found" },
-        { status: 404 }
-      );
+    // Mock: Upsert rating
+    const existingIndex = mockRatings.findIndex(
+      (r) => r.userId === userId && r.recipeId === recipeId
+    );
+
+    const ratingRecord = {
+      id: existingIndex >= 0 ? mockRatings[existingIndex].id : `rating_${Date.now()}`,
+      userId,
+      recipeId,
+      rating,
+      createdAt: new Date(),
+    };
+
+    if (existingIndex >= 0) {
+      mockRatings[existingIndex] = ratingRecord;
+    } else {
+      mockRatings.push(ratingRecord);
     }
-
-    // Upsert rating (update if exists, create if not)
-    const ratingRecord = await prisma.rating.upsert({
-      where: {
-        userId_recipeId: {
-          userId: user.id,
-          recipeId,
-        },
-      },
-      update: {
-        rating,
-      },
-      create: {
-        userId: user.id,
-        recipeId,
-        rating,
-      },
-    });
 
     return NextResponse.json({
       success: true,
