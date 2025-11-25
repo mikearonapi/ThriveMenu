@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Heart, Clock, Star, Filter } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { RecipeCard } from "@/components/recipe/RecipeCard";
+import RecipeCard from "@/components/recipe/RecipeCard";
 import { breakfastRecipes, lunchRecipes, dinnerRecipes, snackRecipes } from "@/data/recipes";
 
 // Sample favorites (would come from database/state)

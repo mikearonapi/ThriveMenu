@@ -4,7 +4,7 @@ import { useState, useMemo } from "react";
 import { useSearchParams } from "next/navigation";
 import { Search, Filter, X, Clock, Heart, Leaf, Fish, ChefHat } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { RecipeCard } from "@/components/recipe/RecipeCard";
+import RecipeCard from "@/components/recipe/RecipeCard";
 import {
   allRecipes,
   breakfastRecipes,
