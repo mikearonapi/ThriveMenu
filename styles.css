@@ -1,0 +1,534 @@
+/* Nourishing Christine - Menu Stylesheet */
+
+/* Import Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
+
+/* CSS Variables */
+:root {
+  --sage-green: #87a878;
+  --sage-light: #b5c9a8;
+  --sage-dark: #5a7a4a;
+  --cream: #faf8f5;
+  --cream-dark: #f5f0e8;
+  --warm-brown: #8b7355;
+  --warm-brown-light: #a89070;
+  --terracotta: #c4846c;
+  --terracotta-light: #d9a08a;
+  --deep-green: #2d4a3e;
+  --text-dark: #2c2c2c;
+  --text-medium: #5a5a5a;
+  --text-light: #888888;
+  --gold-accent: #c4a35a;
+  --rose: #d4a5a5;
+  --rose-light: #f0dede;
+}
+
+/* Reset & Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 11px;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: var(--cream);
+  color: var(--text-dark);
+  line-height: 1.6;
+}
+
+/* Page Setup for PDF */
+@page {
+  size: letter;
+  margin: 0.5in;
+}
+
+@media print {
+  body {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  
+  .page-break {
+    page-break-after: always;
+  }
+  
+  .no-break {
+    page-break-inside: avoid;
+  }
+}
+
+/* Container */
+.menu-container {
+  max-width: 8.5in;
+  margin: 0 auto;
+  background: var(--cream);
+}
+
+/* Cover Page */
+.cover-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: linear-gradient(135deg, var(--sage-light) 0%, var(--cream) 50%, var(--rose-light) 100%);
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.cover-page::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2387a878' fill-opacity='0.08'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  opacity: 0.5;
+}
+
+.cover-content {
+  position: relative;
+  z-index: 1;
+}
+
+.cover-ornament {
+  font-size: 3rem;
+  color: var(--sage-green);
+  margin-bottom: 1rem;
+  letter-spacing: 0.5rem;
+}
+
+.cover-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 4.5rem;
+  font-weight: 400;
+  color: var(--deep-green);
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.1em;
+}
+
+.cover-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--warm-brown);
+  margin-bottom: 2rem;
+}
+
+.cover-tagline {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--text-medium);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  max-width: 400px;
+  margin: 0 auto 3rem;
+  line-height: 2;
+}
+
+.cover-heart {
+  font-size: 2rem;
+  color: var(--terracotta);
+}
+
+.cover-dedication {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  font-style: italic;
+  color: var(--text-medium);
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--sage-light);
+}
+
+/* Section Headers */
+.section-header {
+  text-align: center;
+  padding: 3rem 1rem 2rem;
+  background: linear-gradient(180deg, var(--cream-dark) 0%, var(--cream) 100%);
+  border-bottom: 2px solid var(--sage-light);
+  margin-bottom: 2rem;
+}
+
+.section-icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.8rem;
+  font-weight: 500;
+  color: var(--deep-green);
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.05em;
+}
+
+.section-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  font-style: italic;
+  color: var(--warm-brown);
+}
+
+/* Category Headers */
+.category-header {
+  display: flex;
+  align-items: center;
+  margin: 2rem 0 1.5rem;
+  padding: 0 1rem;
+}
+
+.category-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--sage-green), transparent);
+}
+
+.category-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: var(--sage-dark);
+  padding: 0 1.5rem;
+}
+
+/* Menu Items */
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  padding: 0 1rem;
+}
+
+.menu-item {
+  background: white;
+  border-radius: 8px;
+  padding: 1.2rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  border: 1px solid var(--cream-dark);
+  transition: all 0.2s ease;
+}
+
+.menu-item:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  transform: translateY(-2px);
+}
+
+.item-number {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background: var(--sage-light);
+  color: var(--deep-green);
+  border-radius: 50%;
+  text-align: center;
+  line-height: 24px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-right: 0.5rem;
+}
+
+.item-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  display: inline;
+}
+
+.item-description {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--text-medium);
+  margin: 0.5rem 0;
+  line-height: 1.5;
+}
+
+.item-benefits {
+  font-size: 0.8rem;
+  color: var(--sage-dark);
+  margin-bottom: 0.5rem;
+}
+
+.item-nutrients {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.nutrient-tag {
+  background: var(--cream-dark);
+  color: var(--text-medium);
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: 500;
+}
+
+.nutrient-tag.highlight {
+  background: var(--sage-light);
+  color: var(--deep-green);
+}
+
+/* Guidelines Page */
+.guidelines-content {
+  padding: 2rem;
+}
+
+.guideline-section {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-left: 4px solid var(--sage-green);
+}
+
+.guideline-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  color: var(--deep-green);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.guideline-icon {
+  font-size: 1.5rem;
+}
+
+.food-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.food-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.food-item.good::before {
+  content: '✓';
+  color: var(--sage-dark);
+  font-weight: bold;
+}
+
+.food-item.avoid::before {
+  content: '✗';
+  color: var(--terracotta);
+  font-weight: bold;
+}
+
+/* Priority Box */
+.priority-box {
+  background: linear-gradient(135deg, var(--sage-light) 0%, var(--cream) 100%);
+  border-radius: 12px;
+  padding: 2rem;
+  margin: 2rem 1rem;
+  text-align: center;
+}
+
+.priority-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  color: var(--deep-green);
+  margin-bottom: 1rem;
+}
+
+.priority-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.priority-item {
+  background: white;
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+}
+
+.priority-icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.priority-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.priority-desc {
+  font-size: 0.75rem;
+  color: var(--text-light);
+  margin-top: 0.25rem;
+}
+
+/* Snack Grid */
+.snack-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  padding: 0 1rem;
+}
+
+.snack-item {
+  background: white;
+  border-radius: 8px;
+  padding: 1rem;
+  border: 1px solid var(--cream-dark);
+}
+
+.snack-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 0.25rem;
+}
+
+.snack-desc {
+  font-size: 0.8rem;
+  color: var(--text-medium);
+  font-style: italic;
+}
+
+/* Quick Reference Table */
+.reference-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.reference-table th {
+  background: var(--sage-green);
+  color: white;
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.reference-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--cream-dark);
+  font-size: 0.85rem;
+}
+
+.reference-table tr:nth-child(even) {
+  background: var(--cream);
+}
+
+/* Tips Box */
+.tips-box {
+  background: var(--rose-light);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 2rem 1rem;
+}
+
+.tips-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  color: var(--text-dark);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.tips-list {
+  list-style: none;
+}
+
+.tips-list li {
+  padding: 0.5rem 0;
+  padding-left: 1.5rem;
+  position: relative;
+  font-size: 0.9rem;
+  color: var(--text-medium);
+}
+
+.tips-list li::before {
+  content: '♥';
+  position: absolute;
+  left: 0;
+  color: var(--terracotta);
+}
+
+/* Back Cover */
+.back-cover {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: linear-gradient(135deg, var(--rose-light) 0%, var(--cream) 50%, var(--sage-light) 100%);
+  padding: 3rem;
+}
+
+.back-message {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.8rem;
+  font-style: italic;
+  color: var(--text-dark);
+  max-width: 500px;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+
+.back-heart {
+  font-size: 3rem;
+  color: var(--terracotta);
+  margin-bottom: 2rem;
+}
+
+.back-signature {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  color: var(--deep-green);
+}
+
+/* Footer */
+.page-footer {
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.75rem;
+  color: var(--text-light);
+  border-top: 1px solid var(--cream-dark);
+  margin-top: 2rem;
+}
+
+/* Utility Classes */
+.text-center { text-align: center; }
+.mt-1 { margin-top: 0.5rem; }
+.mt-2 { margin-top: 1rem; }
+.mt-3 { margin-top: 1.5rem; }
+.mb-1 { margin-bottom: 0.5rem; }
+.mb-2 { margin-bottom: 1rem; }
+.mb-3 { margin-bottom: 1.5rem; }
+
