@@ -9,6 +9,15 @@ import {
   ShoppingCart,
   Calendar,
   Trash2,
+  Sun,
+  Moon,
+  Cookie,
+  Users,
+  User,
+  Baby,
+  Sparkles,
+  Fish,
+  Leaf,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -76,17 +85,17 @@ export default function MealPlanPage() {
   const todaysMeals = sampleMealPlan[dateKey] || {};
 
   return (
-    <div className="min-h-screen pb-24 bg-[var(--cream-100)]">
+    <div className="min-h-screen pb-24 style={{ backgroundColor: 'var(--cream-100)' }}">
       {/* Header */}
-      <header className="px-5 pt-12 pb-6 bg-gradient-to-b from-[var(--sage-50)] to-[var(--cream-100)]">
+      <header className="px-5 pt-12 pb-6 bg-gradient-to-b from-sage-50" style={{ background: 'linear-gradient(to bottom, var(--sage-50), var(--cream-100))' }}>
         <div className="flex items-center justify-between mb-6">
           <h1
-            className="text-2xl font-medium text-[var(--forest-800)]"
+            className="text-2xl font-medium text-forest-900"
             style={{ fontFamily: "var(--font-serif)" }}
           >
             Meal Planning
           </h1>
-          <button className="flex items-center gap-2 px-4 py-2 bg-white rounded-xl shadow-sm text-[var(--sage-600)] font-medium text-sm">
+          <button className="flex items-center gap-2 px-4 py-2 bg-white rounded-xl shadow-sm text-sage-600 font-medium text-sm">
             <ShoppingCart className="w-4 h-4" />
             Shopping List
           </button>
@@ -98,16 +107,16 @@ export default function MealPlanPage() {
             onClick={prevWeek}
             className="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center"
           >
-            <ChevronLeft className="w-5 h-5 text-[var(--text-secondary)]" />
+            <ChevronLeft className="w-5 h-5 text-gray-600" />
           </button>
-          <span className="font-medium text-[var(--forest-800)]">
+          <span className="font-medium text-forest-900">
             {formatFullDate(weekDates[0])} - {formatFullDate(weekDates[6])}
           </span>
           <button
             onClick={nextWeek}
             className="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center"
           >
-            <ChevronRight className="w-5 h-5 text-[var(--text-secondary)]" />
+            <ChevronRight className="w-5 h-5 text-gray-600" />
           </button>
         </div>
 
@@ -126,21 +135,21 @@ export default function MealPlanPage() {
                 className={cn(
                   "flex flex-col items-center py-2 px-3 rounded-xl transition-all",
                   isSelected
-                    ? "bg-[var(--sage-500)] text-white"
-                    : "text-[var(--text-secondary)]"
+                    ? "bg-sage-500 text-white"
+                    : "text-gray-600"
                 )}
               >
                 <span className="text-xs font-medium">{formatDate(date)}</span>
                 <span
                   className={cn(
                     "text-lg font-medium",
-                    isToday && !isSelected && "text-[var(--sage-600)]"
+                    isToday && !isSelected && "text-sage-600"
                   )}
                 >
                   {date.getDate()}
                 </span>
                 {hasPlannedMeals && !isSelected && (
-                  <div className="w-1.5 h-1.5 rounded-full bg-[var(--sage-500)] mt-1" />
+                  <div className="w-1.5 h-1.5 rounded-full bg-sage-500 mt-1" />
                 )}
               </button>
             );
@@ -150,7 +159,7 @@ export default function MealPlanPage() {
 
       {/* Selected Day Meals */}
       <div className="px-5 py-4">
-        <h2 className="text-lg font-medium text-[var(--forest-800)] mb-4" style={{ fontFamily: "var(--font-serif)" }}>
+        <h2 className="text-lg font-medium text-forest-900 mb-4" style={{ fontFamily: "var(--font-serif)" }}>
           {selectedDate.toLocaleDateString("en-US", {
             weekday: "long",
             month: "long",
@@ -162,28 +171,28 @@ export default function MealPlanPage() {
           {/* Breakfast */}
           <MealSlot
             mealType="Breakfast"
-            emoji="🌅"
+            icon={Sun}
             plannedRecipe={todaysMeals.breakfast}
           />
 
           {/* Lunch */}
           <MealSlot
             mealType="Lunch"
-            emoji="☀️"
+            icon={Sun}
             plannedRecipe={todaysMeals.lunch}
           />
 
           {/* Dinner */}
           <MealSlot
             mealType="Dinner"
-            emoji="🌙"
+            icon={Moon}
             plannedRecipe={todaysMeals.dinner}
           />
 
           {/* Snacks */}
           <MealSlot
             mealType="Snacks"
-            emoji="🍎"
+            icon={Cookie}
             plannedRecipe={undefined}
           />
         </div>
@@ -192,62 +201,65 @@ export default function MealPlanPage() {
       {/* Family Section */}
       <div className="px-5 py-4">
         <h2
-          className="text-lg font-medium text-[var(--forest-800)] mb-4"
+          className="text-lg font-medium text-forest-900 mb-4"
           style={{ fontFamily: "var(--font-serif)" }}
         >
           Planning for Family
         </h2>
         <div className="flex gap-3 overflow-x-auto hide-scrollbar pb-2">
           {[
-            { name: "Christine", emoji: "👩", dietary: "Graves-friendly" },
-            { name: "Mike", emoji: "👨", dietary: "" },
-            { name: "Daughter", emoji: "👧", dietary: "Age 6" },
-            { name: "Son", emoji: "👦", dietary: "Age 4" },
-            { name: "Baby", emoji: "👶", dietary: "6 months" },
-          ].map((member, idx) => (
+            { name: "Christine", icon: User, dietary: "Graves-friendly" },
+            { name: "Mike", icon: User, dietary: "" },
+            { name: "Daughter", icon: Sparkles, dietary: "Age 6" },
+            { name: "Son", icon: Sparkles, dietary: "Age 4" },
+            { name: "Baby", icon: Baby, dietary: "6 months" },
+          ].map((member, idx) => {
+            const Icon = member.icon;
+            return (
             <div
               key={idx}
-              className="flex-shrink-0 bg-white rounded-xl p-3 shadow-sm border border-[var(--cream-300)] min-w-[100px] text-center"
+              className="flex-shrink-0 bg-white rounded-xl p-3 shadow-sm border border-gray-300 min-w-[100px] text-center"
             >
-              <span className="text-2xl">{member.emoji}</span>
-              <p className="text-sm font-medium text-[var(--forest-800)] mt-1">
+              <Icon className="w-6 h-6 text-sage-600 mx-auto mb-1" />
+              <p className="text-sm font-medium text-forest-900 mt-1">
                 {member.name}
               </p>
               {member.dietary && (
-                <p className="text-xs text-[var(--text-muted)]">
+                <p className="text-xs text-gray-500">
                   {member.dietary}
                 </p>
               )}
             </div>
-          ))}
+          );
+          })}
         </div>
       </div>
 
       {/* Quick Actions */}
       <div className="px-5 py-4">
-        <div className="bg-gradient-to-br from-[var(--sage-100)] to-[var(--forest-100)] rounded-2xl p-5">
+        <div className="bg-gradient-to-br from-sage-100 rounded-2xl p-5" style={{ background: 'linear-gradient(to bottom right, var(--sage-100), var(--forest-100))' }}>
           <h3
-            className="font-medium text-[var(--forest-800)] mb-3"
+            className="font-medium text-forest-900 mb-3"
             style={{ fontFamily: "var(--font-serif)" }}
           >
-            ✨ Quick Actions
+            Quick Actions
           </h3>
           <div className="grid grid-cols-2 gap-3">
             <button className="bg-white rounded-xl p-3 text-left shadow-sm">
-              <Calendar className="w-5 h-5 text-[var(--sage-600)] mb-2" />
-              <p className="text-sm font-medium text-[var(--forest-800)]">
+              <Calendar className="w-5 h-5 text-sage-600 mb-2" />
+              <p className="text-sm font-medium text-forest-900">
                 Auto-Generate Week
               </p>
-              <p className="text-xs text-[var(--text-muted)]">
+              <p className="text-xs text-gray-500">
                 Based on health goals
               </p>
             </button>
             <button className="bg-white rounded-xl p-3 text-left shadow-sm">
-              <ShoppingCart className="w-5 h-5 text-[var(--sage-600)] mb-2" />
-              <p className="text-sm font-medium text-[var(--forest-800)]">
+              <ShoppingCart className="w-5 h-5 text-sage-600 mb-2" />
+              <p className="text-sm font-medium text-forest-900">
                 Generate List
               </p>
-              <p className="text-xs text-[var(--text-muted)]">
+              <p className="text-xs text-gray-500">
                 Shopping for the week
               </p>
             </button>
@@ -258,7 +270,7 @@ export default function MealPlanPage() {
       {/* This Week's Nutrition Summary */}
       <div className="px-5 py-4 mb-4">
         <h2
-          className="text-lg font-medium text-[var(--forest-800)] mb-4"
+          className="text-lg font-medium text-forest-900 mb-4"
           style={{ fontFamily: "var(--font-serif)" }}
         >
           This Week&apos;s Nutrition
@@ -269,21 +281,21 @@ export default function MealPlanPage() {
             value="4"
             target="2-3"
             color="sage"
-            icon="🐟"
+            icon={Fish}
           />
           <NutritionSummaryCard
             label="High Fiber"
             value="12"
             target="10+"
             color="forest"
-            icon="🥬"
+            icon={Leaf}
           />
           <NutritionSummaryCard
             label="Kid-Friendly"
             value="8"
             target="7"
             color="terracotta"
-            icon="👧"
+            icon={Sparkles}
           />
         </div>
       </div>
@@ -293,41 +305,41 @@ export default function MealPlanPage() {
 
 function MealSlot({
   mealType,
-  emoji,
+  icon: Icon,
   plannedRecipe,
 }: {
   mealType: string;
-  emoji: string;
+  icon: any;
   plannedRecipe?: string;
 }) {
   return (
-    <div className="bg-white rounded-2xl p-4 shadow-sm border border-[var(--cream-300)]">
+    <div className="bg-white rounded-2xl p-4 shadow-sm border border-gray-300">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <span className="text-2xl">{emoji}</span>
+          <Icon className="w-6 h-6 text-sage-600" />
           <div>
-            <p className="text-sm font-medium text-[var(--sage-600)]">
+            <p className="text-sm font-medium text-sage-600">
               {mealType}
             </p>
             {plannedRecipe ? (
-              <p className="text-[var(--forest-800)] font-medium">
+              <p className="text-forest-900 font-medium">
                 {plannedRecipe}
               </p>
             ) : (
-              <p className="text-[var(--text-muted)] italic">No meal planned</p>
+              <p className="text-gray-500 italic">No meal planned</p>
             )}
           </div>
         </div>
         {plannedRecipe ? (
-          <button className="w-8 h-8 rounded-full bg-[var(--cream-100)] flex items-center justify-center">
-            <Trash2 className="w-4 h-4 text-[var(--text-muted)]" />
+          <button className="w-8 h-8 rounded-full style={{ backgroundColor: 'var(--cream-100)' }} flex items-center justify-center">
+            <Trash2 className="w-4 h-4 text-gray-500" />
           </button>
         ) : (
           <Link
             href={`/explore?meal=${mealType.toLowerCase()}`}
-            className="w-10 h-10 rounded-full bg-[var(--sage-100)] flex items-center justify-center"
+            className="w-10 h-10 rounded-full bg-sage-100 flex items-center justify-center"
           >
-            <Plus className="w-5 h-5 text-[var(--sage-600)]" />
+            <Plus className="w-5 h-5 text-sage-600" />
           </Link>
         )}
       </div>
@@ -340,23 +352,23 @@ function NutritionSummaryCard({
   value,
   target,
   color,
-  icon,
+  icon: Icon,
 }: {
   label: string;
   value: string;
   target: string;
   color: "sage" | "forest" | "terracotta";
-  icon: string;
+  icon: any;
 }) {
   const colors = {
-    sage: "bg-[var(--sage-50)] text-[var(--sage-700)]",
-    forest: "bg-[var(--forest-50)] text-[var(--forest-700)]",
-    terracotta: "bg-[var(--terracotta-50)] text-[var(--terracotta-700)]",
+    sage: "bg-sage-50 text-sage-700",
+    forest: "bg-forest-50 text-forest-700",
+    terracotta: "bg-terracotta-50 text-terracotta-700",
   };
 
   return (
     <div className={cn("rounded-xl p-3 text-center", colors[color])}>
-      <span className="text-xl">{icon}</span>
+      <Icon className="w-6 h-6 mx-auto mb-1" />
       <p className="text-xl font-bold mt-1">{value}</p>
       <p className="text-[10px] opacity-70">Target: {target}</p>
       <p className="text-xs font-medium mt-1">{label}</p>
