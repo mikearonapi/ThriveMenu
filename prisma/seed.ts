@@ -2,7 +2,14 @@ import { PrismaClient } from "@prisma/client";
 import { allRecipes } from "../src/data/recipes";
 import { recipeDetails } from "../src/data/recipe-details";
 
-const prisma = new PrismaClient();
+// Use direct connection for seeding (bypasses connection pooling)
+const prisma = new PrismaClient({
+  datasources: {
+    db: {
+      url: process.env.POSTGRES_URL_NON_POOLING || process.env.DATABASE_URL,
+    },
+  },
+});
 
 // Helper to generate slug
 function slugify(name: string): string {
@@ -184,10 +191,11 @@ async function main() {
             protein: details.nutrition.protein,
             carbohydrates: details.nutrition.carbs,
             fiber: details.nutrition.fiber,
+            sugar: 0, // Required field - not in source data yet
             fat: details.nutrition.fat,
             saturatedFat: 0, // Would need actual data
             cholesterol: 0,
-            sodium: details.nutrition.sodium,
+            sodium: details.nutrition.sodium || 0,
             omega3: recipeData.hasOmega3 ? 1.5 : null, // Estimate
           },
         } : undefined,
