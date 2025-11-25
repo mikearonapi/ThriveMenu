@@ -59,7 +59,7 @@ export default function HomePage() {
           }}
         />
 
-        <div className="relative px-5 pt-14 pb-8">
+        <div className="relative px-5 pt-8 pb-8">
           {/* Greeting */}
           <div className="mb-8 animate-fade-in">
             <p className="text-sage-600 text-xs font-semibold mb-2 tracking-wider uppercase">

@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Playfair_Display, Cormorant_Garamond, DM_Sans } from "next/font/google";
 import "./globals.css";
 import { BottomNav } from "@/components/navigation/BottomNav";
+import { Header } from "@/components/layout/Header";
 import AuthProvider from "@/components/providers/AuthProvider";
 
 const playfair = Playfair_Display({
@@ -69,6 +70,7 @@ export default function RootLayout({
       </head>
       <body className="antialiased min-h-screen" style={{ backgroundColor: 'var(--cream-100)' }}>
         <AuthProvider>
+          <Header />
           <main className="safe-bottom">{children}</main>
           <BottomNav />
         </AuthProvider>
