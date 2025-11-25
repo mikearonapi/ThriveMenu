@@ -9,7 +9,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
-import { mockFavorites } from "@/lib/mock-storage";
+import { mockFavorites, Favorite } from "@/lib/mock-storage";
 
 export async function GET(request: NextRequest) {
   const session = await getServerSession(authOptions);

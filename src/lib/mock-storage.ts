@@ -5,14 +5,14 @@
  * In production, this will be replaced with Prisma database queries.
  */
 
-interface Favorite {
+export interface Favorite {
   id: string;
   userId: string;
   recipeId: string;
   createdAt: Date;
 }
 
-interface Rating {
+export interface Rating {
   id: string;
   userId: string;
   recipeId: string;
