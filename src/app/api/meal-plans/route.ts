@@ -14,7 +14,8 @@ export async function GET(request: NextRequest) {
   try {
     const session = await getServerSession(authOptions);
 
-    if (!session?.user?.id) {
+    const userId = (session?.user as any)?.id;
+    if (!userId) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
@@ -23,7 +24,7 @@ export async function GET(request: NextRequest) {
     const endDate = searchParams.get("endDate");
 
     const where: any = {
-      userId: session.user.id,
+      userId: userId,
     };
 
     if (startDate && endDate) {
@@ -74,7 +75,8 @@ export async function POST(request: NextRequest) {
   try {
     const session = await getServerSession(authOptions);
 
-    if (!session?.user?.id) {
+    const userId = (session?.user as any)?.id;
+    if (!userId) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
@@ -90,7 +92,7 @@ export async function POST(request: NextRequest) {
 
     const mealPlan = await prisma.mealPlan.create({
       data: {
-        userId: session.user.id,
+        userId: userId,
         name: name || `Week of ${new Date(startDate).toLocaleDateString()}`,
         startDate: new Date(startDate),
         endDate: new Date(endDate),
