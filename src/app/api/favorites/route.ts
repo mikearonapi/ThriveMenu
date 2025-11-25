@@ -9,7 +9,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
-import { mockFavorites, Favorite } from "@/lib/mock-storage";
+import { prisma } from "@/lib/db";
 
 export async function GET(request: NextRequest) {
   const session = await getServerSession(authOptions);
@@ -19,14 +19,25 @@ export async function GET(request: NextRequest) {
   }
 
   const userId = (session.user as any).id;
-  const userFavorites = mockFavorites.filter((f) => f.userId === userId);
 
-  return NextResponse.json({
-    favorites: userFavorites.map((f) => ({
-      recipeId: f.recipeId,
-      createdAt: f.createdAt,
-    })),
-  });
+  try {
+    const favorites = await prisma.favorite.findMany({
+      where: { userId },
+      orderBy: { createdAt: "desc" },
+      select: {
+        recipeId: true,
+        createdAt: true,
+      },
+    });
+
+    return NextResponse.json({ favorites });
+  } catch (error) {
+    console.error("Error fetching favorites:", error);
+    return NextResponse.json(
+      { error: "Failed to fetch favorites" },
+      { status: 500 }
+    );
+  }
 }
 
 export async function POST(request: NextRequest) {
@@ -43,35 +54,55 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ message: "Recipe ID is required" }, { status: 400 });
   }
 
-  // Check if already favorited
-  const existing = mockFavorites.find(
-    (f) => f.userId === userId && f.recipeId === recipeId
-  );
+  try {
+    // Check if recipe exists
+    const recipe = await prisma.recipe.findUnique({
+      where: { id: recipeId },
+    });
 
-  if (existing) {
-    return NextResponse.json({ message: "Already favorited" }, { status: 409 });
-  }
+    if (!recipe) {
+      return NextResponse.json({ message: "Recipe not found" }, { status: 404 });
+    }
 
-  // Add favorite
-  const newFavorite: Favorite = {
-    id: crypto.randomUUID(),
-    userId,
-    recipeId,
-    createdAt: new Date(),
-  };
-
-  mockFavorites.push(newFavorite);
-
-  return NextResponse.json(
-    {
-      success: true,
-      favorite: {
-        recipeId: newFavorite.recipeId,
-        createdAt: newFavorite.createdAt,
+    // Check if already favorited
+    const existing = await prisma.favorite.findUnique({
+      where: {
+        userId_recipeId: {
+          userId,
+          recipeId,
+        },
       },
-    },
-    { status: 201 }
-  );
+    });
+
+    if (existing) {
+      return NextResponse.json({ message: "Already favorited" }, { status: 409 });
+    }
+
+    // Add favorite
+    const favorite = await prisma.favorite.create({
+      data: {
+        userId,
+        recipeId,
+      },
+    });
+
+    return NextResponse.json(
+      {
+        success: true,
+        favorite: {
+          recipeId: favorite.recipeId,
+          createdAt: favorite.createdAt,
+        },
+      },
+      { status: 201 }
+    );
+  } catch (error) {
+    console.error("Error creating favorite:", error);
+    return NextResponse.json(
+      { error: "Failed to create favorite" },
+      { status: 500 }
+    );
+  }
 }
 
 export async function DELETE(request: NextRequest) {
@@ -89,16 +120,22 @@ export async function DELETE(request: NextRequest) {
     return NextResponse.json({ message: "Recipe ID is required" }, { status: 400 });
   }
 
-  const index = mockFavorites.findIndex(
-    (f) => f.userId === userId && f.recipeId === recipeId
-  );
+  try {
+    await prisma.favorite.delete({
+      where: {
+        userId_recipeId: {
+          userId,
+          recipeId,
+        },
+      },
+    });
 
-  if (index === -1) {
-    return NextResponse.json({ message: "Favorite not found" }, { status: 404 });
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    console.error("Error deleting favorite:", error);
+    return NextResponse.json(
+      { error: "Favorite not found or failed to delete" },
+      { status: 404 }
+    );
   }
-
-  mockFavorites.splice(index, 1);
-
-  return NextResponse.json({ success: true });
 }
-

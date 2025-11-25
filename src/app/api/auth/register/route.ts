@@ -8,23 +8,7 @@
 
 import { NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
-
-// Mock user storage (will be replaced with Prisma when database is connected)
-const mockUsers: Array<{
-  id: string;
-  email: string;
-  name: string;
-  password: string;
-  createdAt: Date;
-}> = [
-  {
-    id: "1",
-    email: "christine@thrivemenu.com",
-    name: "Christine",
-    password: bcrypt.hashSync("thrive123", 10),
-    createdAt: new Date(),
-  },
-];
+import { prisma } from "@/lib/db";
 
 export async function POST(request: NextRequest) {
   try {
@@ -46,9 +30,9 @@ export async function POST(request: NextRequest) {
     }
 
     // Check if user already exists
-    const existingUser = mockUsers.find(
-      (u) => u.email.toLowerCase() === email.toLowerCase()
-    );
+    const existingUser = await prisma.user.findUnique({
+      where: { email: email.toLowerCase() },
+    });
 
     if (existingUser) {
       return NextResponse.json(
@@ -59,23 +43,22 @@ export async function POST(request: NextRequest) {
 
     // Create new user
     const hashedPassword = await bcrypt.hash(password, 10);
-    const newUser = {
-      id: String(mockUsers.length + 1),
-      email: email.toLowerCase(),
-      name,
-      password: hashedPassword,
-      createdAt: new Date(),
-    };
-
-    mockUsers.push(newUser);
+    const newUser = await prisma.user.create({
+      data: {
+        email: email.toLowerCase(),
+        name,
+        passwordHash: hashedPassword,
+      },
+      select: {
+        id: true,
+        email: true,
+        name: true,
+      },
+    });
 
     return NextResponse.json({
       success: true,
-      user: {
-        id: newUser.id,
-        email: newUser.email,
-        name: newUser.name,
-      },
+      user: newUser,
     });
   } catch (error) {
     console.error("Registration error:", error);

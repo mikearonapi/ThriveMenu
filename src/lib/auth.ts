@@ -3,7 +3,9 @@
 
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import { PrismaAdapter } from "@auth/prisma-adapter";
 import bcrypt from "bcryptjs";
+import { prisma } from "./db";
 
 // Mock user database (will be replaced with Prisma later)
 const mockUsers = [
@@ -33,6 +35,7 @@ const mockUsers = [
 ];
 
 export const authOptions: NextAuthOptions = {
+  adapter: PrismaAdapter(prisma) as any,
   providers: [
     CredentialsProvider({
       name: "Email",
@@ -45,33 +48,38 @@ export const authOptions: NextAuthOptions = {
           return null;
         }
 
-        // Find user by email
-        const user = mockUsers.find(
-          (u) => u.email.toLowerCase() === credentials.email.toLowerCase()
-        );
+        try {
+          // Find user by email in database
+          const user = await prisma.user.findUnique({
+            where: { email: credentials.email.toLowerCase() },
+          });
 
-        if (!user) {
+          if (!user || !user.passwordHash) {
+            return null;
+          }
+
+          // Verify password
+          const isValid = await bcrypt.compare(credentials.password, user.passwordHash);
+
+          if (!isValid) {
+            return null;
+          }
+
+          return {
+            id: user.id,
+            name: user.name,
+            email: user.email,
+            image: user.image,
+          };
+        } catch (error) {
+          console.error("Auth error:", error);
           return null;
         }
-
-        // Verify password
-        const isValid = await bcrypt.compare(credentials.password, user.password);
-
-        if (!isValid) {
-          return null;
-        }
-
-        return {
-          id: user.id,
-          name: user.name,
-          email: user.email,
-          image: user.image,
-        };
       },
     }),
   ],
   session: {
-    strategy: "jwt",
+    strategy: "database", // Use database sessions with Prisma adapter
     maxAge: 30 * 24 * 60 * 60, // 30 days
   },
   callbacks: {
@@ -98,25 +106,14 @@ export const authOptions: NextAuthOptions = {
 
 // Helper functions for auth
 export async function getUserByEmail(email: string) {
-  return mockUsers.find((u) => u.email.toLowerCase() === email.toLowerCase());
+  return prisma.user.findUnique({
+    where: { email: email.toLowerCase() },
+  });
 }
 
 export async function getUserById(id: string) {
-  return mockUsers.find((u) => u.id === id);
-}
-
-export async function createUser(email: string, password: string, name: string) {
-  const hashedPassword = await bcrypt.hash(password, 10);
-  const newUser = {
-    id: String(mockUsers.length + 1),
-    name,
-    email,
-    password: hashedPassword,
-    image: null,
-    healthGoals: [],
-    familyMembers: [],
-  };
-  mockUsers.push(newUser);
-  return newUser;
+  return prisma.user.findUnique({
+    where: { id },
+  });
 }
 

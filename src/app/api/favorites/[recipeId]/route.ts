@@ -7,7 +7,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
-import { mockFavorites } from "@/lib/mock-storage";
+import { prisma } from "@/lib/db";
 
 export async function GET(
   request: NextRequest,
@@ -22,11 +22,19 @@ export async function GET(
   const userId = (session.user as any).id;
   const recipeId = params.recipeId;
 
-  // Check if recipe is favorited
-  const isFavorited = mockFavorites.some(
-    (f) => f.userId === userId && f.recipeId === recipeId
-  );
+  try {
+    const favorite = await prisma.favorite.findUnique({
+      where: {
+        userId_recipeId: {
+          userId,
+          recipeId,
+        },
+      },
+    });
 
-  return NextResponse.json({ isFavorited });
+    return NextResponse.json({ isFavorited: !!favorite });
+  } catch (error) {
+    console.error("Error checking favorite status:", error);
+    return NextResponse.json({ isFavorited: false });
+  }
 }
-

@@ -8,7 +8,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/lib/auth";
-import { mockRatings } from "@/lib/mock-storage";
+import { prisma } from "@/lib/db";
 
 // GET - Get ratings for a recipe
 export async function GET(
@@ -17,15 +17,22 @@ export async function GET(
 ) {
   try {
     const recipeId = params.id;
+    const session = await getServerSession(authOptions);
 
-    // Mock: Get ratings for recipe
-    const ratings = mockRatings
-      .filter((r) => r.recipeId === recipeId)
-      .map((r) => ({
-        ...r,
-        createdAt: r.createdAt.toISOString(),
-      }))
-      .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+    // Get all ratings for this recipe
+    const ratings = await prisma.rating.findMany({
+      where: { recipeId },
+      orderBy: { createdAt: "desc" },
+      include: {
+        user: {
+          select: {
+            id: true,
+            name: true,
+            image: true,
+          },
+        },
+      },
+    });
 
     // Calculate average rating
     const averageRating =
@@ -40,13 +47,10 @@ export async function GET(
     }));
 
     // Get user's rating if authenticated
-    const session = await getServerSession(authOptions);
     let userRating = null;
     if (session && session.user) {
       const userId = (session.user as any).id;
-      const userRatingObj = mockRatings.find(
-        (r) => r.userId === userId && r.recipeId === recipeId
-      );
+      const userRatingObj = ratings.find((r) => r.userId === userId);
       userRating = userRatingObj?.rating || null;
     }
 
@@ -55,7 +59,10 @@ export async function GET(
       totalRatings: ratings.length,
       userRating,
       ratingCounts,
-      ratings,
+      ratings: ratings.map((r) => ({
+        ...r,
+        createdAt: r.createdAt.toISOString(),
+      })),
     });
   } catch (error) {
     console.error("Error fetching ratings:", error);
@@ -91,27 +98,38 @@ export async function POST(
       );
     }
 
-    // Mock: Get or create user ID from session
-    const userId = (session.user as any).id || "1"; // Use session user ID
+    const userId = (session.user as any).id;
 
-    // Mock: Upsert rating
-    const existingIndex = mockRatings.findIndex(
-      (r) => r.userId === userId && r.recipeId === recipeId
-    );
+    // Check if recipe exists
+    const recipe = await prisma.recipe.findUnique({
+      where: { id: recipeId },
+    });
 
-    const ratingRecord = {
-      id: existingIndex >= 0 ? mockRatings[existingIndex].id : `rating_${Date.now()}`,
-      userId,
-      recipeId,
-      rating,
-      createdAt: new Date(),
-    };
-
-    if (existingIndex >= 0) {
-      mockRatings[existingIndex] = ratingRecord;
-    } else {
-      mockRatings.push(ratingRecord);
+    if (!recipe) {
+      return NextResponse.json(
+        { error: "Recipe not found" },
+        { status: 404 }
+      );
     }
+
+    // Upsert rating (create or update)
+    const ratingRecord = await prisma.rating.upsert({
+      where: {
+        userId_recipeId: {
+          userId,
+          recipeId,
+        },
+      },
+      update: {
+        rating,
+        updatedAt: new Date(),
+      },
+      create: {
+        userId,
+        recipeId,
+        rating,
+      },
+    });
 
     return NextResponse.json({
       success: true,
@@ -125,4 +143,3 @@ export async function POST(
     );
   }
 }
-
