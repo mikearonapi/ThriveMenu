@@ -1,10 +1,12 @@
 "use client";
 
 import { useState, useMemo, useEffect } from "react";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 import { Search, Filter, X, Clock, Heart, Leaf, Fish, ChefHat, Sun, Moon, Cookie } from "lucide-react";
 import { cn } from "@/lib/utils";
 import RecipeCard from "@/components/recipe/RecipeCard";
+import { useAuth } from "@/hooks/useAuth";
+import { Plus, Loader2 } from "lucide-react";
 
 const mealTabs = [
   { id: "all", label: "All", icon: null },
@@ -24,7 +26,10 @@ const healthFilters = [
 
 export default function ExplorePage() {
   const searchParams = useSearchParams();
+  const router = useRouter();
   const initialMeal = searchParams.get("meal") || "all";
+  const addToPlanDate = searchParams.get("addToPlan");
+  const addToPlanMealType = searchParams.get("mealType");
 
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedMeal, setSelectedMeal] = useState(initialMeal);
@@ -33,6 +38,7 @@ export default function ExplorePage() {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [recipes, setRecipes] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isAddingToPlan, setIsAddingToPlan] = useState<string | null>(null);
   const [mealCounts, setMealCounts] = useState<Record<string, number>>({
     all: 0,
     breakfast: 0,
@@ -279,5 +285,122 @@ export default function ExplorePage() {
       </div>
     </div>
   );
+}
+
+// Wrapper component that adds "Add to Meal Plan" functionality
+function RecipeCardWithAdd({
+  recipe,
+  compact,
+  addToPlanDate,
+  addToPlanMealType,
+  isAdding,
+  onAddStart,
+  onAddComplete,
+}: {
+  recipe: any;
+  compact?: boolean;
+  addToPlanDate: string | null;
+  addToPlanMealType: string | null;
+  isAdding: boolean;
+  onAddStart: () => void;
+  onAddComplete: () => void;
+}) {
+  const { isAuthenticated } = useAuth();
+  const router = useRouter();
+
+  const handleAddToPlan = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    if (!isAuthenticated) {
+      router.push("/login");
+      return;
+    }
+
+    if (!addToPlanDate || !addToPlanMealType) return;
+
+    onAddStart();
+
+    try {
+      // Get or create meal plan for the week
+      const date = new Date(addToPlanDate);
+      const weekStart = new Date(date);
+      weekStart.setDate(date.getDate() - date.getDay());
+      const weekEnd = new Date(weekStart);
+      weekEnd.setDate(weekStart.getDate() + 6);
+
+      // Fetch existing meal plans
+      const plansResponse = await fetch(
+        `/api/meal-plans?startDate=${weekStart.toISOString()}&endDate=${weekEnd.toISOString()}`
+      );
+      let mealPlanId: string;
+
+      if (plansResponse.ok) {
+        const plansData = await plansResponse.json();
+        if (plansData.mealPlans && plansData.mealPlans.length > 0) {
+          mealPlanId = plansData.mealPlans[0].id;
+        } else {
+          // Create new meal plan
+          const createResponse = await fetch("/api/meal-plans", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              startDate: weekStart.toISOString(),
+              endDate: weekEnd.toISOString(),
+            }),
+          });
+          const createData = await createResponse.json();
+          mealPlanId = createData.mealPlan.id;
+        }
+      } else {
+        throw new Error("Failed to fetch meal plans");
+      }
+
+      // Add recipe to meal plan
+      const addResponse = await fetch("/api/meal-plans/items", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          mealPlanId,
+          recipeId: recipe.id,
+          date: addToPlanDate,
+          mealType: addToPlanMealType.toUpperCase(),
+        }),
+      });
+
+      if (addResponse.ok) {
+        onAddComplete();
+      }
+    } catch (error) {
+      console.error("Error adding to meal plan:", error);
+      onAddComplete();
+    }
+  };
+
+  if (addToPlanDate && addToPlanMealType) {
+    return (
+      <div className="relative">
+        <RecipeCard recipe={recipe} compact={compact} />
+        <button
+          onClick={handleAddToPlan}
+          disabled={isAdding}
+          className={cn(
+            "absolute top-2 left-2 w-8 h-8 rounded-full flex items-center justify-center shadow-md transition-all",
+            isAdding
+              ? "bg-sage-500 text-white"
+              : "bg-white text-sage-600 hover:bg-sage-100"
+          )}
+        >
+          {isAdding ? (
+            <Loader2 className="w-4 h-4 animate-spin" />
+          ) : (
+            <Plus className="w-4 h-4" />
+          )}
+        </button>
+      </div>
+    );
+  }
+
+  return <RecipeCard recipe={recipe} compact={compact} />;
 }
 

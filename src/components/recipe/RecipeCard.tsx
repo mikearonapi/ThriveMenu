@@ -48,8 +48,8 @@ export default function RecipeCard({ recipe, compact = false }: RecipeCardProps)
   const [isFavorited, setIsFavorited] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   
-  // Use provided image or generate one from the recipe title
-  const displayImage = recipe.imageUrl || getRecipeImage(recipe.name, recipe.category);
+  // Use database imageUrl (Vercel Blob) if available, otherwise fallback to placeholder
+  const displayImage = getRecipeImageUrl(recipe);
 
   // Check if recipe is favorited on mount
   useEffect(() => {

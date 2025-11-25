@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import {
   ChevronLeft,
   ChevronRight,
@@ -18,8 +19,10 @@ import {
   Sparkles,
   Fish,
   Leaf,
+  Loader2,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useAuth } from "@/hooks/useAuth";
 
 // Get week dates
 function getWeekDates(date: Date) {
@@ -45,29 +48,87 @@ function formatFullDate(date: Date) {
   });
 }
 
-// Sample meal plan data
-const sampleMealPlan: Record<string, { breakfast?: string; lunch?: string; dinner?: string }> = {
-  "2024-11-25": {
-    breakfast: "Golden Turmeric Oatmeal",
-    lunch: "Mediterranean Quinoa Salad",
-    dinner: "Lemon Herb Baked Salmon",
-  },
-  "2024-11-26": {
-    breakfast: "Greek Yogurt Parfait",
-    lunch: "Tuscan White Bean & Kale Soup",
-    dinner: "Greek Chicken with Roasted Vegetables",
-  },
-  "2024-11-27": {
-    breakfast: "Avocado Toast with Poached Egg",
-    lunch: "Buddha Bowl",
-    dinner: "Chickpea Curry",
-  },
-};
+interface MealPlanItem {
+  id: string;
+  recipeId: string;
+  date: string;
+  mealType: string;
+  servings: number;
+  recipe: {
+    id: string;
+    name: string;
+    imageUrl?: string;
+    mealType: string;
+  };
+}
+
+interface MealPlan {
+  id: string;
+  name: string;
+  startDate: string;
+  endDate: string;
+  items: MealPlanItem[];
+}
 
 export default function MealPlanPage() {
+  const router = useRouter();
+  const { isAuthenticated } = useAuth();
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const [mealPlan, setMealPlan] = useState<MealPlan | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isGeneratingList, setIsGeneratingList] = useState(false);
   const weekDates = getWeekDates(currentDate);
+
+  // Fetch meal plan for current week
+  useEffect(() => {
+    if (!isAuthenticated) {
+      setIsLoading(false);
+      return;
+    }
+
+    async function fetchMealPlan() {
+      setIsLoading(true);
+      try {
+        const startDate = weekDates[0].toISOString().split("T")[0];
+        const endDate = weekDates[6].toISOString().split("T")[0];
+        
+        const response = await fetch(
+          `/api/meal-plans?startDate=${startDate}&endDate=${endDate}`
+        );
+        
+        if (response.ok) {
+          const data = await response.json();
+          // Use the first meal plan or create a new one
+          if (data.mealPlans && data.mealPlans.length > 0) {
+            setMealPlan(data.mealPlans[0]);
+          } else {
+            // Create a new meal plan for this week
+            const createResponse = await fetch("/api/meal-plans", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                name: `Week of ${formatFullDate(weekDates[0])}`,
+                startDate: weekDates[0].toISOString(),
+                endDate: weekDates[6].toISOString(),
+              }),
+            });
+            
+            if (createResponse.ok) {
+              const newPlan = await createResponse.json();
+              setMealPlan(newPlan.mealPlan);
+            }
+          }
+        }
+      } catch (error) {
+        console.error("Error fetching meal plan:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    fetchMealPlan();
+  }, [weekDates, isAuthenticated]);
 
   const nextWeek = () => {
     const next = new Date(currentDate);
@@ -81,11 +142,106 @@ export default function MealPlanPage() {
     setCurrentDate(prev);
   };
 
+  const handleAddMeal = (date: Date, mealType: string) => {
+    router.push(`/explore?meal=${mealType.toLowerCase()}&addToPlan=${date.toISOString().split("T")[0]}&mealType=${mealType}`);
+  };
+
+  const handleRemoveMeal = async (date: Date, mealType: string) => {
+    if (!mealPlan) return;
+
+    try {
+      const response = await fetch(
+        `/api/meal-plans/items?mealPlanId=${mealPlan.id}&date=${date.toISOString()}&mealType=${mealType}`,
+        { method: "DELETE" }
+      );
+
+      if (response.ok) {
+        // Refresh meal plan
+        const refreshResponse = await fetch(`/api/meal-plans/${mealPlan.id}`);
+        if (refreshResponse.ok) {
+          const data = await refreshResponse.json();
+          setMealPlan(data.mealPlan);
+        }
+      }
+    } catch (error) {
+      console.error("Error removing meal:", error);
+    }
+  };
+
+  const handleGenerateShoppingList = async () => {
+    if (!mealPlan) return;
+
+    setIsGeneratingList(true);
+    try {
+      const response = await fetch("/api/shopping-lists/generate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          mealPlanId: mealPlan.id,
+        }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        router.push(`/shopping-list/${data.shoppingList.id}`);
+      }
+    } catch (error) {
+      console.error("Error generating shopping list:", error);
+    } finally {
+      setIsGeneratingList(false);
+    }
+  };
+
+  // Get meals for selected date
   const dateKey = selectedDate.toISOString().split("T")[0];
-  const todaysMeals = sampleMealPlan[dateKey] || {};
+  const todaysMeals = mealPlan?.items
+    .filter((item) => item.date.startsWith(dateKey))
+    .reduce((acc, item) => {
+      const type = item.mealType.toLowerCase();
+      acc[type] = item.recipe.name;
+      return acc;
+    }, {} as Record<string, string>) || {};
+
+  const getMealItem = (mealType: string) => {
+    return mealPlan?.items.find(
+      (item) =>
+        item.date.startsWith(dateKey) &&
+        item.mealType.toLowerCase() === mealType.toLowerCase()
+    );
+  };
+
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-screen pb-24 bg-cream-100 flex items-center justify-center px-5">
+        <div className="text-center">
+          <Calendar className="w-16 h-16 text-sage-600 mx-auto mb-4" />
+          <h1 className="text-2xl font-medium text-forest-900 mb-2" style={{ fontFamily: "var(--font-serif)" }}>
+            Sign In to Plan Meals
+          </h1>
+          <p className="text-gray-600 mb-6">
+            Create meal plans and generate shopping lists for your family.
+          </p>
+          <button
+            onClick={() => router.push("/login")}
+            className="btn-primary"
+          >
+            Sign In
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen pb-24 bg-cream-100 flex items-center justify-center">
+        <Loader2 className="w-8 h-8 text-sage-600 animate-spin" />
+      </div>
+    );
+  }
 
   return (
-    <div className="min-h-screen pb-24 style={{ backgroundColor: 'var(--cream-100)' }}">
+    <div className="min-h-screen pb-24 bg-cream-100">
       {/* Header */}
       <header className="px-5 pt-12 pb-6 bg-gradient-to-b from-sage-50" style={{ background: 'linear-gradient(to bottom, var(--sage-50), var(--cream-100))' }}>
         <div className="flex items-center justify-between mb-6">
@@ -95,8 +251,16 @@ export default function MealPlanPage() {
           >
             Meal Planning
           </h1>
-          <button className="flex items-center gap-2 px-4 py-2 bg-white rounded-xl shadow-sm text-sage-600 font-medium text-sm">
-            <ShoppingCart className="w-4 h-4" />
+          <button
+            onClick={handleGenerateShoppingList}
+            disabled={isGeneratingList || !mealPlan}
+            className="flex items-center gap-2 px-4 py-2 bg-white rounded-xl shadow-sm text-sage-600 font-medium text-sm disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            {isGeneratingList ? (
+              <Loader2 className="w-4 h-4 animate-spin" />
+            ) : (
+              <ShoppingCart className="w-4 h-4" />
+            )}
             Shopping List
           </button>
         </div>
@@ -126,7 +290,9 @@ export default function MealPlanPage() {
             const isSelected =
               date.toDateString() === selectedDate.toDateString();
             const isToday = date.toDateString() === new Date().toDateString();
-            const hasPlannedMeals = sampleMealPlan[date.toISOString().split("T")[0]];
+            const hasPlannedMeals = mealPlan?.items.some(
+              (item) => item.date.startsWith(date.toISOString().split("T")[0])
+            );
 
             return (
               <button
@@ -170,30 +336,38 @@ export default function MealPlanPage() {
         <div className="space-y-4">
           {/* Breakfast */}
           <MealSlot
-            mealType="Breakfast"
+            mealType="BREAKFAST"
             icon={Sun}
-            plannedRecipe={todaysMeals.breakfast}
+            plannedItem={getMealItem("BREAKFAST")}
+            onAdd={() => handleAddMeal(selectedDate, "BREAKFAST")}
+            onRemove={() => handleRemoveMeal(selectedDate, "BREAKFAST")}
           />
 
           {/* Lunch */}
           <MealSlot
-            mealType="Lunch"
+            mealType="LUNCH"
             icon={Sun}
-            plannedRecipe={todaysMeals.lunch}
+            plannedItem={getMealItem("LUNCH")}
+            onAdd={() => handleAddMeal(selectedDate, "LUNCH")}
+            onRemove={() => handleRemoveMeal(selectedDate, "LUNCH")}
           />
 
           {/* Dinner */}
           <MealSlot
-            mealType="Dinner"
+            mealType="DINNER"
             icon={Moon}
-            plannedRecipe={todaysMeals.dinner}
+            plannedItem={getMealItem("DINNER")}
+            onAdd={() => handleAddMeal(selectedDate, "DINNER")}
+            onRemove={() => handleRemoveMeal(selectedDate, "DINNER")}
           />
 
           {/* Snacks */}
           <MealSlot
-            mealType="Snacks"
+            mealType="SNACK"
             icon={Cookie}
-            plannedRecipe={undefined}
+            plannedItem={getMealItem("SNACK")}
+            onAdd={() => handleAddMeal(selectedDate, "SNACK")}
+            onRemove={() => handleRemoveMeal(selectedDate, "SNACK")}
           />
         </div>
       </div>
@@ -254,8 +428,16 @@ export default function MealPlanPage() {
                 Based on health goals
               </p>
             </button>
-            <button className="bg-white rounded-xl p-3 text-left shadow-sm">
-              <ShoppingCart className="w-5 h-5 text-sage-600 mb-2" />
+            <button
+              onClick={handleGenerateShoppingList}
+              disabled={isGeneratingList || !mealPlan}
+              className="bg-white rounded-xl p-3 text-left shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {isGeneratingList ? (
+                <Loader2 className="w-5 h-5 text-sage-600 mb-2 animate-spin" />
+              ) : (
+                <ShoppingCart className="w-5 h-5 text-sage-600 mb-2" />
+              )}
               <p className="text-sm font-medium text-forest-900">
                 Generate List
               </p>
@@ -306,41 +488,53 @@ export default function MealPlanPage() {
 function MealSlot({
   mealType,
   icon: Icon,
-  plannedRecipe,
+  plannedItem,
+  onAdd,
+  onRemove,
 }: {
   mealType: string;
   icon: any;
-  plannedRecipe?: string;
+  plannedItem?: MealPlanItem;
+  onAdd: () => void;
+  onRemove: () => void;
 }) {
+  const mealTypeLabel = mealType.charAt(0) + mealType.slice(1).toLowerCase();
+
   return (
     <div className="bg-white rounded-2xl p-4 shadow-sm border border-gray-300">
       <div className="flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <Icon className="w-6 h-6 text-sage-600" />
-          <div>
+        <div className="flex items-center gap-3 flex-1 min-w-0">
+          <Icon className="w-6 h-6 text-sage-600 flex-shrink-0" />
+          <div className="flex-1 min-w-0">
             <p className="text-sm font-medium text-sage-600">
-              {mealType}
+              {mealTypeLabel}
             </p>
-            {plannedRecipe ? (
-              <p className="text-forest-900 font-medium">
-                {plannedRecipe}
-              </p>
+            {plannedItem ? (
+              <Link
+                href={`/recipe/${plannedItem.recipe.id}`}
+                className="text-forest-900 font-medium hover:text-sage-600 transition-colors block truncate"
+              >
+                {plannedItem.recipe.name}
+              </Link>
             ) : (
               <p className="text-gray-500 italic">No meal planned</p>
             )}
           </div>
         </div>
-        {plannedRecipe ? (
-          <button className="w-8 h-8 rounded-full style={{ backgroundColor: 'var(--cream-100)' }} flex items-center justify-center">
+        {plannedItem ? (
+          <button
+            onClick={onRemove}
+            className="w-8 h-8 rounded-full bg-cream-100 flex items-center justify-center hover:bg-red-50 transition-colors flex-shrink-0"
+          >
             <Trash2 className="w-4 h-4 text-gray-500" />
           </button>
         ) : (
-          <Link
-            href={`/explore?meal=${mealType.toLowerCase()}`}
-            className="w-10 h-10 rounded-full bg-sage-100 flex items-center justify-center"
+          <button
+            onClick={onAdd}
+            className="w-10 h-10 rounded-full bg-sage-100 flex items-center justify-center hover:bg-sage-200 transition-colors flex-shrink-0"
           >
             <Plus className="w-5 h-5 text-sage-600" />
-          </Link>
+          </button>
         )}
       </div>
     </div>
