@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Heart, Clock, Star, Filter } from "lucide-react";
+import { Heart, Clock, Star, Filter, Sun, Moon, Cookie, Zap, Calendar, Users, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
 import RecipeCard from "@/components/recipe/RecipeCard";
 import { breakfastRecipes, lunchRecipes, dinnerRecipes, snackRecipes } from "@/data/recipes";
@@ -37,22 +37,22 @@ export default function FavoritesPage() {
         );
 
   return (
-    <div className="min-h-screen pb-24 bg-[var(--cream-100)]">
+    <div className="min-h-screen pb-24" style={{ backgroundColor: 'var(--cream-100)' }}>
       {/* Header */}
       <header className="px-5 pt-12 pb-4">
         <div className="flex items-center justify-between mb-2">
           <h1
-            className="text-2xl font-medium text-[var(--forest-800)]"
+            className="text-2xl font-medium text-forest-900"
             style={{ fontFamily: "var(--font-serif)" }}
           >
             Saved Recipes
           </h1>
-          <div className="flex items-center gap-1 text-[var(--rose-500)]">
+          <div className="flex items-center gap-1 text-rose-500">
             <Heart className="w-5 h-5 fill-current" />
             <span className="font-medium">{sampleFavorites.length}</span>
           </div>
         </div>
-        <p className="text-[var(--text-secondary)]">
+        <p className="text-gray-600">
           Your favorite recipes, all in one place
         </p>
       </header>
@@ -67,8 +67,8 @@ export default function FavoritesPage() {
               className={cn(
                 "flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-all",
                 activeTab === tab.id
-                  ? "bg-[var(--sage-500)] text-white"
-                  : "bg-white text-[var(--text-secondary)] border border-[var(--cream-300)]"
+                  ? "bg-sage-500 text-white"
+                  : "bg-white text-gray-600 border border-gray-300"
               )}
             >
               {tab.label}
@@ -79,15 +79,15 @@ export default function FavoritesPage() {
 
       {/* Sort Options */}
       <div className="px-5 py-2 flex items-center justify-between">
-        <p className="text-sm text-[var(--text-secondary)]">
+        <p className="text-sm text-gray-600">
           {filteredFavorites.length} saved recipes
         </p>
         <div className="flex items-center gap-2">
-          <Filter className="w-4 h-4 text-[var(--text-muted)]" />
+          <Filter className="w-4 h-4 text-gray-500" />
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value as typeof sortBy)}
-            className="text-sm bg-transparent text-[var(--text-secondary)] outline-none cursor-pointer"
+            className="text-sm bg-transparent text-gray-600 outline-none cursor-pointer"
           >
             <option value="recent">Recently Added</option>
             <option value="name">Name A-Z</option>
@@ -113,7 +113,7 @@ export default function FavoritesPage() {
       {activeTab === "all" && (
         <section className="px-5 py-6">
           <h2
-            className="text-lg font-medium text-[var(--forest-800)] mb-4"
+            className="text-lg font-medium text-forest-900 mb-4"
             style={{ fontFamily: "var(--font-serif)" }}
           >
             Recently Cooked
@@ -122,42 +122,37 @@ export default function FavoritesPage() {
             {sampleFavorites.slice(0, 3).map((recipe, idx) => (
               <div
                 key={idx}
-                className="bg-white rounded-xl p-3 shadow-sm border border-[var(--cream-300)] flex items-center gap-3"
+                className="bg-white rounded-xl p-3 shadow-sm border border-gray-300 flex items-center gap-3"
               >
-                <div
-                  className="w-14 h-14 rounded-lg flex items-center justify-center"
-                  style={{
-                    background: `linear-gradient(135deg, var(--sage-100) 0%, var(--cream-200) 100%)`,
-                  }}
-                >
-                  <span className="text-2xl">
-                    {recipe.mealType === "BREAKFAST"
-                      ? "🌅"
-                      : recipe.mealType === "LUNCH"
-                      ? "☀️"
-                      : recipe.mealType === "DINNER"
-                      ? "🌙"
-                      : "🍎"}
-                  </span>
+                <div className="w-14 h-14 rounded-lg flex items-center justify-center bg-sage-100">
+                  {recipe.mealType === "BREAKFAST" ? (
+                    <Sun className="w-6 h-6 text-sage-600" />
+                  ) : recipe.mealType === "LUNCH" ? (
+                    <Sun className="w-6 h-6 text-sage-600" />
+                  ) : recipe.mealType === "DINNER" ? (
+                    <Moon className="w-6 h-6 text-sage-600" />
+                  ) : (
+                    <Cookie className="w-6 h-6 text-sage-600" />
+                  )}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="font-medium text-[var(--forest-800)] truncate">
+                  <p className="font-medium text-forest-900 truncate">
                     {recipe.name}
                   </p>
-                  <div className="flex items-center gap-3 text-xs text-[var(--text-muted)]">
+                  <div className="flex items-center gap-3 text-xs text-gray-500">
                     <span className="flex items-center gap-1">
                       <Clock className="w-3 h-3" />
                       Cooked {idx === 0 ? "today" : idx === 1 ? "yesterday" : "3 days ago"}
                     </span>
                   </div>
                 </div>
-                <div className="flex items-center gap-1 text-[var(--terracotta-400)]">
+                <div className="flex items-center gap-1 text-terracotta-400">
                   {[1, 2, 3, 4, 5].map((star) => (
                     <Star
                       key={star}
                       className={cn(
                         "w-3 h-3",
-                        star <= 4 ? "fill-current" : "text-[var(--cream-400)]"
+                        star <= 4 ? "fill-current" : "text-gray-300"
                       )}
                     />
                   ))}
@@ -178,24 +173,27 @@ export default function FavoritesPage() {
         </h2>
         <div className="grid grid-cols-2 gap-3">
           {[
-            { name: "Quick Weeknight Dinners", icon: "⚡", count: 0 },
-            { name: "Sunday Meal Prep", icon: "📅", count: 0 },
-            { name: "Kids' Favorites", icon: "👧", count: 0 },
-            { name: "Date Night", icon: "💕", count: 0 },
-          ].map((collection, idx) => (
+            { name: "Quick Weeknight Dinners", icon: Zap, count: 0 },
+            { name: "Sunday Meal Prep", icon: Calendar, count: 0 },
+            { name: "Kids' Favorites", icon: Sparkles, count: 0 },
+            { name: "Date Night", icon: Heart, count: 0 },
+          ].map((collection, idx) => {
+            const Icon = collection.icon;
+            return (
             <button
               key={idx}
-              className="bg-white rounded-xl p-4 shadow-sm border border-[var(--cream-300)] border-dashed text-left hover:border-[var(--sage-300)] transition-all"
+              className="bg-white rounded-xl p-4 shadow-sm border border-gray-300 border-dashed text-left hover:border-sage-300 transition-all"
             >
-              <span className="text-2xl">{collection.icon}</span>
-              <p className="font-medium text-[var(--forest-800)] mt-2 text-sm">
+              <Icon className="w-6 h-6 text-sage-600 mb-2" />
+              <p className="font-medium text-forest-900 mt-2 text-sm">
                 {collection.name}
               </p>
-              <p className="text-xs text-[var(--text-muted)]">
+              <p className="text-xs text-gray-500">
                 {collection.count} recipes
               </p>
             </button>
-          ))}
+          );
+          })}
         </div>
       </section>
     </div>
@@ -205,16 +203,16 @@ export default function FavoritesPage() {
 function EmptyState({ activeTab }: { activeTab: string }) {
   return (
     <div className="text-center py-12">
-      <div className="w-20 h-20 rounded-full bg-[var(--rose-100)] flex items-center justify-center mx-auto mb-4">
-        <Heart className="w-10 h-10 text-[var(--rose-400)]" />
+      <div className="w-20 h-20 rounded-full bg-rose-50 flex items-center justify-center mx-auto mb-4">
+        <Heart className="w-10 h-10 text-rose-400" />
       </div>
       <h3
-        className="text-lg font-medium text-[var(--forest-800)] mb-2"
+        className="text-lg font-medium text-forest-900 mb-2"
         style={{ fontFamily: "var(--font-serif)" }}
       >
         No {activeTab === "all" ? "" : activeTab} favorites yet
       </h3>
-      <p className="text-[var(--text-secondary)] mb-6 max-w-xs mx-auto">
+      <p className="text-gray-600 mb-6 max-w-xs mx-auto">
         Start exploring recipes and tap the heart to save your favorites here
       </p>
       <a href="/explore" className="btn-primary inline-flex items-center gap-2">
