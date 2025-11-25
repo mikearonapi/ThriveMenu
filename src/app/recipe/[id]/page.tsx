@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { getRecipeById } from "@/data/recipes";
+import { getRecipeDetails, RecipeDetails, Ingredient } from "@/data/recipe-details";
 
 export default function RecipePage() {
   const params = useParams();
@@ -28,6 +29,7 @@ export default function RecipePage() {
   const [activeTab, setActiveTab] = useState<"ingredients" | "instructions">("ingredients");
 
   const recipe = getRecipeById(params.id as string);
+  const details = getRecipeDetails(params.id as string);
 
   if (!recipe) {
     return (
@@ -48,26 +50,23 @@ export default function RecipePage() {
     );
   }
 
-  // Placeholder ingredients (would come from database)
-  const placeholderIngredients = [
-    { amount: "1", unit: "cup", name: "steel-cut oats", preparation: "" },
-    { amount: "2", unit: "cups", name: "almond milk", preparation: "" },
-    { amount: "1", unit: "tsp", name: "turmeric", preparation: "ground" },
-    { amount: "½", unit: "tsp", name: "cinnamon", preparation: "ground" },
-    { amount: "¼", unit: "cup", name: "walnuts", preparation: "chopped" },
-    { amount: "½", unit: "cup", name: "mixed berries", preparation: "fresh or frozen" },
-    { amount: "1", unit: "tbsp", name: "maple syrup", preparation: "optional" },
+  // Get ingredients and instructions from recipe details or use defaults
+  const ingredients: Ingredient[] = details?.ingredients || [
+    { amount: "See", unit: "", name: "recipe ingredients", preparation: "below" },
   ];
 
-  // Placeholder instructions
-  const placeholderInstructions = [
-    "Bring almond milk to a gentle boil in a medium saucepan over medium heat.",
-    "Add steel-cut oats, turmeric, and cinnamon. Stir to combine.",
-    "Reduce heat to low and simmer for 20-25 minutes, stirring occasionally, until oats are tender and creamy.",
-    "Remove from heat and let stand for 2 minutes to thicken slightly.",
-    "Divide between bowls and top with walnuts, berries, and a drizzle of maple syrup if desired.",
-    "Serve warm and enjoy!",
+  const instructions: string[] = details?.instructions || [
+    "Full cooking instructions coming soon!",
+    `In the meantime, this recipe features: ${recipe.description}`,
   ];
+
+  const tips: string[] = details?.tips || [
+    `For Graves' Disease: ${recipe.isAntiInflammatory ? "The anti-inflammatory ingredients in this recipe support thyroid health." : "Remember to take your thyroid medication 30-60 minutes before eating."}`,
+    recipe.isHeartHealthy ? "This heart-healthy recipe supports cardiovascular wellness." : "",
+    recipe.hasHighFiber ? "The high fiber content helps maintain stable blood sugar." : "",
+  ].filter(Boolean);
+
+  const baseServings = details?.servings || recipe.servings || 4;
 
   return (
     <div className="min-h-screen pb-24 bg-[var(--cream-100)]">
@@ -254,20 +253,28 @@ export default function RecipePage() {
         {activeTab === "ingredients" && (
           <div className="bg-white rounded-2xl p-4 shadow-sm border border-[var(--cream-300)]">
             <ul className="space-y-3">
-              {placeholderIngredients.map((ing, idx) => (
-                <li key={idx} className="flex items-start gap-3">
-                  <div className="w-5 h-5 rounded-full border-2 border-[var(--sage-300)] flex-shrink-0 mt-0.5" />
-                  <div className="flex-1">
-                    <span className="font-medium text-[var(--forest-800)]">
-                      {ing.amount} {ing.unit}
-                    </span>{" "}
-                    <span className="text-[var(--text-secondary)]">{ing.name}</span>
-                    {ing.preparation && (
-                      <span className="text-[var(--text-muted)]">, {ing.preparation}</span>
-                    )}
-                  </div>
-                </li>
-              ))}
+              {ingredients.map((ing, idx) => {
+                // Calculate scaled amounts based on servings
+                const scale = servings / baseServings;
+                const scaledAmount = ing.amount ? 
+                  (parseFloat(ing.amount.replace('½', '0.5').replace('¼', '0.25').replace('⅛', '0.125')) * scale).toFixed(1).replace('.0', '').replace('.5', '½').replace('.25', '¼') 
+                  : '';
+                
+                return (
+                  <li key={idx} className="flex items-start gap-3">
+                    <div className="w-5 h-5 rounded-full border-2 border-[var(--sage-300)] flex-shrink-0 mt-0.5" />
+                    <div className="flex-1">
+                      <span className="font-medium text-[var(--forest-800)]">
+                        {ing.amount} {ing.unit}
+                      </span>{" "}
+                      <span className="text-[var(--text-secondary)]">{ing.name}</span>
+                      {ing.preparation && (
+                        <span className="text-[var(--text-muted)]">, {ing.preparation}</span>
+                      )}
+                    </div>
+                  </li>
+                );
+              })}
             </ul>
           </div>
         )}
@@ -275,7 +282,7 @@ export default function RecipePage() {
         {/* Instructions */}
         {activeTab === "instructions" && (
           <div className="space-y-4">
-            {placeholderInstructions.map((instruction, idx) => (
+            {instructions.map((instruction, idx) => (
               <div
                 key={idx}
                 className="bg-white rounded-2xl p-4 shadow-sm border border-[var(--cream-300)]"
@@ -293,16 +300,55 @@ export default function RecipePage() {
           </div>
         )}
 
-        {/* Tip Card */}
-        <div className="mt-6 bg-gradient-to-br from-[var(--rose-50)] to-[var(--terracotta-50)] rounded-2xl p-4">
-          <h3 className="font-medium text-[var(--terracotta-700)] mb-2 flex items-center gap-2">
-            💡 Christine&apos;s Tip
-          </h3>
-          <p className="text-sm text-[var(--text-secondary)]">
-            For Graves&apos; Disease: The turmeric in this recipe is wonderfully anti-inflammatory.
-            Remember to take your thyroid medication 30-60 minutes before eating.
-          </p>
-        </div>
+        {/* Tips Card */}
+        {tips.length > 0 && (
+          <div className="mt-6 bg-gradient-to-br from-[var(--rose-50)] to-[var(--terracotta-50)] rounded-2xl p-4">
+            <h3 className="font-medium text-[var(--terracotta-700)] mb-2 flex items-center gap-2">
+              💡 Christine&apos;s Tips
+            </h3>
+            <ul className="space-y-2">
+              {tips.map((tip, idx) => (
+                <li key={idx} className="text-sm text-[var(--text-secondary)] flex items-start gap-2">
+                  <span className="text-[var(--terracotta-500)]">•</span>
+                  {tip}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {/* Nutrition Card */}
+        {details?.nutrition && (
+          <div className="mt-4 bg-white rounded-2xl p-4 shadow-sm border border-[var(--cream-300)]">
+            <h3 className="font-medium text-[var(--forest-800)] mb-3">Nutrition Per Serving</h3>
+            <div className="grid grid-cols-3 gap-3 text-center">
+              <div className="bg-[var(--cream-100)] rounded-xl p-2">
+                <p className="text-lg font-semibold text-[var(--forest-800)]">{details.nutrition.calories}</p>
+                <p className="text-xs text-[var(--text-muted)]">Calories</p>
+              </div>
+              <div className="bg-[var(--cream-100)] rounded-xl p-2">
+                <p className="text-lg font-semibold text-[var(--forest-800)]">{details.nutrition.protein}g</p>
+                <p className="text-xs text-[var(--text-muted)]">Protein</p>
+              </div>
+              <div className="bg-[var(--cream-100)] rounded-xl p-2">
+                <p className="text-lg font-semibold text-[var(--forest-800)]">{details.nutrition.carbs}g</p>
+                <p className="text-xs text-[var(--text-muted)]">Carbs</p>
+              </div>
+              <div className="bg-[var(--cream-100)] rounded-xl p-2">
+                <p className="text-lg font-semibold text-[var(--forest-800)]">{details.nutrition.fat}g</p>
+                <p className="text-xs text-[var(--text-muted)]">Fat</p>
+              </div>
+              <div className="bg-[var(--cream-100)] rounded-xl p-2">
+                <p className="text-lg font-semibold text-[var(--forest-800)]">{details.nutrition.fiber}g</p>
+                <p className="text-xs text-[var(--text-muted)]">Fiber</p>
+              </div>
+              <div className="bg-[var(--cream-100)] rounded-xl p-2">
+                <p className="text-lg font-semibold text-[var(--forest-800)]">{details.nutrition.sodium}mg</p>
+                <p className="text-xs text-[var(--text-muted)]">Sodium</p>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Action Buttons */}
         <div className="mt-6 flex gap-3">
