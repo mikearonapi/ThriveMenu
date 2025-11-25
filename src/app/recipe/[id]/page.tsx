@@ -25,16 +25,41 @@ import {
 import { cn } from "@/lib/utils";
 import { getRecipeById } from "@/data/recipes";
 import { getRecipeDetails, RecipeDetails, Ingredient } from "@/data/recipe-details";
+import RatingStars from "@/components/recipe/RatingStars";
 
 export default function RecipePage() {
   const params = useParams();
   const router = useRouter();
   const { isAuthenticated } = useAuth();
   const [isFavorited, setIsFavorited] = useState(false);
-  const [userRating, setUserRating] = useState<number | null>(null);
   const [servings, setServings] = useState(4);
   const [activeTab, setActiveTab] = useState<"ingredients" | "instructions">("ingredients");
   const [showLoginPrompt, setShowLoginPrompt] = useState(false);
+  const [ratingData, setRatingData] = useState<{
+    averageRating: number;
+    totalRatings: number;
+    userRating: number | null;
+  } | null>(null);
+
+  // Fetch rating data on mount
+  useEffect(() => {
+    async function fetchRatings() {
+      try {
+        const response = await fetch(`/api/recipes/${params.id}/ratings`);
+        if (response.ok) {
+          const data = await response.json();
+          setRatingData({
+            averageRating: data.averageRating || 0,
+            totalRatings: data.totalRatings || 0,
+            userRating: null, // Will be set based on authenticated user
+          });
+        }
+      } catch (error) {
+        console.error("Error fetching ratings:", error);
+      }
+    }
+    fetchRatings();
+  }, [params.id]);
 
   const recipe = getRecipeById(params.id as string);
   const details = getRecipeDetails(params.id as string);
@@ -75,6 +100,26 @@ export default function RecipePage() {
   ].filter(Boolean);
 
   const baseServings = details?.servings || recipe.servings || 4;
+
+  // Fetch rating data on mount
+  useEffect(() => {
+    async function fetchRatings() {
+      try {
+        const response = await fetch(`/api/recipes/${params.id}/ratings`);
+        if (response.ok) {
+          const data = await response.json();
+          setRatingData({
+            averageRating: data.averageRating || 0,
+            totalRatings: data.totalRatings || 0,
+            userRating: data.ratings?.find((r: any) => r.userId === "current")?.rating || null,
+          });
+        }
+      } catch (error) {
+        console.error("Error fetching ratings:", error);
+      }
+    }
+    fetchRatings();
+  }, [params.id]);
 
   return (
     <div className="min-h-screen pb-24 style={{ backgroundColor: 'var(--cream-100)' }}">
@@ -397,46 +442,32 @@ export default function RecipePage() {
                 Sign in to rate this recipe and help others discover great meals.
               </p>
               <button
-                onClick={() => router.push("/login")}
+                onClick={() => router.push(`/login?redirect=/recipe/${params.id}`)}
                 className="text-sm text-sage-600 font-medium hover:text-sage-700 underline"
               >
                 Sign in to rate
               </button>
             </div>
           ) : (
-            <div className="flex items-center gap-1">
-              {[1, 2, 3, 4, 5].map((star) => (
-                <button
-                  key={star}
-                  onClick={async () => {
-                    setUserRating(star);
-                    // TODO: Call API to submit rating
-                    try {
-                      const response = await fetch(`/api/recipes/${params.id}/ratings`, {
-                        method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({ rating: star }),
-                      });
-                      if (response.ok) {
-                        // Rating saved successfully
-                      }
-                    } catch (error) {
-                      console.error("Error submitting rating:", error);
-                    }
-                  }}
-                  className="w-10 h-10 flex items-center justify-center hover:scale-110 transition-transform"
-                >
-                  <Star
-                    className={cn(
-                      "w-7 h-7 transition-colors",
-                      userRating && star <= userRating
-                        ? "text-terracotta-400 fill-current"
-                        : "text-gray-300 hover:text-terracotta-300"
-                    )}
-                  />
-                </button>
-              ))}
-            </div>
+            <RatingStars
+              recipeId={params.id as string}
+              initialRating={ratingData?.userRating || null}
+              averageRating={ratingData?.averageRating}
+              totalRatings={ratingData?.totalRatings}
+              interactive={true}
+              onRatingChange={(rating) => {
+                // Refresh rating data after rating
+                fetch(`/api/recipes/${params.id}/ratings`)
+                  .then((res) => res.json())
+                  .then((data) => {
+                    setRatingData({
+                      averageRating: data.averageRating || 0,
+                      totalRatings: data.totalRatings || 0,
+                      userRating: rating,
+                    });
+                  });
+              }}
+            />
           )}
         </div>
 

@@ -3,7 +3,6 @@
 
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import GoogleProvider from "next-auth/providers/google";
 import bcrypt from "bcryptjs";
 
 // Mock user database (will be replaced with Prisma later)
@@ -70,15 +69,6 @@ export const authOptions: NextAuthOptions = {
         };
       },
     }),
-    // Google OAuth (optional - requires environment variables)
-    ...(process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET
-      ? [
-          GoogleProvider({
-            clientId: process.env.GOOGLE_CLIENT_ID,
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-          }),
-        ]
-      : []),
   ],
   session: {
     strategy: "jwt",

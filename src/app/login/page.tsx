@@ -9,8 +9,9 @@ import { Eye, EyeOff, Leaf, ArrowRight, Heart } from "lucide-react";
 export default function LoginPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get("callbackUrl") || "/";
+  const callbackUrl = searchParams.get("callbackUrl") || searchParams.get("redirect") || "/";
   const error = searchParams.get("error");
+  const registered = searchParams.get("registered");
   
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -71,6 +72,13 @@ export default function LoginPage() {
               Sign in to continue your nourishing journey
             </p>
           </div>
+
+          {/* Success Message */}
+          {registered && (
+            <div className="mb-6 p-4 rounded-xl bg-sage-50 border border-sage-300 text-sage-700 text-sm">
+              Account created successfully! Please sign in with your email and password.
+            </div>
+          )}
 
           {/* Error Message */}
           {(error || formError) && (

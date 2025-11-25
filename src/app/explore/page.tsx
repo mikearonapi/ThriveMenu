@@ -38,6 +38,7 @@ export default function ExplorePage() {
   const [selectedMeal, setSelectedMeal] = useState(initialMeal);
   const [activeFilters, setActiveFilters] = useState<string[]>([]);
   const [showFilters, setShowFilters] = useState(false);
+  const [showSuggestions, setShowSuggestions] = useState(false);
 
   const toggleFilter = (filterId: string) => {
     setActiveFilters((prev) =>
