@@ -152,18 +152,21 @@ async function main() {
 
         // Ingredients - create ingredients first, then link
         ingredients: {
-          create: await Promise.all(
-            (details?.ingredients || []).map(async (ing, idx) => {
+          create: await (async () => {
+            const ingredientData = [];
+            for (let idx = 0; idx < (details?.ingredients || []).length; idx++) {
+              const ing = details!.ingredients[idx];
               const ingredientId = await getOrCreateIngredient(ing.name, "OTHER");
-              return {
+              ingredientData.push({
                 ingredientId,
                 amount: parseFloat(ing.amount) || 0,
                 unit: ing.unit,
                 preparation: ing.preparation,
                 orderIndex: idx,
-              };
-            })
-          ),
+              });
+            }
+            return ingredientData;
+          })(),
         },
 
         // Instructions
