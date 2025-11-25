@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import {
   Leaf,
   Heart,
@@ -11,20 +12,24 @@ import {
   ArrowRight,
   Sun,
   Moon,
-  Coffee,
+  Cookie,
+  Salad,
+  Fish,
+  TrendingUp,
 } from "lucide-react";
 import RecipeCard from "@/components/recipe/RecipeCard";
 import HealthGoalCard from "@/components/health/HealthGoalCard";
 import QuickFilterChip from "@/components/ui/QuickFilterChip";
 import { breakfastRecipes, lunchRecipes, dinnerRecipes, snackRecipes } from "@/data/recipes";
+import { getRecipeImage } from "@/lib/images";
 
 // Get current meal suggestion based on time of day
 function getCurrentMealSuggestion() {
   const hour = new Date().getHours();
   if (hour < 11) return { type: "BREAKFAST", label: "breakfast", icon: Sun, recipes: breakfastRecipes };
-  if (hour < 15) return { type: "LUNCH", label: "lunch", icon: Sun, recipes: lunchRecipes };
+  if (hour < 15) return { type: "LUNCH", label: "lunch", icon: Salad, recipes: lunchRecipes };
   if (hour < 19) return { type: "DINNER", label: "dinner", icon: Moon, recipes: dinnerRecipes };
-  return { type: "SNACK", label: "evening snack", icon: Coffee, recipes: snackRecipes };
+  return { type: "SNACK", label: "evening snack", icon: Cookie, recipes: snackRecipes };
 }
 
 export default function HomePage() {
@@ -38,124 +43,164 @@ export default function HomePage() {
     { id: "omega3", label: "Omega-3 Rich", icon: Leaf },
   ];
 
-  // Get a few featured recipes for the current meal
-  const featuredRecipes = currentMeal.recipes.slice(0, 6);
+  // Get featured recipe
+  const featuredRecipe = currentMeal.recipes[0];
 
   return (
     <div className="min-h-screen pb-24 bg-[var(--cream-100)]">
-      {/* Hero Section */}
-      <header className="relative overflow-hidden bg-white pb-6 rounded-b-[2rem] shadow-sm border-b border-[var(--cream-200)]">
-        <div className="px-5 pt-12 pb-4">
+      {/* Hero Section with Featured Recipe */}
+      <header className="relative overflow-hidden">
+        {/* Background with subtle pattern */}
+        <div className="absolute inset-0 bg-gradient-to-b from-white via-[var(--cream-50)] to-[var(--cream-100)]" />
+        <div 
+          className="absolute inset-0 opacity-[0.02]"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 50c0-13.8 11.2-25 25-25s25 11.2 25 25-11.2 25-25 25c0 13.8-11.2 25-25 25s-25-11.2-25-25 11.2-25 25-25c-13.8 0-25-11.2-25-25s11.2-25 25-25 25 11.2 25 25c13.8 0 25 11.2 25 25s-11.2 25-25 25' fill='%2387a878' fill-opacity='0.4' fill-rule='evenodd'/%3E%3C/svg%3E")`,
+          }}
+        />
+
+        <div className="relative px-5 pt-14 pb-8">
           {/* Greeting */}
-          <div className="mb-6 animate-fade-in">
-            <p className="text-[var(--sage-600)] text-sm font-medium mb-1 tracking-wide uppercase">
+          <div className="mb-8 animate-fade-in">
+            <p className="text-[var(--sage-600)] text-xs font-semibold mb-2 tracking-wider uppercase">
               {getTimeOfDay()}, Christine
             </p>
             <h1
-              className="text-4xl font-medium text-[var(--forest-900)] leading-tight"
+              className="text-4xl font-semibold text-[var(--forest-900)] leading-tight mb-1"
               style={{ fontFamily: "var(--font-serif)" }}
             >
               What shall we
               <br />
-              <span className="text-[var(--sage-600)] italic">cook today?</span>
+              <span className="text-[var(--sage-600)] italic font-normal">cook today?</span>
             </h1>
           </div>
 
-          {/* Current Meal Suggestion Card */}
-          <div
-            className="bg-[var(--forest-900)] rounded-2xl p-6 shadow-xl text-white animate-slide-up relative overflow-hidden group cursor-pointer"
-            style={{ animationDelay: "0.1s" }}
-          >
-            {/* Background Image Effect */}
-            <div className="absolute inset-0 opacity-20 group-hover:opacity-30 transition-opacity duration-500">
-               {/* We can put a dynamic image here if we want, for now a gradient is fine */}
-               <div className="absolute inset-0 bg-gradient-to-br from-[var(--sage-800)] to-black" />
-            </div>
-
-            <div className="relative z-10">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center border border-white/20">
-                  <currentMeal.icon className="w-5 h-5 text-[var(--sage-200)]" />
+          {/* Featured Recipe Card - Premium Design */}
+          {featuredRecipe && (
+            <Link 
+              href={`/recipe/${featuredRecipe.id}`}
+              className="block group"
+            >
+              <div className="relative rounded-3xl overflow-hidden shadow-xl border border-white/50 bg-white">
+                {/* Recipe Image */}
+                <div className="relative h-[280px] overflow-hidden bg-[var(--cream-200)]">
+                  <div className="absolute inset-0">
+                    <Image
+                      src={getRecipeImage(featuredRecipe.name, featuredRecipe.category)}
+                      alt={featuredRecipe.name}
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-110"
+                      priority
+                      sizes="(max-width: 768px) 100vw, 600px"
+                    />
+                  </div>
+                  {/* Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[var(--forest-900)]/80 via-[var(--forest-900)]/20 to-transparent" />
+                  
+                  {/* Badges */}
+                  <div className="absolute top-4 left-4 flex gap-2">
+                    {featuredRecipe.hasOmega3 && (
+                      <div className="px-3 py-1.5 bg-white/95 backdrop-blur-sm rounded-full flex items-center gap-1.5 shadow-lg">
+                        <Fish className="w-4 h-4 text-[var(--sage-600)]" />
+                        <span className="text-xs font-semibold text-[var(--forest-800)]">Omega-3</span>
+                      </div>
+                    )}
+                    {featuredRecipe.isHeartHealthy && (
+                      <div className="px-3 py-1.5 bg-white/95 backdrop-blur-sm rounded-full flex items-center gap-1.5 shadow-lg">
+                        <Heart className="w-4 h-4 text-[var(--rose-500)]" />
+                        <span className="text-xs font-semibold text-[var(--forest-800)]">Heart Healthy</span>
+                      </div>
+                    )}
+                  </div>
                 </div>
-                <div>
-                  <p className="text-xs text-[var(--sage-200)] font-medium uppercase tracking-wider">
-                    Featured for {currentMeal.label}
-                  </p>
+
+                {/* Content */}
+                <div className="p-6 bg-white">
+                  <div className="flex items-center gap-2 mb-2">
+                    <currentMeal.icon className="w-4 h-4 text-[var(--sage-600)]" />
+                    <span className="text-xs font-semibold text-[var(--sage-600)] uppercase tracking-wider">
+                      Featured for {currentMeal.label}
+                    </span>
+                  </div>
+                  
+                  <h2
+                    className="text-2xl font-semibold text-[var(--forest-900)] mb-3 leading-tight"
+                    style={{ fontFamily: "var(--font-serif)" }}
+                  >
+                    {featuredRecipe.name}
+                  </h2>
+                  
+                  <div className="flex items-center gap-4 text-sm text-[var(--text-muted)] mb-5">
+                    {featuredRecipe.totalTime && (
+                      <span className="flex items-center gap-1.5">
+                        <Clock className="w-4 h-4" />
+                        {featuredRecipe.totalTime} min
+                      </span>
+                    )}
+                    {featuredRecipe.isKidFriendly && (
+                      <span className="flex items-center gap-1.5 text-[var(--terracotta-600)]">
+                        <ChefHat className="w-4 h-4" />
+                        Kid-friendly
+                      </span>
+                    )}
+                  </div>
+
+                  <div className="flex items-center gap-2 text-[var(--sage-600)] font-semibold group-hover:gap-3 transition-all">
+                    <span>Start Cooking</span>
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </div>
                 </div>
               </div>
-              
-              <h2
-                className="text-2xl font-medium mb-2"
-                style={{ fontFamily: "var(--font-serif)" }}
-              >
-                {featuredRecipes[0]?.name || "Golden Turmeric Oatmeal"}
-              </h2>
-              
-              <div className="flex items-center gap-4 text-sm text-[var(--sage-100)] mb-6">
-                <span className="flex items-center gap-1.5">
-                  <Clock className="w-4 h-4" />
-                  25 min
-                </span>
-                <span className="flex items-center gap-1.5">
-                  <Heart className="w-4 h-4 text-[var(--rose-300)]" />
-                  Heart Healthy
-                </span>
-              </div>
-
-              <Link
-                href={`/recipe/${featuredRecipes[0]?.id || "golden-turmeric-oatmeal"}`}
-                className="w-full bg-white text-[var(--forest-900)] py-3.5 rounded-xl font-medium flex items-center justify-center gap-2 hover:bg-[var(--cream-100)] transition-colors"
-              >
-                <ChefHat className="w-4 h-4" />
-                Start Cooking
-              </Link>
-            </div>
-          </div>
+            </Link>
+          )}
         </div>
       </header>
 
       {/* Health Goals Section */}
-      <section className="px-5 py-8">
-        <div className="flex items-center justify-between mb-5">
-          <h2
-            className="text-xl font-medium text-[var(--forest-900)]"
-            style={{ fontFamily: "var(--font-serif)" }}
-          >
-            Your Health Goals
-          </h2>
+      <section className="px-5 py-8 -mt-2">
+        <div className="flex items-center justify-between mb-6">
+          <div>
+            <h2
+              className="text-2xl font-semibold text-[var(--forest-900)] mb-1"
+              style={{ fontFamily: "var(--font-serif)" }}
+            >
+              Your Health Goals
+            </h2>
+            <p className="text-sm text-[var(--text-muted)]">Track your progress</p>
+          </div>
           <Link
             href="/profile"
-            className="text-xs font-medium text-[var(--sage-600)] flex items-center gap-1 hover:text-[var(--sage-800)] transition-colors"
+            className="text-xs font-semibold text-[var(--sage-600)] flex items-center gap-1 hover:text-[var(--sage-800)] transition-colors"
           >
             View All <ArrowRight className="w-3 h-3" />
           </Link>
         </div>
 
-        <div className="flex gap-4 overflow-x-auto hide-scrollbar pb-4 -mx-5 px-5 stagger-children snap-x">
-          <div className="snap-start min-w-[240px]">
+        <div className="flex gap-4 overflow-x-auto hide-scrollbar pb-4 -mx-5 px-5 snap-x snap-mandatory">
+          <div className="snap-start flex-shrink-0">
             <HealthGoalCard
               title="Omega-3s"
               subtitle="2x this week"
               progress={66}
-              icon="🌊"
+              icon={<Fish className="w-6 h-6" />}
               color="sage"
             />
           </div>
-          <div className="snap-start min-w-[240px]">
+          <div className="snap-start flex-shrink-0">
             <HealthGoalCard
               title="Daily Fiber"
               subtitle="25g target"
               progress={80}
-              icon="🥬"
+              icon={<Leaf className="w-6 h-6" />}
               color="forest"
             />
           </div>
-          <div className="snap-start min-w-[240px]">
+          <div className="snap-start flex-shrink-0">
             <HealthGoalCard
               title="Heart Health"
               subtitle="On track"
               progress={90}
-              icon="❤️"
+              icon={<Heart className="w-6 h-6" />}
               color="rose"
             />
           </div>
@@ -164,8 +209,12 @@ export default function HomePage() {
 
       {/* Quick Filters */}
       <section className="px-5 pb-6">
-        <h2 className="text-sm font-medium text-[var(--text-muted)] mb-3 uppercase tracking-wider">Browse by Need</h2>
-        <div className="flex flex-wrap gap-2">
+        <h2 
+          className="text-xs font-semibold text-[var(--text-muted)] mb-4 uppercase tracking-wider"
+        >
+          Browse by Need
+        </h2>
+        <div className="flex flex-wrap gap-2.5">
           {quickFilters.map((filter) => (
             <QuickFilterChip
               key={filter.id}
@@ -183,23 +232,48 @@ export default function HomePage() {
       </section>
 
       {/* Recipe Sections */}
-      <RecipeSection title="Breakfast" recipes={breakfastRecipes} link="/explore?meal=breakfast" />
-      <RecipeSection title="Lunch" recipes={lunchRecipes} link="/explore?meal=lunch" />
-      <RecipeSection title="Dinner" recipes={dinnerRecipes} link="/explore?meal=dinner" />
-      <RecipeSection title="Snacks" recipes={snackRecipes} link="/explore?meal=snack" />
+      <RecipeSection 
+        title="Breakfast" 
+        icon={Sun}
+        recipes={breakfastRecipes} 
+        link="/explore?meal=breakfast" 
+      />
+      <RecipeSection 
+        title="Lunch" 
+        icon={Salad}
+        recipes={lunchRecipes} 
+        link="/explore?meal=lunch" 
+      />
+      <RecipeSection 
+        title="Dinner" 
+        icon={Moon}
+        recipes={dinnerRecipes} 
+        link="/explore?meal=dinner" 
+      />
+      <RecipeSection 
+        title="Snacks & Beverages" 
+        icon={Cookie}
+        recipes={snackRecipes} 
+        link="/explore?meal=snack" 
+      />
 
       {/* Wellness Tip Card */}
-      <section className="px-5 pb-8 pt-4">
+      <section className="px-5 pb-8 pt-6">
         <div
-          className="rounded-2xl p-6 relative overflow-hidden shadow-sm"
+          className="rounded-3xl p-6 relative overflow-hidden shadow-lg border border-[var(--sage-200)]"
           style={{
-            background: "linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%)",
+            background: "linear-gradient(135deg, var(--sage-50) 0%, var(--forest-50) 100%)",
           }}
         >
           <div className="relative z-10">
-            <p className="text-xs font-bold text-[var(--sage-700)] mb-2 uppercase tracking-wider flex items-center gap-2">
-              <Sparkles className="w-3 h-3" /> Daily Tip
-            </p>
+            <div className="flex items-center gap-2 mb-3">
+              <div className="w-8 h-8 rounded-lg bg-[var(--sage-200)] flex items-center justify-center">
+                <TrendingUp className="w-4 h-4 text-[var(--sage-700)]" />
+              </div>
+              <p className="text-xs font-bold text-[var(--sage-700)] uppercase tracking-wider">
+                Daily Tip for Graves&apos; Disease
+              </p>
+            </div>
             <p
               className="text-[var(--forest-900)] text-lg leading-relaxed"
               style={{ fontFamily: "var(--font-serif)" }}
@@ -208,27 +282,47 @@ export default function HomePage() {
               foods and soy near medication time.
             </p>
           </div>
+          {/* Decorative element */}
+          <div className="absolute -right-8 -bottom-8 w-32 h-32 rounded-full bg-[var(--sage-200)] opacity-20 blur-2xl" />
         </div>
       </section>
     </div>
   );
 }
 
-function RecipeSection({ title, recipes, link }: { title: string; recipes: any[]; link: string }) {
+function RecipeSection({ 
+  title, 
+  icon: Icon, 
+  recipes, 
+  link 
+}: { 
+  title: string; 
+  icon: typeof Sun;
+  recipes: any[]; 
+  link: string;
+}) {
   return (
     <section className="px-5 py-6 border-t border-[var(--cream-200)]">
       <div className="flex items-center justify-between mb-5">
-        <h2
-          className="text-2xl font-medium text-[var(--forest-900)]"
-          style={{ fontFamily: "var(--font-serif)" }}
-        >
-          {title}
-        </h2>
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-xl bg-[var(--sage-100)] flex items-center justify-center">
+            <Icon className="w-5 h-5 text-[var(--sage-600)]" />
+          </div>
+          <div>
+            <h2
+              className="text-2xl font-semibold text-[var(--forest-900)]"
+              style={{ fontFamily: "var(--font-serif)" }}
+            >
+              {title}
+            </h2>
+            <p className="text-xs text-[var(--text-muted)] mt-0.5">{recipes.length} recipes</p>
+          </div>
+        </div>
         <Link
           href={link}
-          className="text-xs font-medium text-[var(--sage-600)] flex items-center gap-1 hover:text-[var(--sage-800)]"
+          className="text-xs font-semibold text-[var(--sage-600)] flex items-center gap-1 hover:text-[var(--sage-800)] transition-colors"
         >
-          See All ({recipes.length}) <ArrowRight className="w-3 h-3" />
+          See All <ArrowRight className="w-3 h-3" />
         </Link>
       </div>
 

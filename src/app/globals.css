@@ -66,6 +66,10 @@
 }
 
 @layer base {
+  * {
+    @apply border-[var(--cream-200)];
+  }
+  
   html {
     @apply scroll-smooth;
     -webkit-tap-highlight-color: transparent;
@@ -73,10 +77,18 @@
   
   body {
     @apply font-sans text-[var(--text-primary)] bg-[var(--cream-100)] antialiased;
+    font-feature-settings: "kern" 1, "liga" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   h1, h2, h3, h4, h5, h6 {
     @apply font-serif font-medium tracking-tight;
+    font-feature-settings: "kern" 1, "liga" 1;
+  }
+  
+  img {
+    @apply select-none;
   }
 }
 

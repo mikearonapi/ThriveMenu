@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { Heart, Clock, Flame, Leaf, Fish, ChefHat } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
@@ -36,21 +37,25 @@ export default function RecipeCard({ recipe, compact = false }: RecipeCardProps)
   const displayImage = recipe.imageUrl || getRecipeImage(recipe.name, recipe.category);
 
   return (
-    <Link href={`/recipe/${recipe.id}`} className="block h-full">
+    <Link href={`/recipe/${recipe.id}`} className="block h-full group">
       <article
         className={cn(
-          "bg-white rounded-xl overflow-hidden shadow-sm border border-[var(--cream-200)] hover:shadow-md transition-all duration-300 h-full flex flex-col",
-          compact ? "max-w-[200px]" : "w-full"
+          "bg-white rounded-2xl overflow-hidden shadow-sm border border-[var(--cream-200)] hover:shadow-xl hover:-translate-y-1 transition-all duration-300 h-full flex flex-col",
+          compact ? "max-w-none" : "w-full"
         )}
       >
         {/* Image Section */}
-        <div className={cn("relative overflow-hidden bg-[var(--cream-100)]", compact ? "h-32" : "h-48")}>
-          <img
-            src={displayImage}
-            alt={recipe.name}
-            className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-            loading="lazy"
-          />
+        <div className={cn("relative overflow-hidden bg-[var(--cream-100)]", compact ? "h-36" : "h-48")}>
+          <div className="relative w-full h-full">
+            <Image
+              src={displayImage}
+              alt={recipe.name}
+              fill
+              sizes="(max-width: 768px) 50vw, 33vw"
+              className="object-cover transition-transform duration-700 group-hover:scale-110"
+              loading="lazy"
+            />
+          </div>
           
           {/* Overlay Gradient for Text Readability if we had text over image */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
@@ -95,12 +100,12 @@ export default function RecipeCard({ recipe, compact = false }: RecipeCardProps)
         {/* Content Section */}
         <div className="p-4 flex flex-col flex-grow">
           {/* Category & Time */}
-          <div className="flex items-center justify-between mb-1.5">
-            <p className="text-[10px] uppercase tracking-wider text-[var(--sage-600)] font-semibold truncate max-w-[60%]">
+          <div className="flex items-center justify-between mb-2">
+            <p className="text-[10px] uppercase tracking-wider text-[var(--sage-600)] font-bold truncate max-w-[60%]">
               {recipe.category}
             </p>
             {recipe.totalTime && (
-              <span className="flex items-center gap-1 text-[10px] text-[var(--text-muted)] font-medium">
+              <span className="flex items-center gap-1 text-[10px] text-[var(--text-muted)] font-semibold">
                 <Clock className="w-3 h-3" />
                 {recipe.totalTime}m
               </span>
@@ -109,7 +114,8 @@ export default function RecipeCard({ recipe, compact = false }: RecipeCardProps)
 
           {/* Title */}
           <h3
-            className="text-[15px] font-medium text-[var(--forest-900)] leading-snug mb-2 line-clamp-2 font-serif"
+            className="text-[15px] font-semibold text-[var(--forest-900)] leading-snug mb-3 line-clamp-2"
+            style={{ fontFamily: "var(--font-serif)" }}
           >
             {recipe.name}
           </h3>
