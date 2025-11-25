@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Heart, Clock, Flame, Leaf, Fish, ChefHat } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { getRecipeImage } from "@/lib/images";
 import { useAuth } from "@/hooks/useAuth";
 
@@ -36,9 +36,22 @@ export default function RecipeCard({ recipe, compact = false }: RecipeCardProps)
   const router = useRouter();
   const { isAuthenticated } = useAuth();
   const [isFavorited, setIsFavorited] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   
   // Use provided image or generate one from the recipe title
   const displayImage = recipe.imageUrl || getRecipeImage(recipe.name, recipe.category);
+
+  // Check if recipe is favorited on mount
+  useEffect(() => {
+    if (isAuthenticated) {
+      fetch(`/api/favorites/${recipe.id}`)
+        .then((res) => res.json())
+        .then((data) => setIsFavorited(data.isFavorited || false))
+        .catch(() => {
+          // Silently fail - will check favorites list instead
+        });
+    }
+  }, [recipe.id, isAuthenticated]);
 
   return (
     <Link href={`/recipe/${recipe.id}`} className="block h-full group">
@@ -64,21 +77,48 @@ export default function RecipeCard({ recipe, compact = false }: RecipeCardProps)
 
           {/* Favorite Button */}
           <button
-            onClick={(e) => {
+            onClick={async (e) => {
               e.preventDefault();
               e.stopPropagation();
               if (!isAuthenticated) {
                 router.push("/login?redirect=/recipe/" + recipe.id);
                 return;
               }
-              setIsFavorited(!isFavorited);
-              // TODO: Call API to save/unsave favorite
+
+              setIsLoading(true);
+              try {
+                if (isFavorited) {
+                  // Remove favorite
+                  const response = await fetch(`/api/favorites?recipeId=${recipe.id}`, {
+                    method: "DELETE",
+                  });
+                  if (response.ok) {
+                    setIsFavorited(false);
+                  }
+                } else {
+                  // Add favorite
+                  const response = await fetch("/api/favorites", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ recipeId: recipe.id }),
+                  });
+                  if (response.ok) {
+                    setIsFavorited(true);
+                  }
+                }
+              } catch (error) {
+                console.error("Error toggling favorite:", error);
+              } finally {
+                setIsLoading(false);
+              }
             }}
+            disabled={isLoading}
             className={cn(
               "absolute top-2 right-2 w-8 h-8 rounded-full flex items-center justify-center transition-all backdrop-blur-md shadow-sm",
               isFavorited
                 ? "bg-rose-500 text-white"
-                : "bg-white/80 text-gray-500 hover:bg-white hover:text-rose-500"
+                : "bg-white/80 text-gray-500 hover:bg-white hover:text-rose-500",
+              isLoading && "opacity-50 cursor-not-allowed"
             )}
             title={isAuthenticated ? (isFavorited ? "Remove from favorites" : "Save to favorites") : "Sign in to save"}
           >

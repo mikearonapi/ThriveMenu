@@ -32,6 +32,7 @@ export default function RecipePage() {
   const router = useRouter();
   const { isAuthenticated } = useAuth();
   const [isFavorited, setIsFavorited] = useState(false);
+  const [isFavoriting, setIsFavoriting] = useState(false);
   const [servings, setServings] = useState(4);
   const [activeTab, setActiveTab] = useState<"ingredients" | "instructions">("ingredients");
   const [showLoginPrompt, setShowLoginPrompt] = useState(false);
@@ -40,6 +41,25 @@ export default function RecipePage() {
     totalRatings: number;
     userRating: number | null;
   } | null>(null);
+
+  // Check if recipe is favorited on mount
+  useEffect(() => {
+    if (isAuthenticated && recipe) {
+      fetch(`/api/favorites/${recipe.id}`)
+        .then((res) => res.json())
+        .then((data) => setIsFavorited(data.isFavorited || false))
+        .catch(() => {
+          // Check favorites list instead
+          fetch("/api/favorites")
+            .then((res) => res.json())
+            .then((data) => {
+              const favoriteIds = data.favorites?.map((f: any) => f.recipeId) || [];
+              setIsFavorited(favoriteIds.includes(recipe.id));
+            })
+            .catch(() => {});
+        });
+    }
+  }, [recipe?.id, isAuthenticated]);
 
   // Fetch rating data on mount
   useEffect(() => {
@@ -51,7 +71,7 @@ export default function RecipePage() {
           setRatingData({
             averageRating: data.averageRating || 0,
             totalRatings: data.totalRatings || 0,
-            userRating: null, // Will be set based on authenticated user
+            userRating: data.userRating || null,
           });
         }
       } catch (error) {
@@ -59,7 +79,7 @@ export default function RecipePage() {
       }
     }
     fetchRatings();
-  }, [params.id]);
+  }, [params.id, isAuthenticated]);
 
   const recipe = getRecipeById(params.id as string);
   const details = getRecipeDetails(params.id as string);
@@ -140,19 +160,46 @@ export default function RecipePage() {
           </button>
           <div className="flex gap-2">
             <button
-              onClick={() => {
+              onClick={async () => {
                 if (!isAuthenticated) {
                   setShowLoginPrompt(true);
                   return;
                 }
-                setIsFavorited(!isFavorited);
-                // TODO: Call API to save/unsave favorite
+
+                setIsFavoriting(true);
+                try {
+                  if (isFavorited) {
+                    // Remove favorite
+                    const response = await fetch(`/api/favorites?recipeId=${params.id}`, {
+                      method: "DELETE",
+                    });
+                    if (response.ok) {
+                      setIsFavorited(false);
+                    }
+                  } else {
+                    // Add favorite
+                    const response = await fetch("/api/favorites", {
+                      method: "POST",
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify({ recipeId: params.id }),
+                    });
+                    if (response.ok) {
+                      setIsFavorited(true);
+                    }
+                  }
+                } catch (error) {
+                  console.error("Error toggling favorite:", error);
+                } finally {
+                  setIsFavoriting(false);
+                }
               }}
+              disabled={isFavoriting}
               className={cn(
                 "w-10 h-10 rounded-full flex items-center justify-center shadow-md transition-all",
                 isFavorited
                   ? "bg-rose-500 text-white"
-                  : "bg-white/90 backdrop-blur-sm text-gray-600"
+                  : "bg-white/90 backdrop-blur-sm text-gray-600",
+                isFavoriting && "opacity-50 cursor-not-allowed"
               )}
             >
               <Heart className={cn("w-5 h-5", isFavorited && "fill-current")} />

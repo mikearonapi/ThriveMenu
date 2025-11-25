@@ -8,16 +8,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/lib/auth";
-
-// Mock ratings storage (will be replaced with Prisma when database is connected)
-const mockRatings: Array<{
-  id: string;
-  userId: string;
-  recipeId: string;
-  rating: number;
-  createdAt: Date;
-  user?: { id: string; name: string; image: string | null };
-}> = [];
+import { mockRatings } from "@/lib/mock-storage";
 
 // GET - Get ratings for a recipe
 export async function GET(
@@ -48,9 +39,21 @@ export async function GET(
       count: ratings.filter((r) => r.rating === star).length,
     }));
 
+    // Get user's rating if authenticated
+    const session = await getServerSession(authOptions);
+    let userRating = null;
+    if (session && session.user) {
+      const userId = (session.user as any).id;
+      const userRatingObj = mockRatings.find(
+        (r) => r.userId === userId && r.recipeId === recipeId
+      );
+      userRating = userRatingObj?.rating || null;
+    }
+
     return NextResponse.json({
       averageRating: Math.round(averageRating * 10) / 10,
       totalRatings: ratings.length,
+      userRating,
       ratingCounts,
       ratings,
     });

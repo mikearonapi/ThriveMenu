@@ -5,19 +5,8 @@ import { useRouter } from "next/navigation";
 import { Heart, Clock, Star, Filter, Sun, Moon, Cookie, Zap, Calendar, Users, Sparkles, User } from "lucide-react";
 import { cn } from "@/lib/utils";
 import RecipeCard from "@/components/recipe/RecipeCard";
-import { breakfastRecipes, lunchRecipes, dinnerRecipes, snackRecipes } from "@/data/recipes";
+import { allRecipes, getRecipeById } from "@/data/recipes";
 import { useAuth } from "@/hooks/useAuth";
-
-// Sample favorites (would come from database/state)
-const sampleFavorites = [
-  breakfastRecipes[0], // Golden Turmeric Oatmeal
-  breakfastRecipes[6], // Mediterranean Veggie Scramble
-  lunchRecipes[1], // Salmon Nicoise
-  lunchRecipes[29], // Buddha Bowl
-  dinnerRecipes[0], // Lemon Herb Baked Salmon
-  dinnerRecipes[10], // Chickpea Curry
-  snackRecipes[0], // Apple with Almond Butter
-];
 
 const filterTabs = [
   { id: "all", label: "All" },
@@ -32,6 +21,8 @@ export default function FavoritesPage() {
   const { isAuthenticated, isLoading } = useAuth();
   const [activeTab, setActiveTab] = useState("all");
   const [sortBy, setSortBy] = useState<"recent" | "name" | "rating">("recent");
+  const [favoriteRecipes, setFavoriteRecipes] = useState<any[]>([]);
+  const [isLoadingFavorites, setIsLoadingFavorites] = useState(true);
 
   // Show loading state
   if (isLoading) {
@@ -85,10 +76,32 @@ export default function FavoritesPage() {
     );
   }
 
+  // Fetch user's favorites
+  useEffect(() => {
+    if (isAuthenticated) {
+      setIsLoadingFavorites(true);
+      fetch("/api/favorites")
+        .then((res) => res.json())
+        .then((data) => {
+          const favoriteIds = data.favorites?.map((f: any) => f.recipeId) || [];
+          const recipes = favoriteIds
+            .map((id: string) => getRecipeById(id))
+            .filter((r: any) => r !== null);
+          setFavoriteRecipes(recipes);
+        })
+        .catch((error) => {
+          console.error("Error fetching favorites:", error);
+        })
+        .finally(() => {
+          setIsLoadingFavorites(false);
+        });
+    }
+  }, [isAuthenticated]);
+
   const filteredFavorites =
     activeTab === "all"
-      ? sampleFavorites
-      : sampleFavorites.filter(
+      ? favoriteRecipes
+      : favoriteRecipes.filter(
           (r) => r.mealType.toLowerCase() === activeTab
         );
 
@@ -105,7 +118,7 @@ export default function FavoritesPage() {
           </h1>
           <div className="flex items-center gap-1 text-rose-500">
             <Heart className="w-5 h-5 fill-current" />
-            <span className="font-medium">{sampleFavorites.length}</span>
+            <span className="font-medium">{favoriteRecipes.length}</span>
           </div>
         </div>
         <p className="text-gray-600">
@@ -154,7 +167,11 @@ export default function FavoritesPage() {
 
       {/* Favorites Grid */}
       <div className="px-5 py-4">
-        {filteredFavorites.length > 0 ? (
+        {isLoadingFavorites ? (
+          <div className="flex items-center justify-center py-12">
+            <div className="w-8 h-8 border-2 border-sage-300 border-t-sage-600 rounded-full animate-spin" />
+          </div>
+        ) : filteredFavorites.length > 0 ? (
           <div className="grid grid-cols-2 gap-4 stagger-children">
             {filteredFavorites.map((recipe) => (
               <RecipeCard key={recipe.id} recipe={recipe} compact />
@@ -166,7 +183,7 @@ export default function FavoritesPage() {
       </div>
 
       {/* Recently Cooked Section */}
-      {activeTab === "all" && (
+      {activeTab === "all" && favoriteRecipes.length > 0 && (
         <section className="px-5 py-6">
           <h2
             className="text-lg font-medium text-forest-900 mb-4"
@@ -175,7 +192,7 @@ export default function FavoritesPage() {
             Recently Cooked
           </h2>
           <div className="space-y-3">
-            {sampleFavorites.slice(0, 3).map((recipe, idx) => (
+            {favoriteRecipes.slice(0, 3).map((recipe, idx) => (
               <div
                 key={idx}
                 className="bg-white rounded-xl p-3 shadow-sm border border-gray-300 flex items-center gap-3"

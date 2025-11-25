@@ -46,8 +46,19 @@ export default function RatingStars({
       });
 
       if (response.ok) {
+        const data = await response.json();
         setUserRating(rating);
         onRatingChange?.(rating);
+        
+        // Refresh rating data
+        const ratingsResponse = await fetch(`/api/recipes/${recipeId}/ratings`);
+        if (ratingsResponse.ok) {
+          const ratingsData = await ratingsResponse.json();
+          // Update parent component if callback provided
+          if (onRatingChange) {
+            onRatingChange(rating);
+          }
+        }
       } else {
         console.error("Failed to submit rating");
       }
