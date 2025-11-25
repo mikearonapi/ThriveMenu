@@ -45,7 +45,8 @@ async function uploadToVercelBlob(
   filename: string
 ): Promise<string> {
   try {
-    const blob = await put(filename, imageBuffer, {
+    // Convert Buffer to Blob for Vercel Blob Storage
+    const blob = await put(filename, imageBuffer as any, {
       access: 'public',
       contentType: 'image/jpeg',
       addRandomSuffix: false,
