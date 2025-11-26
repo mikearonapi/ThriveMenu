@@ -163,8 +163,8 @@ export default function ExplorePage() {
               placeholder="Search recipes..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-10 py-2.5 text-sm rounded-xl border bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 transition-all"
-              style={{ borderColor: 'var(--cream-200)', focusRing: 'var(--teal-500)' }}
+              className="w-full pl-10 pr-10 py-2.5 text-sm rounded-xl border bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-teal-500 transition-all"
+              style={{ borderColor: 'var(--cream-200)' }}
             />
             {searchQuery && (
               <button
