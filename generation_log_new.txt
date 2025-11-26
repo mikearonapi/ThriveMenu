@@ -1,0 +1,2133 @@
+
+> thrivemenu@1.0.0 generate-images
+> ts-node --compiler-options '{"module":"CommonJS"}' scripts/generate-all-recipe-images.ts
+
+[dotenv@17.2.3] injecting env (9) from .env.local -- tip: 🛠️  run anywhere with `dotenvx run -- yourcommand`
+[dotenv@17.2.3] injecting env (0) from .env -- tip: 📡 add observability to secrets: https://dotenvx.com/ops
+🚀 Starting batch image generation for all recipes...
+
+✅ Environment variables loaded
+
+prisma:info Starting a postgresql pool with 21 connections in PgBouncer mode.
+📋 Found 122 recipes in database
+
+[1/122] ⏭️  Skipping Golden Turmeric Oatmeal - already has Vercel Blob image
+[2/122] ⏭️  Skipping Overnight Berry Oats - already has Vercel Blob image
+[3/122] ⏭️  Skipping Savory Oat Bowl - already has Vercel Blob image
+[4/122] ⏭️  Skipping Apple Cinnamon Baked Oatmeal - already has Vercel Blob image
+[5/122] ⏭️  Skipping Maple Walnut Quinoa Porridge - already has Vercel Blob image
+[6/122] ⏭️  Skipping Banana Nut Oat Bran - already has Vercel Blob image
+[7/122] ⏭️  Skipping Mediterranean Veggie Scramble - already has Vercel Blob image
+[8/122] ⏭️  Skipping Shakshuka (Eggs in Tomato Sauce) - already has Vercel Blob image
+[9/122] ⏭️  Skipping Spinach & Mushroom Frittata - already has Vercel Blob image
+[10/122] ⏭️  Skipping Avocado Toast with Poached Egg - already has Vercel Blob image
+[11/122] ⏭️  Skipping Greek Omelet - already has Vercel Blob image
+[12/122] ⏭️  Skipping Huevos Rancheros (Healthified) - already has Vercel Blob image
+[13/122] ⏭️  Skipping Zucchini Egg Muffins - already has Vercel Blob image
+[14/122] ⏭️  Skipping Sweet Potato & Kale Hash with Eggs - already has Vercel Blob image
+[15/122] ⏭️  Skipping Smoked Salmon Eggs Benedict (Lightened) - already has Vercel Blob image
+[16/122] ⏭️  Skipping Green Goddess Smoothie - already has Vercel Blob image
+[17/122] ⏭️  Skipping Berry Antioxidant Blast - already has Vercel Blob image
+[18/122] ⏭️  Skipping Tropical Anti-Inflammatory Smoothie - already has Vercel Blob image
+[19/122] ⏭️  Skipping Chocolate Cherry Recovery Smoothie - already has Vercel Blob image
+[20/122] ⏭️  Skipping Açaí Power Bowl - already has Vercel Blob image
+[21/122] ⏭️  Skipping Peanut Butter Banana Smoothie - already has Vercel Blob image
+[22/122] ⏭️  Skipping Greek Yogurt Parfait - already has Vercel Blob image
+[23/122] ⏭️  Skipping Mediterranean Breakfast Bowl - already has Vercel Blob image
+[24/122] ⏭️  Skipping Chia Pudding with Mango - already has Vercel Blob image
+[25/122] ⏭️  Skipping Apple Pie Yogurt Bowl - already has Vercel Blob image
+[26/122] ⏭️  Skipping Oat Flour Banana Pancakes - already has Vercel Blob image
+[27/122] ⏭️  Skipping Almond Butter & Berry Toast - already has Vercel Blob image
+[28/122] ⏭️  Skipping Sweet Potato Toast - already has Vercel Blob image
+[29/122] ⏭️  Skipping Whole Grain Waffles with Berry Compote - already has Vercel Blob image
+[30/122] ⏭️  Skipping Ricotta Toast with Honey & Figs - already has Vercel Blob image
+[31/122] ⏭️  Skipping Hard-Boiled Eggs with Fruit - already has Vercel Blob image
+[32/122] ⏭️  Skipping Cottage Cheese with Peaches - already has Vercel Blob image
+[33/122] ⏭️  Skipping Whole Grain Cereal with Berries - already has Vercel Blob image
+[34/122] ⏭️  Skipping Banana with Almond Butter - already has Vercel Blob image
+[35/122] ⏭️  Skipping Trail Mix Breakfast Jar - already has Vercel Blob image
+[36/122] ⏭️  Skipping Classic Greek Salad - already has Vercel Blob image
+[37/122] ⏭️  Skipping Salmon Niçoise Salad - already has Vercel Blob image
+[38/122] ⏭️  Skipping Kale Caesar with Chickpeas - already has Vercel Blob image
+[39/122] ⏭️  Skipping Mediterranean Quinoa Salad - already has Vercel Blob image
+[40/122] ⏭️  Skipping Asian Sesame Chicken Salad - already has Vercel Blob image
+[41/122] ⏭️  Skipping Roasted Beet & Goat Cheese Salad - already has Vercel Blob image
+[42/122] ⏭️  Skipping Tuna & White Bean Salad - already has Vercel Blob image
+[43/122] ⏭️  Skipping Southwest Black Bean Salad - already has Vercel Blob image
+[44/122] ⏭️  Skipping Strawberry Spinach Salad - already has Vercel Blob image
+[45/122] ⏭️  Skipping Farro & Roasted Vegetable Salad - already has Vercel Blob image
+[46/122] ⏭️  Skipping Thai Peanut Crunch Salad - already has Vercel Blob image
+[47/122] ⏭️  Skipping Lemony Lentil Salad - already has Vercel Blob image
+[48/122] ⏭️  Skipping Tuscan White Bean & Kale Soup - already has Vercel Blob image
+[49/122] ⏭️  Skipping Lemon Chicken Orzo Soup - already has Vercel Blob image
+[50/122] ⏭️  Skipping Moroccan Chickpea Stew - already has Vercel Blob image
+[51/122] ⏭️  Skipping Minestrone Soup - already has Vercel Blob image
+[52/122] ⏭️  Skipping Butternut Squash Soup - already has Vercel Blob image
+[53/122] ⏭️  Skipping Greek Lemon Chicken Soup (Avgolemono) - already has Vercel Blob image
+[54/122] ⏭️  Skipping Black Bean Soup with Lime - already has Vercel Blob image
+[55/122] ⏭️  Skipping Roasted Tomato Basil Soup - already has Vercel Blob image
+[56/122] ⏭️  Skipping Seafood Chowder (Lightened) - already has Vercel Blob image
+[57/122] ⏭️  Skipping Mediterranean Turkey Wrap - already has Vercel Blob image
+[58/122] ⏭️  Skipping Salmon Salad Sandwich - already has Vercel Blob image
+[59/122] ⏭️  Skipping Caprese Panini - already has Vercel Blob image
+[60/122] ⏭️  Skipping Hummus Veggie Wrap - already has Vercel Blob image
+[61/122] ⏭️  Skipping Grilled Chicken Pesto Sandwich - already has Vercel Blob image
+[62/122] ⏭️  Skipping Avocado BLT (Turkey Bacon) - already has Vercel Blob image
+[63/122] ⏭️  Skipping Falafel Pita Pocket - already has Vercel Blob image
+[64/122] ⏭️  Skipping Tuna Melt (Open-Faced) - already has Vercel Blob image
+[65/122] ⏭️  Skipping Chicken Shawarma Wrap - already has Vercel Blob image
+[66/122] 🎨 Generating image for: Buddha Bowl
+🎨 Generating AI image for: Buddha Bowl
+🎨 Gemini 2.0 Flash generating: "Buddha Bowl"
+   ✅ Gemini 2.0 Flash generated image for Buddha Bowl
+   📤 Uploading to Vercel Blob: recipes/cmif4lkfl009szuv1omp3tpu5.jpg
+   ✅ SUCCESS: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lkfl009szuv1omp3tpu5.jpg
+   ✅ Success: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lkfl009szuv1omp3tpu5.jpg
+
+[67/122] 🎨 Generating image for: Poke Bowl (Salmon)
+🎨 Generating AI image for: Poke Bowl (Salmon)
+🎨 Gemini 2.0 Flash generating: "Poke Bowl (Salmon)"
+   ✅ Gemini 2.0 Flash generated image for Poke Bowl (Salmon)
+   📤 Uploading to Vercel Blob: recipes/cmif4lkhv00akzuv1pmvjykl5.jpg
+   ✅ SUCCESS: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lkhv00akzuv1pmvjykl5.jpg
+   ✅ Success: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lkhv00akzuv1pmvjykl5.jpg
+
+[68/122] 🎨 Generating image for: Mediterranean Grain Bowl
+🎨 Generating AI image for: Mediterranean Grain Bowl
+🎨 Gemini 2.0 Flash generating: "Mediterranean Grain Bowl"
+   ✅ Gemini 2.0 Flash generated image for Mediterranean Grain Bowl
+   📤 Uploading to Vercel Blob: recipes/cmif4lkiu00alzuv1c3l0vj1b.jpg
+   ✅ SUCCESS: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lkiu00alzuv1c3l0vj1b.jpg
+   ✅ Success: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lkiu00alzuv1c3l0vj1b.jpg
+
+[69/122] 🎨 Generating image for: Burrito Bowl
+🎨 Generating AI image for: Burrito Bowl
+🎨 Gemini 2.0 Flash generating: "Burrito Bowl"
+   ✅ Gemini 2.0 Flash generated image for Burrito Bowl
+   📤 Uploading to Vercel Blob: recipes/cmif4lkjr00amzuv122zvctbh.jpg
+   ✅ SUCCESS: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lkjr00amzuv122zvctbh.jpg
+   ✅ Success: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lkjr00amzuv122zvctbh.jpg
+
+[70/122] ⏭️  Skipping Teriyaki Salmon Bowl - already has Vercel Blob image
+[71/122] ⏭️  Skipping Falafel Bowl - already has Vercel Blob image
+[72/122] 🎨 Generating image for: Korean Bibimbap Bowl
+🎨 Generating AI image for: Korean Bibimbap Bowl
+🎨 Gemini 2.0 Flash generating: "Korean Bibimbap Bowl"
+   ✅ Gemini 2.0 Flash generated image for Korean Bibimbap Bowl
+   📤 Uploading to Vercel Blob: recipes/cmif4lkmu00apzuv188qqcl8o.jpg
+   ✅ SUCCESS: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lkmu00apzuv188qqcl8o.jpg
+   ✅ Success: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lkmu00apzuv188qqcl8o.jpg
+
+[73/122] 🎨 Generating image for: Harvest Bowl
+🎨 Generating AI image for: Harvest Bowl
+🎨 Gemini 2.0 Flash generating: "Harvest Bowl"
+   ✅ Gemini 2.0 Flash generated image for Harvest Bowl
+   📤 Uploading to Vercel Blob: recipes/cmif4lknw00aqzuv1rkvkiud7.jpg
+   ✅ SUCCESS: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lknw00aqzuv1rkvkiud7.jpg
+   ✅ Success: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lknw00aqzuv1rkvkiud7.jpg
+
+[74/122] 🎨 Generating image for: Grilled Cheese & Tomato Soup
+🎨 Generating AI image for: Grilled Cheese & Tomato Soup
+🎨 Gemini 2.0 Flash generating: "Grilled Cheese & Tomato Soup"
+   ✅ Gemini 2.0 Flash generated image for Grilled Cheese & Tomato Soup
+   📤 Uploading to Vercel Blob: recipes/cmif4lkp000arzuv1v5izciqq.jpg
+   ✅ SUCCESS: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lkp000arzuv1v5izciqq.jpg
+   ✅ Success: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lkp000arzuv1v5izciqq.jpg
+
+[75/122] 🎨 Generating image for: Chicken Quesadilla with Guacamole
+🎨 Generating AI image for: Chicken Quesadilla with Guacamole
+🎨 Gemini 2.0 Flash generating: "Chicken Quesadilla with Guacamole"
+   ✅ Gemini 2.0 Flash generated image for Chicken Quesadilla with Guacamole
+   📤 Uploading to Vercel Blob: recipes/cmif4lkq500aszuv1l9whcsws.jpg
+   ✅ SUCCESS: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lkq500aszuv1l9whcsws.jpg
+   ✅ Success: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lkq500aszuv1l9whcsws.jpg
+
+[76/122] 🎨 Generating image for: Turkey Meatball Subs
+🎨 Generating AI image for: Turkey Meatball Subs
+🎨 Gemini 2.0 Flash generating: "Turkey Meatball Subs"
+   ✅ Gemini 2.0 Flash generated image for Turkey Meatball Subs
+   📤 Uploading to Vercel Blob: recipes/cmif4lkr700atzuv1qi0ajdrh.jpg
+   ✅ SUCCESS: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lkr700atzuv1qi0ajdrh.jpg
+   ✅ Success: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lkr700atzuv1qi0ajdrh.jpg
+
+[77/122] 🎨 Generating image for: Pizza Bagels (Whole Grain)
+🎨 Generating AI image for: Pizza Bagels (Whole Grain)
+🎨 Gemini 2.0 Flash generating: "Pizza Bagels (Whole Grain)"
+   ✅ Gemini 2.0 Flash generated image for Pizza Bagels (Whole Grain)
+   📤 Uploading to Vercel Blob: recipes/cmif4lks600auzuv1md7ux9oq.jpg
+   ✅ SUCCESS: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lks600auzuv1md7ux9oq.jpg
+   ✅ Success: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lks600auzuv1md7ux9oq.jpg
+
+[78/122] 🎨 Generating image for: Chicken Noodle Soup
+🎨 Generating AI image for: Chicken Noodle Soup
+🎨 Gemini 2.0 Flash generating: "Chicken Noodle Soup"
+   ✅ Gemini 2.0 Flash generated image for Chicken Noodle Soup
+   📤 Uploading to Vercel Blob: recipes/cmif4lkt500avzuv1jrh8gw94.jpg
+   ✅ SUCCESS: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lkt500avzuv1jrh8gw94.jpg
+   ✅ Success: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lkt500avzuv1jrh8gw94.jpg
+
+[79/122] 🎨 Generating image for: Veggie Fried Rice
+🎨 Generating AI image for: Veggie Fried Rice
+🎨 Gemini 2.0 Flash generating: "Veggie Fried Rice"
+   ✅ Gemini 2.0 Flash generated image for Veggie Fried Rice
+   📤 Uploading to Vercel Blob: recipes/cmif4lku800awzuv19ku55yc6.jpg
+   ✅ SUCCESS: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lku800awzuv19ku55yc6.jpg
+   ✅ Success: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lku800awzuv19ku55yc6.jpg
+
+[80/122] 🎨 Generating image for: Loaded Sweet Potato
+🎨 Generating AI image for: Loaded Sweet Potato
+🎨 Gemini 2.0 Flash generating: "Loaded Sweet Potato"
+   ✅ Gemini 2.0 Flash generated image for Loaded Sweet Potato
+   📤 Uploading to Vercel Blob: recipes/cmif4lkvc00axzuv1dpw8wc7r.jpg
+   ✅ SUCCESS: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lkvc00axzuv1dpw8wc7r.jpg
+   ✅ Success: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lkvc00axzuv1dpw8wc7r.jpg
+
+[81/122] 🎨 Generating image for: Lemon Herb Baked Salmon
+🎨 Generating AI image for: Lemon Herb Baked Salmon
+🎨 Gemini 2.0 Flash generating: "Lemon Herb Baked Salmon"
+   ✅ Gemini 2.0 Flash generated image for Lemon Herb Baked Salmon
+   📤 Uploading to Vercel Blob: recipes/cmif4ll1r00b3zuv1uyrrle7e.jpg
+   ✅ SUCCESS: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4ll1r00b3zuv1uyrrle7e.jpg
+   ✅ Success: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4ll1r00b3zuv1uyrrle7e.jpg
+
+[82/122] 🎨 Generating image for: Mediterranean Salmon with Tomatoes & Olives
+🎨 Generating AI image for: Mediterranean Salmon with Tomatoes & Olives
+🎨 Gemini 2.0 Flash generating: "Mediterranean Salmon with Tomatoes & Olives"
+   ✅ Gemini 2.0 Flash generated image for Mediterranean Salmon with Tomatoes & Olives
+   📤 Uploading to Vercel Blob: recipes/cmif4ll4700bqzuv1bzbln53l.jpg
+   ✅ SUCCESS: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4ll4700bqzuv1bzbln53l.jpg
+   ✅ Success: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4ll4700bqzuv1bzbln53l.jpg
+
+[83/122] 🎨 Generating image for: Garlic Butter Shrimp with Zucchini Noodles
+🎨 Generating AI image for: Garlic Butter Shrimp with Zucchini Noodles
+🎨 Gemini 2.0 Flash generating: "Garlic Butter Shrimp with Zucchini Noodles"
+   ✅ Gemini 2.0 Flash generated image for Garlic Butter Shrimp with Zucchini Noodles
+   📤 Uploading to Vercel Blob: recipes/cmif4ll5b00brzuv1p16ump1g.jpg
+   ✅ SUCCESS: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4ll5b00brzuv1p16ump1g.jpg
+   ✅ Success: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4ll5b00brzuv1p16ump1g.jpg
+
+[84/122] 🎨 Generating image for: Sheet Pan Salmon & Asparagus
+🎨 Generating AI image for: Sheet Pan Salmon & Asparagus
+🎨 Gemini 2.0 Flash generating: "Sheet Pan Salmon & Asparagus"
+   ✅ Gemini 2.0 Flash generated image for Sheet Pan Salmon & Asparagus
+   📤 Uploading to Vercel Blob: recipes/cmif4ll6900bszuv1rkimh18o.jpg
+   ✅ SUCCESS: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4ll6900bszuv1rkimh18o.jpg
+   ✅ Success: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4ll6900bszuv1rkimh18o.jpg
+
+[85/122] 🎨 Generating image for: Blackened Tilapia Tacos
+🎨 Generating AI image for: Blackened Tilapia Tacos
+🎨 Gemini 2.0 Flash generating: "Blackened Tilapia Tacos"
+   ✅ Gemini 2.0 Flash generated image for Blackened Tilapia Tacos
+   📤 Uploading to Vercel Blob: recipes/cmif4ll7e00btzuv1y5ya33c4.jpg
+   ✅ SUCCESS: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4ll7e00btzuv1y5ya33c4.jpg
+   ✅ Success: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4ll7e00btzuv1y5ya33c4.jpg
+
+[86/122] 🎨 Generating image for: Coconut Curry Shrimp
+🎨 Generating AI image for: Coconut Curry Shrimp
+🎨 Gemini 2.0 Flash generating: "Coconut Curry Shrimp"
+   ✅ Gemini 2.0 Flash generated image for Coconut Curry Shrimp
+   📤 Uploading to Vercel Blob: recipes/cmif4ll8h00buzuv1wuvac6zn.jpg
+   ✅ SUCCESS: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4ll8h00buzuv1wuvac6zn.jpg
+   ✅ Success: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4ll8h00buzuv1wuvac6zn.jpg
+
+[87/122] 🎨 Generating image for: Lemon Rosemary Roast Chicken
+🎨 Generating AI image for: Lemon Rosemary Roast Chicken
+🎨 Gemini 2.0 Flash generating: "Lemon Rosemary Roast Chicken"
+   ✅ Gemini 2.0 Flash generated image for Lemon Rosemary Roast Chicken
+   📤 Uploading to Vercel Blob: recipes/cmif4ll9k00bvzuv16wzbatne.jpg
+   ✅ SUCCESS: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4ll9k00bvzuv16wzbatne.jpg
+   ✅ Success: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4ll9k00bvzuv16wzbatne.jpg
+
+[88/122] 🎨 Generating image for: Greek Chicken with Roasted Vegetables
+🎨 Generating AI image for: Greek Chicken with Roasted Vegetables
+🎨 Gemini 2.0 Flash generating: "Greek Chicken with Roasted Vegetables"
+   ✅ Gemini 2.0 Flash generated image for Greek Chicken with Roasted Vegetables
+   📤 Uploading to Vercel Blob: recipes/cmif4llag00bwzuv1146th5c7.jpg
+   ✅ SUCCESS: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4llag00bwzuv1146th5c7.jpg
+   ✅ Success: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4llag00bwzuv1146th5c7.jpg
+
+[89/122] 🎨 Generating image for: Chicken Piccata
+🎨 Generating AI image for: Chicken Piccata
+🎨 Gemini 2.0 Flash generating: "Chicken Piccata"
+   ✅ Gemini 2.0 Flash generated image for Chicken Piccata
+   📤 Uploading to Vercel Blob: recipes/cmif4llbi00bxzuv1ryvehawb.jpg
+   ✅ SUCCESS: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4llbi00bxzuv1ryvehawb.jpg
+   ✅ Success: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4llbi00bxzuv1ryvehawb.jpg
+
+[90/122] 🎨 Generating image for: Chicken Souvlaki with Tzatziki
+🎨 Generating AI image for: Chicken Souvlaki with Tzatziki
+🎨 Gemini 2.0 Flash generating: "Chicken Souvlaki with Tzatziki"
+   ✅ Gemini 2.0 Flash generated image for Chicken Souvlaki with Tzatziki
+   📤 Uploading to Vercel Blob: recipes/cmif4llcd00byzuv1qit9kb6k.jpg
+   ✅ SUCCESS: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4llcd00byzuv1qit9kb6k.jpg
+   ✅ Success: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4llcd00byzuv1qit9kb6k.jpg
+
+[91/122] 🎨 Generating image for: Turkey Taco Lettuce Wraps
+🎨 Generating AI image for: Turkey Taco Lettuce Wraps
+🎨 Gemini 2.0 Flash generating: "Turkey Taco Lettuce Wraps"
+   ✅ Gemini 2.0 Flash generated image for Turkey Taco Lettuce Wraps
+   📤 Uploading to Vercel Blob: recipes/cmif4lllf00c6zuv1qdbp9nxg.jpg
+   ✅ SUCCESS: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lllf00c6zuv1qdbp9nxg.jpg
+   ✅ Success: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lllf00c6zuv1qdbp9nxg.jpg
+
+[92/122] 🎨 Generating image for: Chickpea Curry
+🎨 Generating AI image for: Chickpea Curry
+🎨 Gemini 2.0 Flash generating: "Chickpea Curry"
+   ✅ Gemini 2.0 Flash generated image for Chickpea Curry
+   📤 Uploading to Vercel Blob: recipes/cmif4lluu00d4zuv1hx376l2d.jpg
+   ✅ SUCCESS: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lluu00d4zuv1hx376l2d.jpg
+   ✅ Success: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lluu00d4zuv1hx376l2d.jpg
+
+[93/122] 🎨 Generating image for: Lentil Bolognese
+🎨 Generating AI image for: Lentil Bolognese
+🎨 Gemini 2.0 Flash generating: "Lentil Bolognese"
+   ✅ Gemini 2.0 Flash generated image for Lentil Bolognese
+   📤 Uploading to Vercel Blob: recipes/cmif4lm3d00e5zuv1swdy6acf.jpg
+   ✅ SUCCESS: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lm3d00e5zuv1swdy6acf.jpg
+   ✅ Success: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lm3d00e5zuv1swdy6acf.jpg
+
+[94/122] 🎨 Generating image for: Black Bean Tacos
+🎨 Generating AI image for: Black Bean Tacos
+🎨 Gemini 2.0 Flash generating: "Black Bean Tacos"
+   ✅ Gemini 2.0 Flash generated image for Black Bean Tacos
+   📤 Uploading to Vercel Blob: recipes/cmif4lm5u00ezzuv18ytj4v83.jpg
+   ✅ SUCCESS: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lm5u00ezzuv18ytj4v83.jpg
+   ✅ Success: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lm5u00ezzuv18ytj4v83.jpg
+
+[95/122] 🎨 Generating image for: Stuffed Portobello Mushrooms
+🎨 Generating AI image for: Stuffed Portobello Mushrooms
+🎨 Gemini 2.0 Flash generating: "Stuffed Portobello Mushrooms"
+   ✅ Gemini 2.0 Flash generated image for Stuffed Portobello Mushrooms
+   📤 Uploading to Vercel Blob: recipes/cmif4lm7400f0zuv1qkckdpjo.jpg
+   ✅ SUCCESS: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lm7400f0zuv1qkckdpjo.jpg
+   ✅ Success: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lm7400f0zuv1qkckdpjo.jpg
+
+[96/122] 🎨 Generating image for: Baked Chicken Fingers with Honey Mustard
+🎨 Generating AI image for: Baked Chicken Fingers with Honey Mustard
+🎨 Gemini 2.0 Flash generating: "Baked Chicken Fingers with Honey Mustard"
+   ✅ Gemini 2.0 Flash generated image for Baked Chicken Fingers with Honey Mustard
+   📤 Uploading to Vercel Blob: recipes/cmif4lmck00f5zuv1j74m3srj.jpg
+   ✅ SUCCESS: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lmck00f5zuv1j74m3srj.jpg
+   ✅ Success: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lmck00f5zuv1j74m3srj.jpg
+
+[97/122] 🎨 Generating image for: Spaghetti & Turkey Meatballs
+🎨 Generating AI image for: Spaghetti & Turkey Meatballs
+🎨 Gemini 2.0 Flash generating: "Spaghetti & Turkey Meatballs"
+   ✅ Gemini 2.0 Flash generated image for Spaghetti & Turkey Meatballs
+   📤 Uploading to Vercel Blob: recipes/cmif4lmf800ftzuv1ej6li4po.jpg
+   ✅ SUCCESS: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lmf800ftzuv1ej6li4po.jpg
+   ✅ Success: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lmf800ftzuv1ej6li4po.jpg
+
+[98/122] 🎨 Generating image for: Homemade Pizza (Whole Wheat Crust)
+🎨 Generating AI image for: Homemade Pizza (Whole Wheat Crust)
+🎨 Gemini 2.0 Flash generating: "Homemade Pizza (Whole Wheat Crust)"
+   ✅ Gemini 2.0 Flash generated image for Homemade Pizza (Whole Wheat Crust)
+   📤 Uploading to Vercel Blob: recipes/cmif4lmga00fuzuv1ty893o9c.jpg
+   ✅ SUCCESS: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lmga00fuzuv1ty893o9c.jpg
+   ✅ Success: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lmga00fuzuv1ty893o9c.jpg
+
+[99/122] 🎨 Generating image for: Fish Tacos with Slaw
+🎨 Generating AI image for: Fish Tacos with Slaw
+🎨 Gemini 2.0 Flash generating: "Fish Tacos with Slaw"
+   ✅ Gemini 2.0 Flash generated image for Fish Tacos with Slaw
+   📤 Uploading to Vercel Blob: recipes/cmif4lmhd00fvzuv1z22zu60x.jpg
+   ✅ SUCCESS: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lmhd00fvzuv1z22zu60x.jpg
+   ✅ Success: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lmhd00fvzuv1z22zu60x.jpg
+
+[100/122] 🎨 Generating image for: Chicken Fried Rice (Brown Rice)
+🎨 Generating AI image for: Chicken Fried Rice (Brown Rice)
+🎨 Gemini 2.0 Flash generating: "Chicken Fried Rice (Brown Rice)"
+   ✅ Gemini 2.0 Flash generated image for Chicken Fried Rice (Brown Rice)
+   📤 Uploading to Vercel Blob: recipes/cmif4lmig00fwzuv1ux8iyhln.jpg
+   ✅ SUCCESS: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lmig00fwzuv1ux8iyhln.jpg
+   ✅ Success: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lmig00fwzuv1ux8iyhln.jpg
+
+[101/122] 🎨 Generating image for: Chicken Parmesan (Baked)
+🎨 Generating AI image for: Chicken Parmesan (Baked)
+🎨 Gemini 2.0 Flash generating: "Chicken Parmesan (Baked)"
+   ✅ Gemini 2.0 Flash generated image for Chicken Parmesan (Baked)
+   📤 Uploading to Vercel Blob: recipes/cmif4lmjm00fxzuv1kptdazw1.jpg
+   ✅ SUCCESS: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lmjm00fxzuv1kptdazw1.jpg
+   ✅ Success: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lmjm00fxzuv1kptdazw1.jpg
+
+[102/122] 🎨 Generating image for: Apple Slices with Almond Butter
+🎨 Generating AI image for: Apple Slices with Almond Butter
+🎨 Gemini 2.0 Flash generating: "Apple Slices with Almond Butter"
+   ✅ Gemini 2.0 Flash generated image for Apple Slices with Almond Butter
+   📤 Uploading to Vercel Blob: recipes/cmif4lmlp00fzzuv1pkgplnix.jpg
+   ✅ SUCCESS: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lmlp00fzzuv1pkgplnix.jpg
+   ✅ Success: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lmlp00fzzuv1pkgplnix.jpg
+
+[103/122] 🎨 Generating image for: Greek Yogurt with Berries
+🎨 Generating AI image for: Greek Yogurt with Berries
+🎨 Gemini 2.0 Flash generating: "Greek Yogurt with Berries"
+   ✅ Gemini 2.0 Flash generated image for Greek Yogurt with Berries
+   📤 Uploading to Vercel Blob: recipes/cmif4lmo100gdzuv1l9g3ffiw.jpg
+   ✅ SUCCESS: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lmo100gdzuv1l9g3ffiw.jpg
+   ✅ Success: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lmo100gdzuv1l9g3ffiw.jpg
+
+[104/122] 🎨 Generating image for: Handful of Mixed Nuts
+🎨 Generating AI image for: Handful of Mixed Nuts
+🎨 Gemini 2.0 Flash generating: "Handful of Mixed Nuts"
+   ✅ Gemini 2.0 Flash generated image for Handful of Mixed Nuts
+   📤 Uploading to Vercel Blob: recipes/cmif4lmtk00gizuv1b6i4vcu3.jpg
+   ✅ SUCCESS: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lmtk00gizuv1b6i4vcu3.jpg
+   ✅ Success: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lmtk00gizuv1b6i4vcu3.jpg
+
+[105/122] 🎨 Generating image for: Hummus with Vegetable Sticks
+🎨 Generating AI image for: Hummus with Vegetable Sticks
+🎨 Gemini 2.0 Flash generating: "Hummus with Vegetable Sticks"
+   ✅ Gemini 2.0 Flash generated image for Hummus with Vegetable Sticks
+   📤 Uploading to Vercel Blob: recipes/cmif4lmy600gxzuv1lcffp94d.jpg
+   ✅ SUCCESS: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lmy600gxzuv1lcffp94d.jpg
+   ✅ Success: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lmy600gxzuv1lcffp94d.jpg
+
+[106/122] 🎨 Generating image for: Hard-Boiled Eggs
+🎨 Generating AI image for: Hard-Boiled Eggs
+🎨 Gemini 2.0 Flash generating: "Hard-Boiled Eggs"
+   ✅ Gemini 2.0 Flash generated image for Hard-Boiled Eggs
+   📤 Uploading to Vercel Blob: recipes/cmif4ln0r00hezuv1r0dadp22.jpg
+   ✅ SUCCESS: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4ln0r00hezuv1r0dadp22.jpg
+   ✅ Success: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4ln0r00hezuv1r0dadp22.jpg
+
+[107/122] 🎨 Generating image for: Edamame
+🎨 Generating AI image for: Edamame
+🎨 Gemini 2.0 Flash generating: "Edamame"
+   ✅ Gemini 2.0 Flash generated image for Edamame
+   📤 Uploading to Vercel Blob: recipes/cmif4ln1q00hfzuv1cu6ns6zo.jpg
+   ✅ SUCCESS: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4ln1q00hfzuv1cu6ns6zo.jpg
+   ✅ Success: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4ln1q00hfzuv1cu6ns6zo.jpg
+
+[108/122] 🎨 Generating image for: Olives & Feta
+🎨 Generating AI image for: Olives & Feta
+🎨 Gemini 2.0 Flash generating: "Olives & Feta"
+   ❌ Attempt 1 failed: Gemini API error: 429 Too Many Requests - {
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota. Please migrate to Gemini 2.0 Flash Preview (Image Generation) (models/gemini-2.0-flash-preview-image-generation) for higher quota limits. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits.",
+    "status": "RESOURCE_EXHAUSTED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.Help",
+        "links": [
+          {
+            "description": "Learn more about Gemini API quotas",
+            "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+        "violations": [
+          {
+            "quotaMetric": "generativelanguage.googleapis.com/generate_requests_per_model",
+            "quotaId": "GenerateRequestsPerMinutePerProjectPerModel",
+            "quotaDimensions": {
+              "location": "global",
+              "model": "gemini-2.0-flash-exp"
+            },
+            "quotaValue": "10"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.RetryInfo",
+        "retryDelay": "37s"
+      }
+    ]
+  }
+}
+
+❌ FAILED for Olives & Feta: Quota exceeded: Gemini API error: 429 Too Many Requests - {
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota. Please migrate to Gemini 2.0 Flash Preview (Image Generation) (models/gemini-2.0-flash-preview-image-generation) for higher quota limits. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits.",
+    "status": "RESOURCE_EXHAUSTED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.Help",
+        "links": [
+          {
+            "description": "Learn more about Gemini API quotas",
+            "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+        "violations": [
+          {
+            "quotaMetric": "generativelanguage.googleapis.com/generate_requests_per_model",
+            "quotaId": "GenerateRequestsPerMinutePerProjectPerModel",
+            "quotaDimensions": {
+              "location": "global",
+              "model": "gemini-2.0-flash-exp"
+            },
+            "quotaValue": "10"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.RetryInfo",
+        "retryDelay": "37s"
+      }
+    ]
+  }
+}
+
+   ❌ Failed: Quota exceeded: Gemini API error: 429 Too Many Requests - {
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota. Please migrate to Gemini 2.0 Flash Preview (Image Generation) (models/gemini-2.0-flash-preview-image-generation) for higher quota limits. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits.",
+    "status": "RESOURCE_EXHAUSTED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.Help",
+        "links": [
+          {
+            "description": "Learn more about Gemini API quotas",
+            "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+        "violations": [
+          {
+            "quotaMetric": "generativelanguage.googleapis.com/generate_requests_per_model",
+            "quotaId": "GenerateRequestsPerMinutePerProjectPerModel",
+            "quotaDimensions": {
+              "location": "global",
+              "model": "gemini-2.0-flash-exp"
+            },
+            "quotaValue": "10"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.RetryInfo",
+        "retryDelay": "37s"
+      }
+    ]
+  }
+}
+
+
+[109/122] 🎨 Generating image for: Dark Chocolate & Almonds
+🎨 Generating AI image for: Dark Chocolate & Almonds
+🎨 Gemini 2.0 Flash generating: "Dark Chocolate & Almonds"
+   ❌ Attempt 1 failed: Gemini API error: 429 Too Many Requests - {
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota. Please migrate to Gemini 2.0 Flash Preview (Image Generation) (models/gemini-2.0-flash-preview-image-generation) for higher quota limits. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits.",
+    "status": "RESOURCE_EXHAUSTED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.Help",
+        "links": [
+          {
+            "description": "Learn more about Gemini API quotas",
+            "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+        "violations": [
+          {
+            "quotaMetric": "generativelanguage.googleapis.com/generate_requests_per_model",
+            "quotaId": "GenerateRequestsPerMinutePerProjectPerModel",
+            "quotaDimensions": {
+              "model": "gemini-2.0-flash-exp",
+              "location": "global"
+            },
+            "quotaValue": "10"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.RetryInfo",
+        "retryDelay": "37s"
+      }
+    ]
+  }
+}
+
+❌ FAILED for Dark Chocolate & Almonds: Quota exceeded: Gemini API error: 429 Too Many Requests - {
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota. Please migrate to Gemini 2.0 Flash Preview (Image Generation) (models/gemini-2.0-flash-preview-image-generation) for higher quota limits. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits.",
+    "status": "RESOURCE_EXHAUSTED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.Help",
+        "links": [
+          {
+            "description": "Learn more about Gemini API quotas",
+            "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+        "violations": [
+          {
+            "quotaMetric": "generativelanguage.googleapis.com/generate_requests_per_model",
+            "quotaId": "GenerateRequestsPerMinutePerProjectPerModel",
+            "quotaDimensions": {
+              "model": "gemini-2.0-flash-exp",
+              "location": "global"
+            },
+            "quotaValue": "10"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.RetryInfo",
+        "retryDelay": "37s"
+      }
+    ]
+  }
+}
+
+   ❌ Failed: Quota exceeded: Gemini API error: 429 Too Many Requests - {
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota. Please migrate to Gemini 2.0 Flash Preview (Image Generation) (models/gemini-2.0-flash-preview-image-generation) for higher quota limits. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits.",
+    "status": "RESOURCE_EXHAUSTED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.Help",
+        "links": [
+          {
+            "description": "Learn more about Gemini API quotas",
+            "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+        "violations": [
+          {
+            "quotaMetric": "generativelanguage.googleapis.com/generate_requests_per_model",
+            "quotaId": "GenerateRequestsPerMinutePerProjectPerModel",
+            "quotaDimensions": {
+              "model": "gemini-2.0-flash-exp",
+              "location": "global"
+            },
+            "quotaValue": "10"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.RetryInfo",
+        "retryDelay": "37s"
+      }
+    ]
+  }
+}
+
+
+[110/122] 🎨 Generating image for: Frozen Banana Bites
+🎨 Generating AI image for: Frozen Banana Bites
+🎨 Gemini 2.0 Flash generating: "Frozen Banana Bites"
+   ❌ Attempt 1 failed: Gemini API error: 429 Too Many Requests - {
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota. Please migrate to Gemini 2.0 Flash Preview (Image Generation) (models/gemini-2.0-flash-preview-image-generation) for higher quota limits. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits.",
+    "status": "RESOURCE_EXHAUSTED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.Help",
+        "links": [
+          {
+            "description": "Learn more about Gemini API quotas",
+            "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+        "violations": [
+          {
+            "quotaMetric": "generativelanguage.googleapis.com/generate_requests_per_model",
+            "quotaId": "GenerateRequestsPerMinutePerProjectPerModel",
+            "quotaDimensions": {
+              "model": "gemini-2.0-flash-exp",
+              "location": "global"
+            },
+            "quotaValue": "10"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.RetryInfo",
+        "retryDelay": "37s"
+      }
+    ]
+  }
+}
+
+❌ FAILED for Frozen Banana Bites: Quota exceeded: Gemini API error: 429 Too Many Requests - {
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota. Please migrate to Gemini 2.0 Flash Preview (Image Generation) (models/gemini-2.0-flash-preview-image-generation) for higher quota limits. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits.",
+    "status": "RESOURCE_EXHAUSTED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.Help",
+        "links": [
+          {
+            "description": "Learn more about Gemini API quotas",
+            "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+        "violations": [
+          {
+            "quotaMetric": "generativelanguage.googleapis.com/generate_requests_per_model",
+            "quotaId": "GenerateRequestsPerMinutePerProjectPerModel",
+            "quotaDimensions": {
+              "model": "gemini-2.0-flash-exp",
+              "location": "global"
+            },
+            "quotaValue": "10"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.RetryInfo",
+        "retryDelay": "37s"
+      }
+    ]
+  }
+}
+
+   ❌ Failed: Quota exceeded: Gemini API error: 429 Too Many Requests - {
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota. Please migrate to Gemini 2.0 Flash Preview (Image Generation) (models/gemini-2.0-flash-preview-image-generation) for higher quota limits. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits.",
+    "status": "RESOURCE_EXHAUSTED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.Help",
+        "links": [
+          {
+            "description": "Learn more about Gemini API quotas",
+            "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+        "violations": [
+          {
+            "quotaMetric": "generativelanguage.googleapis.com/generate_requests_per_model",
+            "quotaId": "GenerateRequestsPerMinutePerProjectPerModel",
+            "quotaDimensions": {
+              "model": "gemini-2.0-flash-exp",
+              "location": "global"
+            },
+            "quotaValue": "10"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.RetryInfo",
+        "retryDelay": "37s"
+      }
+    ]
+  }
+}
+
+
+[111/122] 🎨 Generating image for: Chia Seed Pudding
+🎨 Generating AI image for: Chia Seed Pudding
+🎨 Gemini 2.0 Flash generating: "Chia Seed Pudding"
+   ❌ Attempt 1 failed: Gemini API error: 429 Too Many Requests - {
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota. Please migrate to Gemini 2.0 Flash Preview (Image Generation) (models/gemini-2.0-flash-preview-image-generation) for higher quota limits. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits.",
+    "status": "RESOURCE_EXHAUSTED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.Help",
+        "links": [
+          {
+            "description": "Learn more about Gemini API quotas",
+            "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+        "violations": [
+          {
+            "quotaMetric": "generativelanguage.googleapis.com/generate_requests_per_model",
+            "quotaId": "GenerateRequestsPerMinutePerProjectPerModel",
+            "quotaDimensions": {
+              "model": "gemini-2.0-flash-exp",
+              "location": "global"
+            },
+            "quotaValue": "10"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.RetryInfo",
+        "retryDelay": "37s"
+      }
+    ]
+  }
+}
+
+❌ FAILED for Chia Seed Pudding: Quota exceeded: Gemini API error: 429 Too Many Requests - {
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota. Please migrate to Gemini 2.0 Flash Preview (Image Generation) (models/gemini-2.0-flash-preview-image-generation) for higher quota limits. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits.",
+    "status": "RESOURCE_EXHAUSTED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.Help",
+        "links": [
+          {
+            "description": "Learn more about Gemini API quotas",
+            "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+        "violations": [
+          {
+            "quotaMetric": "generativelanguage.googleapis.com/generate_requests_per_model",
+            "quotaId": "GenerateRequestsPerMinutePerProjectPerModel",
+            "quotaDimensions": {
+              "model": "gemini-2.0-flash-exp",
+              "location": "global"
+            },
+            "quotaValue": "10"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.RetryInfo",
+        "retryDelay": "37s"
+      }
+    ]
+  }
+}
+
+   ❌ Failed: Quota exceeded: Gemini API error: 429 Too Many Requests - {
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota. Please migrate to Gemini 2.0 Flash Preview (Image Generation) (models/gemini-2.0-flash-preview-image-generation) for higher quota limits. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits.",
+    "status": "RESOURCE_EXHAUSTED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.Help",
+        "links": [
+          {
+            "description": "Learn more about Gemini API quotas",
+            "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+        "violations": [
+          {
+            "quotaMetric": "generativelanguage.googleapis.com/generate_requests_per_model",
+            "quotaId": "GenerateRequestsPerMinutePerProjectPerModel",
+            "quotaDimensions": {
+              "model": "gemini-2.0-flash-exp",
+              "location": "global"
+            },
+            "quotaValue": "10"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.RetryInfo",
+        "retryDelay": "37s"
+      }
+    ]
+  }
+}
+
+
+[112/122] 🎨 Generating image for: Frozen Grapes
+🎨 Generating AI image for: Frozen Grapes
+🎨 Gemini 2.0 Flash generating: "Frozen Grapes"
+   ❌ Attempt 1 failed: Gemini API error: 429 Too Many Requests - {
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota. Please migrate to Gemini 2.0 Flash Preview (Image Generation) (models/gemini-2.0-flash-preview-image-generation) for higher quota limits. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits.",
+    "status": "RESOURCE_EXHAUSTED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.Help",
+        "links": [
+          {
+            "description": "Learn more about Gemini API quotas",
+            "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+        "violations": [
+          {
+            "quotaMetric": "generativelanguage.googleapis.com/generate_requests_per_model",
+            "quotaId": "GenerateRequestsPerMinutePerProjectPerModel",
+            "quotaDimensions": {
+              "location": "global",
+              "model": "gemini-2.0-flash-exp"
+            },
+            "quotaValue": "10"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.RetryInfo",
+        "retryDelay": "37s"
+      }
+    ]
+  }
+}
+
+❌ FAILED for Frozen Grapes: Quota exceeded: Gemini API error: 429 Too Many Requests - {
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota. Please migrate to Gemini 2.0 Flash Preview (Image Generation) (models/gemini-2.0-flash-preview-image-generation) for higher quota limits. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits.",
+    "status": "RESOURCE_EXHAUSTED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.Help",
+        "links": [
+          {
+            "description": "Learn more about Gemini API quotas",
+            "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+        "violations": [
+          {
+            "quotaMetric": "generativelanguage.googleapis.com/generate_requests_per_model",
+            "quotaId": "GenerateRequestsPerMinutePerProjectPerModel",
+            "quotaDimensions": {
+              "location": "global",
+              "model": "gemini-2.0-flash-exp"
+            },
+            "quotaValue": "10"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.RetryInfo",
+        "retryDelay": "37s"
+      }
+    ]
+  }
+}
+
+   ❌ Failed: Quota exceeded: Gemini API error: 429 Too Many Requests - {
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota. Please migrate to Gemini 2.0 Flash Preview (Image Generation) (models/gemini-2.0-flash-preview-image-generation) for higher quota limits. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits.",
+    "status": "RESOURCE_EXHAUSTED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.Help",
+        "links": [
+          {
+            "description": "Learn more about Gemini API quotas",
+            "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+        "violations": [
+          {
+            "quotaMetric": "generativelanguage.googleapis.com/generate_requests_per_model",
+            "quotaId": "GenerateRequestsPerMinutePerProjectPerModel",
+            "quotaDimensions": {
+              "location": "global",
+              "model": "gemini-2.0-flash-exp"
+            },
+            "quotaValue": "10"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.RetryInfo",
+        "retryDelay": "37s"
+      }
+    ]
+  }
+}
+
+
+[113/122] 🎨 Generating image for: Yogurt Bark
+🎨 Generating AI image for: Yogurt Bark
+🎨 Gemini 2.0 Flash generating: "Yogurt Bark"
+   ❌ Attempt 1 failed: Gemini API error: 429 Too Many Requests - {
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota. Please migrate to Gemini 2.0 Flash Preview (Image Generation) (models/gemini-2.0-flash-preview-image-generation) for higher quota limits. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits.",
+    "status": "RESOURCE_EXHAUSTED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.Help",
+        "links": [
+          {
+            "description": "Learn more about Gemini API quotas",
+            "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+        "violations": [
+          {
+            "quotaMetric": "generativelanguage.googleapis.com/generate_requests_per_model",
+            "quotaId": "GenerateRequestsPerMinutePerProjectPerModel",
+            "quotaDimensions": {
+              "location": "global",
+              "model": "gemini-2.0-flash-exp"
+            },
+            "quotaValue": "10"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.RetryInfo",
+        "retryDelay": "37s"
+      }
+    ]
+  }
+}
+
+❌ FAILED for Yogurt Bark: Quota exceeded: Gemini API error: 429 Too Many Requests - {
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota. Please migrate to Gemini 2.0 Flash Preview (Image Generation) (models/gemini-2.0-flash-preview-image-generation) for higher quota limits. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits.",
+    "status": "RESOURCE_EXHAUSTED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.Help",
+        "links": [
+          {
+            "description": "Learn more about Gemini API quotas",
+            "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+        "violations": [
+          {
+            "quotaMetric": "generativelanguage.googleapis.com/generate_requests_per_model",
+            "quotaId": "GenerateRequestsPerMinutePerProjectPerModel",
+            "quotaDimensions": {
+              "location": "global",
+              "model": "gemini-2.0-flash-exp"
+            },
+            "quotaValue": "10"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.RetryInfo",
+        "retryDelay": "37s"
+      }
+    ]
+  }
+}
+
+   ❌ Failed: Quota exceeded: Gemini API error: 429 Too Many Requests - {
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota. Please migrate to Gemini 2.0 Flash Preview (Image Generation) (models/gemini-2.0-flash-preview-image-generation) for higher quota limits. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits.",
+    "status": "RESOURCE_EXHAUSTED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.Help",
+        "links": [
+          {
+            "description": "Learn more about Gemini API quotas",
+            "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+        "violations": [
+          {
+            "quotaMetric": "generativelanguage.googleapis.com/generate_requests_per_model",
+            "quotaId": "GenerateRequestsPerMinutePerProjectPerModel",
+            "quotaDimensions": {
+              "location": "global",
+              "model": "gemini-2.0-flash-exp"
+            },
+            "quotaValue": "10"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.RetryInfo",
+        "retryDelay": "37s"
+      }
+    ]
+  }
+}
+
+
+[114/122] 🎨 Generating image for: Date & Walnut Bites
+🎨 Generating AI image for: Date & Walnut Bites
+🎨 Gemini 2.0 Flash generating: "Date & Walnut Bites"
+   ❌ Attempt 1 failed: Gemini API error: 429 Too Many Requests - {
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota. Please migrate to Gemini 2.0 Flash Preview (Image Generation) (models/gemini-2.0-flash-preview-image-generation) for higher quota limits. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits.",
+    "status": "RESOURCE_EXHAUSTED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.Help",
+        "links": [
+          {
+            "description": "Learn more about Gemini API quotas",
+            "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+        "violations": [
+          {
+            "quotaMetric": "generativelanguage.googleapis.com/generate_requests_per_model",
+            "quotaId": "GenerateRequestsPerMinutePerProjectPerModel",
+            "quotaDimensions": {
+              "location": "global",
+              "model": "gemini-2.0-flash-exp"
+            },
+            "quotaValue": "10"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.RetryInfo",
+        "retryDelay": "37s"
+      }
+    ]
+  }
+}
+
+❌ FAILED for Date & Walnut Bites: Quota exceeded: Gemini API error: 429 Too Many Requests - {
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota. Please migrate to Gemini 2.0 Flash Preview (Image Generation) (models/gemini-2.0-flash-preview-image-generation) for higher quota limits. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits.",
+    "status": "RESOURCE_EXHAUSTED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.Help",
+        "links": [
+          {
+            "description": "Learn more about Gemini API quotas",
+            "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+        "violations": [
+          {
+            "quotaMetric": "generativelanguage.googleapis.com/generate_requests_per_model",
+            "quotaId": "GenerateRequestsPerMinutePerProjectPerModel",
+            "quotaDimensions": {
+              "location": "global",
+              "model": "gemini-2.0-flash-exp"
+            },
+            "quotaValue": "10"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.RetryInfo",
+        "retryDelay": "37s"
+      }
+    ]
+  }
+}
+
+   ❌ Failed: Quota exceeded: Gemini API error: 429 Too Many Requests - {
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota. Please migrate to Gemini 2.0 Flash Preview (Image Generation) (models/gemini-2.0-flash-preview-image-generation) for higher quota limits. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits.",
+    "status": "RESOURCE_EXHAUSTED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.Help",
+        "links": [
+          {
+            "description": "Learn more about Gemini API quotas",
+            "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+        "violations": [
+          {
+            "quotaMetric": "generativelanguage.googleapis.com/generate_requests_per_model",
+            "quotaId": "GenerateRequestsPerMinutePerProjectPerModel",
+            "quotaDimensions": {
+              "location": "global",
+              "model": "gemini-2.0-flash-exp"
+            },
+            "quotaValue": "10"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.RetryInfo",
+        "retryDelay": "37s"
+      }
+    ]
+  }
+}
+
+
+[115/122] 🎨 Generating image for: Green Tea (Hot or Iced)
+🎨 Generating AI image for: Green Tea (Hot or Iced)
+🎨 Gemini 2.0 Flash generating: "Green Tea (Hot or Iced)"
+   ❌ Attempt 1 failed: Gemini API error: 429 Too Many Requests - {
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota. Please migrate to Gemini 2.0 Flash Preview (Image Generation) (models/gemini-2.0-flash-preview-image-generation) for higher quota limits. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits.",
+    "status": "RESOURCE_EXHAUSTED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.Help",
+        "links": [
+          {
+            "description": "Learn more about Gemini API quotas",
+            "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+        "violations": [
+          {
+            "quotaMetric": "generativelanguage.googleapis.com/generate_requests_per_model",
+            "quotaId": "GenerateRequestsPerMinutePerProjectPerModel",
+            "quotaDimensions": {
+              "model": "gemini-2.0-flash-exp",
+              "location": "global"
+            },
+            "quotaValue": "10"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.RetryInfo",
+        "retryDelay": "37s"
+      }
+    ]
+  }
+}
+
+❌ FAILED for Green Tea (Hot or Iced): Quota exceeded: Gemini API error: 429 Too Many Requests - {
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota. Please migrate to Gemini 2.0 Flash Preview (Image Generation) (models/gemini-2.0-flash-preview-image-generation) for higher quota limits. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits.",
+    "status": "RESOURCE_EXHAUSTED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.Help",
+        "links": [
+          {
+            "description": "Learn more about Gemini API quotas",
+            "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+        "violations": [
+          {
+            "quotaMetric": "generativelanguage.googleapis.com/generate_requests_per_model",
+            "quotaId": "GenerateRequestsPerMinutePerProjectPerModel",
+            "quotaDimensions": {
+              "model": "gemini-2.0-flash-exp",
+              "location": "global"
+            },
+            "quotaValue": "10"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.RetryInfo",
+        "retryDelay": "37s"
+      }
+    ]
+  }
+}
+
+   ❌ Failed: Quota exceeded: Gemini API error: 429 Too Many Requests - {
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota. Please migrate to Gemini 2.0 Flash Preview (Image Generation) (models/gemini-2.0-flash-preview-image-generation) for higher quota limits. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits.",
+    "status": "RESOURCE_EXHAUSTED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.Help",
+        "links": [
+          {
+            "description": "Learn more about Gemini API quotas",
+            "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+        "violations": [
+          {
+            "quotaMetric": "generativelanguage.googleapis.com/generate_requests_per_model",
+            "quotaId": "GenerateRequestsPerMinutePerProjectPerModel",
+            "quotaDimensions": {
+              "model": "gemini-2.0-flash-exp",
+              "location": "global"
+            },
+            "quotaValue": "10"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.RetryInfo",
+        "retryDelay": "37s"
+      }
+    ]
+  }
+}
+
+
+[116/122] 🎨 Generating image for: Golden Milk (Turmeric Latte)
+🎨 Generating AI image for: Golden Milk (Turmeric Latte)
+🎨 Gemini 2.0 Flash generating: "Golden Milk (Turmeric Latte)"
+   ❌ Attempt 1 failed: Gemini API error: 429 Too Many Requests - {
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota. Please migrate to Gemini 2.0 Flash Preview (Image Generation) (models/gemini-2.0-flash-preview-image-generation) for higher quota limits. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits.",
+    "status": "RESOURCE_EXHAUSTED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.Help",
+        "links": [
+          {
+            "description": "Learn more about Gemini API quotas",
+            "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+        "violations": [
+          {
+            "quotaMetric": "generativelanguage.googleapis.com/generate_requests_per_model",
+            "quotaId": "GenerateRequestsPerMinutePerProjectPerModel",
+            "quotaDimensions": {
+              "model": "gemini-2.0-flash-exp",
+              "location": "global"
+            },
+            "quotaValue": "10"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.RetryInfo",
+        "retryDelay": "36s"
+      }
+    ]
+  }
+}
+
+❌ FAILED for Golden Milk (Turmeric Latte): Quota exceeded: Gemini API error: 429 Too Many Requests - {
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota. Please migrate to Gemini 2.0 Flash Preview (Image Generation) (models/gemini-2.0-flash-preview-image-generation) for higher quota limits. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits.",
+    "status": "RESOURCE_EXHAUSTED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.Help",
+        "links": [
+          {
+            "description": "Learn more about Gemini API quotas",
+            "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+        "violations": [
+          {
+            "quotaMetric": "generativelanguage.googleapis.com/generate_requests_per_model",
+            "quotaId": "GenerateRequestsPerMinutePerProjectPerModel",
+            "quotaDimensions": {
+              "model": "gemini-2.0-flash-exp",
+              "location": "global"
+            },
+            "quotaValue": "10"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.RetryInfo",
+        "retryDelay": "36s"
+      }
+    ]
+  }
+}
+
+   ❌ Failed: Quota exceeded: Gemini API error: 429 Too Many Requests - {
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota. Please migrate to Gemini 2.0 Flash Preview (Image Generation) (models/gemini-2.0-flash-preview-image-generation) for higher quota limits. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits.",
+    "status": "RESOURCE_EXHAUSTED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.Help",
+        "links": [
+          {
+            "description": "Learn more about Gemini API quotas",
+            "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+        "violations": [
+          {
+            "quotaMetric": "generativelanguage.googleapis.com/generate_requests_per_model",
+            "quotaId": "GenerateRequestsPerMinutePerProjectPerModel",
+            "quotaDimensions": {
+              "model": "gemini-2.0-flash-exp",
+              "location": "global"
+            },
+            "quotaValue": "10"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.RetryInfo",
+        "retryDelay": "36s"
+      }
+    ]
+  }
+}
+
+
+[117/122] 🎨 Generating image for: Ginger Lemon Tea
+🎨 Generating AI image for: Ginger Lemon Tea
+🎨 Gemini 2.0 Flash generating: "Ginger Lemon Tea"
+   ❌ Attempt 1 failed: Gemini API error: 429 Too Many Requests - {
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota. Please migrate to Gemini 2.0 Flash Preview (Image Generation) (models/gemini-2.0-flash-preview-image-generation) for higher quota limits. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits.",
+    "status": "RESOURCE_EXHAUSTED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.Help",
+        "links": [
+          {
+            "description": "Learn more about Gemini API quotas",
+            "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+        "violations": [
+          {
+            "quotaMetric": "generativelanguage.googleapis.com/generate_requests_per_model",
+            "quotaId": "GenerateRequestsPerMinutePerProjectPerModel",
+            "quotaDimensions": {
+              "model": "gemini-2.0-flash-exp",
+              "location": "global"
+            },
+            "quotaValue": "10"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.RetryInfo",
+        "retryDelay": "36s"
+      }
+    ]
+  }
+}
+
+❌ FAILED for Ginger Lemon Tea: Quota exceeded: Gemini API error: 429 Too Many Requests - {
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota. Please migrate to Gemini 2.0 Flash Preview (Image Generation) (models/gemini-2.0-flash-preview-image-generation) for higher quota limits. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits.",
+    "status": "RESOURCE_EXHAUSTED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.Help",
+        "links": [
+          {
+            "description": "Learn more about Gemini API quotas",
+            "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+        "violations": [
+          {
+            "quotaMetric": "generativelanguage.googleapis.com/generate_requests_per_model",
+            "quotaId": "GenerateRequestsPerMinutePerProjectPerModel",
+            "quotaDimensions": {
+              "model": "gemini-2.0-flash-exp",
+              "location": "global"
+            },
+            "quotaValue": "10"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.RetryInfo",
+        "retryDelay": "36s"
+      }
+    ]
+  }
+}
+
+   ❌ Failed: Quota exceeded: Gemini API error: 429 Too Many Requests - {
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota. Please migrate to Gemini 2.0 Flash Preview (Image Generation) (models/gemini-2.0-flash-preview-image-generation) for higher quota limits. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits.",
+    "status": "RESOURCE_EXHAUSTED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.Help",
+        "links": [
+          {
+            "description": "Learn more about Gemini API quotas",
+            "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+        "violations": [
+          {
+            "quotaMetric": "generativelanguage.googleapis.com/generate_requests_per_model",
+            "quotaId": "GenerateRequestsPerMinutePerProjectPerModel",
+            "quotaDimensions": {
+              "model": "gemini-2.0-flash-exp",
+              "location": "global"
+            },
+            "quotaValue": "10"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.RetryInfo",
+        "retryDelay": "36s"
+      }
+    ]
+  }
+}
+
+
+[118/122] 🎨 Generating image for: Apple "Nachos"
+🎨 Generating AI image for: Apple "Nachos"
+🎨 Gemini 2.0 Flash generating: "Apple "Nachos""
+   ❌ Attempt 1 failed: Gemini API error: 429 Too Many Requests - {
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota. Please migrate to Gemini 2.0 Flash Preview (Image Generation) (models/gemini-2.0-flash-preview-image-generation) for higher quota limits. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits.",
+    "status": "RESOURCE_EXHAUSTED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.Help",
+        "links": [
+          {
+            "description": "Learn more about Gemini API quotas",
+            "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+        "violations": [
+          {
+            "quotaMetric": "generativelanguage.googleapis.com/generate_requests_per_model",
+            "quotaId": "GenerateRequestsPerMinutePerProjectPerModel",
+            "quotaDimensions": {
+              "location": "global",
+              "model": "gemini-2.0-flash-exp"
+            },
+            "quotaValue": "10"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.RetryInfo",
+        "retryDelay": "36s"
+      }
+    ]
+  }
+}
+
+❌ FAILED for Apple "Nachos": Quota exceeded: Gemini API error: 429 Too Many Requests - {
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota. Please migrate to Gemini 2.0 Flash Preview (Image Generation) (models/gemini-2.0-flash-preview-image-generation) for higher quota limits. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits.",
+    "status": "RESOURCE_EXHAUSTED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.Help",
+        "links": [
+          {
+            "description": "Learn more about Gemini API quotas",
+            "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+        "violations": [
+          {
+            "quotaMetric": "generativelanguage.googleapis.com/generate_requests_per_model",
+            "quotaId": "GenerateRequestsPerMinutePerProjectPerModel",
+            "quotaDimensions": {
+              "location": "global",
+              "model": "gemini-2.0-flash-exp"
+            },
+            "quotaValue": "10"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.RetryInfo",
+        "retryDelay": "36s"
+      }
+    ]
+  }
+}
+
+   ❌ Failed: Quota exceeded: Gemini API error: 429 Too Many Requests - {
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota. Please migrate to Gemini 2.0 Flash Preview (Image Generation) (models/gemini-2.0-flash-preview-image-generation) for higher quota limits. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits.",
+    "status": "RESOURCE_EXHAUSTED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.Help",
+        "links": [
+          {
+            "description": "Learn more about Gemini API quotas",
+            "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+        "violations": [
+          {
+            "quotaMetric": "generativelanguage.googleapis.com/generate_requests_per_model",
+            "quotaId": "GenerateRequestsPerMinutePerProjectPerModel",
+            "quotaDimensions": {
+              "location": "global",
+              "model": "gemini-2.0-flash-exp"
+            },
+            "quotaValue": "10"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.RetryInfo",
+        "retryDelay": "36s"
+      }
+    ]
+  }
+}
+
+
+[119/122] 🎨 Generating image for: Ants on a Log
+🎨 Generating AI image for: Ants on a Log
+🎨 Gemini 2.0 Flash generating: "Ants on a Log"
+   ❌ Attempt 1 failed: Gemini API error: 429 Too Many Requests - {
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota. Please migrate to Gemini 2.0 Flash Preview (Image Generation) (models/gemini-2.0-flash-preview-image-generation) for higher quota limits. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits.",
+    "status": "RESOURCE_EXHAUSTED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.Help",
+        "links": [
+          {
+            "description": "Learn more about Gemini API quotas",
+            "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+        "violations": [
+          {
+            "quotaMetric": "generativelanguage.googleapis.com/generate_requests_per_model",
+            "quotaId": "GenerateRequestsPerMinutePerProjectPerModel",
+            "quotaDimensions": {
+              "location": "global",
+              "model": "gemini-2.0-flash-exp"
+            },
+            "quotaValue": "10"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.RetryInfo",
+        "retryDelay": "36s"
+      }
+    ]
+  }
+}
+
+❌ FAILED for Ants on a Log: Quota exceeded: Gemini API error: 429 Too Many Requests - {
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota. Please migrate to Gemini 2.0 Flash Preview (Image Generation) (models/gemini-2.0-flash-preview-image-generation) for higher quota limits. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits.",
+    "status": "RESOURCE_EXHAUSTED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.Help",
+        "links": [
+          {
+            "description": "Learn more about Gemini API quotas",
+            "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+        "violations": [
+          {
+            "quotaMetric": "generativelanguage.googleapis.com/generate_requests_per_model",
+            "quotaId": "GenerateRequestsPerMinutePerProjectPerModel",
+            "quotaDimensions": {
+              "location": "global",
+              "model": "gemini-2.0-flash-exp"
+            },
+            "quotaValue": "10"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.RetryInfo",
+        "retryDelay": "36s"
+      }
+    ]
+  }
+}
+
+   ❌ Failed: Quota exceeded: Gemini API error: 429 Too Many Requests - {
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota. Please migrate to Gemini 2.0 Flash Preview (Image Generation) (models/gemini-2.0-flash-preview-image-generation) for higher quota limits. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits.",
+    "status": "RESOURCE_EXHAUSTED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.Help",
+        "links": [
+          {
+            "description": "Learn more about Gemini API quotas",
+            "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+        "violations": [
+          {
+            "quotaMetric": "generativelanguage.googleapis.com/generate_requests_per_model",
+            "quotaId": "GenerateRequestsPerMinutePerProjectPerModel",
+            "quotaDimensions": {
+              "location": "global",
+              "model": "gemini-2.0-flash-exp"
+            },
+            "quotaValue": "10"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.RetryInfo",
+        "retryDelay": "36s"
+      }
+    ]
+  }
+}
+
+
+[120/122] 🎨 Generating image for: Banana Sushi
+🎨 Generating AI image for: Banana Sushi
+🎨 Gemini 2.0 Flash generating: "Banana Sushi"
+   ❌ Attempt 1 failed: Gemini API error: 429 Too Many Requests - {
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota. Please migrate to Gemini 2.0 Flash Preview (Image Generation) (models/gemini-2.0-flash-preview-image-generation) for higher quota limits. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits.",
+    "status": "RESOURCE_EXHAUSTED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.Help",
+        "links": [
+          {
+            "description": "Learn more about Gemini API quotas",
+            "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+        "violations": [
+          {
+            "quotaMetric": "generativelanguage.googleapis.com/generate_requests_per_model",
+            "quotaId": "GenerateRequestsPerMinutePerProjectPerModel",
+            "quotaDimensions": {
+              "location": "global",
+              "model": "gemini-2.0-flash-exp"
+            },
+            "quotaValue": "10"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.RetryInfo",
+        "retryDelay": "36s"
+      }
+    ]
+  }
+}
+
+❌ FAILED for Banana Sushi: Quota exceeded: Gemini API error: 429 Too Many Requests - {
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota. Please migrate to Gemini 2.0 Flash Preview (Image Generation) (models/gemini-2.0-flash-preview-image-generation) for higher quota limits. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits.",
+    "status": "RESOURCE_EXHAUSTED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.Help",
+        "links": [
+          {
+            "description": "Learn more about Gemini API quotas",
+            "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+        "violations": [
+          {
+            "quotaMetric": "generativelanguage.googleapis.com/generate_requests_per_model",
+            "quotaId": "GenerateRequestsPerMinutePerProjectPerModel",
+            "quotaDimensions": {
+              "location": "global",
+              "model": "gemini-2.0-flash-exp"
+            },
+            "quotaValue": "10"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.RetryInfo",
+        "retryDelay": "36s"
+      }
+    ]
+  }
+}
+
+   ❌ Failed: Quota exceeded: Gemini API error: 429 Too Many Requests - {
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota. Please migrate to Gemini 2.0 Flash Preview (Image Generation) (models/gemini-2.0-flash-preview-image-generation) for higher quota limits. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits.",
+    "status": "RESOURCE_EXHAUSTED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.Help",
+        "links": [
+          {
+            "description": "Learn more about Gemini API quotas",
+            "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+        "violations": [
+          {
+            "quotaMetric": "generativelanguage.googleapis.com/generate_requests_per_model",
+            "quotaId": "GenerateRequestsPerMinutePerProjectPerModel",
+            "quotaDimensions": {
+              "location": "global",
+              "model": "gemini-2.0-flash-exp"
+            },
+            "quotaValue": "10"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.RetryInfo",
+        "retryDelay": "36s"
+      }
+    ]
+  }
+}
+
+
+[121/122] 🎨 Generating image for: Frozen Fruit Pops
+🎨 Generating AI image for: Frozen Fruit Pops
+🎨 Gemini 2.0 Flash generating: "Frozen Fruit Pops"
+   ❌ Attempt 1 failed: Gemini API error: 429 Too Many Requests - {
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota. Please migrate to Gemini 2.0 Flash Preview (Image Generation) (models/gemini-2.0-flash-preview-image-generation) for higher quota limits. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits.",
+    "status": "RESOURCE_EXHAUSTED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.Help",
+        "links": [
+          {
+            "description": "Learn more about Gemini API quotas",
+            "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+        "violations": [
+          {
+            "quotaMetric": "generativelanguage.googleapis.com/generate_requests_per_model",
+            "quotaId": "GenerateRequestsPerMinutePerProjectPerModel",
+            "quotaDimensions": {
+              "model": "gemini-2.0-flash-exp",
+              "location": "global"
+            },
+            "quotaValue": "10"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.RetryInfo",
+        "retryDelay": "36s"
+      }
+    ]
+  }
+}
+
+❌ FAILED for Frozen Fruit Pops: Quota exceeded: Gemini API error: 429 Too Many Requests - {
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota. Please migrate to Gemini 2.0 Flash Preview (Image Generation) (models/gemini-2.0-flash-preview-image-generation) for higher quota limits. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits.",
+    "status": "RESOURCE_EXHAUSTED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.Help",
+        "links": [
+          {
+            "description": "Learn more about Gemini API quotas",
+            "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+        "violations": [
+          {
+            "quotaMetric": "generativelanguage.googleapis.com/generate_requests_per_model",
+            "quotaId": "GenerateRequestsPerMinutePerProjectPerModel",
+            "quotaDimensions": {
+              "model": "gemini-2.0-flash-exp",
+              "location": "global"
+            },
+            "quotaValue": "10"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.RetryInfo",
+        "retryDelay": "36s"
+      }
+    ]
+  }
+}
+
+   ❌ Failed: Quota exceeded: Gemini API error: 429 Too Many Requests - {
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota. Please migrate to Gemini 2.0 Flash Preview (Image Generation) (models/gemini-2.0-flash-preview-image-generation) for higher quota limits. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits.",
+    "status": "RESOURCE_EXHAUSTED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.Help",
+        "links": [
+          {
+            "description": "Learn more about Gemini API quotas",
+            "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+        "violations": [
+          {
+            "quotaMetric": "generativelanguage.googleapis.com/generate_requests_per_model",
+            "quotaId": "GenerateRequestsPerMinutePerProjectPerModel",
+            "quotaDimensions": {
+              "model": "gemini-2.0-flash-exp",
+              "location": "global"
+            },
+            "quotaValue": "10"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.RetryInfo",
+        "retryDelay": "36s"
+      }
+    ]
+  }
+}
+
+
+[122/122] 🎨 Generating image for: Smoothie Bowls
+🎨 Generating AI image for: Smoothie Bowls
+🎨 Gemini 2.0 Flash generating: "Smoothie Bowls"
+   ❌ Attempt 1 failed: Gemini API error: 429 Too Many Requests - {
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota. Please migrate to Gemini 2.0 Flash Preview (Image Generation) (models/gemini-2.0-flash-preview-image-generation) for higher quota limits. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits.",
+    "status": "RESOURCE_EXHAUSTED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.Help",
+        "links": [
+          {
+            "description": "Learn more about Gemini API quotas",
+            "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+        "violations": [
+          {
+            "quotaMetric": "generativelanguage.googleapis.com/generate_requests_per_model",
+            "quotaId": "GenerateRequestsPerMinutePerProjectPerModel",
+            "quotaDimensions": {
+              "model": "gemini-2.0-flash-exp",
+              "location": "global"
+            },
+            "quotaValue": "10"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.RetryInfo",
+        "retryDelay": "36s"
+      }
+    ]
+  }
+}
+
+❌ FAILED for Smoothie Bowls: Quota exceeded: Gemini API error: 429 Too Many Requests - {
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota. Please migrate to Gemini 2.0 Flash Preview (Image Generation) (models/gemini-2.0-flash-preview-image-generation) for higher quota limits. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits.",
+    "status": "RESOURCE_EXHAUSTED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.Help",
+        "links": [
+          {
+            "description": "Learn more about Gemini API quotas",
+            "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+        "violations": [
+          {
+            "quotaMetric": "generativelanguage.googleapis.com/generate_requests_per_model",
+            "quotaId": "GenerateRequestsPerMinutePerProjectPerModel",
+            "quotaDimensions": {
+              "model": "gemini-2.0-flash-exp",
+              "location": "global"
+            },
+            "quotaValue": "10"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.RetryInfo",
+        "retryDelay": "36s"
+      }
+    ]
+  }
+}
+
+   ❌ Failed: Quota exceeded: Gemini API error: 429 Too Many Requests - {
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota. Please migrate to Gemini 2.0 Flash Preview (Image Generation) (models/gemini-2.0-flash-preview-image-generation) for higher quota limits. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits.",
+    "status": "RESOURCE_EXHAUSTED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.Help",
+        "links": [
+          {
+            "description": "Learn more about Gemini API quotas",
+            "url": "https://ai.google.dev/gemini-api/docs/rate-limits"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.QuotaFailure",
+        "violations": [
+          {
+            "quotaMetric": "generativelanguage.googleapis.com/generate_requests_per_model",
+            "quotaId": "GenerateRequestsPerMinutePerProjectPerModel",
+            "quotaDimensions": {
+              "model": "gemini-2.0-flash-exp",
+              "location": "global"
+            },
+            "quotaValue": "10"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.RetryInfo",
+        "retryDelay": "36s"
+      }
+    ]
+  }
+}
+
+
+
+📊 Summary:
+   ✅ Success: 40
+   🔄 Updated: 40
+   ⏭️  Skipped: 67
+   ❌ Failed: 15
+
+🎉 Image generation complete!

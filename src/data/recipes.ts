@@ -1,6 +1,26 @@
 // ThriveMenu Recipe Data
-// Converted from the "Nourishing Christine" menu content
-// ~240 recipes for Graves Disease, High Cholesterol, and Blood Sugar Balance
+// Comprehensive recipe database for Graves Disease, High Cholesterol, and Blood Sugar Balance
+// 258 recipes across Breakfast, Lunch, Dinner, Snacks, and Beverages
+// 
+// RECIPE COUNTS:
+// - Breakfast: 36 recipes
+// - Lunch: 45 recipes
+// - Dinner: 109 recipes
+// - Snacks: 61 recipes
+// - Beverages: 8 recipes
+//
+// CUISINES COVERED:
+// - Mediterranean, Asian, Indian, Mexican/Latin, Middle Eastern
+// - American Comfort (Family Favorites), Date Night/Special Occasion
+//
+// HEALTH FOCUS:
+// - Omega-3 rich (fatty fish, walnuts, chia seeds)
+// - High fiber (legumes, whole grains, vegetables)
+// - Anti-inflammatory (turmeric, ginger, berries)
+// - Selenium-rich (seafood, eggs, Brazil nuts)
+// - Heart-healthy (olive oil, avocado, soluble fiber)
+//
+// Last Updated: November 2024
 
 export interface Recipe {
   id: string;
@@ -36,7 +56,9 @@ function slugify(name: string): string {
 }
 
 // =============================================
-// BREAKFAST RECIPES (35 recipes)
+// BREAKFAST RECIPES (36 recipes)
+// Categories: Oats & Grains, Eggs & Savory, Smoothies & Bowls,
+// Yogurt & Parfaits, Pancakes/Waffles/Toast, Quick & Simple
 // =============================================
 
 export const breakfastRecipes: Recipe[] = [
@@ -510,7 +532,8 @@ export const breakfastRecipes: Recipe[] = [
 ];
 
 // =============================================
-// LUNCH RECIPES (55 recipes)
+// LUNCH RECIPES (45 recipes)
+// Categories: Salads, Soups, Sandwiches & Wraps, Bowls, Family Favorites
 // =============================================
 
 export const lunchRecipes: Recipe[] = [
@@ -1099,11 +1122,11 @@ export const lunchRecipes: Recipe[] = [
 ];
 
 // =============================================
-// DINNER RECIPES - COMPREHENSIVE COLLECTION
-// Organized by: Seafood, Poultry, Vegetarian/Plant-Based, 
-// Asian Cuisine, Indian Cuisine, Mediterranean, Mexican/Latin,
-// Middle Eastern, Lean Red Meat, Slow Cooker, Grilling, 
-// Date Night, Family Favorites
+// DINNER RECIPES (109 recipes)
+// Categories: Seafood (Salmon, White Fish, Shellfish, Fatty Fish),
+// Poultry, Vegetarian & Plant-Based, Asian Cuisine, Indian Cuisine,
+// Mediterranean, Mexican/Latin, Middle Eastern, Lean Red Meat,
+// Slow Cooker, Date Night, Family Favorites
 // =============================================
 
 export const dinnerRecipes: Recipe[] = [
@@ -2555,7 +2578,10 @@ export const dinnerRecipes: Recipe[] = [
 ];
 
 // =============================================
-// SNACK RECIPES - COMPREHENSIVE COLLECTION
+// SNACK RECIPES (61 snacks + 8 beverages = 69 total)
+// Categories: Quick Grab Snacks, Energy Bites, Savory Snacks,
+// Sweet Treats, Beverages, Snacks to Share, Protein Snacks,
+// Anti-Inflammatory Snacks
 // =============================================
 
 export const snackRecipes: Recipe[] = [
@@ -3268,6 +3294,224 @@ export const snackRecipes: Recipe[] = [
     isKidFriendly: true,
     totalTime: 10,
     servings: 2,
+  },
+  // ========== MORE SNACKS TO SHARE ==========
+  {
+    id: slugify("Rainbow Veggie Tray"),
+    name: "Rainbow Veggie Tray",
+    description: "Colorful arranged vegetables with three dipping options",
+    mealType: "SNACK",
+    category: "Snacks to Share",
+    healthBenefits: "Variety of nutrients, fun presentation",
+    keyNutrients: ["Vitamins A, C", "Fiber 8g", "Low calorie"],
+    hasHighFiber: true,
+    isKidFriendly: true,
+    totalTime: 15,
+    servings: 6,
+  },
+  {
+    id: slugify("Homemade Trail Mix"),
+    name: "Homemade Trail Mix",
+    description: "Custom mix of nuts, seeds, dried fruit, and dark chocolate",
+    mealType: "SNACK",
+    category: "Snacks to Share",
+    healthBenefits: "Control the ingredients, heart-healthy",
+    keyNutrients: ["Omega-3s", "Selenium", "Fiber 4g"],
+    hasOmega3: true,
+    hasSelenium: true,
+    isHeartHealthy: true,
+    isMakeAhead: true,
+    isKidFriendly: true,
+    totalTime: 5,
+    servings: 8,
+  },
+  {
+    id: slugify("Mini Fruit Kabobs"),
+    name: "Mini Fruit Kabobs",
+    description: "Colorful fruit pieces on small skewers with yogurt dip",
+    mealType: "SNACK",
+    category: "Snacks to Share",
+    healthBenefits: "Fun presentation encourages fruit eating",
+    keyNutrients: ["Vitamin C", "Fiber", "Antioxidants"],
+    isKidFriendly: true,
+    isQuick: true,
+    totalTime: 10,
+    servings: 6,
+  },
+  {
+    id: slugify("Whole Wheat Pretzel Bites"),
+    name: "Whole Wheat Pretzel Bites",
+    description: "Homemade soft pretzel bites with whole wheat flour and cheese dip",
+    mealType: "SNACK",
+    category: "Snacks to Share",
+    healthBenefits: "Whole grain, fun to make together",
+    keyNutrients: ["Fiber 4g", "Protein 6g", "Complex carbs"],
+    isKidFriendly: true,
+    totalTime: 45,
+    servings: 8,
+  },
+  {
+    id: slugify("Zucchini Pizza Bites"),
+    name: "Zucchini Pizza Bites",
+    description: "Zucchini rounds topped with marinara and melted mozzarella",
+    mealType: "SNACK",
+    category: "Snacks to Share",
+    healthBenefits: "Low carb pizza fix, sneaky vegetables",
+    keyNutrients: ["Lycopene", "Calcium", "Low carb"],
+    isKidFriendly: true,
+    isQuick: true,
+    totalTime: 15,
+    servings: 4,
+  },
+  {
+    id: slugify("Energy Balls Variety Pack"),
+    name: "Energy Balls Variety Pack",
+    description: "Three flavors of energy balls for variety",
+    mealType: "SNACK",
+    category: "Snacks to Share",
+    healthBenefits: "Make-ahead, portable, sustained energy",
+    keyNutrients: ["Fiber 6g", "Protein 8g", "Healthy fats"],
+    isMakeAhead: true,
+    isKidFriendly: true,
+    totalTime: 30,
+    servings: 24,
+  },
+  {
+    id: slugify("Watermelon Feta Bites"),
+    name: "Watermelon Feta Bites",
+    description: "Cubed watermelon with feta and fresh mint",
+    mealType: "SNACK",
+    category: "Snacks to Share",
+    healthBenefits: "Hydrating, unexpected flavor combo",
+    keyNutrients: ["Vitamin C", "Calcium", "Hydration"],
+    isKidFriendly: true,
+    isQuick: true,
+    totalTime: 10,
+    servings: 6,
+  },
+  // ========== PROTEIN-PACKED SNACKS ==========
+  {
+    id: slugify("Egg Salad Lettuce Wraps"),
+    name: "Egg Salad Lettuce Wraps",
+    description: "Creamy egg salad served in butter lettuce cups",
+    mealType: "SNACK",
+    category: "Protein Snacks",
+    healthBenefits: "High protein, selenium from eggs",
+    keyNutrients: ["Protein 14g", "Selenium", "Choline"],
+    hasSelenium: true,
+    isQuick: true,
+    totalTime: 15,
+    servings: 2,
+  },
+  {
+    id: slugify("Salmon Jerky"),
+    name: "Salmon Jerky",
+    description: "Homemade salmon jerky with teriyaki seasoning",
+    mealType: "SNACK",
+    category: "Protein Snacks",
+    healthBenefits: "Omega-3 portable snack, high protein",
+    keyNutrients: ["Omega-3s", "Protein 20g", "Selenium"],
+    hasOmega3: true,
+    hasSelenium: true,
+    isMakeAhead: true,
+    totalTime: 300,
+    servings: 8,
+  },
+  {
+    id: slugify("Shrimp Cocktail"),
+    name: "Shrimp Cocktail",
+    description: "Chilled cooked shrimp with zesty cocktail sauce",
+    mealType: "SNACK",
+    category: "Protein Snacks",
+    healthBenefits: "Lean protein, selenium, impressive snack",
+    keyNutrients: ["Protein 24g", "Selenium", "Low fat"],
+    hasSelenium: true,
+    isQuick: true,
+    totalTime: 5,
+    servings: 4,
+  },
+  {
+    id: slugify("Turkey Jerky Homemade"),
+    name: "Homemade Turkey Jerky",
+    description: "Lean turkey breast made into jerky with minimal sodium",
+    mealType: "SNACK",
+    category: "Protein Snacks",
+    healthBenefits: "High protein, lower sodium than store-bought",
+    keyNutrients: ["Protein 18g", "Selenium", "Low fat"],
+    hasSelenium: true,
+    isMakeAhead: true,
+    totalTime: 300,
+    servings: 8,
+  },
+  {
+    id: slugify("Deviled Eggs"),
+    name: "Deviled Eggs with Greek Yogurt",
+    description: "Classic deviled eggs made lighter with Greek yogurt",
+    mealType: "SNACK",
+    category: "Protein Snacks",
+    healthBenefits: "Selenium, protein, make-ahead party food",
+    keyNutrients: ["Protein 12g", "Selenium", "Choline"],
+    hasSelenium: true,
+    isMakeAhead: true,
+    isKidFriendly: true,
+    totalTime: 30,
+    servings: 6,
+  },
+  // ========== ANTI-INFLAMMATORY SNACKS ==========
+  {
+    id: slugify("Turmeric Hummus"),
+    name: "Turmeric Golden Hummus",
+    description: "Classic hummus infused with anti-inflammatory turmeric and ginger",
+    mealType: "SNACK",
+    category: "Anti-Inflammatory Snacks",
+    healthBenefits: "Powerful anti-inflammatory combo",
+    keyNutrients: ["Fiber 6g", "Curcumin", "Protein 6g"],
+    hasHighFiber: true,
+    isAntiInflammatory: true,
+    isMakeAhead: true,
+    totalTime: 10,
+    servings: 6,
+  },
+  {
+    id: slugify("Ginger Carrot Sticks"),
+    name: "Ginger Glazed Carrot Sticks",
+    description: "Roasted carrot sticks with honey-ginger glaze",
+    mealType: "SNACK",
+    category: "Anti-Inflammatory Snacks",
+    healthBenefits: "Anti-inflammatory ginger, beta-carotene",
+    keyNutrients: ["Vitamin A", "Anti-inflammatory", "Fiber 4g"],
+    isAntiInflammatory: true,
+    isKidFriendly: true,
+    totalTime: 30,
+    servings: 4,
+  },
+  {
+    id: slugify("Walnut Cherry Bites"),
+    name: "Walnut Cherry Bites",
+    description: "Walnuts and tart cherries in dark chocolate clusters",
+    mealType: "SNACK",
+    category: "Anti-Inflammatory Snacks",
+    healthBenefits: "Triple anti-inflammatory: walnuts, cherries, dark chocolate",
+    keyNutrients: ["Omega-3s", "Antioxidants", "Anti-inflammatory"],
+    hasOmega3: true,
+    isAntiInflammatory: true,
+    isMakeAhead: true,
+    totalTime: 20,
+    servings: 12,
+  },
+  {
+    id: slugify("Anti-Inflammatory Smoothie"),
+    name: "Anti-Inflammatory Power Smoothie",
+    description: "Blueberries, spinach, ginger, turmeric, and almond butter",
+    mealType: "SNACK",
+    category: "Anti-Inflammatory Snacks",
+    healthBenefits: "Maximum anti-inflammatory ingredients",
+    keyNutrients: ["Antioxidants", "Curcumin", "Omega-3s"],
+    hasOmega3: true,
+    isAntiInflammatory: true,
+    isQuick: true,
+    totalTime: 5,
+    servings: 1,
   },
 ];
 

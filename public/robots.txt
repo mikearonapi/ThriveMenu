@@ -1,0 +1,21 @@
+# ThriveMenu Robots.txt
+# https://thrivemenu.vercel.app
+
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://thrivemenu.vercel.app/sitemap.xml
+
+# Crawl-delay (optional, for polite crawling)
+Crawl-delay: 1
+
+# Disallow admin/API routes
+Disallow: /api/
+Disallow: /auth/
+
+# Allow important pages
+Allow: /
+Allow: /explore
+Allow: /recipe/*
+

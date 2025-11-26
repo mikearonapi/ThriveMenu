@@ -1,27 +1,65 @@
 {
   "name": "ThriveMenu",
   "short_name": "ThriveMenu",
-  "description": "A beautiful meal planning app for families with health-focused dietary needs",
+  "description": "Nourishing meals for your wellness journey. Delicious recipes supporting thyroid health, heart protection, and blood sugar stability.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#F5F1E8",
-  "theme_color": "#4A6B5A",
-  "orientation": "portrait",
+  "background_color": "#faf8f5",
+  "theme_color": "#26a69a",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en",
+  "categories": ["food", "health", "lifestyle"],
   "icons": [
     {
-      "src": "/icon-192.png",
-      "sizes": "192x192",
+      "src": "/icon",
+      "sizes": "32x32",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     },
     {
-      "src": "/icon-512.png",
-      "sizes": "512x512",
+      "src": "/apple-icon",
+      "sizes": "180x180",
       "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
       "purpose": "any maskable"
     }
   ],
-  "categories": ["food", "health", "lifestyle"],
-  "screenshots": []
+  "screenshots": [
+    {
+      "src": "/opengraph-image",
+      "sizes": "1200x630",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "ThriveMenu Home"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Explore Recipes",
+      "short_name": "Explore",
+      "description": "Browse all recipes",
+      "url": "/explore",
+      "icons": [{ "src": "/icon", "sizes": "32x32" }]
+    },
+    {
+      "name": "Meal Plan",
+      "short_name": "Plan",
+      "description": "View your meal plan",
+      "url": "/plan",
+      "icons": [{ "src": "/icon", "sizes": "32x32" }]
+    },
+    {
+      "name": "Saved Recipes",
+      "short_name": "Saved",
+      "description": "View saved recipes",
+      "url": "/saved",
+      "icons": [{ "src": "/icon", "sizes": "32x32" }]
+    }
+  ]
 }
-

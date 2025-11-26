@@ -1,0 +1,248 @@
+
+> thrivemenu@1.0.0 generate-images
+> ts-node --compiler-options '{"module":"CommonJS"}' scripts/generate-all-recipe-images.ts
+
+[dotenv@17.2.3] injecting env (9) from .env.local -- tip: 🔐 encrypt with Dotenvx: https://dotenvx.com
+[dotenv@17.2.3] injecting env (0) from .env -- tip: 🔐 prevent committing .env to code: https://dotenvx.com/precommit
+🚀 Starting batch image generation for all recipes...
+
+✅ Environment variables loaded
+
+prisma:info Starting a postgresql pool with 21 connections in PgBouncer mode.
+📋 Found 122 recipes in database
+
+[1/122] ⏭️  Skipping Golden Turmeric Oatmeal - already has Vercel Blob image
+[2/122] ⏭️  Skipping Overnight Berry Oats - already has Vercel Blob image
+[3/122] ⏭️  Skipping Savory Oat Bowl - already has Vercel Blob image
+[4/122] ⏭️  Skipping Apple Cinnamon Baked Oatmeal - already has Vercel Blob image
+[5/122] ⏭️  Skipping Maple Walnut Quinoa Porridge - already has Vercel Blob image
+[6/122] ⏭️  Skipping Banana Nut Oat Bran - already has Vercel Blob image
+[7/122] ⏭️  Skipping Mediterranean Veggie Scramble - already has Vercel Blob image
+[8/122] ⏭️  Skipping Shakshuka (Eggs in Tomato Sauce) - already has Vercel Blob image
+[9/122] ⏭️  Skipping Spinach & Mushroom Frittata - already has Vercel Blob image
+[10/122] ⏭️  Skipping Avocado Toast with Poached Egg - already has Vercel Blob image
+[11/122] ⏭️  Skipping Greek Omelet - already has Vercel Blob image
+[12/122] ⏭️  Skipping Huevos Rancheros (Healthified) - already has Vercel Blob image
+[13/122] ⏭️  Skipping Zucchini Egg Muffins - already has Vercel Blob image
+[14/122] ⏭️  Skipping Sweet Potato & Kale Hash with Eggs - already has Vercel Blob image
+[15/122] ⏭️  Skipping Smoked Salmon Eggs Benedict (Lightened) - already has Vercel Blob image
+[16/122] ⏭️  Skipping Green Goddess Smoothie - already has Vercel Blob image
+[17/122] ⏭️  Skipping Berry Antioxidant Blast - already has Vercel Blob image
+[18/122] ⏭️  Skipping Tropical Anti-Inflammatory Smoothie - already has Vercel Blob image
+[19/122] ⏭️  Skipping Chocolate Cherry Recovery Smoothie - already has Vercel Blob image
+[20/122] ⏭️  Skipping Açaí Power Bowl - already has Vercel Blob image
+[21/122] ⏭️  Skipping Peanut Butter Banana Smoothie - already has Vercel Blob image
+[22/122] ⏭️  Skipping Greek Yogurt Parfait - already has Vercel Blob image
+[23/122] ⏭️  Skipping Mediterranean Breakfast Bowl - already has Vercel Blob image
+[24/122] ⏭️  Skipping Chia Pudding with Mango - already has Vercel Blob image
+[25/122] ⏭️  Skipping Apple Pie Yogurt Bowl - already has Vercel Blob image
+[26/122] ⏭️  Skipping Oat Flour Banana Pancakes - already has Vercel Blob image
+[27/122] ⏭️  Skipping Almond Butter & Berry Toast - already has Vercel Blob image
+[28/122] ⏭️  Skipping Sweet Potato Toast - already has Vercel Blob image
+[29/122] ⏭️  Skipping Whole Grain Waffles with Berry Compote - already has Vercel Blob image
+[30/122] ⏭️  Skipping Ricotta Toast with Honey & Figs - already has Vercel Blob image
+[31/122] ⏭️  Skipping Hard-Boiled Eggs with Fruit - already has Vercel Blob image
+[32/122] ⏭️  Skipping Cottage Cheese with Peaches - already has Vercel Blob image
+[33/122] ⏭️  Skipping Whole Grain Cereal with Berries - already has Vercel Blob image
+[34/122] ⏭️  Skipping Banana with Almond Butter - already has Vercel Blob image
+[35/122] ⏭️  Skipping Trail Mix Breakfast Jar - already has Vercel Blob image
+[36/122] ⏭️  Skipping Classic Greek Salad - already has Vercel Blob image
+[37/122] ⏭️  Skipping Salmon Niçoise Salad - already has Vercel Blob image
+[38/122] ⏭️  Skipping Kale Caesar with Chickpeas - already has Vercel Blob image
+[39/122] ⏭️  Skipping Mediterranean Quinoa Salad - already has Vercel Blob image
+[40/122] ⏭️  Skipping Asian Sesame Chicken Salad - already has Vercel Blob image
+[41/122] ⏭️  Skipping Roasted Beet & Goat Cheese Salad - already has Vercel Blob image
+[42/122] ⏭️  Skipping Tuna & White Bean Salad - already has Vercel Blob image
+[43/122] ⏭️  Skipping Southwest Black Bean Salad - already has Vercel Blob image
+[44/122] ⏭️  Skipping Strawberry Spinach Salad - already has Vercel Blob image
+[45/122] ⏭️  Skipping Farro & Roasted Vegetable Salad - already has Vercel Blob image
+[46/122] ⏭️  Skipping Thai Peanut Crunch Salad - already has Vercel Blob image
+[47/122] ⏭️  Skipping Lemony Lentil Salad - already has Vercel Blob image
+[48/122] ⏭️  Skipping Tuscan White Bean & Kale Soup - already has Vercel Blob image
+[49/122] ⏭️  Skipping Lemon Chicken Orzo Soup - already has Vercel Blob image
+[50/122] ⏭️  Skipping Moroccan Chickpea Stew - already has Vercel Blob image
+[51/122] ⏭️  Skipping Minestrone Soup - already has Vercel Blob image
+[52/122] ⏭️  Skipping Butternut Squash Soup - already has Vercel Blob image
+[53/122] ⏭️  Skipping Greek Lemon Chicken Soup (Avgolemono) - already has Vercel Blob image
+[54/122] ⏭️  Skipping Black Bean Soup with Lime - already has Vercel Blob image
+[55/122] ⏭️  Skipping Roasted Tomato Basil Soup - already has Vercel Blob image
+[56/122] ⏭️  Skipping Seafood Chowder (Lightened) - already has Vercel Blob image
+[57/122] ⏭️  Skipping Mediterranean Turkey Wrap - already has Vercel Blob image
+[58/122] ⏭️  Skipping Salmon Salad Sandwich - already has Vercel Blob image
+[59/122] ⏭️  Skipping Caprese Panini - already has Vercel Blob image
+[60/122] ⏭️  Skipping Hummus Veggie Wrap - already has Vercel Blob image
+[61/122] ⏭️  Skipping Grilled Chicken Pesto Sandwich - already has Vercel Blob image
+[62/122] ⏭️  Skipping Avocado BLT (Turkey Bacon) - already has Vercel Blob image
+[63/122] ⏭️  Skipping Falafel Pita Pocket - already has Vercel Blob image
+[64/122] ⏭️  Skipping Tuna Melt (Open-Faced) - already has Vercel Blob image
+[65/122] ⏭️  Skipping Chicken Shawarma Wrap - already has Vercel Blob image
+[66/122] ⏭️  Skipping Buddha Bowl - already has Vercel Blob image
+[67/122] ⏭️  Skipping Poke Bowl (Salmon) - already has Vercel Blob image
+[68/122] ⏭️  Skipping Mediterranean Grain Bowl - already has Vercel Blob image
+[69/122] ⏭️  Skipping Burrito Bowl - already has Vercel Blob image
+[70/122] ⏭️  Skipping Teriyaki Salmon Bowl - already has Vercel Blob image
+[71/122] ⏭️  Skipping Falafel Bowl - already has Vercel Blob image
+[72/122] ⏭️  Skipping Korean Bibimbap Bowl - already has Vercel Blob image
+[73/122] ⏭️  Skipping Harvest Bowl - already has Vercel Blob image
+[74/122] ⏭️  Skipping Grilled Cheese & Tomato Soup - already has Vercel Blob image
+[75/122] ⏭️  Skipping Chicken Quesadilla with Guacamole - already has Vercel Blob image
+[76/122] ⏭️  Skipping Turkey Meatball Subs - already has Vercel Blob image
+[77/122] ⏭️  Skipping Pizza Bagels (Whole Grain) - already has Vercel Blob image
+[78/122] ⏭️  Skipping Chicken Noodle Soup - already has Vercel Blob image
+[79/122] ⏭️  Skipping Veggie Fried Rice - already has Vercel Blob image
+[80/122] ⏭️  Skipping Loaded Sweet Potato - already has Vercel Blob image
+[81/122] ⏭️  Skipping Lemon Herb Baked Salmon - already has Vercel Blob image
+[82/122] ⏭️  Skipping Mediterranean Salmon with Tomatoes & Olives - already has Vercel Blob image
+[83/122] ⏭️  Skipping Garlic Butter Shrimp with Zucchini Noodles - already has Vercel Blob image
+[84/122] ⏭️  Skipping Sheet Pan Salmon & Asparagus - already has Vercel Blob image
+[85/122] ⏭️  Skipping Blackened Tilapia Tacos - already has Vercel Blob image
+[86/122] ⏭️  Skipping Coconut Curry Shrimp - already has Vercel Blob image
+[87/122] ⏭️  Skipping Lemon Rosemary Roast Chicken - already has Vercel Blob image
+[88/122] ⏭️  Skipping Greek Chicken with Roasted Vegetables - already has Vercel Blob image
+[89/122] ⏭️  Skipping Chicken Piccata - already has Vercel Blob image
+[90/122] ⏭️  Skipping Chicken Souvlaki with Tzatziki - already has Vercel Blob image
+[91/122] ⏭️  Skipping Turkey Taco Lettuce Wraps - already has Vercel Blob image
+[92/122] ⏭️  Skipping Chickpea Curry - already has Vercel Blob image
+[93/122] ⏭️  Skipping Lentil Bolognese - already has Vercel Blob image
+[94/122] ⏭️  Skipping Black Bean Tacos - already has Vercel Blob image
+[95/122] ⏭️  Skipping Stuffed Portobello Mushrooms - already has Vercel Blob image
+[96/122] ⏭️  Skipping Baked Chicken Fingers with Honey Mustard - already has Vercel Blob image
+[97/122] ⏭️  Skipping Spaghetti & Turkey Meatballs - already has Vercel Blob image
+[98/122] ⏭️  Skipping Homemade Pizza (Whole Wheat Crust) - already has Vercel Blob image
+[99/122] ⏭️  Skipping Fish Tacos with Slaw - already has Vercel Blob image
+[100/122] ⏭️  Skipping Chicken Fried Rice (Brown Rice) - already has Vercel Blob image
+[101/122] ⏭️  Skipping Chicken Parmesan (Baked) - already has Vercel Blob image
+[102/122] ⏭️  Skipping Apple Slices with Almond Butter - already has Vercel Blob image
+[103/122] ⏭️  Skipping Greek Yogurt with Berries - already has Vercel Blob image
+[104/122] ⏭️  Skipping Handful of Mixed Nuts - already has Vercel Blob image
+[105/122] ⏭️  Skipping Hummus with Vegetable Sticks - already has Vercel Blob image
+[106/122] ⏭️  Skipping Hard-Boiled Eggs - already has Vercel Blob image
+[107/122] ⏭️  Skipping Edamame - already has Vercel Blob image
+[108/122] 🎨 Generating image for: Olives & Feta
+🎨 Generating AI image for: Olives & Feta
+🎨 Gemini 2.0 Flash generating: "Olives & Feta"
+   ✅ Gemini 2.0 Flash generated image for Olives & Feta
+   📤 Uploading to Vercel Blob: recipes/cmif4ln2t00hgzuv1m97diodn.jpg
+   ✅ SUCCESS: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4ln2t00hgzuv1m97diodn.jpg
+   ✅ Success: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4ln2t00hgzuv1m97diodn.jpg
+
+[109/122] 🎨 Generating image for: Dark Chocolate & Almonds
+🎨 Generating AI image for: Dark Chocolate & Almonds
+🎨 Gemini 2.0 Flash generating: "Dark Chocolate & Almonds"
+   ✅ Gemini 2.0 Flash generated image for Dark Chocolate & Almonds
+   📤 Uploading to Vercel Blob: recipes/cmif4ln6100hjzuv1p0wrfrs4.jpg
+   ✅ SUCCESS: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4ln6100hjzuv1p0wrfrs4.jpg
+   ✅ Success: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4ln6100hjzuv1p0wrfrs4.jpg
+
+[110/122] 🎨 Generating image for: Frozen Banana Bites
+🎨 Generating AI image for: Frozen Banana Bites
+🎨 Gemini 2.0 Flash generating: "Frozen Banana Bites"
+   ✅ Gemini 2.0 Flash generated image for Frozen Banana Bites
+   📤 Uploading to Vercel Blob: recipes/cmif4ln8e00huzuv1fxzbsw4x.jpg
+   ✅ SUCCESS: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4ln8e00huzuv1fxzbsw4x.jpg
+   ✅ Success: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4ln8e00huzuv1fxzbsw4x.jpg
+
+[111/122] 🎨 Generating image for: Chia Seed Pudding
+🎨 Generating AI image for: Chia Seed Pudding
+🎨 Gemini 2.0 Flash generating: "Chia Seed Pudding"
+   ✅ Gemini 2.0 Flash generated image for Chia Seed Pudding
+   📤 Uploading to Vercel Blob: recipes/cmif4ln9e00hvzuv1lep62siq.jpg
+   ✅ SUCCESS: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4ln9e00hvzuv1lep62siq.jpg
+   ✅ Success: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4ln9e00hvzuv1lep62siq.jpg
+
+[112/122] 🎨 Generating image for: Frozen Grapes
+🎨 Generating AI image for: Frozen Grapes
+🎨 Gemini 2.0 Flash generating: "Frozen Grapes"
+   ✅ Gemini 2.0 Flash generated image for Frozen Grapes
+   📤 Uploading to Vercel Blob: recipes/cmif4lnad00hwzuv1qe1ush4e.jpg
+   ✅ SUCCESS: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lnad00hwzuv1qe1ush4e.jpg
+   ✅ Success: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lnad00hwzuv1qe1ush4e.jpg
+
+[113/122] 🎨 Generating image for: Yogurt Bark
+🎨 Generating AI image for: Yogurt Bark
+🎨 Gemini 2.0 Flash generating: "Yogurt Bark"
+   ✅ Gemini 2.0 Flash generated image for Yogurt Bark
+   📤 Uploading to Vercel Blob: recipes/cmif4lnbj00hxzuv1016l4kr8.jpg
+   ✅ SUCCESS: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lnbj00hxzuv1016l4kr8.jpg
+   ✅ Success: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lnbj00hxzuv1016l4kr8.jpg
+
+[114/122] 🎨 Generating image for: Date & Walnut Bites
+🎨 Generating AI image for: Date & Walnut Bites
+🎨 Gemini 2.0 Flash generating: "Date & Walnut Bites"
+   ✅ Gemini 2.0 Flash generated image for Date & Walnut Bites
+   📤 Uploading to Vercel Blob: recipes/cmif4lncm00hyzuv1astttwq8.jpg
+   ✅ SUCCESS: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lncm00hyzuv1astttwq8.jpg
+   ✅ Success: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lncm00hyzuv1astttwq8.jpg
+
+[115/122] 🎨 Generating image for: Green Tea (Hot or Iced)
+🎨 Generating AI image for: Green Tea (Hot or Iced)
+🎨 Gemini 2.0 Flash generating: "Green Tea (Hot or Iced)"
+   ✅ Gemini 2.0 Flash generated image for Green Tea (Hot or Iced)
+   📤 Uploading to Vercel Blob: recipes/cmif4lndl00hzzuv11el1zsva.jpg
+   ✅ SUCCESS: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lndl00hzzuv11el1zsva.jpg
+   ✅ Success: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lndl00hzzuv11el1zsva.jpg
+
+[116/122] 🎨 Generating image for: Golden Milk (Turmeric Latte)
+🎨 Generating AI image for: Golden Milk (Turmeric Latte)
+🎨 Gemini 2.0 Flash generating: "Golden Milk (Turmeric Latte)"
+   ✅ Gemini 2.0 Flash generated image for Golden Milk (Turmeric Latte)
+   📤 Uploading to Vercel Blob: recipes/cmif4lnel00i0zuv111wnbe99.jpg
+   ✅ SUCCESS: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lnel00i0zuv111wnbe99.jpg
+   ✅ Success: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lnel00i0zuv111wnbe99.jpg
+
+[117/122] 🎨 Generating image for: Ginger Lemon Tea
+🎨 Generating AI image for: Ginger Lemon Tea
+🎨 Gemini 2.0 Flash generating: "Ginger Lemon Tea"
+   ✅ Gemini 2.0 Flash generated image for Ginger Lemon Tea
+   📤 Uploading to Vercel Blob: recipes/cmif4lnh600iizuv1ei3vmvh5.jpg
+   ✅ SUCCESS: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lnh600iizuv1ei3vmvh5.jpg
+   ✅ Success: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lnh600iizuv1ei3vmvh5.jpg
+
+[118/122] 🎨 Generating image for: Apple "Nachos"
+🎨 Generating AI image for: Apple "Nachos"
+🎨 Gemini 2.0 Flash generating: "Apple "Nachos""
+   ✅ Gemini 2.0 Flash generated image for Apple "Nachos"
+   📤 Uploading to Vercel Blob: recipes/cmif4lni700ijzuv1i9qm16qw.jpg
+   ✅ SUCCESS: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lni700ijzuv1i9qm16qw.jpg
+   ✅ Success: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lni700ijzuv1i9qm16qw.jpg
+
+[119/122] 🎨 Generating image for: Ants on a Log
+🎨 Generating AI image for: Ants on a Log
+🎨 Gemini 2.0 Flash generating: "Ants on a Log"
+   ✅ Gemini 2.0 Flash generated image for Ants on a Log
+   📤 Uploading to Vercel Blob: recipes/cmif4lnje00ikzuv11b1hsxqs.jpg
+   ✅ SUCCESS: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lnje00ikzuv11b1hsxqs.jpg
+   ✅ Success: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lnje00ikzuv11b1hsxqs.jpg
+
+[120/122] 🎨 Generating image for: Banana Sushi
+🎨 Generating AI image for: Banana Sushi
+🎨 Gemini 2.0 Flash generating: "Banana Sushi"
+   ✅ Gemini 2.0 Flash generated image for Banana Sushi
+   📤 Uploading to Vercel Blob: recipes/cmif4lnkh00ilzuv107exl63a.jpg
+   ✅ SUCCESS: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lnkh00ilzuv107exl63a.jpg
+   ✅ Success: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lnkh00ilzuv107exl63a.jpg
+
+[121/122] 🎨 Generating image for: Frozen Fruit Pops
+🎨 Generating AI image for: Frozen Fruit Pops
+🎨 Gemini 2.0 Flash generating: "Frozen Fruit Pops"
+   ✅ Gemini 2.0 Flash generated image for Frozen Fruit Pops
+   📤 Uploading to Vercel Blob: recipes/cmif4lnlj00imzuv1n4p7p7kn.jpg
+   ✅ SUCCESS: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lnlj00imzuv1n4p7p7kn.jpg
+   ✅ Success: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lnlj00imzuv1n4p7p7kn.jpg
+
+[122/122] 🎨 Generating image for: Smoothie Bowls
+🎨 Generating AI image for: Smoothie Bowls
+🎨 Gemini 2.0 Flash generating: "Smoothie Bowls"
+   ✅ Gemini 2.0 Flash generated image for Smoothie Bowls
+   📤 Uploading to Vercel Blob: recipes/cmif4lnmm00inzuv1zdft8hrk.jpg
+   ✅ SUCCESS: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lnmm00inzuv1zdft8hrk.jpg
+   ✅ Success: https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmif4lnmm00inzuv1zdft8hrk.jpg
+
+
+📊 Summary:
+   ✅ Success: 15
+   🔄 Updated: 15
+   ⏭️  Skipped: 107
+   ❌ Failed: 0
+
+🎉 Image generation complete!
