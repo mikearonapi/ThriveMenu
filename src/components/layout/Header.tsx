@@ -1,25 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { Search, Utensils } from "lucide-react";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { Utensils } from "lucide-react";
 
 export function Header() {
-  const [searchQuery, setSearchQuery] = useState("");
-  const router = useRouter();
-
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (searchQuery.trim()) {
-      router.push(`/explore?search=${encodeURIComponent(searchQuery.trim())}`);
-    }
-  };
-
   return (
     <header className="sticky top-0 z-50 header-gradient">
       <div className="container-app py-4 sm:py-5">
-        <div className="flex items-center justify-between gap-4">
+        <div className="flex items-center justify-between">
           {/* Logo & Tagline */}
           <Link href="/" className="flex-shrink-0">
             <h1
@@ -38,23 +26,6 @@ export function Header() {
             <Utensils className="w-5 h-5 sm:w-6 sm:h-6 text-white/90" />
           </div>
         </div>
-
-        {/* Search Bar */}
-        <form onSubmit={handleSearch} className="mt-4">
-          <div className="relative">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/50" />
-            <input
-              type="text"
-              placeholder="Search meals..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-white/15 backdrop-blur-sm border border-white/20 rounded-full 
-                         pl-12 pr-4 py-3 text-white placeholder-white/50
-                         focus:outline-none focus:ring-2 focus:ring-white/30 focus:border-transparent
-                         transition-all duration-200"
-            />
-          </div>
-        </form>
       </div>
     </header>
   );

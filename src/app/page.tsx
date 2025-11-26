@@ -33,12 +33,6 @@ function getCurrentMealSuggestion() {
   return { type: "SNACK", label: "evening snack", icon: Cookie };
 }
 
-function getTimeOfDay(): string {
-  const hour = new Date().getHours();
-  if (hour < 12) return "Good morning";
-  if (hour < 17) return "Good afternoon";
-  return "Good evening";
-}
 
 export default function HomePage() {
   const currentMeal = getCurrentMealSuggestion();
@@ -96,20 +90,6 @@ export default function HomePage() {
     <div className="page-content" style={{ backgroundColor: 'var(--cream-100)' }}>
       {/* Hero Section with Featured Recipe */}
       <section className="container-app pt-6 pb-4">
-        {/* Greeting */}
-        <div className="mb-5 animate-fade-in">
-          <p className="text-sm font-semibold mb-1 tracking-wide" style={{ color: 'var(--teal-600)' }}>
-            {getTimeOfDay()}, Christine
-          </p>
-          <h1
-            className="text-2xl sm:text-3xl md:text-4xl font-semibold leading-tight"
-            style={{ fontFamily: "var(--font-serif)", color: 'var(--forest-900)' }}
-          >
-            What shall we{" "}
-            <span className="italic font-normal" style={{ color: 'var(--teal-600)' }}>cook today?</span>
-          </h1>
-        </div>
-
         {/* Featured Recipe Card */}
         {featuredRecipe && (
           <Link 

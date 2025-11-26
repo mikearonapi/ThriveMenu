@@ -1099,11 +1099,15 @@ export const lunchRecipes: Recipe[] = [
 ];
 
 // =============================================
-// DINNER RECIPES (100 recipes - abbreviated for brevity)
+// DINNER RECIPES - COMPREHENSIVE COLLECTION
+// Organized by: Seafood, Poultry, Vegetarian/Plant-Based, 
+// Asian Cuisine, Indian Cuisine, Mediterranean, Mexican/Latin,
+// Middle Eastern, Lean Red Meat, Slow Cooker, Grilling, 
+// Date Night, Family Favorites
 // =============================================
 
 export const dinnerRecipes: Recipe[] = [
-  // Seafood
+  // ========== SEAFOOD - SALMON ==========
   {
     id: slugify("Lemon Herb Baked Salmon"),
     name: "Lemon Herb Baked Salmon",
