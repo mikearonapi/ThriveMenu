@@ -3,6 +3,7 @@
 import { useParams, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { useAuth } from "@/hooks/useAuth";
+import Image from "next/image";
 import {
   ArrowLeft,
   Heart,
@@ -21,9 +22,11 @@ import {
   Moon,
   Cookie,
   Lightbulb,
+  Loader2,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import RatingStars from "@/components/recipe/RatingStars";
+import { getRecipeImage } from "@/lib/images";
 
 interface RecipeData {
   id: string;
@@ -128,7 +131,6 @@ export default function RecipePage() {
         .then((res) => res.json())
         .then((data) => setIsFavorited(data.isFavorited || false))
         .catch(() => {
-          // Check favorites list instead
           fetch("/api/favorites")
             .then((res) => res.json())
             .then((data) => {
@@ -160,9 +162,21 @@ export default function RecipePage() {
     fetchRatings();
   }, [params.id, isAuthenticated]);
 
+  // Loading state
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: 'var(--cream-100)' }}>
+        <div className="text-center">
+          <Loader2 className="w-12 h-12 text-sage-500 mx-auto mb-4 animate-spin" />
+          <p className="text-gray-600">Loading recipe...</p>
+        </div>
+      </div>
+    );
+  }
+
   if (!recipe) {
     return (
-      <div className="min-h-screen flex items-center justify-center px-5">
+      <div className="min-h-screen flex items-center justify-center px-5" style={{ backgroundColor: 'var(--cream-100)' }}>
         <div className="text-center">
           <ChefHat className="w-16 h-16 text-sage-600 mx-auto mb-4" />
           <h1 className="text-2xl font-medium text-forest-900 mb-2" style={{ fontFamily: "var(--font-serif)" }}>
@@ -183,43 +197,39 @@ export default function RecipePage() {
   const ingredients = recipe.ingredients || [];
   const instructions = recipe.instructions?.map((inst) => inst.instruction) || [];
   const tips = recipe.tips?.map((tip) => tip.content) || [];
-
   const baseServings = recipe.servings || 4;
-
-  // Fetch rating data on mount
-  useEffect(() => {
-    async function fetchRatings() {
-      try {
-        const response = await fetch(`/api/recipes/${params.id}/ratings`);
-        if (response.ok) {
-          const data = await response.json();
-          setRatingData({
-            averageRating: data.averageRating || 0,
-            totalRatings: data.totalRatings || 0,
-            userRating: data.ratings?.find((r: any) => r.userId === "current")?.rating || null,
-          });
-        }
-      } catch (error) {
-        console.error("Error fetching ratings:", error);
-      }
-    }
-    fetchRatings();
-  }, [params.id]);
+  const displayImage = recipe.imageUrl || getRecipeImage(recipe.name, recipe.category);
 
   return (
-    <div className="min-h-screen pb-24 style={{ backgroundColor: 'var(--cream-100)' }}">
-      {/* Hero Image / Placeholder */}
-      <div
-        className="h-72 relative"
-        style={{
-          background: 'linear-gradient(135deg, var(--sage-200) 0%, var(--cream-200) 50%, var(--rose-100) 100%)',
-        }}
-      >
+    <div className="min-h-screen pb-24" style={{ backgroundColor: 'var(--cream-100)' }}>
+      {/* Hero Image */}
+      <div className="relative h-72 sm:h-80 md:h-96 lg:h-[28rem]">
+        {displayImage ? (
+          <Image
+            src={displayImage}
+            alt={recipe.name}
+            fill
+            className="object-cover"
+            priority
+            sizes="100vw"
+          />
+        ) : (
+          <div
+            className="absolute inset-0"
+            style={{
+              background: 'linear-gradient(135deg, var(--sage-200) 0%, var(--cream-200) 50%, var(--rose-100) 100%)',
+            }}
+          />
+        )}
+        
+        {/* Gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20" />
+
         {/* Navigation */}
         <div className="absolute top-0 left-0 right-0 p-4 flex justify-between items-center z-10">
           <button
             onClick={() => router.back()}
-            className="w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-md"
+            className="w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-md hover:bg-white transition-colors"
           >
             <ArrowLeft className="w-5 h-5 text-forest-900" />
           </button>
@@ -234,7 +244,6 @@ export default function RecipePage() {
                 setIsFavoriting(true);
                 try {
                   if (isFavorited) {
-                    // Remove favorite
                     const response = await fetch(`/api/favorites?recipeId=${params.id}`, {
                       method: "DELETE",
                     });
@@ -242,7 +251,6 @@ export default function RecipePage() {
                       setIsFavorited(false);
                     }
                   } else {
-                    // Add favorite
                     const response = await fetch("/api/favorites", {
                       method: "POST",
                       headers: { "Content-Type": "application/json" },
@@ -263,41 +271,41 @@ export default function RecipePage() {
                 "w-10 h-10 rounded-full flex items-center justify-center shadow-md transition-all",
                 isFavorited
                   ? "bg-rose-500 text-white"
-                  : "bg-white/90 backdrop-blur-sm text-gray-600",
+                  : "bg-white/90 backdrop-blur-sm text-gray-600 hover:bg-white",
                 isFavoriting && "opacity-50 cursor-not-allowed"
               )}
             >
               <Heart className={cn("w-5 h-5", isFavorited && "fill-current")} />
             </button>
-            <button className="w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-md">
+            <button className="w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-md hover:bg-white transition-colors">
               <Share2 className="w-5 h-5 text-gray-600" />
             </button>
           </div>
         </div>
 
-        {/* Category Icon */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          {recipe.mealType === "BREAKFAST" ? (
-            <Sun className="w-24 h-24 text-sage-200 opacity-50" />
-          ) : recipe.mealType === "LUNCH" ? (
-            <Sun className="w-24 h-24 text-sage-200 opacity-50" />
-          ) : recipe.mealType === "DINNER" ? (
-            <Moon className="w-24 h-24 text-sage-200 opacity-50" />
-          ) : (
-            <Cookie className="w-24 h-24 text-sage-200 opacity-50" />
-          )}
-        </div>
+        {/* Category Icon (fallback when no image) */}
+        {!displayImage && (
+          <div className="absolute inset-0 flex items-center justify-center">
+            {recipe.mealType === "BREAKFAST" ? (
+              <Sun className="w-24 h-24 text-sage-300 opacity-50" />
+            ) : recipe.mealType === "DINNER" ? (
+              <Moon className="w-24 h-24 text-sage-300 opacity-50" />
+            ) : (
+              <Cookie className="w-24 h-24 text-sage-300 opacity-50" />
+            )}
+          </div>
+        )}
       </div>
 
       {/* Content */}
-      <div className="relative -mt-8 style={{ backgroundColor: 'var(--cream-100)' }} rounded-t-[2rem] px-5 pt-6">
+      <div className="relative -mt-8 bg-cream-100 rounded-t-[2rem] px-5 pt-6 max-w-4xl mx-auto" style={{ backgroundColor: 'var(--cream-100)' }}>
         {/* Title Section */}
         <div className="mb-6">
-          <p className="text-sm text-sage-600 font-medium mb-1">
+          <p className="text-sm font-medium mb-1" style={{ color: 'var(--teal-600)' }}>
             {recipe.category}
           </p>
           <h1
-            className="text-2xl font-medium text-forest-900 mb-3"
+            className="text-2xl sm:text-3xl font-medium text-forest-900 mb-3"
             style={{ fontFamily: "var(--font-serif)" }}
           >
             {recipe.name}
@@ -309,60 +317,64 @@ export default function RecipePage() {
 
         {/* Meta Cards */}
         <div className="flex gap-3 mb-6 overflow-x-auto hide-scrollbar -mx-5 px-5">
-          <div className="flex-shrink-0 bg-white rounded-xl px-4 py-3 shadow-sm border border-gray-300">
-            <Clock className="w-5 h-5 text-[var(--sage-500)] mb-1" />
+          <div className="flex-shrink-0 bg-white rounded-xl px-4 py-3 shadow-sm border border-cream-200">
+            <Clock className="w-5 h-5 mb-1" style={{ color: 'var(--teal-500)' }} />
             <p className="text-sm font-medium text-forest-900">{recipe.totalTime || 25} min</p>
             <p className="text-xs text-gray-500">Total Time</p>
           </div>
-          <div className="flex-shrink-0 bg-white rounded-xl px-4 py-3 shadow-sm border border-gray-300">
-            <Users className="w-5 h-5 text-[var(--sage-500)] mb-1" />
+          <div className="flex-shrink-0 bg-white rounded-xl px-4 py-3 shadow-sm border border-cream-200">
+            <Users className="w-5 h-5 mb-1" style={{ color: 'var(--teal-500)' }} />
             <p className="text-sm font-medium text-forest-900">{recipe.servings || 4}</p>
             <p className="text-xs text-gray-500">Servings</p>
           </div>
-          <div className="flex-shrink-0 bg-white rounded-xl px-4 py-3 shadow-sm border border-gray-300">
-            <ChefHat className="w-5 h-5 text-[var(--sage-500)] mb-1" />
-            <p className="text-sm font-medium text-forest-900">Easy</p>
+          <div className="flex-shrink-0 bg-white rounded-xl px-4 py-3 shadow-sm border border-cream-200">
+            <ChefHat className="w-5 h-5 mb-1" style={{ color: 'var(--teal-500)' }} />
+            <p className="text-sm font-medium text-forest-900">{recipe.difficulty || "Easy"}</p>
             <p className="text-xs text-gray-500">Difficulty</p>
           </div>
         </div>
 
         {/* Health Benefits Card */}
-        <div className="bg-gradient-to-br from-sage-50 rounded-2xl p-4 mb-6" style={{ background: 'linear-gradient(to bottom right, var(--sage-50), var(--forest-50))' }}>
-          <h3 className="font-medium text-forest-700 mb-2 flex items-center gap-2">
-            <Leaf className="w-4 h-4" />
-            Why It&apos;s Great for You
-          </h3>
-          <p className="text-sm text-gray-600 mb-3">
-            {recipe.healthBenefits}
-          </p>
-          <div className="flex flex-wrap gap-2">
-            {recipe.healthTags?.map((tag: any) => (
-              <span
-                key={tag.id}
-                className="px-3 py-1 rounded-full text-xs font-medium bg-white text-forest-700"
-              >
-                {tag.name}
-              </span>
-            ))}
+        {recipe.healthBenefits && (
+          <div className="rounded-2xl p-4 mb-6 border border-sage-200" style={{ background: 'linear-gradient(to bottom right, var(--sage-50), var(--forest-50))' }}>
+            <h3 className="font-medium text-forest-700 mb-2 flex items-center gap-2">
+              <Leaf className="w-4 h-4" />
+              Why It&apos;s Great for You
+            </h3>
+            <p className="text-sm text-gray-600 mb-3">
+              {recipe.healthBenefits}
+            </p>
+            {recipe.healthTags && recipe.healthTags.length > 0 && (
+              <div className="flex flex-wrap gap-2">
+                {recipe.healthTags.map((tag: any) => (
+                  <span
+                    key={tag.id}
+                    className="px-3 py-1 rounded-full text-xs font-medium bg-white text-forest-700"
+                  >
+                    {tag.name}
+                  </span>
+                ))}
+              </div>
+            )}
           </div>
-        </div>
+        )}
 
         {/* Health Badges */}
         <div className="flex flex-wrap gap-2 mb-6">
           {recipe.hasOmega3 && (
-            <span className="health-badge heart-healthy">
+            <span className="px-3 py-1.5 rounded-lg text-sm font-medium bg-sage-100 text-sage-700 flex items-center gap-1.5">
               <Fish className="w-4 h-4" />
               Omega-3 Rich
             </span>
           )}
           {recipe.isAntiInflammatory && (
-            <span className="health-badge thyroid-friendly">
+            <span className="px-3 py-1.5 rounded-lg text-sm font-medium bg-terracotta-100 text-terracotta-700 flex items-center gap-1.5">
               <Flame className="w-4 h-4" />
               Anti-inflammatory
             </span>
           )}
           {recipe.hasHighFiber && (
-            <span className="health-badge blood-sugar">
+            <span className="px-3 py-1.5 rounded-lg text-sm font-medium bg-forest-100 text-forest-700 flex items-center gap-1.5">
               <Leaf className="w-4 h-4" />
               High Fiber
             </span>
@@ -382,9 +394,10 @@ export default function RecipePage() {
             className={cn(
               "flex-1 py-3 rounded-xl font-medium text-sm transition-all",
               activeTab === "ingredients"
-                ? "bg-sage-500 text-white"
-                : "bg-white text-gray-600 border border-gray-300"
+                ? "text-white"
+                : "bg-white text-gray-600 border border-cream-200"
             )}
+            style={activeTab === "ingredients" ? { backgroundColor: 'var(--teal-600)' } : {}}
           >
             Ingredients
           </button>
@@ -393,9 +406,10 @@ export default function RecipePage() {
             className={cn(
               "flex-1 py-3 rounded-xl font-medium text-sm transition-all",
               activeTab === "instructions"
-                ? "bg-sage-500 text-white"
-                : "bg-white text-gray-600 border border-gray-300"
+                ? "text-white"
+                : "bg-white text-gray-600 border border-cream-200"
             )}
+            style={activeTab === "instructions" ? { backgroundColor: 'var(--teal-600)' } : {}}
           >
             Instructions
           </button>
@@ -403,14 +417,14 @@ export default function RecipePage() {
 
         {/* Servings Adjuster */}
         {activeTab === "ingredients" && (
-          <div className="flex items-center justify-between bg-white rounded-xl p-4 mb-4 shadow-sm border border-gray-300">
+          <div className="flex items-center justify-between bg-white rounded-xl p-4 mb-4 shadow-sm border border-cream-200">
             <span className="text-sm font-medium text-forest-900">
               Adjust Servings
             </span>
             <div className="flex items-center gap-3">
               <button
                 onClick={() => setServings(Math.max(1, servings - 1))}
-                className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center"
+                className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition-colors"
               >
                 <Minus className="w-4 h-4 text-gray-600" />
               </button>
@@ -419,7 +433,8 @@ export default function RecipePage() {
               </span>
               <button
                 onClick={() => setServings(servings + 1)}
-                className="w-8 h-8 rounded-full bg-sage-500 flex items-center justify-center"
+                className="w-8 h-8 rounded-full flex items-center justify-center transition-colors"
+                style={{ backgroundColor: 'var(--teal-500)' }}
               >
                 <Plus className="w-4 h-4 text-white" />
               </button>
@@ -429,47 +444,50 @@ export default function RecipePage() {
 
         {/* Ingredients List */}
         {activeTab === "ingredients" && (
-          <div className="bg-white rounded-2xl p-4 shadow-sm border border-gray-300">
-            <ul className="space-y-3">
-              {ingredients.map((ing: any, idx: number) => {
-                // Calculate scaled amounts based on servings
-                const scale = servings / baseServings;
-                const amountValue = typeof ing.amount === 'number' ? ing.amount : parseFloat(String(ing.amount)) || 0;
-                const scaledAmount = amountValue > 0 ? (amountValue * scale).toFixed(1) : '';
-                
-                return (
-                  <li key={idx} className="flex items-start gap-3">
-                    <div className="w-5 h-5 rounded-full border-2 border-sage-300 flex-shrink-0 mt-0.5" />
-                    <div className="flex-1">
-                      <span className="font-medium text-forest-900">
-                        {scaledAmount || ing.amount} {ing.unit}
-                      </span>{" "}
-                      <span className="text-gray-600">{ing.name}</span>
-                      {ing.preparation && (
-                        <span className="text-gray-500">, {ing.preparation}</span>
-                      )}
-                      {ing.notes && (
-                        <span className="text-gray-400 text-sm"> ({ing.notes})</span>
-                      )}
-                    </div>
-                  </li>
-                );
-              })}
-            </ul>
+          <div className="bg-white rounded-2xl p-4 shadow-sm border border-cream-200">
+            {ingredients.length > 0 ? (
+              <ul className="space-y-3">
+                {ingredients.map((ing: any, idx: number) => {
+                  const scale = servings / baseServings;
+                  const amountValue = typeof ing.amount === 'number' ? ing.amount : parseFloat(String(ing.amount)) || 0;
+                  const scaledAmount = amountValue > 0 ? (amountValue * scale).toFixed(1).replace(/\.0$/, '') : '';
+                  
+                  return (
+                    <li key={idx} className="flex items-start gap-3">
+                      <div className="w-5 h-5 rounded-full border-2 flex-shrink-0 mt-0.5" style={{ borderColor: 'var(--teal-300)' }} />
+                      <div className="flex-1">
+                        <span className="font-medium text-forest-900">
+                          {scaledAmount || ing.amount} {ing.unit}
+                        </span>{" "}
+                        <span className="text-gray-600">{ing.name}</span>
+                        {ing.preparation && (
+                          <span className="text-gray-500">, {ing.preparation}</span>
+                        )}
+                        {ing.notes && (
+                          <span className="text-gray-400 text-sm"> ({ing.notes})</span>
+                        )}
+                      </div>
+                    </li>
+                  );
+                })}
+              </ul>
+            ) : (
+              <p className="text-center text-gray-500 py-4">Ingredients coming soon!</p>
+            )}
           </div>
         )}
 
         {/* Instructions */}
         {activeTab === "instructions" && (
-          <div className="space-y-4 md:space-y-6">
+          <div className="space-y-4">
             {instructions.length > 0 ? (
               instructions.map((instruction: string, idx: number) => (
                 <div
                   key={idx}
-                  className="bg-white rounded-2xl p-4 shadow-sm border border-gray-300"
+                  className="bg-white rounded-2xl p-4 shadow-sm border border-cream-200"
                 >
                   <div className="flex gap-4">
-                    <div className="w-8 h-8 rounded-full bg-sage-500 text-white flex items-center justify-center flex-shrink-0 font-medium">
+                    <div className="w-8 h-8 rounded-full text-white flex items-center justify-center flex-shrink-0 font-medium" style={{ backgroundColor: 'var(--teal-500)' }}>
                       {idx + 1}
                     </div>
                     <p className="text-gray-600 leading-relaxed pt-1">
@@ -479,7 +497,7 @@ export default function RecipePage() {
                 </div>
               ))
             ) : (
-              <div className="bg-white rounded-2xl p-4 shadow-sm border border-gray-300 text-center text-gray-500">
+              <div className="bg-white rounded-2xl p-4 shadow-sm border border-cream-200 text-center text-gray-500">
                 <p>Instructions coming soon!</p>
               </div>
             )}
@@ -488,7 +506,7 @@ export default function RecipePage() {
 
         {/* Tips Card */}
         {tips.length > 0 && (
-          <div className="mt-6 bg-gradient-to-br from-rose-50 rounded-2xl p-4" style={{ background: 'linear-gradient(to bottom right, var(--rose-50), var(--terracotta-50))' }}>
+          <div className="mt-6 rounded-2xl p-4 border border-terracotta-200" style={{ background: 'linear-gradient(to bottom right, var(--rose-50), var(--terracotta-50))' }}>
             <h3 className="font-medium text-terracotta-700 mb-2 flex items-center gap-2">
               <Lightbulb className="w-4 h-4" />
               Christine&apos;s Tips
@@ -506,30 +524,30 @@ export default function RecipePage() {
 
         {/* Nutrition Card */}
         {recipe.nutrition && (
-          <div className="mt-4 bg-white rounded-2xl p-4 shadow-sm border border-gray-300">
+          <div className="mt-4 bg-white rounded-2xl p-4 shadow-sm border border-cream-200">
             <h3 className="font-medium text-forest-900 mb-3">Nutrition Per Serving</h3>
             <div className="grid grid-cols-3 gap-3 text-center">
-              <div className="style={{ backgroundColor: 'var(--cream-100)' }} rounded-xl p-2">
+              <div className="rounded-xl p-2" style={{ backgroundColor: 'var(--cream-100)' }}>
                 <p className="text-lg font-semibold text-forest-900">{recipe.nutrition?.calories || 0}</p>
                 <p className="text-xs text-gray-500">Calories</p>
               </div>
-              <div className="bg-cream-100 rounded-xl p-2">
+              <div className="rounded-xl p-2" style={{ backgroundColor: 'var(--cream-100)' }}>
                 <p className="text-lg font-semibold text-forest-900">{recipe.nutrition?.protein || 0}g</p>
                 <p className="text-xs text-gray-500">Protein</p>
               </div>
-              <div className="bg-cream-100 rounded-xl p-2">
+              <div className="rounded-xl p-2" style={{ backgroundColor: 'var(--cream-100)' }}>
                 <p className="text-lg font-semibold text-forest-900">{recipe.nutrition?.carbs || 0}g</p>
                 <p className="text-xs text-gray-500">Carbs</p>
               </div>
-              <div className="bg-cream-100 rounded-xl p-2">
+              <div className="rounded-xl p-2" style={{ backgroundColor: 'var(--cream-100)' }}>
                 <p className="text-lg font-semibold text-forest-900">{recipe.nutrition?.fat || 0}g</p>
                 <p className="text-xs text-gray-500">Fat</p>
               </div>
-              <div className="bg-cream-100 rounded-xl p-2">
+              <div className="rounded-xl p-2" style={{ backgroundColor: 'var(--cream-100)' }}>
                 <p className="text-lg font-semibold text-forest-900">{recipe.nutrition?.fiber || 0}g</p>
                 <p className="text-xs text-gray-500">Fiber</p>
               </div>
-              <div className="bg-cream-100 rounded-xl p-2">
+              <div className="rounded-xl p-2" style={{ backgroundColor: 'var(--cream-100)' }}>
                 <p className="text-lg font-semibold text-forest-900">{recipe.nutrition?.sodium || 0}mg</p>
                 <p className="text-xs text-gray-500">Sodium</p>
               </div>
@@ -543,8 +561,8 @@ export default function RecipePage() {
             <ChefHat className="w-5 h-5" />
             Start Cooking
           </button>
-          <button className="w-14 h-14 rounded-xl bg-white border border-sage-200 flex items-center justify-center">
-            <Calendar className="w-5 h-5 text-sage-600" />
+          <button className="w-14 h-14 rounded-xl bg-white flex items-center justify-center transition-colors" style={{ border: '1px solid var(--teal-200)' }}>
+            <Calendar className="w-5 h-5" style={{ color: 'var(--teal-600)' }} />
           </button>
         </div>
 
@@ -557,13 +575,13 @@ export default function RecipePage() {
             Rate This Recipe
           </h3>
           {!isAuthenticated ? (
-            <div className="bg-sage-50 rounded-xl p-4 border border-sage-200">
+            <div className="rounded-xl p-4" style={{ backgroundColor: 'var(--teal-50)', border: '1px solid var(--teal-200)' }}>
               <p className="text-sm text-gray-600 mb-3">
                 Sign in to rate this recipe and help others discover great meals.
               </p>
               <button
                 onClick={() => router.push(`/login?redirect=/recipe/${params.id}`)}
-                className="text-sm text-sage-600 font-medium hover:text-sage-700 underline"
+                className="text-sm font-medium underline" style={{ color: 'var(--teal-600)' }}
               >
                 Sign in to rate
               </button>
@@ -576,7 +594,6 @@ export default function RecipePage() {
               totalRatings={ratingData?.totalRatings}
               interactive={true}
               onRatingChange={(rating) => {
-                // Refresh rating data after rating
                 fetch(`/api/recipes/${params.id}/ratings`)
                   .then((res) => res.json())
                   .then((data) => {
@@ -607,7 +624,8 @@ export default function RecipePage() {
                     setShowLoginPrompt(false);
                     router.push("/login");
                   }}
-                  className="flex-1 py-2.5 rounded-xl bg-sage-500 text-white font-medium hover:bg-sage-600 transition-colors"
+                  className="flex-1 py-2.5 rounded-xl text-white font-medium transition-colors"
+                  style={{ backgroundColor: 'var(--teal-500)' }}
                 >
                   Sign In
                 </button>
@@ -625,4 +643,3 @@ export default function RecipePage() {
     </div>
   );
 }
-

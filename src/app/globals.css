@@ -2,73 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
-/* PWA Safe Area Support */
-@supports (padding: max(0px)) {
-  .safe-top {
-    padding-top: max(env(safe-area-inset-top), 0px);
-  }
-  .safe-bottom {
-    padding-bottom: max(env(safe-area-inset-bottom), 0px);
-  }
-  .safe-left {
-    padding-left: max(env(safe-area-inset-left), 0px);
-  }
-  .safe-right {
-    padding-right: max(env(safe-area-inset-right), 0px);
-  }
-}
-
-/* Mobile-first responsive container */
-.container-responsive {
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 1.25rem;
-  padding-right: 1.25rem;
-}
-
-@media (min-width: 640px) {
-  .container-responsive {
-    max-width: 640px;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-  }
-}
-
-@media (min-width: 768px) {
-  .container-responsive {
-    max-width: 768px;
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .container-responsive {
-    max-width: 1024px;
-    padding-left: 2.5rem;
-    padding-right: 2.5rem;
-  }
-}
-
-@media (min-width: 1280px) {
-  .container-responsive {
-    max-width: 1280px;
-  }
-}
-
-@media (min-width: 1536px) {
-  .container-responsive {
-    max-width: 1536px;
-  }
-}
-
-/* ThriveMenu Design System
-   Inspired by Mediterranean warmth, healing foods, and family togetherness
-*/
+/* ============================================
+   ThriveMenu Design System
+   A beautiful teal-inspired palette for wellness and nourishment
+   ============================================ */
 
 :root {
-  /* Primary - Sage Green (Health, Growth, Vitality) */
+  /* === PRIMARY COLOR PALETTE - Teal/Wellness Theme === */
+  
+  /* Primary - Teal (Wellness, Calm, Health) */
+  --teal-50: #e6f7f7;
+  --teal-100: #ccefef;
+  --teal-200: #99dfdf;
+  --teal-300: #66cfcf;
+  --teal-400: #3dbfbf;
+  --teal-500: #2a9d9d;
+  --teal-600: #238383;
+  --teal-700: #1c6969;
+  --teal-800: #154f4f;
+  --teal-900: #0e3535;
+  
+  /* Sage Green (Natural, Growth) - kept for accents */
   --sage-50: #f6f9f4;
   --sage-100: #e8f0e4;
   --sage-200: #d1e1c9;
@@ -113,7 +67,7 @@
   --forest-500: #588873;
   --forest-600: #436e5a;
   --forest-700: #37584a;
-  --forest-800: #2d4a3e; /* Primary text color */
+  --forest-800: #2d4a3e;
   --forest-900: #263d34;
   
   /* Text Colors */
@@ -121,11 +75,113 @@
   --text-secondary: var(--forest-700);
   --text-muted: #889993;
   
-  /* Gradients */
-  --gradient-hero: linear-gradient(180deg, var(--sage-50) 0%, rgba(255,255,255,0) 100%);
-  --gradient-card: linear-gradient(135deg, #ffffff 0%, var(--cream-50) 100%);
+  /* Header Gradient Colors */
+  --header-gradient-start: #4a9b9b;
+  --header-gradient-mid: #3d8585;
+  --header-gradient-end: #2d6b6b;
+  
+  /* === SPACING SCALE === */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  
+  /* === LAYOUT DIMENSIONS === */
+  --container-sm: 640px;
+  --container-md: 768px;
+  --container-lg: 1024px;
+  --container-xl: 1280px;
+  --container-2xl: 1400px;
+  
+  --content-padding-mobile: 1rem;
+  --content-padding-tablet: 1.5rem;
+  --content-padding-desktop: 2rem;
+  
+  /* === RECIPE CARD DIMENSIONS === */
+  --card-image-height-mobile: 120px;
+  --card-image-height-tablet: 140px;
+  --card-image-height-desktop: 160px;
+  --card-image-height-compact: 120px;
+  
+  --featured-card-max-width: 600px;
+  --featured-image-height-mobile: 200px;
+  --featured-image-height-tablet: 260px;
+  --featured-image-height-desktop: 320px;
+  
+  /* === GRID SETTINGS === */
+  --grid-gap-mobile: 12px;
+  --grid-gap-tablet: 16px;
+  --grid-gap-desktop: 20px;
+  
+  /* === BORDER RADIUS === */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.25rem;
+  --radius-2xl: 1.5rem;
+  --radius-full: 9999px;
+  
+  /* === SHADOWS === */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  --shadow-card: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-card-hover: 0 8px 24px rgba(0, 0, 0, 0.12);
+  
+  /* === TRANSITIONS === */
+  --transition-fast: 150ms ease;
+  --transition-base: 200ms ease;
+  --transition-slow: 300ms ease;
+  
+  /* === Z-INDEX SCALE === */
+  --z-base: 0;
+  --z-dropdown: 10;
+  --z-sticky: 20;
+  --z-fixed: 30;
+  --z-modal-backdrop: 40;
+  --z-modal: 50;
+  --z-toast: 60;
 }
 
+/* === PWA SAFE AREA SUPPORT === */
+@supports (padding: max(0px)) {
+  .safe-top { padding-top: max(env(safe-area-inset-top), 0px); }
+  .safe-bottom { padding-bottom: max(env(safe-area-inset-bottom), 0px); }
+  .safe-left { padding-left: max(env(safe-area-inset-left), 0px); }
+  .safe-right { padding-right: max(env(safe-area-inset-right), 0px); }
+}
+
+/* === RESPONSIVE CONTAINER === */
+.container-app {
+  width: 100%;
+  max-width: var(--container-2xl);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--content-padding-mobile);
+  padding-right: var(--content-padding-mobile);
+}
+
+@media (min-width: 640px) {
+  .container-app {
+    padding-left: var(--content-padding-tablet);
+    padding-right: var(--content-padding-tablet);
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-app {
+    padding-left: var(--content-padding-desktop);
+    padding-right: var(--content-padding-desktop);
+  }
+}
+
+/* === BASE STYLES === */
 @layer base {
   * {
     @apply border-[var(--cream-200)];
@@ -137,7 +193,8 @@
   }
   
   body {
-    @apply font-sans text-[var(--text-primary)] bg-[var(--cream-100)] antialiased;
+    @apply font-sans text-[var(--text-primary)] antialiased;
+    background-color: var(--cream-100);
     font-feature-settings: "kern" 1, "liga" 1;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -153,68 +210,292 @@
   }
 }
 
+/* === COMPONENT STYLES === */
 @layer components {
+  /* Header Gradient */
+  .header-gradient {
+    background: linear-gradient(135deg, 
+      var(--header-gradient-start) 0%, 
+      var(--header-gradient-mid) 50%, 
+      var(--header-gradient-end) 100%
+    );
+  }
+  
+  /* Buttons */
   .btn-primary {
-    @apply bg-[var(--sage-500)] text-white font-medium py-3 px-6 rounded-xl 
-           shadow-md shadow-[var(--sage-200)] active:scale-95 transition-all duration-200
-           hover:bg-[var(--sage-600)] disabled:opacity-50 disabled:cursor-not-allowed;
+    @apply font-medium py-3 px-6 rounded-xl 
+           shadow-md active:scale-95 transition-all duration-200
+           disabled:opacity-50 disabled:cursor-not-allowed;
+    background-color: var(--teal-600);
+    color: white;
+  }
+  
+  .btn-primary:hover {
+    background-color: var(--teal-700);
   }
   
   .btn-secondary {
-    @apply bg-white text-[var(--forest-800)] font-medium py-3 px-6 rounded-xl 
-           border border-[var(--cream-300)] shadow-sm active:bg-[var(--cream-100)] 
-           transition-all duration-200 hover:border-[var(--sage-300)];
+    @apply bg-white font-medium py-3 px-6 rounded-xl 
+           border shadow-sm transition-all duration-200;
+    color: var(--forest-800);
+    border-color: var(--cream-300);
   }
   
+  .btn-secondary:hover {
+    border-color: var(--teal-400);
+  }
+  
+  .btn-secondary:active {
+    background-color: var(--cream-100);
+  }
+  
+  /* Cards */
   .card {
-    @apply bg-white rounded-2xl p-5 shadow-sm border border-[var(--cream-200)];
+    @apply bg-white rounded-2xl p-5 shadow-sm;
+    border: 1px solid var(--cream-200);
   }
   
+  /* Recipe Card */
+  .recipe-card {
+    @apply bg-white rounded-xl overflow-hidden transition-all duration-300;
+    border: 1px solid var(--cream-200);
+    box-shadow: var(--shadow-card);
+  }
+  
+  .recipe-card:hover {
+    box-shadow: var(--shadow-card-hover);
+    transform: translateY(-2px);
+  }
+  
+  .recipe-card-image {
+    @apply relative w-full overflow-hidden;
+    height: var(--card-image-height-mobile);
+    background-color: var(--cream-100);
+  }
+  
+  @media (min-width: 640px) {
+    .recipe-card-image {
+      height: var(--card-image-height-tablet);
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .recipe-card-image {
+      height: var(--card-image-height-desktop);
+    }
+  }
+  
+  .recipe-card-compact .recipe-card-image {
+    height: var(--card-image-height-compact);
+  }
+  
+  .recipe-card-content {
+    @apply p-3;
+  }
+  
+  @media (min-width: 640px) {
+    .recipe-card-content {
+      @apply p-4;
+    }
+  }
+  
+  /* Recipe Grid */
+  .recipe-grid {
+    display: grid;
+    gap: var(--grid-gap-mobile);
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  @media (min-width: 640px) {
+    .recipe-grid {
+      gap: var(--grid-gap-tablet);
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .recipe-grid {
+      gap: var(--grid-gap-desktop);
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  
+  @media (min-width: 1280px) {
+    .recipe-grid {
+      grid-template-columns: repeat(5, 1fr);
+    }
+  }
+  
+  /* Home page recipe grid */
+  .recipe-grid-home {
+    display: grid;
+    gap: var(--grid-gap-mobile);
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  @media (min-width: 768px) {
+    .recipe-grid-home {
+      gap: var(--grid-gap-tablet);
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .recipe-grid-home {
+      gap: var(--grid-gap-desktop);
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  
+  /* Featured Card */
+  .featured-card {
+    @apply bg-white rounded-2xl overflow-hidden shadow-lg;
+    max-width: var(--featured-card-max-width);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+  }
+  
+  .featured-card-image {
+    @apply relative w-full overflow-hidden;
+    height: var(--featured-image-height-mobile);
+  }
+  
+  @media (min-width: 640px) {
+    .featured-card-image {
+      height: var(--featured-image-height-tablet);
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .featured-card-image {
+      height: var(--featured-image-height-desktop);
+    }
+  }
+  
+  /* Navigation */
   .mobile-nav {
-    @apply fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-lg border-t border-[var(--cream-200)] 
-           pt-2 pb-[max(1rem,env(safe-area-inset-bottom))] px-4 z-50;
+    @apply fixed bottom-0 left-0 right-0 backdrop-blur-lg border-t pt-2 z-50;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-color: var(--cream-200);
+    padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
   }
   
-  .safe-bottom {
-    @apply pb-[calc(4rem+env(safe-area-inset-bottom))];
+  /* Section spacing */
+  .section {
+    @apply py-6;
   }
   
+  @media (min-width: 768px) {
+    .section {
+      @apply py-8;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .section {
+      @apply py-10;
+    }
+  }
+  
+  .section-header {
+    @apply flex items-center justify-between mb-4;
+  }
+  
+  @media (min-width: 768px) {
+    .section-header {
+      @apply mb-5;
+    }
+  }
+  
+  /* Hide scrollbar */
   .hide-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+  
   .hide-scrollbar::-webkit-scrollbar {
     display: none;
   }
   
+  /* Input fields */
   .input-field {
-    @apply w-full bg-white border border-[var(--cream-300)] rounded-xl px-4 py-3
-           text-[var(--forest-800)] placeholder-[var(--text-muted)]
-           focus:outline-none focus:ring-2 focus:ring-[var(--sage-400)] focus:border-transparent
+    @apply w-full bg-white rounded-xl px-4 py-3
+           focus:outline-none focus:ring-2 focus:border-transparent
            transition-all duration-200;
+    border: 1px solid var(--cream-300);
+    color: var(--forest-800);
+  }
+  
+  .input-field::placeholder {
+    color: var(--text-muted);
+  }
+  
+  .input-field:focus {
+    --tw-ring-color: var(--teal-400);
   }
 
-  .nutrient-tag {
-    @apply inline-flex items-center gap-1 px-2 py-1 rounded-full text-[10px] font-medium uppercase tracking-wider;
+  /* Health goal cards scroll */
+  .health-goals-scroll {
+    @apply flex gap-3 overflow-x-auto hide-scrollbar -mx-4 px-4 pb-2 snap-x snap-mandatory;
   }
   
-  .nutrient-tag.omega3 {
-    @apply bg-[var(--sage-100)] text-[var(--sage-800)];
+  @media (min-width: 768px) {
+    .health-goals-scroll {
+      @apply gap-4 -mx-6 px-6;
+    }
   }
   
-  .nutrient-tag.fiber {
-    @apply bg-[var(--forest-100)] text-[var(--forest-800)];
+  .health-goal-card {
+    @apply flex-shrink-0 snap-start;
+    width: 240px;
   }
   
-  .nutrient-tag.heart {
-    @apply bg-[var(--rose-100)] text-[var(--rose-800)];
+  @media (min-width: 640px) {
+    .health-goal-card {
+      width: 260px;
+    }
   }
   
-  .nutrient-tag.thyroid {
-    @apply bg-[var(--terracotta-100)] text-[var(--terracotta-800)];
+  @media (min-width: 768px) {
+    .health-goal-card {
+      width: 280px;
+    }
+  }
+  
+  /* Filter chips */
+  .filter-chips {
+    @apply flex gap-2 flex-wrap;
+  }
+  
+  /* Page bottom padding for nav */
+  .page-content {
+    @apply pb-24;
+  }
+  
+  @media (min-width: 768px) {
+    .page-content {
+      @apply pb-28;
+    }
+  }
+  
+  /* Teal accent colors for UI elements */
+  .text-teal {
+    color: var(--teal-600);
+  }
+  
+  .bg-teal {
+    background-color: var(--teal-500);
+  }
+  
+  .bg-teal-light {
+    background-color: var(--teal-50);
+  }
+  
+  .border-teal {
+    border-color: var(--teal-200);
   }
 }
 
+/* === UTILITY CLASSES === */
 @layer utilities {
   .animate-fade-in {
     animation: fadeIn 0.5s ease-out forwards;
@@ -226,21 +507,51 @@
   
   .stagger-children > * {
     opacity: 0;
-    animation: slideUp 0.5s ease-out forwards;
+    animation: slideUp 0.4s ease-out forwards;
   }
   
-  .stagger-children > *:nth-child(1) { animation-delay: 0.1s; }
-  .stagger-children > *:nth-child(2) { animation-delay: 0.2s; }
-  .stagger-children > *:nth-child(3) { animation-delay: 0.3s; }
-  .stagger-children > *:nth-child(4) { animation-delay: 0.4s; }
+  .stagger-children > *:nth-child(1) { animation-delay: 0.05s; }
+  .stagger-children > *:nth-child(2) { animation-delay: 0.1s; }
+  .stagger-children > *:nth-child(3) { animation-delay: 0.15s; }
+  .stagger-children > *:nth-child(4) { animation-delay: 0.2s; }
+  .stagger-children > *:nth-child(5) { animation-delay: 0.25s; }
+  .stagger-children > *:nth-child(6) { animation-delay: 0.3s; }
+  .stagger-children > *:nth-child(7) { animation-delay: 0.35s; }
+  .stagger-children > *:nth-child(8) { animation-delay: 0.4s; }
+  
+  .line-clamp-1 {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
 }
 
+/* === KEYFRAMES === */
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
 }
 
 @keyframes slideUp {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from { 
+    opacity: 0; 
+    transform: translateY(8px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+@keyframes pulse-subtle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
 }

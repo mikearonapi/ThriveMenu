@@ -1,15 +1,13 @@
 "use client";
 
-// Enable dynamic rendering for explore page
 export const dynamic = 'force-dynamic';
 
-import { useState, useMemo, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
-import { Search, Filter, X, Clock, Heart, Leaf, Fish, ChefHat, Sun, Moon, Cookie } from "lucide-react";
+import { Search, Filter, X, Clock, Heart, Leaf, Fish, ChefHat, Sun, Moon, Cookie, Plus, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import RecipeCard from "@/components/recipe/RecipeCard";
 import { useAuth } from "@/hooks/useAuth";
-import { Plus, Loader2 } from "lucide-react";
 
 const mealTabs = [
   { id: "all", label: "All", icon: null },
@@ -38,7 +36,6 @@ export default function ExplorePage() {
   const [selectedMeal, setSelectedMeal] = useState(initialMeal);
   const [activeFilters, setActiveFilters] = useState<string[]>([]);
   const [showFilters, setShowFilters] = useState(false);
-  const [showSuggestions, setShowSuggestions] = useState(false);
   const [recipes, setRecipes] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isAddingToPlan, setIsAddingToPlan] = useState<string | null>(null);
@@ -115,8 +112,8 @@ export default function ExplorePage() {
       }
     }
 
-          fetchRecipes();
-        }, [selectedMeal, searchQuery, activeFilters, showKidFriendlyFilter]);
+    fetchRecipes();
+  }, [selectedMeal, searchQuery, activeFilters, showKidFriendlyFilter]);
 
   // Fetch meal counts
   useEffect(() => {
@@ -147,92 +144,103 @@ export default function ExplorePage() {
   const filteredRecipes = recipes;
 
   return (
-    <div className="min-h-screen pb-24" style={{ backgroundColor: 'var(--cream-100)' }}>
+    <div className="page-content" style={{ backgroundColor: 'var(--cream-100)' }}>
       {/* Header */}
-      <header className="sticky top-0 z-20 bg-white/95 backdrop-blur-sm px-5 pt-4 pb-4 border-b border-gray-200">
-        <h1
-          className="text-2xl font-medium text-forest-900 mb-4"
-          style={{ fontFamily: "var(--font-serif)" }}
-        >
-          Explore Recipes
-        </h1>
+      <header className="sticky top-0 z-20 bg-white/95 backdrop-blur-sm border-b border-cream-200">
+        <div className="container-app py-4">
+          <h1
+            className="text-xl sm:text-2xl font-medium text-forest-900 mb-4"
+            style={{ fontFamily: "var(--font-serif)" }}
+          >
+            Explore Recipes
+          </h1>
 
-        {/* Search Bar */}
-        <div className="relative mb-4">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-          <input
-            type="text"
-            placeholder="Search recipes..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="input-field pl-12 pr-12"
-          />
-          {searchQuery && (
-            <button
-              onClick={() => setSearchQuery("")}
-              className="absolute right-4 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition-colors"
-            >
-              <X className="w-4 h-4 text-gray-600" />
-            </button>
-          )}
-        </div>
-
-        {/* Meal Type Tabs */}
-        <div className="flex gap-2 overflow-x-auto hide-scrollbar -mx-5 px-5 pb-2">
-          {mealTabs.map((tab) => {
-            const Icon = tab.icon;
-            const count = mealCounts[tab.id as keyof typeof mealCounts] || 0;
-            return (
+          {/* Search Bar */}
+          <div className="relative mb-4">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+            <input
+              type="text"
+              placeholder="Search recipes..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="input-field pl-12 pr-12"
+            />
+            {searchQuery && (
               <button
-                key={tab.id}
-                onClick={() => setSelectedMeal(tab.id)}
-                className={cn(
-                  "flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-all whitespace-nowrap flex items-center gap-1.5",
-                  selectedMeal === tab.id
-                    ? "bg-sage-500 text-white"
-                    : "bg-white text-gray-600 border border-gray-200"
-                )}
+                onClick={() => setSearchQuery("")}
+                className="absolute right-4 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition-colors"
               >
-                {Icon && <Icon className="w-4 h-4" />}
-                {tab.label}
-                <span className="opacity-70">({count})</span>
+                <X className="w-4 h-4 text-gray-600" />
               </button>
-            );
-          })}
+            )}
+          </div>
+
+          {/* Meal Type Tabs */}
+          <div className="flex gap-2 overflow-x-auto hide-scrollbar -mx-4 px-4 pb-1">
+            {mealTabs.map((tab) => {
+              const Icon = tab.icon;
+              const count = mealCounts[tab.id as keyof typeof mealCounts] || 0;
+              return (
+                <button
+                  key={tab.id}
+                  onClick={() => setSelectedMeal(tab.id)}
+                  className={cn(
+                    "flex-shrink-0 px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition-all whitespace-nowrap flex items-center gap-1.5",
+                    selectedMeal === tab.id
+                      ? "text-white"
+                      : "bg-white text-gray-600 border border-cream-200"
+                  )}
+                  style={selectedMeal === tab.id ? { backgroundColor: 'var(--teal-600)' } : {}}
+                >
+                  {Icon && <Icon className="w-3.5 h-3.5" />}
+                  {tab.label}
+                  <span className="opacity-70">({count})</span>
+                </button>
+              );
+            })}
+          </div>
         </div>
       </header>
 
-      {/* Filter Toggle */}
-      <div className="px-5 sm:px-6 md:px-8 lg:px-12 py-3 flex gap-2 max-w-7xl mx-auto">
-        <button
-          onClick={() => setShowFilters(!showFilters)}
-          className={cn(
-            "flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all flex-1",
-            showFilters || activeFilters.length > 0
-              ? "bg-sage-100 text-sage-700"
-              : "bg-white text-gray-600 border border-gray-200"
-          )}
-        >
-          <Filter className="w-4 h-4" />
-          Filters
-          {activeFilters.length > 0 && (
-            <span className="w-5 h-5 rounded-full bg-sage-500 text-white text-xs flex items-center justify-center">
-              {activeFilters.length}
-            </span>
-          )}
-        </button>
-        <button
-          onClick={() => setShowKidFriendlyFilter(!showKidFriendlyFilter)}
-          className={cn(
-            "flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all",
-            showKidFriendlyFilter
-              ? "bg-terracotta-100 text-terracotta-700 border border-terracotta-200"
-              : "bg-white text-gray-600 border border-gray-200"
-          )}
-        >
-          <ChefHat className="w-4 h-4" />
-          Kid-Friendly
-        </button>
+      {/* Filters Section */}
+      <div className="container-app py-3">
+        <div className="flex gap-2 flex-wrap">
+          <button
+            onClick={() => setShowFilters(!showFilters)}
+            className={cn(
+              "flex items-center gap-2 px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all",
+              showFilters || activeFilters.length > 0
+                ? "border"
+                : "bg-white text-gray-600 border border-cream-200"
+            )}
+            style={showFilters || activeFilters.length > 0 ? { 
+              backgroundColor: 'var(--teal-50)', 
+              color: 'var(--teal-700)',
+              borderColor: 'var(--teal-200)'
+            } : {}}
+          >
+            <Filter className="w-4 h-4" />
+            Filters
+            {activeFilters.length > 0 && (
+              <span className="w-5 h-5 rounded-full text-white text-xs flex items-center justify-center" style={{ backgroundColor: 'var(--teal-500)' }}>
+                {activeFilters.length}
+              </span>
+            )}
+          </button>
+          
+          <button
+            onClick={() => setShowKidFriendlyFilter(!showKidFriendlyFilter)}
+            className={cn(
+              "flex items-center gap-2 px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all",
+              showKidFriendlyFilter
+                ? "bg-terracotta-100 text-terracotta-700 border border-terracotta-200"
+                : "bg-white text-gray-600 border border-cream-200 hover:border-terracotta-300"
+            )}
+          >
+            <ChefHat className="w-4 h-4" />
+            Kid-Friendly
+          </button>
+        </div>
 
         {/* Filter Pills */}
         {showFilters && (
@@ -245,32 +253,35 @@ export default function ExplorePage() {
                   key={filter.id}
                   onClick={() => toggleFilter(filter.id)}
                   className={cn(
-                    "flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all",
+                    "flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs sm:text-sm font-medium transition-all",
                     isActive
-                      ? "bg-sage-500 text-white"
-                      : "bg-white text-gray-600 border border-gray-200"
+                      ? "text-white"
+                      : "bg-white text-gray-600 border border-cream-200"
                   )}
+                  style={isActive ? { backgroundColor: 'var(--teal-600)' } : {}}
                 >
-                  <Icon className="w-4 h-4" />
+                  <Icon className="w-3.5 h-3.5" />
                   {filter.label}
                 </button>
               );
             })}
           </div>
         )}
-      </div>
 
-      {/* Results Count */}
-      <div className="px-5 py-2">
-        <p className="text-sm text-gray-600">
+        {/* Results Count */}
+        <p className="text-xs sm:text-sm text-gray-500 mt-3">
           {filteredRecipes.length} recipe{filteredRecipes.length !== 1 ? "s" : ""} found
         </p>
       </div>
 
       {/* Recipe Grid */}
-      <div className="px-5 sm:px-6 md:px-8 lg:px-12 pb-8 max-w-7xl mx-auto">
-        {filteredRecipes.length > 0 ? (
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 md:gap-6 stagger-children">
+      <div className="container-app pb-8">
+        {isLoading ? (
+          <div className="flex items-center justify-center py-16">
+            <Loader2 className="w-8 h-8 text-sage-500 animate-spin" />
+          </div>
+        ) : filteredRecipes.length > 0 ? (
+          <div className="recipe-grid stagger-children">
             {filteredRecipes.map((recipe) => (
               <RecipeCard key={recipe.id} recipe={recipe} compact />
             ))}
@@ -292,6 +303,7 @@ export default function ExplorePage() {
                 setSearchQuery("");
                 setActiveFilters([]);
                 setSelectedMeal("all");
+                setShowKidFriendlyFilter(false);
               }}
               className="btn-secondary"
             >
@@ -303,121 +315,3 @@ export default function ExplorePage() {
     </div>
   );
 }
-
-// Wrapper component that adds "Add to Meal Plan" functionality
-function RecipeCardWithAdd({
-  recipe,
-  compact,
-  addToPlanDate,
-  addToPlanMealType,
-  isAdding,
-  onAddStart,
-  onAddComplete,
-}: {
-  recipe: any;
-  compact?: boolean;
-  addToPlanDate: string | null;
-  addToPlanMealType: string | null;
-  isAdding: boolean;
-  onAddStart: () => void;
-  onAddComplete: () => void;
-}) {
-  const { isAuthenticated } = useAuth();
-  const router = useRouter();
-
-  const handleAddToPlan = async (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-
-    if (!isAuthenticated) {
-      router.push("/login");
-      return;
-    }
-
-    if (!addToPlanDate || !addToPlanMealType) return;
-
-    onAddStart();
-
-    try {
-      // Get or create meal plan for the week
-      const date = new Date(addToPlanDate);
-      const weekStart = new Date(date);
-      weekStart.setDate(date.getDate() - date.getDay());
-      const weekEnd = new Date(weekStart);
-      weekEnd.setDate(weekStart.getDate() + 6);
-
-      // Fetch existing meal plans
-      const plansResponse = await fetch(
-        `/api/meal-plans?startDate=${weekStart.toISOString()}&endDate=${weekEnd.toISOString()}`
-      );
-      let mealPlanId: string;
-
-      if (plansResponse.ok) {
-        const plansData = await plansResponse.json();
-        if (plansData.mealPlans && plansData.mealPlans.length > 0) {
-          mealPlanId = plansData.mealPlans[0].id;
-        } else {
-          // Create new meal plan
-          const createResponse = await fetch("/api/meal-plans", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              startDate: weekStart.toISOString(),
-              endDate: weekEnd.toISOString(),
-            }),
-          });
-          const createData = await createResponse.json();
-          mealPlanId = createData.mealPlan.id;
-        }
-      } else {
-        throw new Error("Failed to fetch meal plans");
-      }
-
-      // Add recipe to meal plan
-      const addResponse = await fetch("/api/meal-plans/items", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          mealPlanId,
-          recipeId: recipe.id,
-          date: addToPlanDate,
-          mealType: addToPlanMealType.toUpperCase(),
-        }),
-      });
-
-      if (addResponse.ok) {
-        onAddComplete();
-      }
-    } catch (error) {
-      console.error("Error adding to meal plan:", error);
-      onAddComplete();
-    }
-  };
-
-  if (addToPlanDate && addToPlanMealType) {
-    return (
-      <div className="relative">
-        <RecipeCard recipe={recipe} compact={compact} />
-        <button
-          onClick={handleAddToPlan}
-          disabled={isAdding}
-          className={cn(
-            "absolute top-2 left-2 w-8 h-8 rounded-full flex items-center justify-center shadow-md transition-all",
-            isAdding
-              ? "bg-sage-500 text-white"
-              : "bg-white text-sage-600 hover:bg-sage-100"
-          )}
-        >
-          {isAdding ? (
-            <Loader2 className="w-4 h-4 animate-spin" />
-          ) : (
-            <Plus className="w-4 h-4" />
-          )}
-        </button>
-      </div>
-    );
-  }
-
-  return <RecipeCard recipe={recipe} compact={compact} />;
-}
-

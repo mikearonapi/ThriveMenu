@@ -38,15 +38,16 @@ export function BottomNav() {
               className={cn(
                 "flex flex-col items-center gap-0.5 py-2 px-3 rounded-xl transition-all duration-200",
                 isActive
-                  ? "text-sage-600"
-                  : "text-gray-500 hover:text-sage-500"
+                  ? ""
+                  : "text-gray-500 hover:text-gray-700"
               )}
+              style={isActive ? { color: 'var(--teal-600)' } : {}}
             >
               <div
                 className={cn(
-                  "p-1.5 rounded-xl transition-all duration-200",
-                  isActive && "bg-sage-100"
+                  "p-1.5 rounded-xl transition-all duration-200"
                 )}
+                style={isActive ? { backgroundColor: 'var(--teal-100)' } : {}}
               >
                 <Icon
                   className={cn(
@@ -70,4 +71,3 @@ export function BottomNav() {
     </nav>
   );
 }
-

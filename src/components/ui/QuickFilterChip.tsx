@@ -22,9 +22,14 @@ export default function QuickFilterChip({
       className={cn(
         "flex-shrink-0 flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-200",
         isActive
-          ? "bg-sage-500 text-white shadow-md"
-          : "bg-white text-gray-600 border border-gray-300 hover:border-sage-300 hover:text-sage-600"
+          ? "text-white shadow-md"
+          : "bg-white text-gray-600 hover:text-gray-800"
       )}
+      style={isActive ? {
+        backgroundColor: 'var(--teal-600)',
+      } : {
+        border: '1px solid var(--cream-300)',
+      }}
     >
       <Icon className="w-4 h-4" />
       {label}
