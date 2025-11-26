@@ -23,7 +23,13 @@ export function BottomNav() {
   const pathname = usePathname();
 
   return (
-    <nav className="mobile-nav">
+    <nav 
+      className="fixed bottom-0 left-0 right-0 z-50 backdrop-blur-lg border-t pt-2 bg-white/95"
+      style={{
+        borderColor: 'var(--cream-200)',
+        paddingBottom: 'max(0.75rem, env(safe-area-inset-bottom))',
+      }}
+    >
       <div className="flex justify-around items-center max-w-lg mx-auto">
         {navItems.map((item) => {
           const isActive =

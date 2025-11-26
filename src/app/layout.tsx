@@ -188,7 +188,7 @@ export default function RootLayout({
       >
         <AuthProvider>
           <Header />
-          <main className="safe-bottom min-h-[calc(100vh-200px)] md:min-h-[calc(100vh-80px)]">
+          <main className="pb-24 min-h-[calc(100vh-200px)] md:min-h-[calc(100vh-80px)]">
             {children}
           </main>
           <BottomNav />
