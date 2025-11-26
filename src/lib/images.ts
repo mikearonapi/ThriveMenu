@@ -1,8 +1,9 @@
 /**
  * Image Generation & Storage for ThriveMenu
  * 
- * Uses Google Gemini 2.0 Flash Preview Image Generation for AI-generated recipe images
- * This model has 10,000 images/day limit (vs Imagen 4's 70/day)
+ * Uses Google Imagen 4.0 for realistic AI-generated recipe images
+ * Imagen 4.0 provides the highest fidelity photorealistic food photography
+ * Uses the :predict endpoint
  * Stores images in Vercel Blob Storage for optimal performance
  */
 
@@ -11,57 +12,62 @@ import { put } from '@vercel/blob';
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY || "AIzaSyBhzno0jb2UbP3P5fIxJ_eEAQynF2GNvrk";
 
 /**
- * Generate recipe image using Gemini 2.0 Flash Preview Image Generation
- * Uses the generateContent endpoint with responseModalities: ["IMAGE"]
- * 10,000 images/day limit on Tier 1 (vs Imagen 4's 70/day)
+ * Generate recipe image using Google Imagen 4.0
+ * Uses the :predict endpoint (NOT generateContent which doesn't support Imagen)
+ * 
+ * NOTE on Quotas (Tier 1):
+ * - Imagen 4.0: ~70 images/day (High Quality)
+ * - Gemini 2.0 Flash: ~10,000 images/day (Standard Quality)
+ * 
+ * We default to Imagen 4.0 for highest quality. If quota is hit,
+ * the user should wait or we can implement a fallback in the future.
  */
-async function generateImageWithGemini(
+async function generateImageWithImagen(
   recipeName: string, 
   category: string, 
   description?: string, 
   ingredients?: string[], 
   retries = 3
 ): Promise<Buffer> {
-  // Create highly detailed, realistic prompt for food photography
+  // Create highly detailed, realistic prompt for Google Imagen 4.0
   const createDetailedPrompt = (name: string, cat: string, desc?: string, ingr?: string[]) => {
     const dishDetails = desc ? `, ${desc}` : '';
     const ingredientList = ingr && ingr.length > 0 ? `, featuring ${ingr.slice(0, 4).join(', ')}` : '';
     
-    // Category-specific styling
+    // Category-specific styling for premium food photography
     let platingStyle = '';
-    if (cat.toLowerCase().includes('breakfast')) platingStyle = 'served on a rustic wooden breakfast table with soft morning light';
-    else if (cat.toLowerCase().includes('salad')) platingStyle = 'in a white ceramic bowl with fresh herbs garnish';
-    else if (cat.toLowerCase().includes('seafood')) platingStyle = 'elegantly plated on white porcelain with lemon garnish';
-    else if (cat.toLowerCase().includes('soup')) platingStyle = 'in a ceramic soup bowl with visible steam and herbs';
-    else if (cat.toLowerCase().includes('oat') || cat.toLowerCase().includes('grain')) platingStyle = 'in a ceramic breakfast bowl with wooden spoon nearby';
-    else if (cat.toLowerCase().includes('dessert') || cat.toLowerCase().includes('sweet')) platingStyle = 'on marble surface with elegant presentation';
-    else if (cat.toLowerCase().includes('snack') || cat.toLowerCase().includes('kid')) platingStyle = 'on a colorful plate with fun presentation';
-    else platingStyle = 'beautifully plated with professional food styling';
+    if (cat.toLowerCase().includes('breakfast')) platingStyle = 'served on a rustic wooden breakfast table with soft natural morning light, 45-degree angle';
+    else if (cat.toLowerCase().includes('salad')) platingStyle = 'in a hand-thrown ceramic bowl with fresh herbs garnish, macro detail, crisp textures';
+    else if (cat.toLowerCase().includes('seafood')) platingStyle = 'elegantly plated on white porcelain with lemon garnish, bright airy lighting';
+    else if (cat.toLowerCase().includes('soup')) platingStyle = 'in a artisan ceramic soup bowl with visible steam and herbs, cozy atmosphere';
+    else if (cat.toLowerCase().includes('oat') || cat.toLowerCase().includes('grain')) platingStyle = 'in a ceramic breakfast bowl with wooden spoon nearby, soft depth of field';
+    else if (cat.toLowerCase().includes('dessert') || cat.toLowerCase().includes('sweet')) platingStyle = 'on marble surface with elegant plating, dramatic side lighting';
+    else platingStyle = 'beautifully plated with professional food styling, Michelin star presentation';
     
-    return `Professional food photography of ${name}${ingredientList}${dishDetails}, ${platingStyle}. Studio lighting, shallow depth of field, food magazine quality, appetizing presentation, vibrant natural colors, high resolution photography. No text or watermarks.`;
+    return `Professional food photography of ${name}${ingredientList}${dishDetails}, ${platingStyle}. Shot on Phase One XF IQ4, 100mm macro lens, studio lighting, shallow depth of field, appetizing presentation, vibrant natural colors, 8k resolution, ultra-realistic textures. No text, no watermarks.`;
   };
 
   const prompt = createDetailedPrompt(recipeName, category, description, ingredients);
   
-  console.log(`🎨 Gemini 2.0 Flash generating: "${recipeName}"`);
+  console.log(`🎨 Imagen 4.0 generating: "${recipeName}"`);
   
-  // Gemini 2.0 Flash Experimental Image Generation
-  // Uses generateContent with responseModalities: ["IMAGE", "TEXT"]
-  // Reference: https://ai.google.dev/gemini-api/docs/image-generation
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp-image-generation:generateContent?key=${GEMINI_API_KEY}`;
+  // Imagen 4.0 uses the :predict endpoint
+  // Reference: https://ai.google.dev/api (Gen Media APIs section)
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/imagen-4.0-generate-preview-06-06:predict?key=${GEMINI_API_KEY}`;
 
   const payload = {
-    contents: [
+    instances: [
       {
-        parts: [
-          {
-            text: prompt
-          }
-        ]
+        prompt: prompt
       }
     ],
-    generationConfig: {
-      responseModalities: ["IMAGE", "TEXT"]
+    parameters: {
+      sampleCount: 1,
+      // Imagen 4.0 specific parameters for quality
+      aspectRatio: "1:1",
+      safetySettings: [
+        { category: "HARM_CATEGORY_SEXUALLY_EXPLICIT", threshold: "BLOCK_LOW_AND_ABOVE" }
+      ]
     }
   };
 
@@ -82,43 +88,49 @@ async function generateImageWithGemini(
 
       if (!response.ok) {
         const errorText = await response.text();
-        throw new Error(`Gemini API error: ${response.status} ${response.statusText} - ${errorText}`);
+        
+        // Check specifically for quota issues
+        if (response.status === 429 || errorText.includes('RESOURCE_EXHAUSTED') || errorText.includes('quota')) {
+           throw new Error(`QUOTA_EXCEEDED: ${errorText}`);
+        }
+        
+        throw new Error(`Imagen API error: ${response.status} ${response.statusText} - ${errorText}`);
       }
 
       const data = await response.json();
       
-      // Gemini returns: { candidates: [{ content: { parts: [{ inlineData: { data: "base64...", mimeType: "image/jpeg" } }] } }] }
-      if (data.candidates && data.candidates.length > 0) {
-        const candidate = data.candidates[0];
-        if (candidate.content && candidate.content.parts) {
-          for (const part of candidate.content.parts) {
-            if (part.inlineData && part.inlineData.data) {
-              console.log(`   ✅ Gemini 2.0 Flash generated image for ${recipeName}`);
-              return Buffer.from(part.inlineData.data, 'base64');
-            }
-          }
+      // Imagen 4.0 returns: { predictions: [ { bytesBase64Encoded: "..." } ] }
+      if (data.predictions && data.predictions.length > 0) {
+        const prediction = data.predictions[0];
+        if (prediction.bytesBase64Encoded) {
+          console.log(`   ✅ Imagen 4.0 generated image for ${recipeName}`);
+          return Buffer.from(prediction.bytesBase64Encoded, 'base64');
+        }
+        if (prediction.b64) {
+           console.log(`   ✅ Imagen 4.0 generated image for ${recipeName}`);
+           return Buffer.from(prediction.b64, 'base64');
         }
       }
 
-      throw new Error('No image data received from Gemini API');
+      throw new Error('No image data received from Imagen API');
       
     } catch (err) {
       const error = err as Error;
       const errorMessage = error?.message || String(error);
       console.error(`   ❌ Attempt ${attempt + 1} failed:`, errorMessage);
       
-      // If quota exceeded, don't retry - throw immediately
-      if (errorMessage.includes('429') || errorMessage.includes('RESOURCE_EXHAUSTED')) {
-        throw new Error(`Quota exceeded: ${errorMessage}`);
+      // Don't retry if we hit quota limits
+      if (errorMessage.includes('QUOTA_EXCEEDED')) {
+        throw error;
       }
       
       if (attempt === retries - 1) {
-        throw new Error(`Gemini 2.0 Flash failed after ${retries} attempts: ${errorMessage}`);
+        throw new Error(`Imagen 4.0 failed after ${retries} attempts: ${errorMessage}`);
       }
     }
   }
   
-  throw new Error(`Failed to generate image with Gemini 2.0 Flash after ${retries} attempts`);
+  throw new Error(`Failed to generate image with Imagen 4.0 after ${retries} attempts`);
 }
 
 /**
@@ -147,7 +159,7 @@ async function uploadToVercelBlob(imageBuffer: Buffer, filename: string): Promis
 }
 
 /**
- * Generate recipe image with Gemini 2.0 Flash and store in Vercel Blob
+ * Generate recipe image with Imagen 4.0 and store in Vercel Blob
  * ONLY uses Google AI image generation - NO external photo services
  */
 export async function generateAndStoreRecipeImage(
@@ -160,8 +172,8 @@ export async function generateAndStoreRecipeImage(
   try {
     console.log(`🎨 Generating AI image for: ${recipeName}`);
     
-    // Step 1: Generate image with Gemini 2.0 Flash
-    const imageBuffer = await generateImageWithGemini(recipeName, category, description, ingredients);
+    // Step 1: Generate image with Imagen 4.0 ONLY
+    const imageBuffer = await generateImageWithImagen(recipeName, category, description, ingredients);
     
     // Step 2: Upload to Vercel Blob
     const filename = `recipes/${recipeId}.jpg`;
