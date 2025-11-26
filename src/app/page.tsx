@@ -18,9 +18,10 @@ import {
   Salad,
   Fish,
   TrendingUp,
+  ShieldCheck,
+  Activity,
 } from "lucide-react";
 import RecipeCard from "@/components/recipe/RecipeCard";
-import HealthGoalCard from "@/components/health/HealthGoalCard";
 import QuickFilterChip from "@/components/ui/QuickFilterChip";
 import { getRecipeImage } from "@/lib/images";
 
@@ -173,54 +174,83 @@ export default function HomePage() {
         )}
       </section>
 
-      {/* Health Goals Section */}
+      {/* Nutrition Focus - The Three Pillars */}
       <section className="section container-app">
-        <div className="section-header">
-          <div>
-            <h2
-              className="text-xl sm:text-2xl font-semibold mb-0.5"
-              style={{ fontFamily: "var(--font-serif)", color: 'var(--forest-900)' }}
-            >
-              Your Health Goals
-            </h2>
-            <p className="text-xs sm:text-sm text-gray-500">Track your progress</p>
-          </div>
-          <Link
-            href="/profile"
-            className="text-xs font-semibold flex items-center gap-1 hover:opacity-80 transition-opacity"
-            style={{ color: 'var(--teal-600)' }}
+        <div className="mb-4">
+          <h2
+            className="text-xl sm:text-2xl font-semibold mb-1"
+            style={{ fontFamily: "var(--font-serif)", color: 'var(--forest-900)' }}
           >
-            View All <ArrowRight className="w-3 h-3" />
-          </Link>
+            Recipes That Nourish
+          </h2>
+          <p className="text-xs sm:text-sm text-gray-500">Every recipe supports your wellness journey</p>
         </div>
 
-        <div className="health-goals-scroll">
-          <div className="health-goal-card">
-            <HealthGoalCard
-              title="Omega-3s"
-              subtitle="2x this week"
-              progress={66}
-              icon={<Fish className="w-5 h-5" />}
-              color="teal"
-            />
+        <div className="grid grid-cols-3 gap-2 sm:gap-3">
+          {/* Thyroid Support */}
+          <div 
+            className="rounded-xl p-3 sm:p-4 text-center"
+            style={{ backgroundColor: 'var(--teal-50)', border: '1px solid var(--teal-100)' }}
+          >
+            <div 
+              className="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center mx-auto mb-2"
+              style={{ backgroundColor: 'var(--teal-100)' }}
+            >
+              <ShieldCheck className="w-5 h-5 sm:w-6 sm:h-6" style={{ color: 'var(--teal-600)' }} />
+            </div>
+            <h3 
+              className="text-xs sm:text-sm font-semibold mb-0.5"
+              style={{ color: 'var(--forest-900)' }}
+            >
+              Thyroid Support
+            </h3>
+            <p className="text-[10px] sm:text-xs text-gray-500 leading-tight">
+              Anti-inflammatory & selenium-rich
+            </p>
           </div>
-          <div className="health-goal-card">
-            <HealthGoalCard
-              title="Daily Fiber"
-              subtitle="25g target"
-              progress={80}
-              icon={<Leaf className="w-5 h-5" />}
-              color="forest"
-            />
+
+          {/* Heart Protection */}
+          <div 
+            className="rounded-xl p-3 sm:p-4 text-center"
+            style={{ backgroundColor: 'var(--rose-50)', border: '1px solid var(--rose-100)' }}
+          >
+            <div 
+              className="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center mx-auto mb-2"
+              style={{ backgroundColor: 'var(--rose-100)' }}
+            >
+              <Heart className="w-5 h-5 sm:w-6 sm:h-6" style={{ color: 'var(--rose-500)' }} />
+            </div>
+            <h3 
+              className="text-xs sm:text-sm font-semibold mb-0.5"
+              style={{ color: 'var(--forest-900)' }}
+            >
+              Heart Health
+            </h3>
+            <p className="text-[10px] sm:text-xs text-gray-500 leading-tight">
+              Omega-3s & low saturated fat
+            </p>
           </div>
-          <div className="health-goal-card">
-            <HealthGoalCard
-              title="Heart Health"
-              subtitle="On track"
-              progress={90}
-              icon={<Heart className="w-5 h-5" />}
-              color="rose"
-            />
+
+          {/* Blood Sugar Stability */}
+          <div 
+            className="rounded-xl p-3 sm:p-4 text-center"
+            style={{ backgroundColor: 'var(--forest-50)', border: '1px solid var(--forest-100)' }}
+          >
+            <div 
+              className="w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center mx-auto mb-2"
+              style={{ backgroundColor: 'var(--forest-100)' }}
+            >
+              <Activity className="w-5 h-5 sm:w-6 sm:h-6" style={{ color: 'var(--forest-600)' }} />
+            </div>
+            <h3 
+              className="text-xs sm:text-sm font-semibold mb-0.5"
+              style={{ color: 'var(--forest-900)' }}
+            >
+              Blood Sugar
+            </h3>
+            <p className="text-[10px] sm:text-xs text-gray-500 leading-tight">
+              Low glycemic & fiber-rich
+            </p>
           </div>
         </div>
       </section>
