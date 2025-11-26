@@ -24,13 +24,13 @@ export function BottomNav() {
 
   return (
     <nav 
-      className="fixed bottom-0 left-0 right-0 z-50 backdrop-blur-lg border-t pt-2 bg-white/95"
+      className="fixed bottom-0 left-0 right-0 z-50 bg-white/98 backdrop-blur-md border-t"
       style={{
         borderColor: 'var(--cream-200)',
-        paddingBottom: 'max(0.75rem, env(safe-area-inset-bottom))',
+        paddingBottom: 'max(0.5rem, env(safe-area-inset-bottom))',
       }}
     >
-      <div className="flex justify-around items-center max-w-lg mx-auto">
+      <div className="flex justify-around items-center max-w-lg mx-auto pt-1.5 pb-1">
         {navItems.map((item) => {
           const isActive =
             pathname === item.href ||
@@ -42,10 +42,10 @@ export function BottomNav() {
               key={item.href}
               href={item.href}
               className={cn(
-                "flex flex-col items-center gap-0.5 py-2 px-3 rounded-xl transition-all duration-200",
+                "flex flex-col items-center gap-0.5 py-1 px-3 rounded-xl transition-all duration-200",
                 isActive
                   ? ""
-                  : "text-gray-500 hover:text-gray-700"
+                  : "text-gray-400 hover:text-gray-600"
               )}
               style={isActive ? { color: 'var(--teal-600)' } : {}}
             >
@@ -53,7 +53,7 @@ export function BottomNav() {
                 className={cn(
                   "p-1.5 rounded-xl transition-all duration-200"
                 )}
-                style={isActive ? { backgroundColor: 'var(--teal-100)' } : {}}
+                style={isActive ? { backgroundColor: 'var(--teal-50)' } : {}}
               >
                 <Icon
                   className={cn(
@@ -64,7 +64,7 @@ export function BottomNav() {
               </div>
               <span
                 className={cn(
-                  "text-[10px] font-medium",
+                  "text-[10px] font-medium leading-tight",
                   isActive && "font-semibold"
                 )}
               >

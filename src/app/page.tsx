@@ -88,9 +88,9 @@ export default function HomePage() {
   const featuredRecipe = currentMealRecipes[0];
 
   return (
-    <div className="page-content" style={{ backgroundColor: 'var(--cream-100)' }}>
+    <div className="pb-24" style={{ backgroundColor: 'var(--cream-100)' }}>
       {/* Hero Section with Featured Recipe */}
-      <section className="container-app pt-6 pb-4">
+      <section className="container-app pt-4 pb-3">
         {/* Featured Recipe Card */}
         {featuredRecipe && (
           <Link 
@@ -175,15 +175,15 @@ export default function HomePage() {
       </section>
 
       {/* Nutrition Focus - The Three Pillars */}
-      <section className="section container-app">
-        <div className="mb-4">
+      <section className="py-4 sm:py-6 container-app">
+        <div className="mb-3">
           <h2
-            className="text-xl sm:text-2xl font-semibold mb-1"
+            className="text-lg sm:text-xl font-semibold mb-0.5"
             style={{ fontFamily: "var(--font-serif)", color: 'var(--forest-900)' }}
           >
             Recipes That Nourish
           </h2>
-          <p className="text-xs sm:text-sm text-gray-500">Every recipe supports your wellness journey</p>
+          <p className="text-[11px] sm:text-xs text-gray-500">Every recipe supports your wellness journey</p>
         </div>
 
         <div className="grid grid-cols-3 gap-2 sm:gap-3">
@@ -256,8 +256,8 @@ export default function HomePage() {
       </section>
 
       {/* Quick Filters */}
-      <section className="container-app pb-4">
-        <h2 className="text-xs font-semibold text-gray-500 mb-3 uppercase tracking-wider">
+      <section className="container-app pb-3">
+        <h2 className="text-[10px] sm:text-xs font-semibold text-gray-500 mb-2 uppercase tracking-wider">
           Browse by Need
         </h2>
         <div className="filter-chips">
@@ -306,36 +306,31 @@ export default function HomePage() {
       )}
 
       {/* Wellness Tip Card */}
-      <section className="container-app section">
+      <section className="container-app py-4 sm:py-6">
         <div
-          className="rounded-2xl p-5 sm:p-6 relative overflow-hidden"
+          className="rounded-xl p-4 sm:p-5 relative overflow-hidden"
           style={{
             background: "linear-gradient(135deg, var(--teal-50) 0%, var(--teal-100) 100%)",
             border: "1px solid var(--teal-200)",
           }}
         >
           <div className="relative z-10">
-            <div className="flex items-center gap-2 mb-3">
-              <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ backgroundColor: 'var(--teal-200)' }}>
-                <TrendingUp className="w-4 h-4" style={{ color: 'var(--teal-700)' }} />
+            <div className="flex items-center gap-2 mb-2">
+              <div className="w-7 h-7 rounded-lg flex items-center justify-center" style={{ backgroundColor: 'var(--teal-200)' }}>
+                <TrendingUp className="w-3.5 h-3.5" style={{ color: 'var(--teal-700)' }} />
               </div>
-              <p className="text-xs font-bold uppercase tracking-wider" style={{ color: 'var(--teal-700)' }}>
+              <p className="text-[10px] sm:text-xs font-bold uppercase tracking-wider" style={{ color: 'var(--teal-700)' }}>
                 Daily Wellness Tip
               </p>
             </div>
             <p
-              className="text-base sm:text-lg leading-relaxed"
+              className="text-sm sm:text-base leading-relaxed"
               style={{ fontFamily: "var(--font-serif)", color: 'var(--forest-900)' }}
             >
               Take thyroid medication 30-60 min before eating. Avoid calcium-rich
               foods and soy near medication time.
             </p>
           </div>
-          {/* Decorative element */}
-          <div 
-            className="absolute -right-8 -bottom-8 w-32 h-32 rounded-full opacity-20 blur-2xl" 
-            style={{ backgroundColor: 'var(--teal-400)' }}
-          />
         </div>
       </section>
     </div>
@@ -356,36 +351,36 @@ function RecipeSection({
   if (recipes.length === 0) return null;
   
   return (
-    <section className="section" style={{ borderTop: '1px solid var(--cream-200)' }}>
+    <section className="py-4 sm:py-6" style={{ borderTop: '1px solid var(--cream-200)' }}>
       <div className="container-app">
-        <div className="section-header">
-          <div className="flex items-center gap-2.5">
+        <div className="flex items-center justify-between mb-3">
+          <div className="flex items-center gap-2">
             <div 
-              className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center"
+              className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg flex items-center justify-center"
               style={{ backgroundColor: 'var(--teal-100)' }}
             >
-              <Icon className="w-4 h-4 sm:w-5 sm:h-5" style={{ color: 'var(--teal-600)' }} />
+              <Icon className="w-4 h-4" style={{ color: 'var(--teal-600)' }} />
             </div>
             <div>
               <h2
-                className="text-lg sm:text-xl md:text-2xl font-semibold"
+                className="text-base sm:text-lg font-semibold leading-tight"
                 style={{ fontFamily: "var(--font-serif)", color: 'var(--forest-900)' }}
               >
                 {title}
               </h2>
-              <p className="text-[10px] sm:text-xs text-gray-500">{recipes.length} recipes</p>
+              <p className="text-[10px] text-gray-500">{recipes.length} recipes</p>
             </div>
           </div>
           <Link
             href={link}
-            className="text-xs font-semibold flex items-center gap-1 hover:opacity-80 transition-opacity"
+            className="text-[11px] sm:text-xs font-semibold flex items-center gap-1 hover:opacity-80 transition-opacity"
             style={{ color: 'var(--teal-600)' }}
           >
             See All <ArrowRight className="w-3 h-3" />
           </Link>
         </div>
 
-        <div className="recipe-grid-home stagger-children">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
           {recipes.slice(0, 4).map((recipe) => (
             <RecipeCard key={recipe.id} recipe={recipe} compact />
           ))}

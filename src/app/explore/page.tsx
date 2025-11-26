@@ -4,10 +4,9 @@ export const dynamic = 'force-dynamic';
 
 import { useState, useEffect } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
-import { Search, Filter, X, Clock, Heart, Leaf, Fish, ChefHat, Sun, Moon, Cookie, Plus, Loader2 } from "lucide-react";
+import { Search, Filter, X, Clock, Heart, Leaf, Fish, ChefHat, Sun, Moon, Cookie, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import RecipeCard from "@/components/recipe/RecipeCard";
-import { useAuth } from "@/hooks/useAuth";
 
 const mealTabs = [
   { id: "all", label: "All", icon: null },
@@ -144,39 +143,41 @@ export default function ExplorePage() {
   const filteredRecipes = recipes;
 
   return (
-    <div className="page-content" style={{ backgroundColor: 'var(--cream-100)' }}>
-      {/* Header */}
-      <header className="sticky top-0 z-20 bg-white/95 backdrop-blur-sm border-b border-cream-200">
-        <div className="container-app py-4">
+    <div className="min-h-screen" style={{ backgroundColor: 'var(--cream-100)' }}>
+      {/* Search & Filters Section */}
+      <div className="bg-white border-b" style={{ borderColor: 'var(--cream-200)' }}>
+        <div className="container-app py-3">
+          {/* Page Title */}
           <h1
-            className="text-xl sm:text-2xl font-medium text-forest-900 mb-4"
-            style={{ fontFamily: "var(--font-serif)" }}
+            className="text-lg sm:text-xl font-semibold mb-3"
+            style={{ fontFamily: "var(--font-serif)", color: 'var(--forest-900)' }}
           >
             Explore Recipes
           </h1>
 
           {/* Search Bar */}
-          <div className="relative mb-4">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+          <div className="relative mb-3">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
             <input
               type="text"
               placeholder="Search recipes..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="input-field pl-12 pr-12"
+              className="w-full pl-10 pr-10 py-2.5 text-sm rounded-xl border bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 transition-all"
+              style={{ borderColor: 'var(--cream-200)', focusRing: 'var(--teal-500)' }}
             />
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery("")}
-                className="absolute right-4 top-1/2 -translate-y-1/2 w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition-colors"
+                className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 rounded-full bg-gray-200 flex items-center justify-center hover:bg-gray-300 transition-colors"
               >
-                <X className="w-4 h-4 text-gray-600" />
+                <X className="w-3 h-3 text-gray-600" />
               </button>
             )}
           </div>
 
           {/* Meal Type Tabs */}
-          <div className="flex gap-2 overflow-x-auto hide-scrollbar -mx-4 px-4 pb-1">
+          <div className="flex gap-1.5 overflow-x-auto hide-scrollbar -mx-4 px-4 pb-1">
             {mealTabs.map((tab) => {
               const Icon = tab.icon;
               const count = mealCounts[tab.id as keyof typeof mealCounts] || 0;
@@ -185,14 +186,14 @@ export default function ExplorePage() {
                   key={tab.id}
                   onClick={() => setSelectedMeal(tab.id)}
                   className={cn(
-                    "flex-shrink-0 px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition-all whitespace-nowrap flex items-center gap-1.5",
+                    "flex-shrink-0 px-3 py-1.5 rounded-full text-xs font-medium transition-all whitespace-nowrap flex items-center gap-1",
                     selectedMeal === tab.id
                       ? "text-white"
-                      : "bg-white text-gray-600 border border-cream-200"
+                      : "bg-gray-100 text-gray-600"
                   )}
                   style={selectedMeal === tab.id ? { backgroundColor: 'var(--teal-600)' } : {}}
                 >
-                  {Icon && <Icon className="w-3.5 h-3.5" />}
+                  {Icon && <Icon className="w-3 h-3" />}
                   {tab.label}
                   <span className="opacity-70">({count})</span>
                 </button>
@@ -200,29 +201,29 @@ export default function ExplorePage() {
             })}
           </div>
         </div>
-      </header>
+      </div>
 
       {/* Filters Section */}
-      <div className="container-app py-3">
-        <div className="flex gap-2 flex-wrap">
+      <div className="container-app py-2.5">
+        <div className="flex gap-1.5 flex-wrap">
           <button
             onClick={() => setShowFilters(!showFilters)}
             className={cn(
-              "flex items-center gap-2 px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all",
+              "flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium transition-all",
               showFilters || activeFilters.length > 0
                 ? "border"
-                : "bg-white text-gray-600 border border-cream-200"
+                : "bg-white text-gray-600 border"
             )}
-            style={showFilters || activeFilters.length > 0 ? { 
+            style={(showFilters || activeFilters.length > 0) ? { 
               backgroundColor: 'var(--teal-50)', 
               color: 'var(--teal-700)',
               borderColor: 'var(--teal-200)'
-            } : {}}
+            } : { borderColor: 'var(--cream-200)' }}
           >
-            <Filter className="w-4 h-4" />
+            <Filter className="w-3.5 h-3.5" />
             Filters
             {activeFilters.length > 0 && (
-              <span className="w-5 h-5 rounded-full text-white text-xs flex items-center justify-center" style={{ backgroundColor: 'var(--teal-500)' }}>
+              <span className="w-4 h-4 rounded-full text-white text-[10px] flex items-center justify-center" style={{ backgroundColor: 'var(--teal-500)' }}>
                 {activeFilters.length}
               </span>
             )}
@@ -231,20 +232,21 @@ export default function ExplorePage() {
           <button
             onClick={() => setShowKidFriendlyFilter(!showKidFriendlyFilter)}
             className={cn(
-              "flex items-center gap-2 px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all",
+              "flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium transition-all border",
               showKidFriendlyFilter
-                ? "bg-terracotta-100 text-terracotta-700 border border-terracotta-200"
-                : "bg-white text-gray-600 border border-cream-200 hover:border-terracotta-300"
+                ? "bg-terracotta-100 text-terracotta-700 border-terracotta-200"
+                : "bg-white text-gray-600 hover:border-terracotta-300"
             )}
+            style={!showKidFriendlyFilter ? { borderColor: 'var(--cream-200)' } : {}}
           >
-            <ChefHat className="w-4 h-4" />
+            <ChefHat className="w-3.5 h-3.5" />
             Kid-Friendly
           </button>
         </div>
 
         {/* Filter Pills */}
         {showFilters && (
-          <div className="flex flex-wrap gap-2 mt-3 animate-slide-up">
+          <div className="flex flex-wrap gap-1.5 mt-2 animate-slide-up">
             {healthFilters.map((filter) => {
               const Icon = filter.icon;
               const isActive = activeFilters.includes(filter.id);
@@ -253,14 +255,14 @@ export default function ExplorePage() {
                   key={filter.id}
                   onClick={() => toggleFilter(filter.id)}
                   className={cn(
-                    "flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs sm:text-sm font-medium transition-all",
+                    "flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium transition-all",
                     isActive
                       ? "text-white"
-                      : "bg-white text-gray-600 border border-cream-200"
+                      : "bg-white text-gray-600 border"
                   )}
-                  style={isActive ? { backgroundColor: 'var(--teal-600)' } : {}}
+                  style={isActive ? { backgroundColor: 'var(--teal-600)' } : { borderColor: 'var(--cream-200)' }}
                 >
-                  <Icon className="w-3.5 h-3.5" />
+                  <Icon className="w-3 h-3" />
                   {filter.label}
                 </button>
               );
@@ -269,34 +271,34 @@ export default function ExplorePage() {
         )}
 
         {/* Results Count */}
-        <p className="text-xs sm:text-sm text-gray-500 mt-3">
+        <p className="text-xs text-gray-500 mt-2">
           {filteredRecipes.length} recipe{filteredRecipes.length !== 1 ? "s" : ""} found
         </p>
       </div>
 
       {/* Recipe Grid */}
-      <div className="container-app pb-8">
+      <div className="container-app pb-28">
         {isLoading ? (
-          <div className="flex items-center justify-center py-16">
-            <Loader2 className="w-8 h-8 text-sage-500 animate-spin" />
+          <div className="flex items-center justify-center py-12">
+            <Loader2 className="w-6 h-6 text-teal-500 animate-spin" />
           </div>
         ) : filteredRecipes.length > 0 ? (
-          <div className="recipe-grid stagger-children">
+          <div className="grid grid-cols-2 gap-3 sm:gap-4">
             {filteredRecipes.map((recipe) => (
               <RecipeCard key={recipe.id} recipe={recipe} compact />
             ))}
           </div>
         ) : (
-          <div className="text-center py-12">
-            <Search className="w-16 h-16 text-gray-300 mx-auto mb-4" />
+          <div className="text-center py-10">
+            <Search className="w-12 h-12 text-gray-300 mx-auto mb-3" />
             <h3
-              className="text-lg font-medium text-forest-900 mb-2"
-              style={{ fontFamily: "var(--font-serif)" }}
+              className="text-base font-medium mb-1"
+              style={{ fontFamily: "var(--font-serif)", color: 'var(--forest-900)' }}
             >
               No recipes found
             </h3>
-            <p className="text-gray-600 mb-4">
-              Try adjusting your filters or search terms
+            <p className="text-sm text-gray-600 mb-3">
+              Try adjusting your filters
             </p>
             <button
               onClick={() => {
@@ -305,9 +307,10 @@ export default function ExplorePage() {
                 setSelectedMeal("all");
                 setShowKidFriendlyFilter(false);
               }}
-              className="btn-secondary"
+              className="text-sm font-medium px-4 py-2 rounded-lg"
+              style={{ backgroundColor: 'var(--teal-100)', color: 'var(--teal-700)' }}
             >
-              Clear All Filters
+              Clear Filters
             </button>
           </div>
         )}
