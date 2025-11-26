@@ -1,69 +1,50 @@
 /**
  * Image Generation & Storage for ThriveMenu
  * 
- * Uses Google Imagen 4.0 for realistic AI-generated recipe images
- * Imagen 4.0 provides the highest fidelity photorealistic food photography
- * Uses the :predict endpoint
- * Stores images in Vercel Blob Storage for optimal performance
+ * Strategy:
+ * 1. Primary: Google Imagen 4.0 (Highest Fidelity) - ~70 images/day limit
+ * 2. Fallback: Google Gemini 2.0 Flash (High Speed/Quota) - ~10,000 images/day limit
+ * 
+ * This ensures we always get the best possible image, but never fail due to quotas.
  */
 
 import { put } from '@vercel/blob';
 
-const GEMINI_API_KEY = process.env.GEMINI_API_KEY || "AIzaSyBhzno0jb2UbP3P5fIxJ_eEAQynF2GNvrk";
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
+
+if (!GEMINI_API_KEY) {
+  console.warn("⚠️ GEMINI_API_KEY is missing. Image generation will fail.");
+}
 
 /**
- * Generate recipe image using Google Imagen 4.0
- * Uses the :predict endpoint (NOT generateContent which doesn't support Imagen)
- * 
- * NOTE on Quotas (Tier 1):
- * - Imagen 4.0: ~70 images/day (High Quality)
- * - Gemini 2.0 Flash: ~10,000 images/day (Standard Quality)
- * 
- * We default to Imagen 4.0 for highest quality. If quota is hit,
- * the user should wait or we can implement a fallback in the future.
+ * Generate prompt for image generation
  */
-async function generateImageWithImagen(
-  recipeName: string, 
-  category: string, 
-  description?: string, 
-  ingredients?: string[], 
-  retries = 3
-): Promise<Buffer> {
-  // Create highly detailed, realistic prompt for Google Imagen 4.0
-  const createDetailedPrompt = (name: string, cat: string, desc?: string, ingr?: string[]) => {
-    const dishDetails = desc ? `, ${desc}` : '';
-    const ingredientList = ingr && ingr.length > 0 ? `, featuring ${ingr.slice(0, 4).join(', ')}` : '';
-    
-    // Category-specific styling for premium food photography
-    let platingStyle = '';
-    if (cat.toLowerCase().includes('breakfast')) platingStyle = 'served on a rustic wooden breakfast table with soft natural morning light, 45-degree angle';
-    else if (cat.toLowerCase().includes('salad')) platingStyle = 'in a hand-thrown ceramic bowl with fresh herbs garnish, macro detail, crisp textures';
-    else if (cat.toLowerCase().includes('seafood')) platingStyle = 'elegantly plated on white porcelain with lemon garnish, bright airy lighting';
-    else if (cat.toLowerCase().includes('soup')) platingStyle = 'in a artisan ceramic soup bowl with visible steam and herbs, cozy atmosphere';
-    else if (cat.toLowerCase().includes('oat') || cat.toLowerCase().includes('grain')) platingStyle = 'in a ceramic breakfast bowl with wooden spoon nearby, soft depth of field';
-    else if (cat.toLowerCase().includes('dessert') || cat.toLowerCase().includes('sweet')) platingStyle = 'on marble surface with elegant plating, dramatic side lighting';
-    else platingStyle = 'beautifully plated with professional food styling, Michelin star presentation';
-    
-    return `Professional food photography of ${name}${ingredientList}${dishDetails}, ${platingStyle}. Shot on Phase One XF IQ4, 100mm macro lens, studio lighting, shallow depth of field, appetizing presentation, vibrant natural colors, 8k resolution, ultra-realistic textures. No text, no watermarks.`;
-  };
+function createDetailedPrompt(name: string, cat: string, desc?: string, ingr?: string[]): string {
+  const dishDetails = desc ? `, ${desc}` : '';
+  const ingredientList = ingr && ingr.length > 0 ? `, featuring ${ingr.slice(0, 4).join(', ')}` : '';
+  
+  // Category-specific styling for premium food photography
+  let platingStyle = '';
+  if (cat.toLowerCase().includes('breakfast')) platingStyle = 'served on a rustic wooden breakfast table with soft natural morning light, 45-degree angle';
+  else if (cat.toLowerCase().includes('salad')) platingStyle = 'in a hand-thrown ceramic bowl with fresh herbs garnish, macro detail, crisp textures';
+  else if (cat.toLowerCase().includes('seafood')) platingStyle = 'elegantly plated on white porcelain with lemon garnish, bright airy lighting';
+  else if (cat.toLowerCase().includes('soup')) platingStyle = 'in a artisan ceramic soup bowl with visible steam and herbs, cozy atmosphere';
+  else if (cat.toLowerCase().includes('oat') || cat.toLowerCase().includes('grain')) platingStyle = 'in a ceramic breakfast bowl with wooden spoon nearby, soft depth of field';
+  else if (cat.toLowerCase().includes('dessert') || cat.toLowerCase().includes('sweet')) platingStyle = 'on marble surface with elegant plating, dramatic side lighting';
+  else platingStyle = 'beautifully plated with professional food styling, Michelin star presentation';
+  
+  return `Professional food photography of ${name}${ingredientList}${dishDetails}, ${platingStyle}. Shot on Phase One XF IQ4, 100mm macro lens, studio lighting, shallow depth of field, appetizing presentation, vibrant natural colors, 8k resolution, ultra-realistic textures. No text, no watermarks.`;
+}
 
-  const prompt = createDetailedPrompt(recipeName, category, description, ingredients);
-  
-  console.log(`🎨 Imagen 4.0 generating: "${recipeName}"`);
-  
-  // Imagen 4.0 uses the :predict endpoint
-  // Reference: https://ai.google.dev/api (Gen Media APIs section)
+/**
+ * Generate image using Imagen 4.0 (Primary)
+ */
+async function generateWithImagen4(prompt: string): Promise<Buffer> {
   const url = `https://generativelanguage.googleapis.com/v1beta/models/imagen-4.0-generate-preview-06-06:predict?key=${GEMINI_API_KEY}`;
-
   const payload = {
-    instances: [
-      {
-        prompt: prompt
-      }
-    ],
+    instances: [{ prompt }],
     parameters: {
       sampleCount: 1,
-      // Imagen 4.0 specific parameters for quality
       aspectRatio: "1:1",
       safetySettings: [
         { category: "HARM_CATEGORY_SEXUALLY_EXPLICIT", threshold: "BLOCK_LOW_AND_ABOVE" }
@@ -71,66 +52,100 @@ async function generateImageWithImagen(
     }
   };
 
-  for (let attempt = 0; attempt < retries; attempt++) {
-    try {
-      if (attempt > 0) {
-        console.log(`   ⏳ Retry ${attempt + 1}/${retries} for ${recipeName}`);
-        await new Promise(resolve => setTimeout(resolve, 3000 * attempt));
-      }
-      
-      const response = await fetch(url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(payload)
-      });
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  });
 
-      if (!response.ok) {
-        const errorText = await response.text();
-        
-        // Check specifically for quota issues
-        if (response.status === 429 || errorText.includes('RESOURCE_EXHAUSTED') || errorText.includes('quota')) {
-           throw new Error(`QUOTA_EXCEEDED: ${errorText}`);
-        }
-        
-        throw new Error(`Imagen API error: ${response.status} ${response.statusText} - ${errorText}`);
-      }
+  if (!response.ok) {
+    const errorText = await response.text();
+    if (response.status === 429 || errorText.includes('RESOURCE_EXHAUSTED') || errorText.includes('quota')) {
+       throw new Error(`QUOTA_EXCEEDED: ${errorText}`);
+    }
+    throw new Error(`Imagen API error: ${response.status} ${response.statusText} - ${errorText}`);
+  }
 
-      const data = await response.json();
-      
-      // Imagen 4.0 returns: { predictions: [ { bytesBase64Encoded: "..." } ] }
-      if (data.predictions && data.predictions.length > 0) {
-        const prediction = data.predictions[0];
-        if (prediction.bytesBase64Encoded) {
-          console.log(`   ✅ Imagen 4.0 generated image for ${recipeName}`);
-          return Buffer.from(prediction.bytesBase64Encoded, 'base64');
-        }
-        if (prediction.b64) {
-           console.log(`   ✅ Imagen 4.0 generated image for ${recipeName}`);
-           return Buffer.from(prediction.b64, 'base64');
-        }
-      }
+  const data = await response.json();
+  if (data.predictions?.[0]?.bytesBase64Encoded) {
+    return Buffer.from(data.predictions[0].bytesBase64Encoded, 'base64');
+  }
+  if (data.predictions?.[0]?.b64) {
+    return Buffer.from(data.predictions[0].b64, 'base64');
+  }
+  throw new Error('No image data received from Imagen API');
+}
 
-      throw new Error('No image data received from Imagen API');
-      
-    } catch (err) {
-      const error = err as Error;
-      const errorMessage = error?.message || String(error);
-      console.error(`   ❌ Attempt ${attempt + 1} failed:`, errorMessage);
-      
-      // Don't retry if we hit quota limits
-      if (errorMessage.includes('QUOTA_EXCEEDED')) {
-        throw error;
-      }
-      
-      if (attempt === retries - 1) {
-        throw new Error(`Imagen 4.0 failed after ${retries} attempts: ${errorMessage}`);
+/**
+ * Generate image using Gemini 2.0 Flash (Fallback)
+ */
+async function generateWithGeminiFlash(prompt: string): Promise<Buffer> {
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp-image-generation:generateContent?key=${GEMINI_API_KEY}`;
+  const payload = {
+    contents: [{ parts: [{ text: prompt }] }],
+    generationConfig: {
+      responseModalities: ["IMAGE", "TEXT"]
+    }
+  };
+
+  const response = await fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  });
+
+  if (!response.ok) {
+    const errorText = await response.text();
+    throw new Error(`Gemini Flash API error: ${response.status} ${response.statusText} - ${errorText}`);
+  }
+
+  const data = await response.json();
+  const candidate = data.candidates?.[0];
+  if (candidate?.content?.parts) {
+    for (const part of candidate.content.parts) {
+      if (part.inlineData?.data) {
+        return Buffer.from(part.inlineData.data, 'base64');
       }
     }
   }
+  throw new Error('No image data received from Gemini Flash API');
+}
+
+/**
+ * Main Generation Function with Fallback Logic
+ */
+async function generateImageWithFallback(
+  recipeName: string, 
+  category: string, 
+  description?: string, 
+  ingredients?: string[], 
+  retries = 3
+): Promise<Buffer> {
+  const prompt = createDetailedPrompt(recipeName, category, description, ingredients);
   
-  throw new Error(`Failed to generate image with Imagen 4.0 after ${retries} attempts`);
+  // Try Imagen 4.0 first (Primary)
+  try {
+    console.log(`🎨 Generating with Imagen 4.0 (Primary): "${recipeName}"`);
+    return await generateWithImagen4(prompt);
+  } catch (error: any) {
+    const isQuotaError = error.message?.includes('QUOTA_EXCEEDED') || error.message?.includes('429');
+    
+    if (isQuotaError) {
+      console.warn(`⚠️ Imagen 4.0 quota exceeded. Switching to Gemini 2.0 Flash (Fallback)...`);
+      try {
+        console.log(`🎨 Generating with Gemini 2.0 Flash (Fallback): "${recipeName}"`);
+        return await generateWithGeminiFlash(prompt);
+      } catch (fallbackError: any) {
+        console.error(`❌ Fallback generation failed:`, fallbackError);
+        throw fallbackError;
+      }
+    }
+    
+    // For non-quota errors, retry logic could be applied here if needed, 
+    // but currently we throw to avoid masking real issues.
+    console.error(`❌ Imagen 4.0 failed:`, error);
+    throw error;
+  }
 }
 
 /**
@@ -138,7 +153,6 @@ async function generateImageWithImagen(
  */
 async function uploadToVercelBlob(imageBuffer: Buffer, filename: string): Promise<string> {
   try {
-    // Convert Buffer to Uint8Array (which is a valid BlobPart) for Vercel Blob compatibility
     const uint8Array = new Uint8Array(imageBuffer.length);
     for (let i = 0; i < imageBuffer.length; i++) {
       uint8Array[i] = imageBuffer[i];
@@ -159,8 +173,8 @@ async function uploadToVercelBlob(imageBuffer: Buffer, filename: string): Promis
 }
 
 /**
- * Generate recipe image with Imagen 4.0 and store in Vercel Blob
- * ONLY uses Google AI image generation - NO external photo services
+ * Generate recipe image and store in Vercel Blob
+ * Uses Imagen 4.0 with automatic fallback to Gemini 2.0 Flash
  */
 export async function generateAndStoreRecipeImage(
   recipeId: string,
@@ -170,10 +184,10 @@ export async function generateAndStoreRecipeImage(
   ingredients?: string[]
 ): Promise<string> {
   try {
-    console.log(`🎨 Generating AI image for: ${recipeName}`);
+    console.log(`🚀 Starting image generation pipeline for: ${recipeName}`);
     
-    // Step 1: Generate image with Imagen 4.0 ONLY
-    const imageBuffer = await generateImageWithImagen(recipeName, category, description, ingredients);
+    // Step 1: Generate image (with fallback)
+    const imageBuffer = await generateImageWithFallback(recipeName, category, description, ingredients);
     
     // Step 2: Upload to Vercel Blob
     const filename = `recipes/${recipeId}.jpg`;
@@ -194,7 +208,6 @@ export async function generateAndStoreRecipeImage(
  * Get recipe image URL (fallback only for display when no DB image exists)
  */
 export function getRecipeImage(recipeName: string, category: string): string {
-  // Placeholder gradient for recipes without images
   const seed = recipeName.toLowerCase().replace(/\s+/g, '-');
   return `/api/placeholder?name=${encodeURIComponent(recipeName)}&seed=${seed}`;
 }
