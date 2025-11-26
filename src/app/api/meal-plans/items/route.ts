@@ -13,8 +13,9 @@ import prisma from "@/lib/db";
 export async function POST(request: NextRequest) {
   try {
     const session = await getServerSession(authOptions);
+    const userId = (session?.user as any)?.id;
 
-    if (!(session?.user as any)?.id) {
+    if (!userId) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
@@ -55,6 +56,17 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Calculate servings based on family members if not provided
+    let calculatedServings = servings;
+    if (!calculatedServings && forFamilyMembers && forFamilyMembers.length > 0) {
+      // Base serving calculation: 1 serving per adult, 0.5 per child, 0.25 per preschooler/infant
+      calculatedServings = forFamilyMembers.reduce((total: number, memberId: string) => {
+        // This would need to fetch family member details, but for now use default
+        return total + 1; // Default to 1 per member
+      }, 0);
+    }
+    calculatedServings = calculatedServings || recipe.servings || 4;
+
     // Create or update meal plan item
     const mealPlanItem = await prisma.mealPlanItem.upsert({
       where: {
@@ -66,7 +78,7 @@ export async function POST(request: NextRequest) {
       },
       update: {
         recipeId,
-        servings: servings || recipe.servings || 4,
+        servings: calculatedServings,
         notes: notes || null,
         forFamilyMembers: forFamilyMembers || [],
       },
@@ -75,7 +87,7 @@ export async function POST(request: NextRequest) {
         recipeId,
         date: new Date(date),
         mealType: mealType as any,
-        servings: servings || recipe.servings || 4,
+        servings: calculatedServings,
         notes: notes || null,
         forFamilyMembers: forFamilyMembers || [],
       },
@@ -107,8 +119,9 @@ export async function POST(request: NextRequest) {
 export async function DELETE(request: NextRequest) {
   try {
     const session = await getServerSession(authOptions);
+    const userId = (session?.user as any)?.id;
 
-    if (!(session?.user as any)?.id) {
+    if (!userId) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 

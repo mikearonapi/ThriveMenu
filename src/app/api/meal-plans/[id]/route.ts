@@ -40,6 +40,15 @@ export async function GET(
                 prepTimeMinutes: true,
                 totalTimeMinutes: true,
                 servings: true,
+                healthTags: {
+                  include: {
+                    healthTag: {
+                      select: {
+                        slug: true,
+                      },
+                    },
+                  },
+                },
               },
             },
           },

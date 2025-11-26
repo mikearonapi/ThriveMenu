@@ -1,5 +1,8 @@
 "use client";
 
+// Enable dynamic rendering for home page
+export const dynamic = 'force-dynamic';
+
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -86,9 +89,9 @@ export default function HomePage() {
   const featuredRecipe = currentMealRecipes[0];
 
   return (
-    <div className="min-h-screen pb-24" style={{ backgroundColor: 'var(--cream-100)' }}>
+    <div className="min-h-screen pb-24 w-full" style={{ backgroundColor: 'var(--cream-100)' }}>
       {/* Hero Section with Featured Recipe */}
-      <header className="relative overflow-hidden">
+      <header className="relative overflow-hidden w-full">
         {/* Background with subtle pattern */}
         <div className="absolute inset-0 bg-gradient-to-b from-white to-gray-50" style={{ background: 'linear-gradient(to bottom, white, var(--cream-50), var(--cream-100))' }} />
         <div 
@@ -98,14 +101,14 @@ export default function HomePage() {
           }}
         />
 
-        <div className="relative px-5 pt-8 pb-8">
+        <div className="relative px-5 sm:px-6 md:px-8 lg:px-12 pt-8 pb-8 max-w-7xl mx-auto">
           {/* Greeting */}
           <div className="mb-8 animate-fade-in">
-            <p className="text-sage-600 text-xs font-semibold mb-2 tracking-wider uppercase">
+            <p className="text-sage-600 text-xs sm:text-sm font-semibold mb-2 tracking-wider uppercase">
               {getTimeOfDay()}, Christine
             </p>
             <h1
-              className="text-4xl font-semibold text-[var(--forest-900)] leading-tight mb-1"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold text-[var(--forest-900)] leading-tight mb-1"
               style={{ fontFamily: "var(--font-serif)" }}
             >
               What shall we
@@ -118,11 +121,11 @@ export default function HomePage() {
           {featuredRecipe && (
             <Link 
               href={`/recipe/${featuredRecipe.id}`}
-              className="block group"
+              className="block group max-w-4xl mx-auto"
             >
               <div className="relative rounded-3xl overflow-hidden shadow-xl border border-white/50 bg-white">
                 {/* Recipe Image */}
-                <div className="relative h-[280px] overflow-hidden" style={{ position: 'relative', backgroundColor: 'var(--cream-200)' }}>
+                <div className="relative h-[280px] sm:h-[320px] md:h-[400px] lg:h-[450px] overflow-hidden" style={{ position: 'relative', backgroundColor: 'var(--cream-200)' }}>
                   <Image
                     src={featuredRecipe.imageUrl || getRecipeImage(featuredRecipe.name, featuredRecipe.category)}
                     alt={featuredRecipe.name}

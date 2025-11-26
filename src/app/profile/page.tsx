@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import {
   User,
   Heart,
@@ -12,6 +13,7 @@ import {
   LogOut,
   ChevronRight,
   Edit2,
+  Trash2,
   Check,
   Calendar,
   Utensils,
@@ -21,16 +23,86 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/hooks/useAuth";
+import { Plus, Loader2 } from "lucide-react";
+
+interface FamilyMember {
+  id: string;
+  name: string;
+  birthDate: string | null;
+  ageGroup: string;
+  isVegetarian: boolean;
+  allergies: string[];
+  dislikes: string[];
+}
 
 export default function ProfilePage() {
   const router = useRouter();
   const { user, isAuthenticated, isLoading, signOut } = useAuth();
   const [isEditing, setIsEditing] = useState(false);
+  const [familyMembers, setFamilyMembers] = useState<FamilyMember[]>([]);
+  const [isLoadingFamily, setIsLoadingFamily] = useState(false);
+  const [showAddMember, setShowAddMember] = useState(false);
+  const [editingMember, setEditingMember] = useState<FamilyMember | null>(null);
 
   const handleSignOut = async () => {
     await signOut({ redirect: false });
     router.push("/login");
   };
+
+  // Fetch family members
+  useEffect(() => {
+    if (isAuthenticated) {
+      fetchFamilyMembers();
+    }
+  }, [isAuthenticated]);
+
+  async function fetchFamilyMembers() {
+    setIsLoadingFamily(true);
+    try {
+      const response = await fetch("/api/family-members");
+      if (response.ok) {
+        const data = await response.json();
+        setFamilyMembers(data.familyMembers || []);
+      }
+    } catch (error) {
+      console.error("Error fetching family members:", error);
+    } finally {
+      setIsLoadingFamily(false);
+    }
+  }
+
+  async function handleAddFamilyMember(memberData: Partial<FamilyMember>) {
+    try {
+      const response = await fetch("/api/family-members", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(memberData),
+      });
+
+      if (response.ok) {
+        await fetchFamilyMembers();
+        setShowAddMember(false);
+      }
+    } catch (error) {
+      console.error("Error adding family member:", error);
+    }
+  }
+
+  async function handleDeleteFamilyMember(id: string) {
+    if (!confirm("Are you sure you want to remove this family member?")) return;
+
+    try {
+      const response = await fetch(`/api/family-members/${id}`, {
+        method: "DELETE",
+      });
+
+      if (response.ok) {
+        await fetchFamilyMembers();
+      }
+    } catch (error) {
+      console.error("Error deleting family member:", error);
+    }
+  }
 
   // Show loading state
   if (isLoading) {
@@ -90,9 +162,9 @@ export default function ProfilePage() {
   };
 
   return (
-    <div className="min-h-screen pb-24" style={{ backgroundColor: 'var(--cream-100)' }}>
+    <div className="min-h-screen pb-24 md:pb-8" style={{ backgroundColor: 'var(--cream-100)' }}>
       {/* Header */}
-      <header className="px-5 pt-12 pb-8 bg-gradient-to-b from-sage-50 border-b border-gray-200" style={{ background: 'linear-gradient(to bottom, var(--sage-50), var(--cream-100))' }}>
+      <header className="px-5 sm:px-6 md:px-8 lg:px-12 pt-12 pb-8 bg-gradient-to-b from-sage-50 border-b border-gray-200 max-w-7xl mx-auto" style={{ background: 'linear-gradient(to bottom, var(--sage-50), var(--cream-100))' }}>
         <div className="flex items-center justify-between mb-6">
           <h1
             className="text-3xl font-medium text-forest-900"
@@ -145,9 +217,9 @@ export default function ProfilePage() {
       </header>
 
       {/* Health Profile */}
-      <section className="px-5 py-6">
+      <section className="px-5 sm:px-6 md:px-8 lg:px-12 py-6 max-w-7xl mx-auto">
         <h2
-          className="text-lg font-medium text-forest-900 mb-4 flex items-center gap-2"
+          className="text-lg sm:text-xl md:text-2xl font-medium text-forest-900 mb-4 md:mb-6 flex items-center gap-2"
           style={{ fontFamily: "var(--font-serif)" }}
         >
           <Heart className="w-5 h-5 text-rose-400" />
@@ -158,16 +230,19 @@ export default function ProfilePage() {
             label="Graves' Disease"
             isActive={true}
             description="Thyroid-friendly recipes prioritized"
+            link="/health/graves"
           />
           <HealthConditionRow
             label="High Cholesterol"
             isActive={true}
             description="Heart-healthy options highlighted"
+            link="/health/cholesterol"
           />
           <HealthConditionRow
             label="Blood Sugar Balance"
             isActive={true}
             description="Low glycemic meals suggested"
+            link="/health/blood-sugar"
           />
           <HealthConditionRow
             label="Gluten Sensitivity"
@@ -179,56 +254,150 @@ export default function ProfilePage() {
       </section>
 
       {/* Family Members */}
-      <section className="px-5 pb-6">
-        <div className="flex items-center justify-between mb-4">
+      <section className="px-5 sm:px-6 md:px-8 lg:px-12 pb-6 max-w-7xl mx-auto">
+        <div className="flex items-center justify-between mb-4 md:mb-6">
           <h2
-            className="text-lg font-medium text-forest-900 flex items-center gap-2"
+            className="text-lg sm:text-xl md:text-2xl font-medium text-forest-900 flex items-center gap-2"
             style={{ fontFamily: "var(--font-serif)" }}
           >
             <User className="w-5 h-5 text-sage-600" />
             Family Members
           </h2>
-          <button className="text-sm text-sage-600 font-medium hover:text-sage-800">
+          <button
+            onClick={() => setShowAddMember(true)}
+            className="text-sm text-sage-600 font-medium hover:text-sage-800"
+          >
             + Add Member
           </button>
         </div>
-        <div className="space-y-3">
-          <FamilyMemberCard
-            name="Mike"
-            role="Husband"
-            icon={User}
-            dietary={[]}
+
+        {isLoadingFamily ? (
+          <div className="flex items-center justify-center py-8">
+            <Loader2 className="w-6 h-6 text-sage-600 animate-spin" />
+          </div>
+        ) : familyMembers.length === 0 ? (
+          <div className="bg-white rounded-xl p-6 text-center border border-gray-200">
+            <User className="w-12 h-12 text-gray-300 mx-auto mb-3" />
+            <p className="text-gray-500 mb-4">No family members added yet</p>
+            <button
+              onClick={() => setShowAddMember(true)}
+              className="btn-primary"
+            >
+              Add Family Member
+            </button>
+          </div>
+        ) : (
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
+            {familyMembers.map((member) => {
+              const getIcon = () => {
+                switch (member.ageGroup) {
+                  case "INFANT":
+                    return Baby;
+                  case "PRESCHOOL":
+                  case "CHILD":
+                    return Star;
+                  default:
+                    return User;
+                }
+              };
+              const Icon = getIcon();
+              const getAgeLabel = () => {
+                switch (member.ageGroup) {
+                  case "INFANT":
+                    return "Infant";
+                  case "TODDLER":
+                    return "Toddler";
+                  case "PRESCHOOL":
+                    return "Preschool";
+                  case "CHILD":
+                    return "Child";
+                  case "TEEN":
+                    return "Teen";
+                  case "ADULT":
+                    return "Adult";
+                  default:
+                    return member.ageGroup;
+                }
+              };
+
+              return (
+                <div
+                  key={member.id}
+                  className="bg-white rounded-xl p-4 shadow-sm border border-gray-200 flex items-center gap-4 relative group hover:shadow-md transition-all"
+                >
+                  <div className="w-10 h-10 rounded-full bg-cream-100 flex items-center justify-center text-sage-600">
+                    <Icon className="w-5 h-5" />
+                  </div>
+                  <div className="flex-1">
+                    <p className="font-medium text-forest-900">{member.name}</p>
+                    <p className="text-xs text-gray-600">{getAgeLabel()}</p>
+                    {member.isVegetarian && (
+                      <p className="text-xs text-sage-600 mt-1">Vegetarian</p>
+                    )}
+                    {member.allergies.length > 0 && (
+                      <p className="text-xs text-red-600 mt-1">
+                        Allergies: {member.allergies.join(", ")}
+                      </p>
+                    )}
+                  </div>
+                  <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <button
+                      onClick={() => setEditingMember(member)}
+                      className="w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200"
+                    >
+                      <Edit2 className="w-3 h-3 text-gray-600" />
+                    </button>
+                    <button
+                      onClick={() => handleDeleteFamilyMember(member.id)}
+                      className="w-6 h-6 rounded-full bg-red-50 flex items-center justify-center hover:bg-red-100"
+                    >
+                      <Trash2 className="w-3 h-3 text-red-600" />
+                    </button>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
+
+        {/* Add/Edit Family Member Modal */}
+        {(showAddMember || editingMember) && (
+          <FamilyMemberModal
+            member={editingMember}
+            onSave={async (data) => {
+              if (editingMember) {
+                // Update existing
+                const response = await fetch(`/api/family-members/${editingMember.id}`, {
+                  method: "PUT",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify(data),
+                });
+                if (response.ok) {
+                  await fetchFamilyMembers();
+                  setEditingMember(null);
+                }
+              } else {
+                // Create new
+                await handleAddFamilyMember(data);
+              }
+            }}
+            onClose={() => {
+              setShowAddMember(false);
+              setEditingMember(null);
+            }}
           />
-          <FamilyMemberCard
-            name="Emma"
-            role="6 years old"
-            icon={Smile}
-            dietary={["Picky eater"]}
-          />
-          <FamilyMemberCard
-            name="Liam"
-            role="4 years old"
-            icon={Star}
-            dietary={["No spicy foods"]}
-          />
-          <FamilyMemberCard
-            name="Baby"
-            role="6 months old"
-            icon={Baby}
-            dietary={["Starting solids"]}
-          />
-        </div>
+        )}
       </section>
 
       {/* Stats */}
-      <section className="px-5 pb-6">
+      <section className="px-5 sm:px-6 md:px-8 lg:px-12 pb-6 max-w-7xl mx-auto">
         <h2
-          className="text-lg font-medium text-forest-900 mb-4"
+          className="text-lg sm:text-xl md:text-2xl font-medium text-forest-900 mb-4 md:mb-6"
           style={{ fontFamily: "var(--font-serif)" }}
         >
           Your Journey
         </h2>
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid grid-cols-3 md:grid-cols-6 lg:grid-cols-3 gap-3 md:gap-4">
           <StatCard icon={Utensils} value="42" label="Recipes Cooked" />
           <StatCard icon={Heart} value="18" label="Favorites" />
           <StatCard icon={Calendar} value="6" label="Weeks Planned" />
@@ -280,22 +449,164 @@ export default function ProfilePage() {
   );
 }
 
+// Family Member Modal Component
+function FamilyMemberModal({
+  member,
+  onSave,
+  onClose,
+}: {
+  member: FamilyMember | null;
+  onSave: (data: any) => Promise<void>;
+  onClose: () => void;
+}) {
+  const [formData, setFormData] = useState({
+    name: member?.name || "",
+    birthDate: member?.birthDate ? new Date(member.birthDate).toISOString().split("T")[0] : "",
+    ageGroup: member?.ageGroup || "ADULT",
+    isVegetarian: member?.isVegetarian || false,
+    allergies: member?.allergies.join(", ") || "",
+    dislikes: member?.dislikes.join(", ") || "",
+  });
+  const [isSaving, setIsSaving] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSaving(true);
+    try {
+      await onSave({
+        ...formData,
+        allergies: formData.allergies.split(",").map((a) => a.trim()).filter(Boolean),
+        dislikes: formData.dislikes.split(",").map((d) => d.trim()).filter(Boolean),
+      });
+    } finally {
+      setIsSaving(false);
+    }
+  };
+
+  return (
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-5">
+      <div className="bg-white rounded-2xl p-6 max-w-md w-full max-h-[90vh] overflow-y-auto">
+        <h3 className="text-xl font-medium text-forest-900 mb-4" style={{ fontFamily: "var(--font-serif)" }}>
+          {member ? "Edit Family Member" : "Add Family Member"}
+        </h3>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Name
+            </label>
+            <input
+              type="text"
+              value={formData.name}
+              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+              required
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Age Group
+            </label>
+            <select
+              value={formData.ageGroup}
+              onChange={(e) => setFormData({ ...formData, ageGroup: e.target.value })}
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+            >
+              <option value="INFANT">Infant (0-1 years)</option>
+              <option value="TODDLER">Toddler (1-3 years)</option>
+              <option value="PRESCHOOL">Preschool (3-5 years)</option>
+              <option value="CHILD">Child (6-12 years)</option>
+              <option value="TEEN">Teen (13-17 years)</option>
+              <option value="ADULT">Adult (18+ years)</option>
+            </select>
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Birth Date (optional)
+            </label>
+            <input
+              type="date"
+              value={formData.birthDate}
+              onChange={(e) => setFormData({ ...formData, birthDate: e.target.value })}
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+            />
+          </div>
+          <div className="flex items-center">
+            <input
+              type="checkbox"
+              id="vegetarian"
+              checked={formData.isVegetarian}
+              onChange={(e) => setFormData({ ...formData, isVegetarian: e.target.checked })}
+              className="w-4 h-4 text-sage-600 border-gray-300 rounded"
+            />
+            <label htmlFor="vegetarian" className="ml-2 text-sm text-gray-700">
+              Vegetarian
+            </label>
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Allergies (comma-separated)
+            </label>
+            <input
+              type="text"
+              value={formData.allergies}
+              onChange={(e) => setFormData({ ...formData, allergies: e.target.value })}
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+              placeholder="e.g., peanuts, dairy"
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Dislikes (comma-separated)
+            </label>
+            <input
+              type="text"
+              value={formData.dislikes}
+              onChange={(e) => setFormData({ ...formData, dislikes: e.target.value })}
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+              placeholder="e.g., mushrooms, spicy food"
+            />
+          </div>
+          <div className="flex gap-3 pt-4">
+            <button
+              type="button"
+              onClick={onClose}
+              className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              disabled={isSaving}
+              className="flex-1 px-4 py-2 bg-sage-600 text-white rounded-lg hover:bg-sage-700 disabled:opacity-50"
+            >
+              {isSaving ? <Loader2 className="w-4 h-4 animate-spin mx-auto" /> : "Save"}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+}
+
 function HealthConditionRow({
   label,
   isActive,
   description,
   isLast = false,
+  link,
 }: {
   label: string;
   isActive: boolean;
   description: string;
   isLast?: boolean;
+  link?: string;
 }) {
-  return (
+  const content = (
     <div
       className={cn(
         "flex items-center justify-between p-4 hover:bg-gray-50 transition-colors",
-        !isLast && "border-b border-gray-100"
+        !isLast && "border-b border-gray-100",
+        link && "cursor-pointer"
       )}
     >
       <div>
@@ -304,7 +615,7 @@ function HealthConditionRow({
       </div>
       <div
         className={cn(
-          "w-11 h-6 rounded-full p-1 transition-all cursor-pointer",
+          "w-11 h-6 rounded-full p-1 transition-all",
           isActive ? "bg-sage-500" : "bg-gray-300"
         )}
       >
@@ -317,6 +628,16 @@ function HealthConditionRow({
       </div>
     </div>
   );
+
+  if (link) {
+    return (
+      <Link href={link} className="block">
+        {content}
+      </Link>
+    );
+  }
+
+  return content;
 }
 
 function FamilyMemberCard({

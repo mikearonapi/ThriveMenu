@@ -15,20 +15,25 @@ import prisma from "@/lib/db";
 
 export async function GET(request: NextRequest) {
   try {
-    const { searchParams } = new URL(request.url);
-    const mealType = searchParams.get("mealType");
-    const search = searchParams.get("search");
-    const limit = parseInt(searchParams.get("limit") || "50");
-    const offset = parseInt(searchParams.get("offset") || "0");
+            const { searchParams } = new URL(request.url);
+            const mealType = searchParams.get("mealType");
+            const search = searchParams.get("search");
+            const kidFriendly = searchParams.get("kidFriendly") === "true";
+            const limit = parseInt(searchParams.get("limit") || "50");
+            const offset = parseInt(searchParams.get("offset") || "0");
 
-    // Build where clause
-    const where: any = {};
+            // Build where clause
+            const where: any = {};
 
-    if (mealType) {
-      where.mealType = mealType;
-    }
+            if (mealType) {
+              where.mealType = mealType;
+            }
 
-    if (search) {
+            if (kidFriendly) {
+              where.isKidFriendly = true;
+            }
+
+            if (search) {
       where.OR = [
         { name: { contains: search, mode: "insensitive" } },
         { description: { contains: search, mode: "insensitive" } },

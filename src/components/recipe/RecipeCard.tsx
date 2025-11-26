@@ -73,14 +73,17 @@ export default function RecipeCard({ recipe, compact = false }: RecipeCardProps)
       >
         {/* Image Section */}
         <div className={cn("relative overflow-hidden bg-gray-50", compact ? "h-36" : "h-48")} style={{ position: 'relative' }}>
-          <Image
-            src={displayImage}
-            alt={recipe.name}
-            fill
-            sizes="(max-width: 768px) 50vw, 33vw"
-            className="object-cover transition-transform duration-700 group-hover:scale-110"
-            loading="lazy"
-          />
+                  <Image
+                    src={displayImage}
+                    alt={recipe.name}
+                    fill
+                    sizes="(max-width: 768px) 50vw, 33vw"
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                    loading="lazy"
+                    quality={85}
+                    placeholder="blur"
+                    blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+                  />
           
           {/* Overlay Gradient for Text Readability if we had text over image */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />

@@ -14,8 +14,9 @@ import prisma from "@/lib/db";
 export async function POST(request: NextRequest) {
   try {
     const session = await getServerSession(authOptions);
+    const userId = (session?.user as any)?.id;
 
-    if (!(session?.user as any)?.id) {
+    if (!userId) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
@@ -101,15 +102,13 @@ export async function POST(request: NextRequest) {
         mealPlanId: mealPlan.id,
         items: {
           create: Array.from(ingredientMap.values()).map((ing) => ({
-            ingredientId: undefined, // Will need to find or create ingredient
             customName: ing.name,
             amount: ing.amount,
             unit: ing.unit,
             category: ing.category as any,
             notes: `For: ${ing.recipes.join(", ")}`,
-            sourceRecipeIds: mealPlan.items
-              .filter((item) => ing.recipes.includes(item.recipe.name))
-              .map((item) => item.recipeId),
+            isChecked: false,
+            ingredientId: null,
           })),
         },
       },

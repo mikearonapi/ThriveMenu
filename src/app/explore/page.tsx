@@ -1,5 +1,8 @@
 "use client";
 
+// Enable dynamic rendering for explore page
+export const dynamic = 'force-dynamic';
+
 import { useState, useMemo, useEffect } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { Search, Filter, X, Clock, Heart, Leaf, Fish, ChefHat, Sun, Moon, Cookie } from "lucide-react";
@@ -39,6 +42,7 @@ export default function ExplorePage() {
   const [recipes, setRecipes] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isAddingToPlan, setIsAddingToPlan] = useState<string | null>(null);
+  const [showKidFriendlyFilter, setShowKidFriendlyFilter] = useState(false);
   const [mealCounts, setMealCounts] = useState<Record<string, number>>({
     all: 0,
     breakfast: 0,
@@ -73,6 +77,7 @@ export default function ExplorePage() {
         const url = new URL("/api/recipes", window.location.origin);
         if (mealType) url.searchParams.set("mealType", mealType);
         if (searchParam) url.searchParams.set("search", searchParam);
+        if (showKidFriendlyFilter) url.searchParams.set("kidFriendly", "true");
         url.searchParams.set("limit", "100");
 
         const response = await fetch(url.toString());
@@ -110,8 +115,8 @@ export default function ExplorePage() {
       }
     }
 
-    fetchRecipes();
-  }, [selectedMeal, searchQuery, activeFilters]);
+          fetchRecipes();
+        }, [selectedMeal, searchQuery, activeFilters, showKidFriendlyFilter]);
 
   // Fetch meal counts
   useEffect(() => {
@@ -198,11 +203,11 @@ export default function ExplorePage() {
       </header>
 
       {/* Filter Toggle */}
-      <div className="px-5 py-3">
+      <div className="px-5 sm:px-6 md:px-8 lg:px-12 py-3 flex gap-2 max-w-7xl mx-auto">
         <button
           onClick={() => setShowFilters(!showFilters)}
           className={cn(
-            "flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all",
+            "flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all flex-1",
             showFilters || activeFilters.length > 0
               ? "bg-sage-100 text-sage-700"
               : "bg-white text-gray-600 border border-gray-200"
@@ -215,6 +220,18 @@ export default function ExplorePage() {
               {activeFilters.length}
             </span>
           )}
+        </button>
+        <button
+          onClick={() => setShowKidFriendlyFilter(!showKidFriendlyFilter)}
+          className={cn(
+            "flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all",
+            showKidFriendlyFilter
+              ? "bg-terracotta-100 text-terracotta-700 border border-terracotta-200"
+              : "bg-white text-gray-600 border border-gray-200"
+          )}
+        >
+          <ChefHat className="w-4 h-4" />
+          Kid-Friendly
         </button>
 
         {/* Filter Pills */}
@@ -251,9 +268,9 @@ export default function ExplorePage() {
       </div>
 
       {/* Recipe Grid */}
-      <div className="px-5 pb-8">
+      <div className="px-5 sm:px-6 md:px-8 lg:px-12 pb-8 max-w-7xl mx-auto">
         {filteredRecipes.length > 0 ? (
-          <div className="grid grid-cols-2 gap-4 stagger-children">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 md:gap-6 stagger-children">
             {filteredRecipes.map((recipe) => (
               <RecipeCard key={recipe.id} recipe={recipe} compact />
             ))}

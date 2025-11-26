@@ -50,9 +50,10 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  maximumScale: 1,
-  userScalable: false,
+  maximumScale: 5,
+  userScalable: true,
   themeColor: "#87a878",
+  viewportFit: "cover", // For PWA safe areas
 };
 
 export default function RootLayout({
@@ -68,10 +69,12 @@ export default function RootLayout({
       <head>
         <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
       </head>
-      <body className="antialiased min-h-screen" style={{ backgroundColor: 'var(--cream-100)' }}>
+      <body className="antialiased min-h-screen safe-top safe-bottom" style={{ backgroundColor: 'var(--cream-100)' }}>
         <AuthProvider>
           <Header />
-          <main className="safe-bottom">{children}</main>
+          <main className="safe-bottom min-h-[calc(100vh-200px)] md:min-h-[calc(100vh-80px)]">
+            {children}
+          </main>
           <BottomNav />
         </AuthProvider>
       </body>

@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useAuth } from "@/hooks/useAuth";
 import {
   ChevronLeft,
   ChevronRight,
@@ -20,9 +21,11 @@ import {
   Fish,
   Leaf,
   Loader2,
+  Clock,
+  ChefHat,
+  Lightbulb,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useAuth } from "@/hooks/useAuth";
 
 // Get week dates
 function getWeekDates(date: Date) {
@@ -59,6 +62,7 @@ interface MealPlanItem {
     name: string;
     imageUrl?: string;
     mealType: string;
+    healthTags?: Array<{ healthTag: { slug: string } }>;
   };
 }
 
@@ -72,7 +76,7 @@ interface MealPlan {
 
 export default function MealPlanPage() {
   const router = useRouter();
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, user } = useAuth();
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [mealPlan, setMealPlan] = useState<MealPlan | null>(null);
@@ -241,9 +245,9 @@ export default function MealPlanPage() {
   }
 
   return (
-    <div className="min-h-screen pb-24 bg-cream-100">
+    <div className="min-h-screen pb-24 md:pb-8 bg-cream-100">
       {/* Header */}
-      <header className="px-5 pt-12 pb-6 bg-gradient-to-b from-sage-50" style={{ background: 'linear-gradient(to bottom, var(--sage-50), var(--cream-100))' }}>
+      <header className="px-5 sm:px-6 md:px-8 lg:px-12 pt-12 pb-6 bg-gradient-to-b from-sage-50 max-w-7xl mx-auto" style={{ background: 'linear-gradient(to bottom, var(--sage-50), var(--cream-100))' }}>
         <div className="flex items-center justify-between mb-6">
           <h1
             className="text-2xl font-medium text-forest-900"
@@ -285,7 +289,7 @@ export default function MealPlanPage() {
         </div>
 
         {/* Week Days */}
-        <div className="flex justify-between">
+        <div className="flex justify-between md:gap-2">
           {weekDates.map((date, idx) => {
             const isSelected =
               date.toDateString() === selectedDate.toDateString();
@@ -299,16 +303,16 @@ export default function MealPlanPage() {
                 key={idx}
                 onClick={() => setSelectedDate(date)}
                 className={cn(
-                  "flex flex-col items-center py-2 px-3 rounded-xl transition-all",
+                  "flex flex-col items-center py-2 px-2 md:px-3 md:py-3 rounded-xl transition-all flex-1 md:flex-none",
                   isSelected
                     ? "bg-sage-500 text-white"
                     : "text-gray-600"
                 )}
               >
-                <span className="text-xs font-medium">{formatDate(date)}</span>
+                <span className="text-xs md:text-sm font-medium">{formatDate(date)}</span>
                 <span
                   className={cn(
-                    "text-lg font-medium",
+                    "text-lg md:text-xl font-medium",
                     isToday && !isSelected && "text-sage-600"
                   )}
                 >
@@ -373,40 +377,22 @@ export default function MealPlanPage() {
       </div>
 
       {/* Family Section */}
-      <div className="px-5 py-4">
-        <h2
-          className="text-lg font-medium text-forest-900 mb-4"
-          style={{ fontFamily: "var(--font-serif)" }}
-        >
-          Planning for Family
-        </h2>
-        <div className="flex gap-3 overflow-x-auto hide-scrollbar pb-2">
-          {[
-            { name: "Christine", icon: User, dietary: "Graves-friendly" },
-            { name: "Mike", icon: User, dietary: "" },
-            { name: "Daughter", icon: Sparkles, dietary: "Age 6" },
-            { name: "Son", icon: Sparkles, dietary: "Age 4" },
-            { name: "Baby", icon: Baby, dietary: "6 months" },
-          ].map((member, idx) => {
-            const Icon = member.icon;
-            return (
-            <div
-              key={idx}
-              className="flex-shrink-0 bg-white rounded-xl p-3 shadow-sm border border-gray-300 min-w-[100px] text-center"
-            >
-              <Icon className="w-6 h-6 text-sage-600 mx-auto mb-1" />
-              <p className="text-sm font-medium text-forest-900 mt-1">
-                {member.name}
-              </p>
-              {member.dietary && (
-                <p className="text-xs text-gray-500">
-                  {member.dietary}
-                </p>
-              )}
-            </div>
-          );
-          })}
+      <div className="px-5 sm:px-6 md:px-8 lg:px-12 py-4 max-w-7xl mx-auto">
+        <div className="flex items-center justify-between mb-4">
+          <h2
+            className="text-lg sm:text-xl md:text-2xl font-medium text-forest-900"
+            style={{ fontFamily: "var(--font-serif)" }}
+          >
+            Planning for Family
+          </h2>
+          <Link
+            href="/profile"
+            className="text-sm text-sage-600 hover:text-sage-700"
+          >
+            Manage Family
+          </Link>
         </div>
+        <FamilyMembersDisplay />
       </div>
 
       {/* Quick Actions */}
@@ -419,7 +405,15 @@ export default function MealPlanPage() {
             Quick Actions
           </h3>
           <div className="grid grid-cols-2 gap-3">
-            <button className="bg-white rounded-xl p-3 text-left shadow-sm">
+            <button
+              onClick={async () => {
+                if (!mealPlan) return;
+                // Auto-generate meal plan based on health goals
+                // This would use AI or algorithm to suggest recipes
+                alert("Auto-generate feature coming soon! This will suggest recipes based on your health goals.");
+              }}
+              className="bg-white rounded-xl p-3 text-left shadow-sm hover:shadow-md transition-shadow"
+            >
               <Calendar className="w-5 h-5 text-sage-600 mb-2" />
               <p className="text-sm font-medium text-forest-900">
                 Auto-Generate Week
@@ -449,38 +443,78 @@ export default function MealPlanPage() {
         </div>
       </div>
 
+      {/* Meal Prep Suggestions */}
+      {mealPlan && (
+        <MealPrepSuggestions mealPlanId={mealPlan.id} />
+      )}
+
       {/* This Week's Nutrition Summary */}
-      <div className="px-5 py-4 mb-4">
-        <h2
-          className="text-lg font-medium text-forest-900 mb-4"
-          style={{ fontFamily: "var(--font-serif)" }}
-        >
-          This Week&apos;s Nutrition
-        </h2>
-        <div className="grid grid-cols-3 gap-3">
-          <NutritionSummaryCard
-            label="Omega-3 Meals"
-            value="4"
-            target="2-3"
-            color="sage"
-            icon={Fish}
-          />
-          <NutritionSummaryCard
-            label="High Fiber"
-            value="12"
-            target="10+"
-            color="forest"
-            icon={Leaf}
-          />
-          <NutritionSummaryCard
-            label="Kid-Friendly"
-            value="8"
-            target="7"
-            color="terracotta"
-            icon={Sparkles}
-          />
-        </div>
+      {mealPlan && (
+        <NutritionSummary mealPlan={mealPlan} />
+      )}
+    </div>
+  );
+}
+
+// Family Members Display Component
+function FamilyMembersDisplay() {
+  const { isAuthenticated } = useAuth();
+  const [familyMembers, setFamilyMembers] = useState<any[]>([]);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      fetch("/api/family-members")
+        .then((res) => res.json())
+        .then((data) => setFamilyMembers(data.familyMembers || []))
+        .catch(() => {});
+    }
+  }, [isAuthenticated]);
+
+  if (familyMembers.length === 0) {
+    return (
+      <div className="text-center py-4 text-gray-500 text-sm">
+        <p>Add family members in your profile to see them here</p>
       </div>
+    );
+  }
+
+  const getIcon = (ageGroup: string) => {
+    switch (ageGroup) {
+      case "INFANT":
+        return Baby;
+      case "PRESCHOOL":
+      case "CHILD":
+        return Sparkles;
+      default:
+        return User;
+    }
+  };
+
+  return (
+    <div className="flex gap-3 overflow-x-auto hide-scrollbar pb-2 md:flex-wrap md:overflow-x-visible">
+      {familyMembers.map((member) => {
+        const Icon = getIcon(member.ageGroup);
+        return (
+          <div
+            key={member.id}
+            className="flex-shrink-0 bg-white rounded-xl p-3 shadow-sm border border-gray-300 min-w-[100px] text-center"
+          >
+            <Icon className="w-6 h-6 text-sage-600 mx-auto mb-1" />
+            <p className="text-sm font-medium text-forest-900 mt-1">
+              {member.name}
+            </p>
+            <p className="text-xs text-gray-500">
+              {member.ageGroup === "INFANT" ? "Infant" :
+               member.ageGroup === "PRESCHOOL" ? "Preschool" :
+               member.ageGroup === "CHILD" ? "Child" :
+               member.ageGroup === "ADULT" ? "Adult" : member.ageGroup}
+            </p>
+            {member.isVegetarian && (
+              <p className="text-xs text-sage-600 mt-1">Vegetarian</p>
+            )}
+          </div>
+        );
+      })}
     </div>
   );
 }
@@ -510,12 +544,19 @@ function MealSlot({
               {mealTypeLabel}
             </p>
             {plannedItem ? (
-              <Link
-                href={`/recipe/${plannedItem.recipe.id}`}
-                className="text-forest-900 font-medium hover:text-sage-600 transition-colors block truncate"
-              >
-                {plannedItem.recipe.name}
-              </Link>
+              <div>
+                <Link
+                  href={`/recipe/${plannedItem.recipe.id}`}
+                  className="text-forest-900 font-medium hover:text-sage-600 transition-colors block truncate"
+                >
+                  {plannedItem.recipe.name}
+                </Link>
+                {plannedItem.servings && (
+                  <p className="text-xs text-gray-500 mt-1">
+                    {plannedItem.servings} serving{plannedItem.servings !== 1 ? "s" : ""}
+                  </p>
+                )}
+              </div>
             ) : (
               <p className="text-gray-500 italic">No meal planned</p>
             )}
@@ -536,6 +577,208 @@ function MealSlot({
             <Plus className="w-5 h-5 text-sage-600" />
           </button>
         )}
+      </div>
+    </div>
+  );
+}
+
+// Nutrition Summary Component
+function NutritionSummary({ mealPlan }: { mealPlan: MealPlan }) {
+  const [summary, setSummary] = useState({
+    omega3Meals: 0,
+    highFiberMeals: 0,
+    kidFriendlyMeals: 0,
+  });
+  const [nutritionData, setNutritionData] = useState<any>(null);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    // Calculate nutrition summary from meal plan items
+    let omega3 = 0;
+    let highFiber = 0;
+    let kidFriendly = 0;
+
+    mealPlan.items.forEach((item) => {
+      const tags = item.recipe.healthTags?.map((t) => t.healthTag.slug) || [];
+      if (tags.includes("omega-3-rich")) omega3++;
+      if (tags.includes("high-fiber")) highFiber++;
+      if (tags.includes("kid-friendly")) kidFriendly++;
+    });
+
+    setSummary({
+      omega3Meals: omega3,
+      highFiberMeals: highFiber,
+      kidFriendlyMeals: kidFriendly,
+    });
+
+    // Fetch detailed nutrition summary
+    async function fetchNutritionSummary() {
+      setIsLoading(true);
+      try {
+        const response = await fetch(
+          `/api/health/nutrition-summary?mealPlanId=${mealPlan.id}`
+        );
+        if (response.ok) {
+          const data = await response.json();
+          setNutritionData(data);
+        }
+      } catch (error) {
+        console.error("Error fetching nutrition summary:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    fetchNutritionSummary();
+  }, [mealPlan]);
+
+  return (
+    <div className="px-5 sm:px-6 md:px-8 lg:px-12 py-4 mb-4 max-w-7xl mx-auto">
+      <h2
+        className="text-lg sm:text-xl md:text-2xl font-medium text-forest-900 mb-4 md:mb-6"
+        style={{ fontFamily: "var(--font-serif)" }}
+      >
+        This Week&apos;s Nutrition
+      </h2>
+      <div className="grid grid-cols-3 md:grid-cols-6 lg:grid-cols-3 gap-3 md:gap-4 mb-4">
+        <NutritionSummaryCard
+          label="Omega-3 Meals"
+          value={summary.omega3Meals.toString()}
+          target="2-3"
+          color="sage"
+          icon={Fish}
+        />
+        <NutritionSummaryCard
+          label="High Fiber"
+          value={summary.highFiberMeals.toString()}
+          target="10+"
+          color="forest"
+          icon={Leaf}
+        />
+        <NutritionSummaryCard
+          label="Kid-Friendly"
+          value={summary.kidFriendlyMeals.toString()}
+          target="7"
+          color="terracotta"
+          icon={Sparkles}
+        />
+      </div>
+      {nutritionData && (
+        <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-200">
+          <h3 className="text-sm font-medium text-forest-900 mb-3">
+            Daily Averages
+          </h3>
+          <div className="grid grid-cols-2 gap-3 text-sm">
+            <div>
+              <p className="text-gray-600">Calories</p>
+              <p className="text-lg font-medium text-forest-900">
+                {nutritionData.averages.calories}
+              </p>
+            </div>
+            <div>
+              <p className="text-gray-600">Protein</p>
+              <p className="text-lg font-medium text-forest-900">
+                {nutritionData.averages.protein}g
+              </p>
+            </div>
+            <div>
+              <p className="text-gray-600">Fiber</p>
+              <p className="text-lg font-medium text-forest-900">
+                {nutritionData.averages.fiber}g
+              </p>
+            </div>
+            <div>
+              <p className="text-gray-600">Omega-3</p>
+              <p className="text-lg font-medium text-forest-900">
+                {nutritionData.averages.omega3}g
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// Meal Prep Suggestions Component
+function MealPrepSuggestions({ mealPlanId }: { mealPlanId: string }) {
+  const [suggestions, setSuggestions] = useState<any[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    async function fetchSuggestions() {
+      setIsLoading(true);
+      try {
+        const response = await fetch(`/api/meal-plans/suggest-meal-prep?mealPlanId=${mealPlanId}`);
+        if (response.ok) {
+          const data = await response.json();
+          setSuggestions(data.suggestions || []);
+        }
+      } catch (error) {
+        console.error("Error fetching meal prep suggestions:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    fetchSuggestions();
+  }, [mealPlanId]);
+
+  if (isLoading || suggestions.length === 0) {
+    return null;
+  }
+
+  return (
+    <div className="px-5 sm:px-6 md:px-8 lg:px-12 py-4 mb-4 max-w-7xl mx-auto">
+      <div className="flex items-center gap-2 mb-3">
+        <Lightbulb className="w-5 h-5 text-sage-600" />
+        <h2
+          className="text-lg font-medium text-forest-900"
+          style={{ fontFamily: "var(--font-serif)" }}
+        >
+          Meal Prep Tips
+        </h2>
+      </div>
+      <div className="space-y-3">
+        {suggestions.map((suggestion, idx) => (
+          <div
+            key={idx}
+            className="bg-white rounded-xl p-4 shadow-sm border border-gray-200"
+          >
+            <div className="flex items-start gap-3">
+              {suggestion.type === "MAKE_AHEAD" && (
+                <ChefHat className="w-5 h-5 text-sage-600 flex-shrink-0 mt-0.5" />
+              )}
+              {suggestion.type === "BATCH_COOKING" && (
+                <Clock className="w-5 h-5 text-sage-600 flex-shrink-0 mt-0.5" />
+              )}
+              {suggestion.type === "QUICK_PREP" && (
+                <Clock className="w-5 h-5 text-terracotta-600 flex-shrink-0 mt-0.5" />
+              )}
+              <div className="flex-1">
+                <h3 className="font-medium text-forest-900 text-sm mb-1">
+                  {suggestion.title}
+                </h3>
+                <p className="text-xs text-gray-600 mb-2">
+                  {suggestion.description}
+                </p>
+                {suggestion.recipes && suggestion.recipes.length > 0 && (
+                  <div className="flex flex-wrap gap-2">
+                    {suggestion.recipes.slice(0, 3).map((recipe: any) => (
+                      <Link
+                        key={recipe.id}
+                        href={`/recipe/${recipe.id}`}
+                        className="text-xs px-2 py-1 bg-cream-100 text-forest-800 rounded-full hover:bg-cream-200 transition-colors"
+                      >
+                        {recipe.name}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );

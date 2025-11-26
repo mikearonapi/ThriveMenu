@@ -105,10 +105,34 @@ async function main() {
       },
       familyMembers: {
         create: [
-          { name: "Mike", ageGroup: "ADULT" },
-          { name: "Daughter", ageGroup: "CHILD" },
-          { name: "Son", ageGroup: "PRESCHOOL" },
-          { name: "Baby", ageGroup: "INFANT" },
+          { 
+            name: "Mike", 
+            ageGroup: "ADULT",
+            isVegetarian: false,
+            allergies: [],
+            dislikes: [],
+          },
+          { 
+            name: "Daughter", 
+            ageGroup: "CHILD",
+            isVegetarian: false,
+            allergies: [],
+            dislikes: [],
+          },
+          { 
+            name: "Son", 
+            ageGroup: "PRESCHOOL",
+            isVegetarian: false,
+            allergies: [],
+            dislikes: [],
+          },
+          { 
+            name: "Baby", 
+            ageGroup: "INFANT",
+            isVegetarian: false,
+            allergies: [],
+            dislikes: [],
+          },
         ],
       },
     },

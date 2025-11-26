@@ -461,7 +461,7 @@ export default function RecipePage() {
 
         {/* Instructions */}
         {activeTab === "instructions" && (
-          <div className="space-y-4">
+          <div className="space-y-4 md:space-y-6">
             {instructions.length > 0 ? (
               instructions.map((instruction: string, idx: number) => (
                 <div
