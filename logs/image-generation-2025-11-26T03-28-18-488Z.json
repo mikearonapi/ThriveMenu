@@ -1,0 +1,2309 @@
+{
+  "startTime": "2025-11-26T03:28:18.968Z",
+  "totalRecipes": 258,
+  "regenerateAll": true,
+  "endTime": "2025-11-26T09:50:15.515Z",
+  "mappings": [
+    {
+      "recipeId": "cmifeo3zm00dlkgeb6qpf7nut",
+      "recipeName": "Açaí Power Bowl",
+      "recipeSlug": "acai-power-bowl",
+      "category": "Smoothies & Bowls",
+      "mealType": "BREAKFAST",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeo3zm00dlkgeb6qpf7nut.jpg",
+      "generatedAt": "2025-11-26T03:28:24.325Z"
+    },
+    {
+      "recipeId": "cmifeo4ts00hekgebi5y5r28i",
+      "recipeName": "Almond Butter & Berry Toast",
+      "recipeSlug": "almond-butter-berry-toast",
+      "category": "Pancakes, Waffles & Toast",
+      "mealType": "BREAKFAST",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeo4ts00hekgebi5y5r28i.jpg",
+      "generatedAt": "2025-11-26T03:28:36.149Z"
+    },
+    {
+      "recipeId": "cmifeosji036hkgebxfti3jsw",
+      "recipeName": "Almond Butter Date Balls",
+      "recipeSlug": "almond-butter-date-balls",
+      "category": "Energy Bites",
+      "mealType": "SNACK",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeosji036hkgebxfti3jsw.jpg",
+      "generatedAt": "2025-11-26T03:28:47.334Z"
+    },
+    {
+      "recipeId": "cmifeov2303ibkgeb0js9b71l",
+      "recipeName": "Almond Flour Chocolate Chip Cookies",
+      "recipeSlug": "almond-flour-cookies",
+      "category": "Sweet Treats",
+      "mealType": "SNACK",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeov2303ibkgeb0js9b71l.jpg",
+      "generatedAt": "2025-11-26T03:28:58.832Z"
+    },
+    {
+      "recipeId": "cmifeoxpy03uckgebv99w6wzr",
+      "recipeName": "Anti-Inflammatory Power Smoothie",
+      "recipeSlug": "anti-inflammatory-smoothie",
+      "category": "Anti-Inflammatory Snacks",
+      "mealType": "SNACK",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeoxpy03uckgebv99w6wzr.jpg",
+      "generatedAt": "2025-11-26T03:29:09.848Z"
+    },
+    {
+      "recipeId": "cmifeovt303lkkgebmuae336w",
+      "recipeName": "Ants on a Log",
+      "recipeSlug": "ants-on-a-log",
+      "category": "Snacks to Share",
+      "mealType": "SNACK",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeovt303lkkgebmuae336w.jpg",
+      "generatedAt": "2025-11-26T03:29:21.512Z"
+    },
+    {
+      "recipeId": "cmifeovpl03l3kgebq6vmsp0k",
+      "recipeName": "Apple \"Nachos\"",
+      "recipeSlug": "apple-nachos",
+      "category": "Snacks to Share",
+      "mealType": "SNACK",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeovpl03l3kgebq6vmsp0k.jpg",
+      "generatedAt": "2025-11-26T03:29:33.026Z"
+    },
+    {
+      "recipeId": "cmifeo13x003lkgebo8gynthh",
+      "recipeName": "Apple Cinnamon Baked Oatmeal",
+      "recipeSlug": "apple-cinnamon-baked-oatmeal",
+      "category": "Oats & Grains",
+      "mealType": "BREAKFAST",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeo13x003lkgebo8gynthh.jpg",
+      "generatedAt": "2025-11-26T03:29:43.929Z"
+    },
+    {
+      "recipeId": "cmifeo4jz00g8kgeb3vh2bm91",
+      "recipeName": "Apple Pie Yogurt Bowl",
+      "recipeSlug": "apple-pie-yogurt-bowl",
+      "category": "Yogurt & Parfaits",
+      "mealType": "BREAKFAST",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeo4jz00g8kgeb3vh2bm91.jpg",
+      "generatedAt": "2025-11-26T03:29:55.297Z"
+    },
+    {
+      "recipeId": "cmifeoquh0301kgebnyr94mma",
+      "recipeName": "Apple Slices with Almond Butter",
+      "recipeSlug": "apple-slices-almond-butter",
+      "category": "Quick Grab Snacks",
+      "mealType": "SNACK",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeoquh0301kgebnyr94mma.jpg",
+      "generatedAt": "2025-11-26T03:30:07.550Z"
+    },
+    {
+      "recipeId": "cmifeokoh0281kgebdnlfci4j",
+      "recipeName": "Asian Chicken Lettuce Wraps",
+      "recipeSlug": "chicken-lettuce-wraps-pf-changs-style",
+      "category": "Asian Cuisine",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeokoh0281kgebdnlfci4j.jpg",
+      "generatedAt": "2025-11-26T03:30:19.228Z"
+    },
+    {
+      "recipeId": "cmifeo6wg00onkgebpgzvtnw4",
+      "recipeName": "Asian Sesame Chicken Salad",
+      "recipeSlug": "asian-sesame-chicken-salad",
+      "category": "Salads",
+      "mealType": "LUNCH",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeo6wg00onkgebpgzvtnw4.jpg",
+      "generatedAt": "2025-11-26T03:30:30.991Z"
+    },
+    {
+      "recipeId": "cmifeoaer012gkgebcz1z0i5v",
+      "recipeName": "Avocado BLT (Turkey Bacon)",
+      "recipeSlug": "avocado-blt",
+      "category": "Sandwiches & Wraps",
+      "mealType": "LUNCH",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeoaer012gkgebcz1z0i5v.jpg",
+      "generatedAt": "2025-11-26T03:30:42.410Z"
+    },
+    {
+      "recipeId": "cmifeos2u034rkgeb2xb1mzvk",
+      "recipeName": "Avocado Half with Everything Seasoning",
+      "recipeSlug": "avocado-half-with-everything",
+      "category": "Quick Grab Snacks",
+      "mealType": "SNACK",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeos2u034rkgeb2xb1mzvk.jpg",
+      "generatedAt": "2025-11-26T03:30:53.672Z"
+    },
+    {
+      "recipeId": "cmifeo29p007okgeb34uw49qm",
+      "recipeName": "Avocado Toast with Poached Egg",
+      "recipeSlug": "avocado-toast-with-poached-egg",
+      "category": "Eggs & Savory",
+      "mealType": "BREAKFAST",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeo29p007okgeb34uw49qm.jpg",
+      "generatedAt": "2025-11-26T03:31:04.914Z"
+    },
+    {
+      "recipeId": "cmifeot4i0399kgebe0wnd00m",
+      "recipeName": "Baba Ganoush",
+      "recipeSlug": "baba-ganoush",
+      "category": "Savory Snacks",
+      "mealType": "SNACK",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeot4i0399kgebe0wnd00m.jpg",
+      "generatedAt": "2025-11-26T03:31:16.905Z"
+    },
+    {
+      "recipeId": "cmifeoujc03fukgebe9e3bdr3",
+      "recipeName": "Baked Apple Chips",
+      "recipeSlug": "baked-apple-chips",
+      "category": "Sweet Treats",
+      "mealType": "SNACK",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeoujc03fukgebe9e3bdr3.jpg",
+      "generatedAt": "2025-11-26T03:31:28.209Z"
+    },
+    {
+      "recipeId": "cmifeooq802qkkgebyxftpzjw",
+      "recipeName": "Baked Chicken Fingers with Honey Mustard",
+      "recipeSlug": "baked-chicken-fingers",
+      "category": "Family Favorites",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeooq802qkkgebyxftpzjw.jpg",
+      "generatedAt": "2025-11-26T03:31:40.607Z"
+    },
+    {
+      "recipeId": "cmifeoe6l01hbkgebhz2ly42r",
+      "recipeName": "Baked Cod with Olive Tapenade",
+      "recipeSlug": "baked-cod-with-olive-tapenade",
+      "category": "Seafood",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeoe6l01hbkgebhz2ly42r.jpg",
+      "generatedAt": "2025-11-26T03:31:52.904Z"
+    },
+    {
+      "recipeId": "cmifeomyv02inkgeb7rsya242",
+      "recipeName": "Baked Falafel Plate",
+      "recipeSlug": "baked-falafel-plate",
+      "category": "Middle Eastern",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeomyv02inkgeb7rsya242.jpg",
+      "generatedAt": "2025-11-26T03:32:04.217Z"
+    },
+    {
+      "recipeId": "cmifeopy602w0kgebovl4q3zi",
+      "recipeName": "Baked Mac & Cheese (Lightened)",
+      "recipeSlug": "baked-mac-and-cheese",
+      "category": "Family Favorites",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeopy602w0kgebovl4q3zi.jpg",
+      "generatedAt": "2025-11-26T03:32:15.014Z"
+    },
+    {
+      "recipeId": "cmifeogzu01t5kgebip6ipqaq",
+      "recipeName": "Balsamic Glazed Chicken Thighs",
+      "recipeSlug": "balsamic-glazed-chicken-thighs",
+      "category": "Poultry",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeogzu01t5kgebip6ipqaq.jpg",
+      "generatedAt": "2025-11-26T03:32:27.135Z"
+    },
+    {
+      "recipeId": "cmifeo1fe004wkgebomis0j66",
+      "recipeName": "Banana Nut Oat Bran",
+      "recipeSlug": "banana-nut-oat-bran",
+      "category": "Oats & Grains",
+      "mealType": "BREAKFAST",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeo1fe004wkgebomis0j66.jpg",
+      "generatedAt": "2025-11-26T03:32:38.306Z"
+    },
+    {
+      "recipeId": "cmifeovvt03lwkgeb9snfur8l",
+      "recipeName": "Banana Sushi",
+      "recipeSlug": "banana-sushi",
+      "category": "Snacks to Share",
+      "mealType": "SNACK",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeovvt03lwkgeb9snfur8l.jpg",
+      "generatedAt": "2025-11-26T03:32:48.883Z"
+    },
+    {
+      "recipeId": "cmifeo5m700knkgebbppczjgs",
+      "recipeName": "Banana with Almond Butter",
+      "recipeSlug": "banana-with-almond-butter",
+      "category": "Quick & Simple",
+      "mealType": "BREAKFAST",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeo5m700knkgebbppczjgs.jpg",
+      "generatedAt": "2025-11-26T03:33:00.364Z"
+    },
+    {
+      "recipeId": "cmifeophh02ugkgeb95bt5zt7",
+      "recipeName": "BBQ Chicken Stuffed Sweet Potatoes",
+      "recipeSlug": "bbq-chicken-stuffed-sweet-potatoes",
+      "category": "Family Favorites",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeophh02ugkgeb95bt5zt7.jpg",
+      "generatedAt": "2025-11-26T03:33:11.839Z"
+    },
+    {
+      "recipeId": "cmifeoneg02kmkgeb52f9ywf9",
+      "recipeName": "Beef & Vegetable Stir-Fry",
+      "recipeSlug": "beef-vegetable-stir-fry",
+      "category": "Lean Red Meat",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeoneg02kmkgeb52f9ywf9.jpg",
+      "generatedAt": "2025-11-26T03:33:23.415Z"
+    },
+    {
+      "recipeId": "cmifeoqlv02z1kgeb08povs3z",
+      "recipeName": "Beef Tacos (Lean, Homemade Seasoning)",
+      "recipeSlug": "beef-tacos-homemade-seasoning",
+      "category": "Family Favorites",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeoqlv02z1kgeb08povs3z.jpg",
+      "generatedAt": "2025-11-26T03:33:35.249Z"
+    },
+    {
+      "recipeId": "cmifeo3hx00bykgebpb9bloyc",
+      "recipeName": "Berry Antioxidant Blast",
+      "recipeSlug": "berry-antioxidant-blast",
+      "category": "Smoothies & Bowls",
+      "mealType": "BREAKFAST",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeo3hx00bykgebpb9bloyc.jpg",
+      "generatedAt": "2025-11-26T03:33:46.809Z"
+    },
+    {
+      "recipeId": "cmifeouoc03gokgebf3ztq18g",
+      "recipeName": "Berry Chia Jam on Toast",
+      "recipeSlug": "berry-chia-jam",
+      "category": "Sweet Treats",
+      "mealType": "SNACK",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeouoc03gokgebf3ztq18g.jpg",
+      "generatedAt": "2025-11-26T03:33:58.764Z"
+    },
+    {
+      "recipeId": "cmifeovg403jrkgebl06hhi91",
+      "recipeName": "Berry Hibiscus Iced Tea",
+      "recipeSlug": "berry-hibiscus-tea",
+      "category": "Beverages",
+      "mealType": "BEVERAGE",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeovg403jrkgebl06hhi91.jpg",
+      "generatedAt": "2025-11-26T03:34:10.547Z"
+    },
+    {
+      "recipeId": "cmifeo91r00xtkgebjw6za201",
+      "recipeName": "Black Bean Soup with Lime",
+      "recipeSlug": "black-bean-soup-with-lime",
+      "category": "Soups",
+      "mealType": "LUNCH",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeo91r00xtkgebjw6za201.jpg",
+      "generatedAt": "2025-11-26T03:34:22.534Z"
+    },
+    {
+      "recipeId": "cmifeoib301yqkgebyrpyoig7",
+      "recipeName": "Black Bean Tacos",
+      "recipeSlug": "black-bean-tacos",
+      "category": "Vegetarian & Plant-Based",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeoib301yqkgebyrpyoig7.jpg",
+      "generatedAt": "2025-11-26T03:34:35.450Z"
+    },
+    {
+      "recipeId": "cmifeody701gakgebzc1wgs5p",
+      "recipeName": "Blackened Tilapia Tacos",
+      "recipeSlug": "blackened-tilapia-tacos",
+      "category": "Seafood",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeody701gakgebzc1wgs5p.jpg",
+      "generatedAt": "2025-11-26T03:34:47.556Z"
+    },
+    {
+      "recipeId": "cmifeooby02p3kgeb6w00831a",
+      "recipeName": "Broiled Lobster Tail with Herb Butter",
+      "recipeSlug": "lobster-tail-with-garlic-butter",
+      "category": "Date Night",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeooby02p3kgeb6w00831a.jpg",
+      "generatedAt": "2025-11-26T03:34:58.745Z"
+    },
+    {
+      "recipeId": "cmifeob6z014zkgebjqfybn3j",
+      "recipeName": "Buddha Bowl",
+      "recipeSlug": "buddha-bowl",
+      "category": "Bowls",
+      "mealType": "LUNCH",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeob6z014zkgebjqfybn3j.jpg",
+      "generatedAt": "2025-11-26T03:35:09.647Z"
+    },
+    {
+      "recipeId": "cmifeobo50171kgeb8ejoxbjh",
+      "recipeName": "Burrito Bowl",
+      "recipeSlug": "burrito-bowl",
+      "category": "Bowls",
+      "mealType": "LUNCH",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeobo50171kgeb8ejoxbjh.jpg",
+      "generatedAt": "2025-11-26T03:35:20.903Z"
+    },
+    {
+      "recipeId": "cmifeolpd02cekgebxoe7huvf",
+      "recipeName": "Butter Chicken (Lightened)",
+      "recipeSlug": "butter-chicken-lightened",
+      "category": "Indian Cuisine",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeolpd02cekgebxoe7huvf.jpg",
+      "generatedAt": "2025-11-26T03:35:31.626Z"
+    },
+    {
+      "recipeId": "cmifeo8uy00wokgeb9lw3zg5e",
+      "recipeName": "Butternut Squash Soup",
+      "recipeSlug": "butternut-squash-soup",
+      "category": "Soups",
+      "mealType": "LUNCH",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeo8uy00wokgeb9lw3zg5e.jpg",
+      "generatedAt": "2025-11-26T03:35:42.685Z"
+    },
+    {
+      "recipeId": "cmifeo9vw010skgebz5iugdzx",
+      "recipeName": "Caprese Panini",
+      "recipeSlug": "caprese-panini",
+      "category": "Sandwiches & Wraps",
+      "mealType": "LUNCH",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeo9vw010skgebz5iugdzx.jpg",
+      "generatedAt": "2025-11-26T03:35:53.782Z"
+    },
+    {
+      "recipeId": "cmifeoth503aukgeb8wrvuki9",
+      "recipeName": "Caprese Skewers",
+      "recipeSlug": "caprese-skewers",
+      "category": "Savory Snacks",
+      "mealType": "SNACK",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeoth503aukgeb8wrvuki9.jpg",
+      "generatedAt": "2025-11-26T03:36:05.431Z"
+    },
+    {
+      "recipeId": "cmifeoja0022lkgebgm166jef",
+      "recipeName": "Cauliflower Steaks with Chimichurri",
+      "recipeSlug": "cauliflower-steaks-chimichurri",
+      "category": "Vegetarian & Plant-Based",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeoja0022lkgebgm166jef.jpg",
+      "generatedAt": "2025-11-26T03:36:17.264Z"
+    },
+    {
+      "recipeId": "cmifeolja02bdkgeb8fpl8zct",
+      "recipeName": "Chana Masala (Chickpea Curry)",
+      "recipeSlug": "chana-masala",
+      "category": "Indian Cuisine",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeolja02bdkgeb8fpl8zct.jpg",
+      "generatedAt": "2025-11-26T03:36:28.719Z"
+    },
+    {
+      "recipeId": "cmifeo4g700fqkgebbx2kiyjh",
+      "recipeName": "Chia Pudding with Mango",
+      "recipeSlug": "chia-pudding-with-mango",
+      "category": "Yogurt & Parfaits",
+      "mealType": "BREAKFAST",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeo4g700fqkgebbx2kiyjh.jpg",
+      "generatedAt": "2025-11-26T03:36:40.535Z"
+    },
+    {
+      "recipeId": "cmifeou0p03cykgebm6jlakg3",
+      "recipeName": "Chia Seed Pudding",
+      "recipeSlug": "chia-seed-pudding-snack",
+      "category": "Sweet Treats",
+      "mealType": "SNACK",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeou0p03cykgebm6jlakg3.jpg",
+      "generatedAt": "2025-11-26T03:36:52.032Z"
+    },
+    {
+      "recipeId": "cmifeoh5n01tpkgebkmfdt7is",
+      "recipeName": "Chicken Cacciatore",
+      "recipeSlug": "chicken-cacciatore",
+      "category": "Poultry",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeoh5n01tpkgebkmfdt7is.jpg",
+      "generatedAt": "2025-11-26T03:37:03.622Z"
+    },
+    {
+      "recipeId": "cmifeomc602fpkgebk8u9dj6j",
+      "recipeName": "Chicken Enchiladas Verdes",
+      "recipeSlug": "chicken-enchiladas-verdes",
+      "category": "Mexican/Latin",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeomc602fpkgebk8u9dj6j.jpg",
+      "generatedAt": "2025-11-26T03:37:14.893Z"
+    },
+    {
+      "recipeId": "cmifeop6m02stkgebixqs003a",
+      "recipeName": "Chicken Fried Rice (Brown Rice)",
+      "recipeSlug": "chicken-fried-rice",
+      "category": "Family Favorites",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeop6m02stkgebixqs003a.jpg",
+      "generatedAt": "2025-11-26T03:37:25.851Z"
+    },
+    {
+      "recipeId": "cmifeognj01rlkgeb0n346lxn",
+      "recipeName": "Chicken Marsala with Mushrooms",
+      "recipeSlug": "chicken-marsala",
+      "category": "Poultry",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeognj01rlkgeb0n346lxn.jpg",
+      "generatedAt": "2025-11-26T03:37:36.706Z"
+    },
+    {
+      "recipeId": "cmifeod1i01cbkgebnvs4et8n",
+      "recipeName": "Chicken Noodle Soup",
+      "recipeSlug": "chicken-noodle-soup",
+      "category": "Family Favorites",
+      "mealType": "LUNCH",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeod1i01cbkgebnvs4et8n.jpg",
+      "generatedAt": "2025-11-26T03:37:47.423Z"
+    },
+    {
+      "recipeId": "cmifeop9m02tbkgebxitnzkz8",
+      "recipeName": "Chicken Parmesan (Baked)",
+      "recipeSlug": "baked-chicken-parmesan",
+      "category": "Family Favorites",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeop9m02tbkgebxitnzkz8.jpg",
+      "generatedAt": "2025-11-26T03:37:58.516Z"
+    },
+    {
+      "recipeId": "cmifeog7b01p9kgeb4vzw21pt",
+      "recipeName": "Chicken Piccata",
+      "recipeSlug": "chicken-piccata",
+      "category": "Poultry",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeog7b01p9kgeb4vzw21pt.jpg",
+      "generatedAt": "2025-11-26T03:38:11.155Z"
+    },
+    {
+      "recipeId": "cmifeoq8102x4kgebcgwf0gk7",
+      "recipeName": "Chicken Pot Pie Skillet",
+      "recipeSlug": "chicken-pot-pie-skillet",
+      "category": "Family Favorites",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeoq8102x4kgebcgwf0gk7.jpg",
+      "generatedAt": "2025-11-26T03:38:23.860Z"
+    },
+    {
+      "recipeId": "cmifeocii01aokgebnhh8k2av",
+      "recipeName": "Chicken Quesadilla with Guacamole",
+      "recipeSlug": "chicken-quesadilla",
+      "category": "Family Favorites",
+      "mealType": "LUNCH",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeocii01aokgebnhh8k2av.jpg",
+      "generatedAt": "2025-11-26T03:38:36.083Z"
+    },
+    {
+      "recipeId": "cmifeob1m0145kgebi1tl12fc",
+      "recipeName": "Chicken Shawarma Wrap",
+      "recipeSlug": "chicken-shawarma-wrap",
+      "category": "Sandwiches & Wraps",
+      "mealType": "LUNCH",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeob1m0145kgebi1tl12fc.jpg",
+      "generatedAt": "2025-11-26T03:39:34.042Z"
+    },
+    {
+      "recipeId": "cmifeogaz01pskgebm1o7h4nb",
+      "recipeName": "Chicken Souvlaki with Tzatziki",
+      "recipeSlug": "chicken-souvlaki-tzatziki",
+      "category": "Poultry",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeogaz01pskgebm1o7h4nb.jpg",
+      "generatedAt": "2025-11-26T03:39:45.716Z"
+    },
+    {
+      "recipeId": "cmifeogw401snkgebufq79u9g",
+      "recipeName": "Chicken Stir-Fry with Mixed Vegetables",
+      "recipeSlug": "chicken-stir-fry-vegetables",
+      "category": "Poultry",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeogw401snkgebufq79u9g.jpg",
+      "generatedAt": "2025-11-26T03:39:58.433Z"
+    },
+    {
+      "recipeId": "cmifeohjm01v9kgebswb5jy1v",
+      "recipeName": "Chicken Tikka Masala (Lightened)",
+      "recipeSlug": "chicken-tikka-masala-lightened",
+      "category": "Poultry",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeohjm01v9kgebswb5jy1v.jpg",
+      "generatedAt": "2025-11-26T03:40:10.220Z"
+    },
+    {
+      "recipeId": "cmifeomji02gpkgebwme3zq8n",
+      "recipeName": "Chicken Tortilla Soup",
+      "recipeSlug": "chicken-tortilla-soup",
+      "category": "Mexican/Latin",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeomji02gpkgebwme3zq8n.jpg",
+      "generatedAt": "2025-11-26T03:55:57.993Z"
+    },
+    {
+      "recipeId": "cmifeoi0t01wxkgebdc7iccd1",
+      "recipeName": "Chickpea Curry",
+      "recipeSlug": "chickpea-curry",
+      "category": "Vegetarian & Plant-Based",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeoi0t01wxkgebdc7iccd1.jpg",
+      "generatedAt": "2025-11-26T03:56:08.857Z"
+    },
+    {
+      "recipeId": "cmifeoulu03g8kgeb1rjc4nkv",
+      "recipeName": "Chocolate Avocado Mousse",
+      "recipeSlug": "chocolate-avocado-mousse",
+      "category": "Sweet Treats",
+      "mealType": "SNACK",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeoulu03g8kgeb1rjc4nkv.jpg",
+      "generatedAt": "2025-11-26T03:56:20.493Z"
+    },
+    {
+      "recipeId": "cmifeo3tw00d2kgebiqw0mdcj",
+      "recipeName": "Chocolate Cherry Recovery Smoothie",
+      "recipeSlug": "chocolate-cherry-recovery-smoothie",
+      "category": "Smoothies & Bowls",
+      "mealType": "BREAKFAST",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeo3tw00d2kgebiqw0mdcj.jpg",
+      "generatedAt": "2025-11-26T03:56:31.930Z"
+    },
+    {
+      "recipeId": "cmifeovjg03k8kgebazhie0si",
+      "recipeName": "Cinnamon Turmeric Coffee",
+      "recipeSlug": "cinnamon-turmeric-coffee",
+      "category": "Beverages",
+      "mealType": "BEVERAGE",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeovjg03k8kgebazhie0si.jpg",
+      "generatedAt": "2025-11-26T04:10:38.059Z"
+    },
+    {
+      "recipeId": "cmifeo60a00lmkgebgo5j7z9p",
+      "recipeName": "Classic Greek Salad",
+      "recipeSlug": "classic-greek-salad",
+      "category": "Salads",
+      "mealType": "LUNCH",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeo60a00lmkgebgo5j7z9p.jpg",
+      "generatedAt": "2025-11-26T04:10:50.584Z"
+    },
+    {
+      "recipeId": "cmifeoe2x01gtkgebmtoboenx",
+      "recipeName": "Coconut Curry Shrimp",
+      "recipeSlug": "coconut-curry-shrimp",
+      "category": "Seafood",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeoe2x01gtkgebmtoboenx.jpg",
+      "generatedAt": "2025-11-26T04:11:01.808Z"
+    },
+    {
+      "recipeId": "cmifeouqj03h3kgeb9rvp7soz",
+      "recipeName": "Coconut Date Rolls",
+      "recipeSlug": "coconut-date-rolls",
+      "category": "Sweet Treats",
+      "mealType": "SNACK",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeouqj03h3kgeb9rvp7soz.jpg",
+      "generatedAt": "2025-11-26T04:11:13.058Z"
+    },
+    {
+      "recipeId": "cmifeohuv01wdkgebx9gq293u",
+      "recipeName": "Coconut-Crusted Chicken Tenders",
+      "recipeSlug": "coconut-chicken-tenders",
+      "category": "Poultry",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeohuv01wdkgebx9gq293u.jpg",
+      "generatedAt": "2025-11-26T04:27:24.326Z"
+    },
+    {
+      "recipeId": "cmifeorpq033fkgebcewkjqco",
+      "recipeName": "Cottage Cheese with Fruit",
+      "recipeSlug": "cottage-cheese-with-fruit",
+      "category": "Quick Grab Snacks",
+      "mealType": "SNACK",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeorpq033fkgebcewkjqco.jpg",
+      "generatedAt": "2025-11-26T04:27:37.723Z"
+    },
+    {
+      "recipeId": "cmifeo5ff00jskgebprmzxwt4",
+      "recipeName": "Cottage Cheese with Peaches",
+      "recipeSlug": "cottage-cheese-with-peaches",
+      "category": "Quick & Simple",
+      "mealType": "BREAKFAST",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeo5ff00jskgebprmzxwt4.jpg",
+      "generatedAt": "2025-11-26T04:27:48.950Z"
+    },
+    {
+      "recipeId": "cmifeos5r0355kgebustobhh1",
+      "recipeName": "Crispy Roasted Chickpeas",
+      "recipeSlug": "roasted-chickpeas",
+      "category": "Quick Grab Snacks",
+      "mealType": "SNACK",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeos5r0355kgebustobhh1.jpg",
+      "generatedAt": "2025-11-26T04:28:00.474Z"
+    },
+    {
+      "recipeId": "cmifeofq001n9kgeb0qvptyvk",
+      "recipeName": "Crispy Salmon Patties",
+      "recipeSlug": "canned-salmon-patties",
+      "category": "Seafood",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeofq001n9kgeb0qvptyvk.jpg",
+      "generatedAt": "2025-11-26T04:44:11.537Z"
+    },
+    {
+      "recipeId": "cmifeoil101zrkgeb6utpcdvk",
+      "recipeName": "Crispy Tofu Stir-Fry",
+      "recipeSlug": "crispy-tofu-stir-fry",
+      "category": "Vegetarian & Plant-Based",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeoil101zrkgeb6utpcdvk.jpg",
+      "generatedAt": "2025-11-26T04:44:23.250Z"
+    },
+    {
+      "recipeId": "cmifeorl3032ykgebirjjr0i8",
+      "recipeName": "Cucumber Cream Cheese Bites",
+      "recipeSlug": "cucumber-cream-cheese-bites",
+      "category": "Quick Grab Snacks",
+      "mealType": "SNACK",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeorl3032ykgebirjjr0i8.jpg",
+      "generatedAt": "2025-11-26T04:44:35.987Z"
+    },
+    {
+      "recipeId": "cmifeovc503jckgebpvpis2gh",
+      "recipeName": "Cucumber Mint Infused Water",
+      "recipeSlug": "cucumber-mint-water",
+      "category": "Beverages",
+      "mealType": "BEVERAGE",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeovc503jckgebpvpis2gh.jpg",
+      "generatedAt": "2025-11-26T04:44:48.394Z"
+    },
+    {
+      "recipeId": "cmifeots903c6kgebe1na29op",
+      "recipeName": "Dark Chocolate & Almonds",
+      "recipeSlug": "dark-chocolate-almonds",
+      "category": "Sweet Treats",
+      "mealType": "SNACK",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeots903c6kgebe1na29op.jpg",
+      "generatedAt": "2025-11-26T04:44:59.514Z"
+    },
+    {
+      "recipeId": "cmifeoxdg03shkgebwkhte2pl",
+      "recipeName": "Deviled Eggs with Greek Yogurt",
+      "recipeSlug": "deviled-eggs",
+      "category": "Protein Snacks",
+      "mealType": "SNACK",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeoxdg03shkgebwkhte2pl.jpg",
+      "generatedAt": "2025-11-26T05:00:34.695Z"
+    },
+    {
+      "recipeId": "cmifeore00326kgeb5o4xrexu",
+      "recipeName": "Edamame",
+      "recipeSlug": "edamame-snack",
+      "category": "Quick Grab Snacks",
+      "mealType": "SNACK",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeore00326kgeb5o4xrexu.jpg",
+      "generatedAt": "2025-11-26T05:00:47.081Z"
+    },
+    {
+      "recipeId": "cmifeowz503qnkgeb5q74wmd3",
+      "recipeName": "Egg Salad Lettuce Wraps",
+      "recipeSlug": "egg-salad-lettuce-wraps",
+      "category": "Protein Snacks",
+      "mealType": "SNACK",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeowz503qnkgeb5q74wmd3.jpg",
+      "generatedAt": "2025-11-26T05:00:58.194Z"
+    },
+    {
+      "recipeId": "cmifeoit9020rkgebgquj9niq",
+      "recipeName": "Eggplant Parmesan (Baked)",
+      "recipeSlug": "eggplant-parmesan",
+      "category": "Vegetarian & Plant-Based",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeoit9020rkgebgquj9niq.jpg",
+      "generatedAt": "2025-11-26T05:01:09.489Z"
+    },
+    {
+      "recipeId": "cmifeowsz03prkgeb89uog8d9",
+      "recipeName": "Energy Balls Variety Pack",
+      "recipeSlug": "energy-balls-variety-pack",
+      "category": "Snacks to Share",
+      "mealType": "SNACK",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeowsz03prkgeb89uog8d9.jpg",
+      "generatedAt": "2025-11-26T05:09:06.929Z"
+    },
+    {
+      "recipeId": "cmifeobvn0189kgebzrk3l25z",
+      "recipeName": "Falafel Bowl",
+      "recipeSlug": "falafel-bowl",
+      "category": "Bowls",
+      "mealType": "LUNCH",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeobvn0189kgebzrk3l25z.jpg",
+      "generatedAt": "2025-11-26T05:09:17.604Z"
+    },
+    {
+      "recipeId": "cmifeoalz0131kgebwbh7aeav",
+      "recipeName": "Falafel Pita Pocket",
+      "recipeSlug": "falafel-pita-pocket",
+      "category": "Sandwiches & Wraps",
+      "mealType": "LUNCH",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeoalz0131kgebwbh7aeav.jpg",
+      "generatedAt": "2025-11-26T05:09:30.336Z"
+    },
+    {
+      "recipeId": "cmifeo7om00rokgebbde2f1m0",
+      "recipeName": "Farro & Roasted Vegetable Salad",
+      "recipeSlug": "farro-roasted-vegetable-salad",
+      "category": "Salads",
+      "mealType": "LUNCH",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeo7om00rokgebbde2f1m0.jpg",
+      "generatedAt": "2025-11-26T05:09:41.866Z"
+    },
+    {
+      "recipeId": "cmifeop2z02sbkgebll3pawkm",
+      "recipeName": "Fish Tacos with Slaw",
+      "recipeSlug": "fish-tacos-slaw",
+      "category": "Family Favorites",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeop2z02sbkgebll3pawkm.jpg",
+      "generatedAt": "2025-11-26T05:25:20.897Z"
+    },
+    {
+      "recipeId": "cmifeomfv02g7kgebh7rkbht7",
+      "recipeName": "Fish Veracruz Style",
+      "recipeSlug": "fish-veracruz",
+      "category": "Mexican/Latin",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeomfv02g7kgebh7rkbht7.jpg",
+      "generatedAt": "2025-11-26T05:25:33.147Z"
+    },
+    {
+      "recipeId": "cmifeotvr03cikgeb9gd1vm56",
+      "recipeName": "Frozen Banana Bites",
+      "recipeSlug": "frozen-banana-bites",
+      "category": "Sweet Treats",
+      "mealType": "SNACK",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeotvr03cikgeb9gd1vm56.jpg",
+      "generatedAt": "2025-11-26T05:25:44.183Z"
+    },
+    {
+      "recipeId": "cmifeovy503mbkgeb9mo7es4y",
+      "recipeName": "Frozen Fruit Pops",
+      "recipeSlug": "frozen-fruit-pops",
+      "category": "Snacks to Share",
+      "mealType": "SNACK",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeovy503mbkgeb9mo7es4y.jpg",
+      "generatedAt": "2025-11-26T05:25:55.908Z"
+    },
+    {
+      "recipeId": "cmifeodov01fakgebqjjg2j1a",
+      "recipeName": "Garlic Butter Shrimp with Zucchini Noodles",
+      "recipeSlug": "garlic-butter-shrimp-zucchini-noodles",
+      "category": "Seafood",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeodov01fakgebqjjg2j1a.jpg",
+      "generatedAt": "2025-11-26T05:51:39.820Z"
+    },
+    {
+      "recipeId": "cmifeoewp01k9kgeb9vlsvmho",
+      "recipeName": "Garlic Mussels in White Wine",
+      "recipeSlug": "garlic-mussels-white-wine",
+      "category": "Seafood",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeoewp01k9kgeb9vlsvmho.jpg",
+      "generatedAt": "2025-11-26T05:52:00.387Z"
+    },
+    {
+      "recipeId": "cmifeoxiy03tfkgeb6phebh2q",
+      "recipeName": "Ginger Glazed Carrot Sticks",
+      "recipeSlug": "ginger-carrot-sticks",
+      "category": "Anti-Inflammatory Snacks",
+      "mealType": "SNACK",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeoxiy03tfkgeb6phebh2q.jpg",
+      "generatedAt": "2025-11-26T05:52:24.538Z"
+    },
+    {
+      "recipeId": "cmifeougj03fgkgeb6gyk5qtz",
+      "recipeName": "Ginger Lemon Tea",
+      "recipeSlug": "ginger-lemon-tea",
+      "category": "Beverages",
+      "mealType": "BEVERAGE",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeougj03fgkgeb6gyk5qtz.jpg",
+      "generatedAt": "2025-11-26T05:52:44.888Z"
+    },
+    {
+      "recipeId": "cmifeol3o029nkgebig6uejx3",
+      "recipeName": "Ginger Sesame Seared Tuna",
+      "recipeSlug": "ginger-sesame-tuna",
+      "category": "Asian Cuisine",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeol3o029nkgebig6uejx3.jpg",
+      "generatedAt": "2025-11-26T06:09:07.045Z"
+    },
+    {
+      "recipeId": "cmifeoue003eykgeb6kinc2rb",
+      "recipeName": "Golden Milk (Turmeric Latte)",
+      "recipeSlug": "golden-milk",
+      "category": "Beverages",
+      "mealType": "BEVERAGE",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeoue003eykgeb6kinc2rb.jpg",
+      "generatedAt": "2025-11-26T06:09:18.845Z"
+    },
+    {
+      "recipeId": "cmifeo0bg001dkgebgq8tm0h4",
+      "recipeName": "Golden Turmeric Oatmeal",
+      "recipeSlug": "golden-turmeric-oatmeal",
+      "category": "Oats & Grains",
+      "mealType": "BREAKFAST",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeo0bg001dkgebgq8tm0h4.jpg",
+      "generatedAt": "2025-11-26T06:09:30.727Z"
+    },
+    {
+      "recipeId": "cmifeolwr02dlkgeba27doil4",
+      "recipeName": "Greek Lamb Meatballs with Tzatziki",
+      "recipeSlug": "greek-lamb-meatballs",
+      "category": "Mediterranean",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeolwr02dlkgeba27doil4.jpg",
+      "generatedAt": "2025-11-26T06:25:33.598Z"
+    },
+    {
+      "recipeId": "cmifeo8xw00xbkgebh4bau43y",
+      "recipeName": "Greek Lemon Chicken Soup (Avgolemono)",
+      "recipeSlug": "greek-lemon-chicken-soup",
+      "category": "Soups",
+      "mealType": "LUNCH",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeo8xw00xbkgebh4bau43y.jpg",
+      "generatedAt": "2025-11-26T06:25:48.868Z"
+    },
+    {
+      "recipeId": "cmifeo2ht008ckgebfcu5akjj",
+      "recipeName": "Greek Omelet",
+      "recipeSlug": "greek-omelet",
+      "category": "Eggs & Savory",
+      "mealType": "BREAKFAST",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeo2ht008ckgebfcu5akjj.jpg",
+      "generatedAt": "2025-11-26T06:26:07.884Z"
+    },
+    {
+      "recipeId": "cmifeoqh002ykkgeb8kfts8zm",
+      "recipeName": "Greek Turkey Burgers with Feta",
+      "recipeSlug": "turkey-burgers-greek-style",
+      "category": "Family Favorites",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeoqh002ykkgeb8kfts8zm.jpg",
+      "generatedAt": "2025-11-26T06:35:58.926Z"
+    },
+    {
+      "recipeId": "cmifeout703hfkgebbs40eggf",
+      "recipeName": "Greek Yogurt Berry Bark",
+      "recipeSlug": "greek-yogurt-berry-bark",
+      "category": "Sweet Treats",
+      "mealType": "SNACK",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeout703hfkgebbs40eggf.jpg",
+      "generatedAt": "2025-11-26T06:36:19.155Z"
+    },
+    {
+      "recipeId": "cmifeo47000enkgebocqdzu2l",
+      "recipeName": "Greek Yogurt Parfait",
+      "recipeSlug": "greek-yogurt-parfait",
+      "category": "Yogurt & Parfaits",
+      "mealType": "BREAKFAST",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeo47000enkgebocqdzu2l.jpg",
+      "generatedAt": "2025-11-26T06:36:30.396Z"
+    },
+    {
+      "recipeId": "cmifeoqxb030fkgebz4fzdfqz",
+      "recipeName": "Greek Yogurt with Berries",
+      "recipeSlug": "greek-yogurt-berries",
+      "category": "Quick Grab Snacks",
+      "mealType": "SNACK",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeoqxb030fkgebz4fzdfqz.jpg",
+      "generatedAt": "2025-11-26T06:36:43.269Z"
+    },
+    {
+      "recipeId": "cmifeo3ed00bdkgebee1aonqv",
+      "recipeName": "Green Goddess Smoothie",
+      "recipeSlug": "green-goddess-smoothie",
+      "category": "Smoothies & Bowls",
+      "mealType": "BREAKFAST",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeo3ed00bdkgebee1aonqv.jpg",
+      "generatedAt": "2025-11-26T06:52:50.934Z"
+    },
+    {
+      "recipeId": "cmifeoubi03ekkgebnz4ni433",
+      "recipeName": "Green Tea (Hot or Iced)",
+      "recipeSlug": "green-tea",
+      "category": "Beverages",
+      "mealType": "BEVERAGE",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeoubi03ekkgebnz4ni433.jpg",
+      "generatedAt": "2025-11-26T06:53:08.510Z"
+    },
+    {
+      "recipeId": "cmifeoceq01a2kgebctndqu41",
+      "recipeName": "Grilled Cheese & Tomato Soup",
+      "recipeSlug": "grilled-cheese-tomato-soup",
+      "category": "Family Favorites",
+      "mealType": "LUNCH",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeoceq01a2kgebctndqu41.jpg",
+      "generatedAt": "2025-11-26T06:53:22.150Z"
+    },
+    {
+      "recipeId": "cmifeohds01uqkgeb1ouaxff1",
+      "recipeName": "Grilled Chicken with Chimichurri",
+      "recipeSlug": "grilled-chicken-chimichurri",
+      "category": "Poultry",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeohds01uqkgeb1ouaxff1.jpg",
+      "generatedAt": "2025-11-26T07:09:37.252Z"
+    },
+    {
+      "recipeId": "cmifeonbn02k5kgebxraz92ag",
+      "recipeName": "Grilled Flank Steak with Chimichurri",
+      "recipeSlug": "grilled-flank-steak-chimichurri",
+      "category": "Lean Red Meat",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeonbn02k5kgebxraz92ag.jpg",
+      "generatedAt": "2025-11-26T07:09:49.998Z"
+    },
+    {
+      "recipeId": "cmifeom0n02e2kgeb97eomtxs",
+      "recipeName": "Grilled Lamb Chops with Herbs",
+      "recipeSlug": "grilled-lamb-chops-herbs",
+      "category": "Mediterranean",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeom0n02e2kgeb97eomtxs.jpg",
+      "generatedAt": "2025-11-26T07:10:02.009Z"
+    },
+    {
+      "recipeId": "cmifeoff701makgeb0gkm5kud",
+      "recipeName": "Grilled Sardines with Lemon & Herbs",
+      "recipeSlug": "grilled-sardines-lemon-herb",
+      "category": "Seafood",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeoff701makgeb0gkm5kud.jpg",
+      "generatedAt": "2025-11-26T07:10:14.461Z"
+    },
+    {
+      "recipeId": "cmifeosyq038dkgebmtx88j9h",
+      "recipeName": "Guacamole with Veggie Dippers",
+      "recipeSlug": "guacamole-with-veggie-dippers",
+      "category": "Savory Snacks",
+      "mealType": "SNACK",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeosyq038dkgebmtx88j9h.jpg",
+      "generatedAt": "2025-11-26T07:26:04.643Z"
+    },
+    {
+      "recipeId": "cmifeor1y030vkgebmpkdche9",
+      "recipeName": "Handful of Mixed Nuts",
+      "recipeSlug": "mixed-nuts-brazil",
+      "category": "Quick Grab Snacks",
+      "mealType": "SNACK",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeor1y030vkgebmpkdche9.jpg",
+      "generatedAt": "2025-11-26T07:26:16.710Z"
+    },
+    {
+      "recipeId": "cmifeor7r031pkgeb1gqy784t",
+      "recipeName": "Hard-Boiled Eggs",
+      "recipeSlug": "hard-boiled-eggs-snack",
+      "category": "Quick Grab Snacks",
+      "mealType": "SNACK",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeor7r031pkgeb1gqy784t.jpg",
+      "generatedAt": "2025-11-26T07:26:28.607Z"
+    },
+    {
+      "recipeId": "cmifeo59y00jbkgebrz29g0d5",
+      "recipeName": "Hard-Boiled Eggs with Fruit",
+      "recipeSlug": "hard-boiled-eggs-with-fruit",
+      "category": "Quick & Simple",
+      "mealType": "BREAKFAST",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeo59y00jbkgebrz29g0d5.jpg",
+      "generatedAt": "2025-11-26T07:26:41.016Z"
+    },
+    {
+      "recipeId": "cmifeoc8s019ikgebwjcsrxxx",
+      "recipeName": "Harvest Bowl",
+      "recipeSlug": "harvest-bowl",
+      "category": "Bowls",
+      "mealType": "LUNCH",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeoc8s019ikgebwjcsrxxx.jpg",
+      "generatedAt": "2025-11-26T07:42:51.795Z"
+    },
+    {
+      "recipeId": "cmifeoo8202olkgebkw9skoa9",
+      "recipeName": "Herb Crusted Rack of Lamb",
+      "recipeSlug": "herb-crusted-rack-of-lamb",
+      "category": "Date Night",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeoo8202olkgebkw9skoa9.jpg",
+      "generatedAt": "2025-11-26T07:43:07.515Z"
+    },
+    {
+      "recipeId": "cmifeoek701irkgebhr797wfm",
+      "recipeName": "Herb Crusted Tilapia",
+      "recipeSlug": "herb-crusted-tilapia",
+      "category": "Seafood",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeoek701irkgebhr797wfm.jpg",
+      "generatedAt": "2025-11-26T07:43:19.512Z"
+    },
+    {
+      "recipeId": "cmifeogs901s5kgebijuubnsv",
+      "recipeName": "Herb Roasted Turkey Breast",
+      "recipeSlug": "herb-roasted-turkey-breast",
+      "category": "Poultry",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeogs901s5kgebijuubnsv.jpg",
+      "generatedAt": "2025-11-26T07:43:31.361Z"
+    },
+    {
+      "recipeId": "cmifeoozd02rskgebsmzzd6p5",
+      "recipeName": "Homemade Pizza (Whole Wheat Crust)",
+      "recipeSlug": "homemade-pizza-whole-wheat",
+      "category": "Family Favorites",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeoozd02rskgebsmzzd6p5.jpg",
+      "generatedAt": "2025-11-26T07:43:43.452Z"
+    },
+    {
+      "recipeId": "cmifeowd003ntkgebhrlgp32o",
+      "recipeName": "Homemade Trail Mix",
+      "recipeSlug": "homemade-trail-mix",
+      "category": "Snacks to Share",
+      "mealType": "SNACK",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeowd003ntkgebhrlgp32o.jpg",
+      "generatedAt": "2025-11-26T07:59:24.533Z"
+    },
+    {
+      "recipeId": "cmifeox9l03s1kgeb4mqib3ne",
+      "recipeName": "Homemade Turkey Jerky",
+      "recipeSlug": "turkey-jerky-homemade",
+      "category": "Protein Snacks",
+      "mealType": "SNACK",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeox9l03s1kgeb4mqib3ne.jpg",
+      "generatedAt": "2025-11-26T07:59:37.427Z"
+    },
+    {
+      "recipeId": "cmifeo2om0091kgebe6h790yh",
+      "recipeName": "Huevos Rancheros (Healthified)",
+      "recipeSlug": "huevos-rancheros",
+      "category": "Eggs & Savory",
+      "mealType": "BREAKFAST",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeo2om0091kgebe6h790yh.jpg",
+      "generatedAt": "2025-11-26T07:59:49.782Z"
+    },
+    {
+      "recipeId": "cmifeoa0p011akgeb7zv1jdso",
+      "recipeName": "Hummus Veggie Wrap",
+      "recipeSlug": "hummus-veggie-wrap",
+      "category": "Sandwiches & Wraps",
+      "mealType": "LUNCH",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeoa0p011akgeb7zv1jdso.jpg",
+      "generatedAt": "2025-11-26T08:32:48.600Z"
+    },
+    {
+      "recipeId": "cmifeor510318kgebnswj261r",
+      "recipeName": "Hummus with Vegetable Sticks",
+      "recipeSlug": "hummus-vegetable-sticks",
+      "category": "Quick Grab Snacks",
+      "mealType": "SNACK",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeor510318kgebnswj261r.jpg",
+      "generatedAt": "2025-11-26T08:33:02.904Z"
+    },
+    {
+      "recipeId": "cmifeony202nlkgeb8ogl9h0z",
+      "recipeName": "Instant Pot Lentil Soup",
+      "recipeSlug": "instant-pot-lentil-soup",
+      "category": "Slow Cooker",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeony202nlkgeb8ogl9h0z.jpg",
+      "generatedAt": "2025-11-26T08:33:17.450Z"
+    },
+    {
+      "recipeId": "cmifeojzq025skgeb331e4d6v",
+      "recipeName": "Japanese Salmon Rice Bowl (Sake Don)",
+      "recipeSlug": "japanese-salmon-rice-bowl",
+      "category": "Asian Cuisine",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeojzq025skgeb331e4d6v.jpg",
+      "generatedAt": "2025-11-26T08:49:23.430Z"
+    },
+    {
+      "recipeId": "cmifeo6fw00n3kgebhic738zf",
+      "recipeName": "Kale Caesar with Chickpeas",
+      "recipeSlug": "kale-caesar-with-chickpeas",
+      "category": "Salads",
+      "mealType": "LUNCH",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeo6fw00n3kgebhic738zf.jpg",
+      "generatedAt": "2025-11-26T08:49:38.257Z"
+    },
+    {
+      "recipeId": "cmifeolmx02bxkgeb2j0olyyr",
+      "recipeName": "Kerala Fish Curry",
+      "recipeSlug": "fish-curry-kerala-style",
+      "category": "Indian Cuisine",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeolmx02bxkgeb2j0olyyr.jpg",
+      "generatedAt": "2025-11-26T08:49:53.217Z"
+    },
+    {
+      "recipeId": "cmifeok59026dkgeb2murf4a2",
+      "recipeName": "Korean Beef Lettuce Wraps (Bulgogi)",
+      "recipeSlug": "korean-beef-lettuce-wraps",
+      "category": "Asian Cuisine",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeok59026dkgeb2murf4a2.jpg",
+      "generatedAt": "2025-11-26T08:50:07.578Z"
+    },
+    {
+      "recipeId": "cmifeonkg02llkgebx76xhzsw",
+      "recipeName": "Lean Beef Meatballs in Marinara",
+      "recipeSlug": "lean-beef-meatballs-marinara",
+      "category": "Lean Red Meat",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeonkg02llkgebx76xhzsw.jpg",
+      "generatedAt": "2025-11-26T09:06:25.798Z"
+    },
+    {
+      "recipeId": "cmifeomv702i5kgeb5fmug2y8",
+      "recipeName": "Lebanese Chicken Shawarma Plate",
+      "recipeSlug": "lebanese-chicken-shawarma-plate",
+      "category": "Middle Eastern",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeomv702i5kgeb5fmug2y8.jpg",
+      "generatedAt": "2025-11-26T09:06:39.902Z"
+    },
+    {
+      "recipeId": "cmifeo8dz00ubkgebhv9f1se9",
+      "recipeName": "Lemon Chicken Orzo Soup",
+      "recipeSlug": "lemon-chicken-orzo-soup",
+      "category": "Soups",
+      "mealType": "LUNCH",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeo8dz00ubkgebhv9f1se9.jpg",
+      "generatedAt": "2025-11-26T09:06:54.495Z"
+    },
+    {
+      "recipeId": "cmifeodez01e2kgebkw717r09",
+      "recipeName": "Lemon Herb Baked Salmon",
+      "recipeSlug": "lemon-herb-baked-salmon",
+      "category": "Seafood",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeodez01e2kgebkw717r09.jpg",
+      "generatedAt": "2025-11-26T09:07:08.098Z"
+    },
+    {
+      "recipeId": "cmifeofyh01o8kgeblpp82hoo",
+      "recipeName": "Lemon Rosemary Roast Chicken",
+      "recipeSlug": "lemon-rosemary-roast-chicken",
+      "category": "Poultry",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeofyh01o8kgeblpp82hoo.jpg",
+      "generatedAt": "2025-11-26T09:07:21.884Z"
+    },
+    {
+      "recipeId": "cmifeoeru01jrkgebohkbbebv",
+      "recipeName": "Lemon Sole with Brown Butter & Capers",
+      "recipeSlug": "lemon-sole-with-brown-butter",
+      "category": "Seafood",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeoeru01jrkgebohkbbebv.jpg",
+      "generatedAt": "2025-11-26T09:07:36.237Z"
+    },
+    {
+      "recipeId": "cmifeo7zq00spkgebqkqdxqa1",
+      "recipeName": "Lemony Lentil Salad",
+      "recipeSlug": "lemony-lentil-salad",
+      "category": "Salads",
+      "mealType": "LUNCH",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeo7zq00spkgebqkqdxqa1.jpg",
+      "generatedAt": "2025-11-26T09:07:50.969Z"
+    },
+    {
+      "recipeId": "cmifeoi6z01xvkgebdes09kob",
+      "recipeName": "Lentil Bolognese",
+      "recipeSlug": "lentil-bolognese",
+      "category": "Vegetarian & Plant-Based",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeoi6z01xvkgebdes09kob.jpg",
+      "generatedAt": "2025-11-26T09:08:05.136Z"
+    },
+    {
+      "recipeId": "cmifeoda101dikgeby1gfs1nd",
+      "recipeName": "Loaded Sweet Potato",
+      "recipeSlug": "loaded-sweet-potato",
+      "category": "Family Favorites",
+      "mealType": "LUNCH",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeoda101dikgeby1gfs1nd.jpg",
+      "generatedAt": "2025-11-26T09:08:19.272Z"
+    },
+    {
+      "recipeId": "cmifeofk201mrkgebtn4kq16d",
+      "recipeName": "Mackerel with Honey Mustard Glaze",
+      "recipeSlug": "mackerel-with-mustard-glaze",
+      "category": "Seafood",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeofk201mrkgebtn4kq16d.jpg",
+      "generatedAt": "2025-11-26T09:24:29.003Z"
+    },
+    {
+      "recipeId": "cmifeo18b004akgeb1gbolhhx",
+      "recipeName": "Maple Walnut Quinoa Porridge",
+      "recipeSlug": "maple-walnut-quinoa-porridge",
+      "category": "Oats & Grains",
+      "mealType": "BREAKFAST",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeo18b004akgeb1gbolhhx.jpg",
+      "generatedAt": "2025-11-26T09:24:43.171Z"
+    },
+    {
+      "recipeId": "cmifeov7r03ivkgebiladbgig",
+      "recipeName": "Matcha Green Tea Latte",
+      "recipeSlug": "matcha-latte",
+      "category": "Beverages",
+      "mealType": "BEVERAGE",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeov7r03ivkgebiladbgig.jpg",
+      "generatedAt": "2025-11-26T09:24:57.312Z"
+    },
+    {
+      "recipeId": "cmifeom4l02ekkgebpj4069j7",
+      "recipeName": "Mediterranean Baked Fish en Papillote",
+      "recipeSlug": "mediterranean-baked-fish",
+      "category": "Mediterranean",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeom4l02ekkgebpj4069j7.jpg",
+      "generatedAt": "2025-11-26T09:25:13.005Z"
+    },
+    {
+      "recipeId": "cmifeoeo001j9kgeb1i3dvqqy",
+      "recipeName": "Mediterranean Baked Mahi Mahi",
+      "recipeSlug": "mediterranean-baked-mahi-mahi",
+      "category": "Seafood",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeoeo001j9kgeb1i3dvqqy.jpg",
+      "generatedAt": "2025-11-26T09:25:26.868Z"
+    },
+    {
+      "recipeId": "cmifeonhw02l5kgeb48knyvn9",
+      "recipeName": "Mediterranean Beef Kabobs",
+      "recipeSlug": "mediterranean-beef-kabobs",
+      "category": "Lean Red Meat",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeonhw02l5kgeb48knyvn9.jpg",
+      "generatedAt": "2025-11-26T09:25:43.804Z"
+    },
+    {
+      "recipeId": "cmifeo4bx00f7kgebffjqjqul",
+      "recipeName": "Mediterranean Breakfast Bowl",
+      "recipeSlug": "mediterranean-breakfast-bowl",
+      "category": "Yogurt & Parfaits",
+      "mealType": "BREAKFAST",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeo4bx00f7kgebffjqjqul.jpg",
+      "generatedAt": "2025-11-26T09:25:58.269Z"
+    },
+    {
+      "recipeId": "cmifeobi9016ikgebibd2o1i0",
+      "recipeName": "Mediterranean Grain Bowl",
+      "recipeSlug": "mediterranean-grain-bowl",
+      "category": "Bowls",
+      "mealType": "LUNCH",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeobi9016ikgebibd2o1i0.jpg",
+      "generatedAt": "2025-11-26T09:26:12.656Z"
+    },
+    {
+      "recipeId": "cmifeo6jq00nqkgebwz85l3ad",
+      "recipeName": "Mediterranean Quinoa Salad",
+      "recipeSlug": "mediterranean-quinoa-salad",
+      "category": "Salads",
+      "mealType": "LUNCH",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeo6jq00nqkgebwz85l3ad.jpg",
+      "generatedAt": "2025-11-26T09:26:26.949Z"
+    },
+    {
+      "recipeId": "cmifeodiy01eqkgebbe687c8c",
+      "recipeName": "Mediterranean Salmon with Tomatoes & Olives",
+      "recipeSlug": "mediterranean-salmon-tomatoes-olives",
+      "category": "Seafood",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeodiy01eqkgebbe687c8c.jpg",
+      "generatedAt": "2025-11-26T09:26:41.842Z"
+    },
+    {
+      "recipeId": "cmifeojdw0233kgebl52lef56",
+      "recipeName": "Mediterranean Stuffed Zucchini",
+      "recipeSlug": "mediterranean-stuffed-zucchini",
+      "category": "Vegetarian & Plant-Based",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeojdw0233kgebl52lef56.jpg",
+      "generatedAt": "2025-11-26T09:26:55.621Z"
+    },
+    {
+      "recipeId": "cmifeo9ju00zhkgebg0v9va6v",
+      "recipeName": "Mediterranean Turkey Wrap",
+      "recipeSlug": "mediterranean-turkey-wrap",
+      "category": "Sandwiches & Wraps",
+      "mealType": "LUNCH",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeo9ju00zhkgebg0v9va6v.jpg",
+      "generatedAt": "2025-11-26T09:27:10.901Z"
+    },
+    {
+      "recipeId": "cmifeo1oq005kkgebdkyro93r",
+      "recipeName": "Mediterranean Veggie Scramble",
+      "recipeSlug": "mediterranean-veggie-scramble",
+      "category": "Eggs & Savory",
+      "mealType": "BREAKFAST",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeo1oq005kkgebdkyro93r.jpg",
+      "generatedAt": "2025-11-26T09:27:24.826Z"
+    },
+    {
+      "recipeId": "cmifeo8ou00vukgebnixfq3ia",
+      "recipeName": "Minestrone Soup",
+      "recipeSlug": "minestrone-soup",
+      "category": "Soups",
+      "mealType": "LUNCH",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeo8ou00vukgebnixfq3ia.jpg",
+      "generatedAt": "2025-11-26T09:27:39.229Z"
+    },
+    {
+      "recipeId": "cmifeowi203oakgeb9k566dms",
+      "recipeName": "Mini Fruit Kabobs",
+      "recipeSlug": "mini-fruit-kabobs",
+      "category": "Snacks to Share",
+      "mealType": "SNACK",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeowi203oakgeb9k566dms.jpg",
+      "generatedAt": "2025-11-26T09:27:53.021Z"
+    },
+    {
+      "recipeId": "cmifeoegb01ibkgeb1h1vt67l",
+      "recipeName": "Miso Glazed Cod",
+      "recipeSlug": "miso-glazed-cod",
+      "category": "Seafood",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeoegb01ibkgeb1h1vt67l.jpg",
+      "generatedAt": "2025-11-26T09:28:10.352Z"
+    },
+    {
+      "recipeId": "cmifeokhx027ikgeb6d66wd2q",
+      "recipeName": "Miso Salmon with Bok Choy",
+      "recipeSlug": "miso-salmon-vegetables",
+      "category": "Asian Cuisine",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeokhx027ikgeb6d66wd2q.jpg",
+      "generatedAt": "2025-11-26T09:28:23.995Z"
+    },
+    {
+      "recipeId": "cmifeo8it00v1kgeb6b19c0rt",
+      "recipeName": "Moroccan Chickpea Stew",
+      "recipeSlug": "moroccan-chickpea-stew",
+      "category": "Soups",
+      "mealType": "LUNCH",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeo8it00v1kgeb6b19c0rt.jpg",
+      "generatedAt": "2025-11-26T09:28:37.815Z"
+    },
+    {
+      "recipeId": "cmifeojp3024kkgebsyba5wsh",
+      "recipeName": "Mushroom Stroganoff",
+      "recipeSlug": "mushroom-stroganoff",
+      "category": "Vegetarian & Plant-Based",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeojp3024kkgebsyba5wsh.jpg",
+      "generatedAt": "2025-11-26T09:28:51.875Z"
+    },
+    {
+      "recipeId": "cmifeosfj0361kgeb2rsundix",
+      "recipeName": "No-Bake Oat Energy Bites",
+      "recipeSlug": "no-bake-energy-bites",
+      "category": "Energy Bites",
+      "mealType": "SNACK",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeosfj0361kgeb2rsundix.jpg",
+      "generatedAt": "2025-11-26T09:29:05.615Z"
+    },
+    {
+      "recipeId": "cmifeo4pv00gskgebzpzs6esn",
+      "recipeName": "Oat Flour Banana Pancakes",
+      "recipeSlug": "oat-flour-banana-pancakes",
+      "category": "Pancakes, Waffles & Toast",
+      "mealType": "BREAKFAST",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeo4pv00gskgebzpzs6esn.jpg",
+      "generatedAt": "2025-11-26T09:29:20.344Z"
+    },
+    {
+      "recipeId": "cmifeorh9032jkgebl8v4v1sz",
+      "recipeName": "Olives & Feta",
+      "recipeSlug": "olives-feta-snack",
+      "category": "Quick Grab Snacks",
+      "mealType": "SNACK",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeorh9032jkgebl8v4v1sz.jpg",
+      "generatedAt": "2025-11-26T09:29:34.375Z"
+    },
+    {
+      "recipeId": "cmifeohog01vtkgebp0uiow2g",
+      "recipeName": "One-Pan Chicken Fajitas",
+      "recipeSlug": "one-pan-chicken-fajitas",
+      "category": "Poultry",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeohog01vtkgebp0uiow2g.jpg",
+      "generatedAt": "2025-11-26T09:29:48.445Z"
+    },
+    {
+      "recipeId": "cmifeopdn02tvkgeb11yf66cb",
+      "recipeName": "One-Pot Pasta Primavera",
+      "recipeSlug": "one-pot-pasta-primavera",
+      "category": "Family Favorites",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeopdn02tvkgeb11yf66cb.jpg",
+      "generatedAt": "2025-11-26T09:30:02.759Z"
+    },
+    {
+      "recipeId": "cmifeo0m40026kgeb4xea1qdz",
+      "recipeName": "Overnight Berry Oats",
+      "recipeSlug": "overnight-berry-oats",
+      "category": "Oats & Grains",
+      "mealType": "BREAKFAST",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeo0m40026kgeb4xea1qdz.jpg",
+      "generatedAt": "2025-11-26T09:30:16.535Z"
+    },
+    {
+      "recipeId": "cmifeol8h02a5kgebovfhygw3",
+      "recipeName": "Palak Paneer (Spinach with Cheese)",
+      "recipeSlug": "palak-paneer",
+      "category": "Indian Cuisine",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeol8h02a5kgebovfhygw3.jpg",
+      "generatedAt": "2025-11-26T09:30:31.113Z"
+    },
+    {
+      "recipeId": "cmifeoo3102o3kgebekkld1h9",
+      "recipeName": "Pan-Seared Duck Breast with Cherry Sauce",
+      "recipeSlug": "pan-seared-duck-breast-cherry-sauce",
+      "category": "Date Night",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeoo3102o3kgebekkld1h9.jpg",
+      "generatedAt": "2025-11-26T09:30:45.103Z"
+    },
+    {
+      "recipeId": "cmifeoeaa01htkgeb0je87og5",
+      "recipeName": "Pan-Seared Halibut with Lemon Caper Sauce",
+      "recipeSlug": "pan-seared-halibut-lemon-caper",
+      "category": "Seafood",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeoeaa01htkgeb0je87og5.jpg",
+      "generatedAt": "2025-11-26T09:31:00.070Z"
+    },
+    {
+      "recipeId": "cmifeoux303hwkgebucueea73",
+      "recipeName": "Peanut Butter Banana Nice Cream",
+      "recipeSlug": "peanut-butter-banana-ice-cream",
+      "category": "Sweet Treats",
+      "mealType": "SNACK",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeoux303hwkgebucueea73.jpg",
+      "generatedAt": "2025-11-26T09:31:14.040Z"
+    },
+    {
+      "recipeId": "cmifeo44800e6kgeb9f9iu560",
+      "recipeName": "Peanut Butter Banana Smoothie",
+      "recipeSlug": "peanut-butter-banana-smoothie",
+      "category": "Smoothies & Bowls",
+      "mealType": "BREAKFAST",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeo44800e6kgeb9f9iu560.jpg",
+      "generatedAt": "2025-11-26T09:31:29.942Z"
+    },
+    {
+      "recipeId": "cmifeon4102j6kgebjml9nza7",
+      "recipeName": "Persian Herb Rice (Sabzi Polo) with Fish",
+      "recipeSlug": "persian-herb-rice-with-fish",
+      "category": "Middle Eastern",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeon4102j6kgebjml9nza7.jpg",
+      "generatedAt": "2025-11-26T09:31:45.860Z"
+    },
+    {
+      "recipeId": "cmifeocwe01btkgebtjkdp823",
+      "recipeName": "Pizza Bagels (Whole Grain)",
+      "recipeSlug": "pizza-bagels",
+      "category": "Family Favorites",
+      "mealType": "LUNCH",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeocwe01btkgebtjkdp823.jpg",
+      "generatedAt": "2025-11-26T09:32:00.525Z"
+    },
+    {
+      "recipeId": "cmifeobd8015ukgebhg7fglnq",
+      "recipeName": "Poke Bowl (Salmon)",
+      "recipeSlug": "salmon-poke-bowl",
+      "category": "Bowls",
+      "mealType": "LUNCH",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeobd8015ukgebhg7fglnq.jpg",
+      "generatedAt": "2025-11-26T09:32:14.757Z"
+    },
+    {
+      "recipeId": "cmifeosu3037wkgeb4uk1vcjl",
+      "recipeName": "Protein Power Balls",
+      "recipeSlug": "protein-power-balls",
+      "category": "Energy Bites",
+      "mealType": "SNACK",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeosu3037wkgeb4uk1vcjl.jpg",
+      "generatedAt": "2025-11-26T09:32:28.927Z"
+    },
+    {
+      "recipeId": "cmifeowac03ndkgebd6ccapfl",
+      "recipeName": "Rainbow Veggie Tray",
+      "recipeSlug": "rainbow-veggie-tray",
+      "category": "Snacks to Share",
+      "mealType": "SNACK",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeowac03ndkgebd6ccapfl.jpg",
+      "generatedAt": "2025-11-26T09:32:43.261Z"
+    },
+    {
+      "recipeId": "cmifeoiw80218kgeb22y4ilj6",
+      "recipeName": "Red Lentil Dal",
+      "recipeSlug": "red-lentil-dal",
+      "category": "Vegetarian & Plant-Based",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeoiw80218kgeb22y4ilj6.jpg",
+      "generatedAt": "2025-11-26T09:32:57.320Z"
+    },
+    {
+      "recipeId": "cmifeo57500iwkgebbwdfipl3",
+      "recipeName": "Ricotta Toast with Honey & Figs",
+      "recipeSlug": "ricotta-toast-with-figs",
+      "category": "Pancakes, Waffles & Toast",
+      "mealType": "BREAKFAST",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeo57500iwkgebbwdfipl3.jpg",
+      "generatedAt": "2025-11-26T09:33:11.324Z"
+    },
+    {
+      "recipeId": "cmifeo71700pckgebwtklxo26",
+      "recipeName": "Roasted Beet & Goat Cheese Salad",
+      "recipeSlug": "roasted-beet-goat-cheese-salad",
+      "category": "Salads",
+      "mealType": "LUNCH",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeo71700pckgebwtklxo26.jpg",
+      "generatedAt": "2025-11-26T09:33:25.525Z"
+    },
+    {
+      "recipeId": "cmifeotc703aakgebcllbk9b7",
+      "recipeName": "Roasted Red Pepper Hummus",
+      "recipeSlug": "roasted-red-pepper-hummus",
+      "category": "Savory Snacks",
+      "mealType": "SNACK",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeotc703aakgebcllbk9b7.jpg",
+      "generatedAt": "2025-11-26T09:33:39.831Z"
+    },
+    {
+      "recipeId": "cmifeo95n00yckgebqvbxwmmo",
+      "recipeName": "Roasted Tomato Basil Soup",
+      "recipeSlug": "roasted-tomato-basil-soup",
+      "category": "Soups",
+      "mealType": "LUNCH",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeo95n00yckgebqvbxwmmo.jpg",
+      "generatedAt": "2025-11-26T09:33:53.903Z"
+    },
+    {
+      "recipeId": "cmifeoqro02zmkgebycjylkh0",
+      "recipeName": "Rotisserie Chicken Dinner",
+      "recipeSlug": "rotisserie-chicken-meal",
+      "category": "Family Favorites",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeoqro02zmkgebycjylkh0.jpg",
+      "generatedAt": "2025-11-26T09:34:10.117Z"
+    },
+    {
+      "recipeId": "cmifeoqak02xmkgeb5agqqbkw",
+      "recipeName": "Salmon Burgers with Avocado",
+      "recipeSlug": "salmon-burgers",
+      "category": "Family Favorites",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeoqak02xmkgeb5agqqbkw.jpg",
+      "generatedAt": "2025-11-26T09:34:23.952Z"
+    },
+    {
+      "recipeId": "cmifeox2s03r4kgebqendit3k",
+      "recipeName": "Salmon Jerky",
+      "recipeSlug": "salmon-jerky",
+      "category": "Protein Snacks",
+      "mealType": "SNACK",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeox2s03r4kgebqendit3k.jpg",
+      "generatedAt": "2025-11-26T09:34:40.126Z"
+    },
+    {
+      "recipeId": "cmifeo68c00mekgebihz6hqbq",
+      "recipeName": "Salmon Niçoise Salad",
+      "recipeSlug": "salmon-nicoise-salad",
+      "category": "Salads",
+      "mealType": "LUNCH",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeo68c00mekgebihz6hqbq.jpg",
+      "generatedAt": "2025-11-26T09:34:53.910Z"
+    },
+    {
+      "recipeId": "cmifeo9pt0104kgebjhdhdoh7",
+      "recipeName": "Salmon Salad Sandwich",
+      "recipeSlug": "salmon-salad-sandwich",
+      "category": "Sandwiches & Wraps",
+      "mealType": "LUNCH",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeo9pt0104kgebjhdhdoh7.jpg",
+      "generatedAt": "2025-11-26T09:35:07.904Z"
+    },
+    {
+      "recipeId": "cmifeo0vg002wkgebr0syq4hv",
+      "recipeName": "Savory Oat Bowl",
+      "recipeSlug": "savory-oat-bowl",
+      "category": "Oats & Grains",
+      "mealType": "BREAKFAST",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeo0vg002wkgebr0syq4hv.jpg",
+      "generatedAt": "2025-11-26T09:35:22.355Z"
+    },
+    {
+      "recipeId": "cmifeo9dp00yykgebb5rhj59f",
+      "recipeName": "Seafood Chowder (Lightened)",
+      "recipeSlug": "seafood-chowder",
+      "category": "Soups",
+      "mealType": "LUNCH",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeo9dp00yykgebb5rhj59f.jpg",
+      "generatedAt": "2025-11-26T09:35:37.083Z"
+    },
+    {
+      "recipeId": "cmifeof3p01kukgebha3ajf2y",
+      "recipeName": "Seared Scallops with Cauliflower Purée",
+      "recipeSlug": "seared-scallops-cauliflower-puree",
+      "category": "Seafood",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeof3p01kukgebha3ajf2y.jpg",
+      "generatedAt": "2025-11-26T09:35:53.429Z"
+    },
+    {
+      "recipeId": "cmifeo1wx006ekgebzwz1ab3h",
+      "recipeName": "Shakshuka (Eggs in Tomato Sauce)",
+      "recipeSlug": "shakshuka",
+      "category": "Eggs & Savory",
+      "mealType": "BREAKFAST",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeo1wx006ekgebzwz1ab3h.jpg",
+      "generatedAt": "2025-11-26T09:36:09.282Z"
+    },
+    {
+      "recipeId": "cmifeols102d2kgebqzc6oz5y",
+      "recipeName": "Shakshuka with Feta & Herbs",
+      "recipeSlug": "shakshuka-with-feta",
+      "category": "Mediterranean",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeols102d2kgebqzc6oz5y.jpg",
+      "generatedAt": "2025-11-26T09:36:22.715Z"
+    },
+    {
+      "recipeId": "cmifeopni02uzkgebu8qctubc",
+      "recipeName": "Sheet Pan Nachos (Healthified)",
+      "recipeSlug": "sheet-pan-nachos",
+      "category": "Family Favorites",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeopni02uzkgebu8qctubc.jpg",
+      "generatedAt": "2025-11-26T09:36:37.280Z"
+    },
+    {
+      "recipeId": "cmifeodsl01fskgebyos8mcow",
+      "recipeName": "Sheet Pan Salmon & Asparagus",
+      "recipeSlug": "sheet-pan-salmon-asparagus",
+      "category": "Seafood",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeodsl01fskgebyos8mcow.jpg",
+      "generatedAt": "2025-11-26T09:36:51.443Z"
+    },
+    {
+      "recipeId": "cmifeomrf02hpkgeb2r4z1uel",
+      "recipeName": "Shrimp Ceviche",
+      "recipeSlug": "shrimp-ceviche",
+      "category": "Mexican/Latin",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeomrf02hpkgeb2r4z1uel.jpg",
+      "generatedAt": "2025-11-26T09:37:05.412Z"
+    },
+    {
+      "recipeId": "cmifeox7603rmkgeb6eojodgn",
+      "recipeName": "Shrimp Cocktail",
+      "recipeSlug": "shrimp-cocktail",
+      "category": "Protein Snacks",
+      "mealType": "SNACK",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeox7603rmkgeb6eojodgn.jpg",
+      "generatedAt": "2025-11-26T09:37:21.404Z"
+    },
+    {
+      "recipeId": "cmifeoksi028kkgebzo3iii4p",
+      "recipeName": "Shrimp Fried Cauliflower Rice",
+      "recipeSlug": "shrimp-fried-cauliflower-rice",
+      "category": "Asian Cuisine",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeoksi028kkgebzo3iii4p.jpg",
+      "generatedAt": "2025-11-26T09:37:32.718Z"
+    },
+    {
+      "recipeId": "cmifeof7i01lckgebj75kziu8",
+      "recipeName": "Shrimp Scampi with Whole Wheat Linguine",
+      "recipeSlug": "shrimp-scampi-whole-wheat-linguine",
+      "category": "Seafood",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeof7i01lckgebj75kziu8.jpg",
+      "generatedAt": "2025-11-26T09:37:48.546Z"
+    },
+    {
+      "recipeId": "cmifeomol02h8kgebzv74gztp",
+      "recipeName": "Slow Cooker Carnitas (Lightened)",
+      "recipeSlug": "carnitas-lettuce-tacos",
+      "category": "Mexican/Latin",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeomol02h8kgebzv74gztp.jpg",
+      "generatedAt": "2025-11-26T09:37:59.123Z"
+    },
+    {
+      "recipeId": "cmifeonnf02m2kgebng4cvztm",
+      "recipeName": "Slow Cooker Chicken Vegetable Soup",
+      "recipeSlug": "slow-cooker-chicken-vegetable-soup",
+      "category": "Slow Cooker",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeonnf02m2kgebng4cvztm.jpg",
+      "generatedAt": "2025-11-26T09:38:11.510Z"
+    },
+    {
+      "recipeId": "cmifeonua02mykgeb2mbt2br8",
+      "recipeName": "Slow Cooker Turkey Chili",
+      "recipeSlug": "slow-cooker-turkey-chili",
+      "category": "Slow Cooker",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeonua02mykgeb2mbt2br8.jpg",
+      "generatedAt": "2025-11-26T09:38:24.299Z"
+    },
+    {
+      "recipeId": "cmifeo38j00avkgeb5ytooofg",
+      "recipeName": "Smoked Salmon Eggs Benedict (Lightened)",
+      "recipeSlug": "smoked-salmon-eggs-benedict",
+      "category": "Eggs & Savory",
+      "mealType": "BREAKFAST",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeo38j00avkgeb5ytooofg.jpg",
+      "generatedAt": "2025-11-26T09:38:35.581Z"
+    },
+    {
+      "recipeId": "cmifeorz2034bkgebzqsogjav",
+      "recipeName": "Smoked Salmon on Cucumber",
+      "recipeSlug": "smoked-salmon-cucumber-rounds",
+      "category": "Quick Grab Snacks",
+      "mealType": "SNACK",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeorz2034bkgebzqsogjav.jpg",
+      "generatedAt": "2025-11-26T09:38:53.049Z"
+    },
+    {
+      "recipeId": "cmifeow3a03mskgebspbcv6re",
+      "recipeName": "Smoothie Bowls",
+      "recipeSlug": "smoothie-bowls",
+      "category": "Snacks to Share",
+      "mealType": "SNACK",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeow3a03mskgebspbcv6re.jpg",
+      "generatedAt": "2025-11-26T09:39:06.418Z"
+    },
+    {
+      "recipeId": "cmifeo7dp00qikgebqsclao5d",
+      "recipeName": "Southwest Black Bean Salad",
+      "recipeSlug": "southwest-black-bean-salad",
+      "category": "Salads",
+      "mealType": "LUNCH",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeo7dp00qikgebqsclao5d.jpg",
+      "generatedAt": "2025-11-26T09:39:22.480Z"
+    },
+    {
+      "recipeId": "cmifeoot702r8kgebfp9htmmo",
+      "recipeName": "Spaghetti & Turkey Meatballs",
+      "recipeSlug": "spaghetti-turkey-meatballs",
+      "category": "Family Favorites",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeoot702r8kgebfp9htmmo.jpg",
+      "generatedAt": "2025-11-26T09:39:35.752Z"
+    },
+    {
+      "recipeId": "cmifeo22e006xkgebu6tnojwt",
+      "recipeName": "Spinach & Mushroom Frittata",
+      "recipeSlug": "spinach-mushroom-frittata",
+      "category": "Eggs & Savory",
+      "mealType": "BREAKFAST",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeo22e006xkgebu6tnojwt.jpg",
+      "generatedAt": "2025-11-26T09:39:47.617Z"
+    },
+    {
+      "recipeId": "cmifeojka0241kgebh7l50xxk",
+      "recipeName": "Spinach & Ricotta Stuffed Shells",
+      "recipeSlug": "spinach-ricotta-stuffed-shells",
+      "category": "Vegetarian & Plant-Based",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeojka0241kgebh7l50xxk.jpg",
+      "generatedAt": "2025-11-26T09:40:03.064Z"
+    },
+    {
+      "recipeId": "cmifeo7hs00r5kgeb7yvmah3x",
+      "recipeName": "Strawberry Spinach Salad",
+      "recipeSlug": "strawberry-spinach-salad",
+      "category": "Salads",
+      "mealType": "LUNCH",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeo7hs00r5kgeb7yvmah3x.jpg",
+      "generatedAt": "2025-11-26T09:40:15.998Z"
+    },
+    {
+      "recipeId": "cmifeosag035okgeb0hznyaln",
+      "recipeName": "String Cheese with Grapes",
+      "recipeSlug": "string-cheese-and-grapes",
+      "category": "Quick Grab Snacks",
+      "mealType": "SNACK",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeosag035okgeb0hznyaln.jpg",
+      "generatedAt": "2025-11-26T09:40:28.290Z"
+    },
+    {
+      "recipeId": "cmifeom8e02f7kgeb62k5gjxr",
+      "recipeName": "Stuffed Grape Leaves (Dolmas)",
+      "recipeSlug": "stuffed-grape-leaves",
+      "category": "Mediterranean",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeom8e02f7kgeb62k5gjxr.jpg",
+      "generatedAt": "2025-11-26T09:40:40.843Z"
+    },
+    {
+      "recipeId": "cmifeotkw03bbkgebatfsg3dm",
+      "recipeName": "Stuffed Mini Peppers",
+      "recipeSlug": "stuffed-mini-peppers",
+      "category": "Savory Snacks",
+      "mealType": "SNACK",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeotkw03bbkgebatfsg3dm.jpg",
+      "generatedAt": "2025-11-26T09:40:55.098Z"
+    },
+    {
+      "recipeId": "cmifeoif301z8kgeb0cq021z8",
+      "recipeName": "Stuffed Portobello Mushrooms",
+      "recipeSlug": "stuffed-portobello-mushrooms",
+      "category": "Vegetarian & Plant-Based",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeoif301z8kgeb0cq021z8.jpg",
+      "generatedAt": "2025-11-26T09:41:08.887Z"
+    },
+    {
+      "recipeId": "cmifeoomh02q4kgeb5yrcnkcv",
+      "recipeName": "Stuffed Salmon with Crab & Spinach",
+      "recipeSlug": "stuffed-salmon-with-crab",
+      "category": "Date Night",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeoomh02q4kgeb5yrcnkcv.jpg",
+      "generatedAt": "2025-11-26T09:41:22.954Z"
+    },
+    {
+      "recipeId": "cmifeo32r00abkgebf0gz3e0c",
+      "recipeName": "Sweet Potato & Kale Hash with Eggs",
+      "recipeSlug": "sweet-potato-kale-hash",
+      "category": "Eggs & Savory",
+      "mealType": "BREAKFAST",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeo32r00abkgebf0gz3e0c.jpg",
+      "generatedAt": "2025-11-26T09:41:36.648Z"
+    },
+    {
+      "recipeId": "cmifeo4xj00hvkgebp1v6ya2l",
+      "recipeName": "Sweet Potato Toast",
+      "recipeSlug": "sweet-potato-toast",
+      "category": "Pancakes, Waffles & Toast",
+      "mealType": "BREAKFAST",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeo4xj00hvkgebp1v6ya2l.jpg",
+      "generatedAt": "2025-11-26T09:41:47.367Z"
+    },
+    {
+      "recipeId": "cmifeolfa02aqkgeb39ovrvl5",
+      "recipeName": "Tandoori Chicken",
+      "recipeSlug": "tandoori-chicken",
+      "category": "Indian Cuisine",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeolfa02aqkgeb39ovrvl5.jpg",
+      "generatedAt": "2025-11-26T09:42:00.228Z"
+    },
+    {
+      "recipeId": "cmifeovmx03kpkgeb7kaor96d",
+      "recipeName": "Tart Cherry Recovery Smoothie",
+      "recipeSlug": "cherry-tart-smoothie",
+      "category": "Beverages",
+      "mealType": "BEVERAGE",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeovmx03kpkgeb7kaor96d.jpg",
+      "generatedAt": "2025-11-26T09:42:11.541Z"
+    },
+    {
+      "recipeId": "cmifeoipp020akgebmkc4whza",
+      "recipeName": "Tempeh Buddha Bowl",
+      "recipeSlug": "tempeh-buddha-bowl",
+      "category": "Vegetarian & Plant-Based",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeoipp020akgebmkc4whza.jpg",
+      "generatedAt": "2025-11-26T09:42:26.781Z"
+    },
+    {
+      "recipeId": "cmifeoq3002wlkgebrwmmoyny",
+      "recipeName": "Teriyaki Chicken Bowls",
+      "recipeSlug": "teriyaki-chicken-bowls",
+      "category": "Family Favorites",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeoq3002wlkgebrwmmoyny.jpg",
+      "generatedAt": "2025-11-26T09:42:37.831Z"
+    },
+    {
+      "recipeId": "cmifeobrw017mkgebkkbr5yeg",
+      "recipeName": "Teriyaki Salmon Bowl",
+      "recipeSlug": "teriyaki-salmon-bowl",
+      "category": "Bowls",
+      "mealType": "LUNCH",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeobrw017mkgebkkbr5yeg.jpg",
+      "generatedAt": "2025-11-26T09:42:52.101Z"
+    },
+    {
+      "recipeId": "cmifeojuv0254kgebcfq2dpkr",
+      "recipeName": "Thai Basil Chicken (Pad Krapow Gai)",
+      "recipeSlug": "thai-basil-chicken",
+      "category": "Asian Cuisine",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeojuv0254kgebcfq2dpkr.jpg",
+      "generatedAt": "2025-11-26T09:43:05.828Z"
+    },
+    {
+      "recipeId": "cmifeofbk01ltkgebv7feh932",
+      "recipeName": "Thai Coconut Mussels",
+      "recipeSlug": "thai-coconut-mussels",
+      "category": "Seafood",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeofbk01ltkgebv7feh932.jpg",
+      "generatedAt": "2025-11-26T09:43:21.170Z"
+    },
+    {
+      "recipeId": "cmifeokzl0295kgeb2zb57n6g",
+      "recipeName": "Thai Green Curry with Chicken",
+      "recipeSlug": "thai-green-curry-chicken",
+      "category": "Asian Cuisine",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeokzl0295kgeb2zb57n6g.jpg",
+      "generatedAt": "2025-11-26T09:43:32.789Z"
+    },
+    {
+      "recipeId": "cmifeo7ue00s7kgeb9o33bgh0",
+      "recipeName": "Thai Peanut Crunch Salad",
+      "recipeSlug": "thai-peanut-crunch-salad",
+      "category": "Salads",
+      "mealType": "LUNCH",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeo7ue00s7kgeb9o33bgh0.jpg",
+      "generatedAt": "2025-11-26T09:43:48.587Z"
+    },
+    {
+      "recipeId": "cmifeo5t500l2kgebn5tz50j5",
+      "recipeName": "Trail Mix Breakfast Jar",
+      "recipeSlug": "trail-mix-breakfast-jar",
+      "category": "Quick & Simple",
+      "mealType": "BREAKFAST",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeo5t500l2kgebn5tz50j5.jpg",
+      "generatedAt": "2025-11-26T09:44:03.281Z"
+    },
+    {
+      "recipeId": "cmifeo3ox00cjkgeb7siqedmr",
+      "recipeName": "Tropical Anti-Inflammatory Smoothie",
+      "recipeSlug": "tropical-anti-inflammatory-smoothie",
+      "category": "Smoothies & Bowls",
+      "mealType": "BREAKFAST",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeo3ox00cjkgeb7siqedmr.jpg",
+      "generatedAt": "2025-11-26T09:44:19.763Z"
+    },
+    {
+      "recipeId": "cmifeoftq01nqkgebk4fcecb7",
+      "recipeName": "Trout Almondine",
+      "recipeSlug": "trout-almondine",
+      "category": "Seafood",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeoftq01nqkgebk4fcecb7.jpg",
+      "generatedAt": "2025-11-26T09:44:31.651Z"
+    },
+    {
+      "recipeId": "cmifeo77c00pvkgeb05jvw4tm",
+      "recipeName": "Tuna & White Bean Salad",
+      "recipeSlug": "tuna-white-bean-salad",
+      "category": "Salads",
+      "mealType": "LUNCH",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeo77c00pvkgeb05jvw4tm.jpg",
+      "generatedAt": "2025-11-26T09:44:45.910Z"
+    },
+    {
+      "recipeId": "cmifeoas3013kkgebqf6u6xkw",
+      "recipeName": "Tuna Melt (Open-Faced)",
+      "recipeSlug": "tuna-melt",
+      "category": "Sandwiches & Wraps",
+      "mealType": "LUNCH",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeoas3013kkgebqf6u6xkw.jpg",
+      "generatedAt": "2025-11-26T09:44:57.479Z"
+    },
+    {
+      "recipeId": "cmifeotnb03bqkgeb1okqafjy",
+      "recipeName": "Tuna Salad Lettuce Cups",
+      "recipeSlug": "tuna-salad-lettuce-cups",
+      "category": "Savory Snacks",
+      "mealType": "SNACK",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeotnb03bqkgeb1okqafjy.jpg",
+      "generatedAt": "2025-11-26T09:45:09.066Z"
+    },
+    {
+      "recipeId": "cmifeorv3033vkgebwzt6d7di",
+      "recipeName": "Turkey & Cheese Roll-Ups",
+      "recipeSlug": "turkey-roll-ups",
+      "category": "Quick Grab Snacks",
+      "mealType": "SNACK",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeorv3033vkgebwzt6d7di.jpg",
+      "generatedAt": "2025-11-26T09:45:20.522Z"
+    },
+    {
+      "recipeId": "cmifeocqa01b9kgebk38m3fhc",
+      "recipeName": "Turkey Meatball Subs",
+      "recipeSlug": "turkey-meatball-subs",
+      "category": "Family Favorites",
+      "mealType": "LUNCH",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeocqa01b9kgebk38m3fhc.jpg",
+      "generatedAt": "2025-11-26T09:45:32.586Z"
+    },
+    {
+      "recipeId": "cmifeoh9z01u8kgebe3ruip5e",
+      "recipeName": "Turkey Meatloaf with Oat Flour",
+      "recipeSlug": "turkey-meatloaf",
+      "category": "Poultry",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeoh9z01u8kgebe3ruip5e.jpg",
+      "generatedAt": "2025-11-26T09:45:48.230Z"
+    },
+    {
+      "recipeId": "cmifeopse02vhkgebufymdw71",
+      "recipeName": "Turkey Sloppy Joes",
+      "recipeSlug": "turkey-sloppy-joes",
+      "category": "Family Favorites",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeopse02vhkgebufymdw71.jpg",
+      "generatedAt": "2025-11-26T09:46:00.725Z"
+    },
+    {
+      "recipeId": "cmifeogjr01r3kgebcqdnjrhb",
+      "recipeName": "Turkey Stuffed Bell Peppers",
+      "recipeSlug": "turkey-stuffed-bell-peppers",
+      "category": "Poultry",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeogjr01r3kgebcqdnjrhb.jpg",
+      "generatedAt": "2025-11-26T09:46:13.330Z"
+    },
+    {
+      "recipeId": "cmifeogg201qakgebppt1wm6g",
+      "recipeName": "Turkey Taco Lettuce Wraps",
+      "recipeSlug": "turkey-taco-lettuce-wraps",
+      "category": "Poultry",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeogg201qakgebppt1wm6g.jpg",
+      "generatedAt": "2025-11-26T09:46:26.005Z"
+    },
+    {
+      "recipeId": "cmifeon6k02jmkgebjd6fbauj",
+      "recipeName": "Turkish Red Lentil Soup (Mercimek)",
+      "recipeSlug": "turkish-lentil-soup",
+      "category": "Middle Eastern",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeon6k02jmkgebjd6fbauj.jpg",
+      "generatedAt": "2025-11-26T09:46:38.607Z"
+    },
+    {
+      "recipeId": "cmifeosnj036zkgebxcqy3om4",
+      "recipeName": "Turmeric Ginger Energy Bites",
+      "recipeSlug": "turmeric-ginger-energy-bites",
+      "category": "Energy Bites",
+      "mealType": "SNACK",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeosnj036zkgebxcqy3om4.jpg",
+      "generatedAt": "2025-11-26T09:46:50.767Z"
+    },
+    {
+      "recipeId": "cmifeoxg803sykgeblclfcsk9",
+      "recipeName": "Turmeric Golden Hummus",
+      "recipeSlug": "turmeric-hummus",
+      "category": "Anti-Inflammatory Snacks",
+      "mealType": "SNACK",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeoxg803sykgeblclfcsk9.jpg",
+      "generatedAt": "2025-11-26T09:47:04.627Z"
+    },
+    {
+      "recipeId": "cmifeo86t00tfkgebip3ecom1",
+      "recipeName": "Tuscan White Bean & Kale Soup",
+      "recipeSlug": "tuscan-white-bean-kale-soup",
+      "category": "Soups",
+      "mealType": "LUNCH",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeo86t00tfkgebip3ecom1.jpg",
+      "generatedAt": "2025-11-26T09:47:16.142Z"
+    },
+    {
+      "recipeId": "cmifeot1k038tkgebupsryph5",
+      "recipeName": "Tuscan White Bean Dip",
+      "recipeSlug": "white-bean-dip",
+      "category": "Savory Snacks",
+      "mealType": "SNACK",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeot1k038tkgebupsryph5.jpg",
+      "generatedAt": "2025-11-26T09:47:27.031Z"
+    },
+    {
+      "recipeId": "cmifeot85039skgebq7ukf2u6",
+      "recipeName": "Tzatziki with Whole Wheat Pita",
+      "recipeSlug": "tzatziki-with-pita",
+      "category": "Savory Snacks",
+      "mealType": "SNACK",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeot85039skgebq7ukf2u6.jpg",
+      "generatedAt": "2025-11-26T09:47:39.148Z"
+    },
+    {
+      "recipeId": "cmifeoj5q021vkgeb6b7l3531",
+      "recipeName": "Vegetable Pad Thai with Tofu",
+      "recipeSlug": "vegetable-pad-thai",
+      "category": "Vegetarian & Plant-Based",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeoj5q021vkgeb6b7l3531.jpg",
+      "generatedAt": "2025-11-26T09:47:50.738Z"
+    },
+    {
+      "recipeId": "cmifeod6a01d0kgeb13i6vkmi",
+      "recipeName": "Veggie Fried Rice",
+      "recipeSlug": "veggie-fried-rice",
+      "category": "Family Favorites",
+      "mealType": "LUNCH",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeod6a01d0kgeb13i6vkmi.jpg",
+      "generatedAt": "2025-11-26T09:48:02.445Z"
+    },
+    {
+      "recipeId": "cmifeokc3026ykgebaburqrdm",
+      "recipeName": "Vietnamese Beef Pho",
+      "recipeSlug": "vietnamese-pho",
+      "category": "Asian Cuisine",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeokc3026ykgebaburqrdm.jpg",
+      "generatedAt": "2025-11-26T09:48:14.066Z"
+    },
+    {
+      "recipeId": "cmifeoxm903twkgeb5k0nxz4c",
+      "recipeName": "Walnut Cherry Bites",
+      "recipeSlug": "walnut-cherry-bites",
+      "category": "Anti-Inflammatory Snacks",
+      "mealType": "SNACK",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeoxm903twkgeb5k0nxz4c.jpg",
+      "generatedAt": "2025-11-26T09:48:25.231Z"
+    },
+    {
+      "recipeId": "cmifeowwl03q9kgeb70dvhjg1",
+      "recipeName": "Watermelon Feta Bites",
+      "recipeSlug": "watermelon-feta-bites",
+      "category": "Snacks to Share",
+      "mealType": "SNACK",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeowwl03q9kgeb70dvhjg1.jpg",
+      "generatedAt": "2025-11-26T09:48:37.942Z"
+    },
+    {
+      "recipeId": "cmifeojgh023kkgeb5u3y2aom",
+      "recipeName": "White Bean & Kale Skillet",
+      "recipeSlug": "white-bean-kale-skillet",
+      "category": "Vegetarian & Plant-Based",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeojgh023kkgeb5u3y2aom.jpg",
+      "generatedAt": "2025-11-26T09:48:49.005Z"
+    },
+    {
+      "recipeId": "cmifeo5j500k9kgeb88shsjwj",
+      "recipeName": "Whole Grain Cereal with Berries",
+      "recipeSlug": "high-fiber-cereal-berries",
+      "category": "Quick & Simple",
+      "mealType": "BREAKFAST",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeo5j500k9kgeb88shsjwj.jpg",
+      "generatedAt": "2025-11-26T09:49:00.239Z"
+    },
+    {
+      "recipeId": "cmifeo51400idkgebane13wzc",
+      "recipeName": "Whole Grain Waffles with Berry Compote",
+      "recipeSlug": "whole-grain-waffles-berry-compote",
+      "category": "Pancakes, Waffles & Toast",
+      "mealType": "BREAKFAST",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeo51400idkgebane13wzc.jpg",
+      "generatedAt": "2025-11-26T09:49:11.730Z"
+    },
+    {
+      "recipeId": "cmifeowls03opkgeb5wira5pk",
+      "recipeName": "Whole Wheat Pretzel Bites",
+      "recipeSlug": "whole-wheat-pretzel-bites",
+      "category": "Snacks to Share",
+      "mealType": "SNACK",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeowls03opkgeb5wira5pk.jpg",
+      "generatedAt": "2025-11-26T09:49:24.700Z"
+    },
+    {
+      "recipeId": "cmifeou5l03dpkgebub025zti",
+      "recipeName": "Yogurt Bark",
+      "recipeSlug": "yogurt-bark",
+      "category": "Sweet Treats",
+      "mealType": "SNACK",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeou5l03dpkgebub025zti.jpg",
+      "generatedAt": "2025-11-26T09:49:36.470Z"
+    },
+    {
+      "recipeId": "cmifeo2wp009nkgeby6sqahth",
+      "recipeName": "Zucchini Egg Muffins",
+      "recipeSlug": "zucchini-egg-muffins",
+      "category": "Eggs & Savory",
+      "mealType": "BREAKFAST",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeo2wp009nkgeby6sqahth.jpg",
+      "generatedAt": "2025-11-26T09:49:49.306Z"
+    },
+    {
+      "recipeId": "cmifeoqde02y2kgeb8tqwqxc6",
+      "recipeName": "Zucchini Lasagna",
+      "recipeSlug": "zucchini-lasagna",
+      "category": "Family Favorites",
+      "mealType": "DINNER",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeoqde02y2kgeb8tqwqxc6.jpg",
+      "generatedAt": "2025-11-26T09:50:01.837Z"
+    },
+    {
+      "recipeId": "cmifeowpa03p9kgebirorutjq",
+      "recipeName": "Zucchini Pizza Bites",
+      "recipeSlug": "zucchini-pizza-bites",
+      "category": "Snacks to Share",
+      "mealType": "SNACK",
+      "imageUrl": "https://eje1nkkrfriueajy.public.blob.vercel-storage.com/recipes/cmifeowpa03p9kgebirorutjq.jpg",
+      "generatedAt": "2025-11-26T09:50:15.509Z"
+    }
+  ],
+  "failed": [
+    {
+      "id": "cmifeosq9037fkgebfcfwb6ru",
+      "name": "Chocolate Walnut Energy Bites",
+      "error": "fetch failed"
+    },
+    {
+      "id": "cmifeou7x03e5kgebyuj2uvz0",
+      "name": "Date & Walnut Bites",
+      "error": "fetch failed"
+    },
+    {
+      "id": "cmifeoogr02pkkgebsvuaz30d",
+      "name": "Filet Mignon with Red Wine Reduction",
+      "error": "fetch failed"
+    },
+    {
+      "id": "cmifeou3a03ddkgebxh2ifwqy",
+      "name": "Frozen Grapes",
+      "error": "fetch failed"
+    },
+    {
+      "id": "cmifeog3g01orkgeblfk80xde",
+      "name": "Greek Chicken with Roasted Vegetables",
+      "error": "fetch failed"
+    },
+    {
+      "id": "cmifeoa7j011wkgebjo07t1t1",
+      "name": "Grilled Chicken Pesto Sandwich",
+      "error": "fetch failed"
+    },
+    {
+      "id": "cmifeonqe02mikgebmkcjrq0k",
+      "name": "Instant Pot Salmon with Lemon & Dill",
+      "error": "fetch failed"
+    },
+    {
+      "id": "cmifeoc33018xkgeb7aofvuxu",
+      "name": "Korean Bibimbap Bowl",
+      "error": "fetch failed"
+    }
+  ],
+  "summary": {
+    "total": 258,
+    "success": 250,
+    "failed": 8,
+    "skipped": 0,
+    "updated": 250,
+    "successRate": "96.9%"
+  },
+  "lastUpdated": "2025-11-26T09:50:15.515Z"
+}

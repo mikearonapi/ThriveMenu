@@ -74,7 +74,7 @@ export default function ExplorePage() {
         if (mealType) url.searchParams.set("mealType", mealType);
         if (searchParam) url.searchParams.set("search", searchParam);
         if (showKidFriendlyFilter) url.searchParams.set("kidFriendly", "true");
-        url.searchParams.set("limit", "100");
+        url.searchParams.set("limit", "300"); // Show all recipes (we have 258)
 
         const response = await fetch(url.toString());
         const data = await response.json();

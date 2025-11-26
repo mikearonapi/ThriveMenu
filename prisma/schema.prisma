@@ -151,6 +151,7 @@ model Recipe {
   prepTimeMinutes Int
   cookTimeMinutes Int
   totalTimeMinutes Int
+  activeTimeMinutes Int?   // Hands-on time vs passive waiting
   
   // Servings
   servings        Int
@@ -166,12 +167,38 @@ model Recipe {
   // Health & Benefits
   healthBenefits  String   @db.Text // "Why It's Great" section
   
+  // Cost & Budget
+  costPerServing  Float?   // Estimated cost in USD per serving
+  costLevel       CostLevel @default(MEDIUM) // Budget category
+  
+  // Equipment
+  equipment       String[] // Required equipment: "blender", "instant-pot", "sheet-pan"
+  
+  // Serving Suggestions
+  servingSuggestions String? @db.Text // What to pair with, side dishes, etc.
+  
+  // Wine/Beverage Pairing
+  winePairing     String?  // Wine pairing recommendation
+  beveragePairing String?  // Non-alcoholic pairing option
+  
+  // Scaling
+  scalingNotes    String?  @db.Text // Notes on how recipe scales up/down
+  minServings     Int?     // Minimum recommended servings
+  maxServings     Int?     // Maximum recommended servings
+  
+  // Seasonal
+  seasonalAvailability Season[] // Best seasons for this recipe
+  
+  // Iodine (important for Graves disease)
+  iodineLevel     IodineLevel @default(MODERATE)
+  
   // Flags
   isKidFriendly   Boolean  @default(false)
   isMakeAhead     Boolean  @default(false)
   isOnePot        Boolean  @default(false)
   isQuick         Boolean  @default(false) // Under 30 minutes
   isBudgetFriendly Boolean @default(false)
+  isFreezerFriendly Boolean @default(false)
   
   // Source
   sourceUrl       String?
@@ -193,6 +220,7 @@ model Recipe {
   cookingHistory  CookingHistory[]
   tips            RecipeTip[]
   variations      RecipeVariation[]
+  substitutions   IngredientSubstitution[]
 }
 
 enum MealType {
@@ -208,6 +236,27 @@ enum Difficulty {
   EASY
   MEDIUM
   HARD
+}
+
+enum CostLevel {
+  BUDGET      // Under $3 per serving
+  MEDIUM      // $3-6 per serving
+  PREMIUM     // $6-10 per serving
+  SPLURGE     // Over $10 per serving
+}
+
+enum Season {
+  SPRING
+  SUMMER
+  FALL
+  WINTER
+  ALL_YEAR
+}
+
+enum IodineLevel {
+  LOW         // Safe for Graves - minimal iodine
+  MODERATE    // Normal iodine content
+  HIGH        // Limit for Graves - seaweed, iodized salt, etc.
 }
 
 // Ingredients with amounts and preparation
@@ -306,27 +355,38 @@ model NutritionInfo {
   recipeId        String   @unique
   recipe          Recipe   @relation(fields: [recipeId], references: [id], onDelete: Cascade)
   
-  // Per serving
+  // Per serving - Macros
   calories        Int
   protein         Float    // grams
   carbohydrates   Float    // grams
   fiber           Float    // grams
   sugar           Float    // grams
+  netCarbs        Float?   // grams (carbs - fiber) - important for keto/low-carb
   fat             Float    // grams
   saturatedFat    Float    // grams
   unsaturatedFat  Float?   // grams
+  transFat        Float?   // grams
   cholesterol     Float    // mg
   sodium          Float    // mg
   potassium       Float?   // mg
   
+  // Glycemic Impact (important for blood sugar management)
+  glycemicIndex   Int?     // 0-100 scale (low <55, medium 55-69, high 70+)
+  glycemicLoad    Float?   // (GI x carbs per serving) / 100
+  
   // Key nutrients for Christine's conditions
   omega3          Float?   // grams
+  omega6          Float?   // grams (for omega ratio calculation)
   selenium        Float?   // mcg
   vitaminD        Float?   // IU
   iron            Float?   // mg
   calcium         Float?   // mg
+  magnesium       Float?   // mg
+  zinc            Float?   // mg
   vitaminC        Float?   // mg
   vitaminA        Float?   // IU
+  vitaminB12      Float?   // mcg
+  folate          Float?   // mcg
   
   // Calculated scores (1-10)
   heartHealthScore Int?
@@ -403,6 +463,28 @@ model RecipeVariation {
   name        String
   description String   @db.Text
   changes     String[] // List of modifications
+}
+
+// Ingredient substitutions for dietary restrictions/preferences
+model IngredientSubstitution {
+  id              String   @id @default(cuid())
+  recipeId        String
+  recipe          Recipe   @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+  
+  originalIngredient  String   // e.g., "butter"
+  substituteIngredient String  // e.g., "coconut oil"
+  substitutionRatio   String?  // e.g., "1:1" or "use 3/4 cup for every 1 cup"
+  notes               String?  // Any special instructions
+  
+  // What dietary need does this address?
+  forDairyFree    Boolean @default(false)
+  forGlutenFree   Boolean @default(false)
+  forVegan        Boolean @default(false)
+  forNutFree      Boolean @default(false)
+  forLowSodium    Boolean @default(false)
+  forLowCarb      Boolean @default(false)
+  
+  @@index([recipeId])
 }
 
 // =============================================
